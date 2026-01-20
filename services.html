@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="zh-TW" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 繪圖服務 | 虛擬展場開發 | 全球服務 | Wayto Metaverse</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Wayto Visual 服務項目 - 室內空間靜態圖、建築外觀渲染、建材模擬、虛擬展場。透明定價，室內3D約NT$10,000/3天，建築外觀NT$60,000-80,000/7-10天。">
+  <meta name="keywords" content="3D繪圖服務,室內3D價格,建案渲染價格,建材模擬,虛擬展場開發,3D效果圖外包,建案3D視覺化">
+  <meta name="author" content="Wayto Metaverse Technology Co., Ltd.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wayto.com.tw/services.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wayto.com.tw/services.html">
+  <meta property="og:title" content="3D 繪圖服務 | 虛擬展場開發 | 全球服務 | Wayto Metaverse">
+  <meta property="og:description" content="透明定價，室內3D約NT$10,000/3天，建築外觀NT$60,000-80,000/7-10天。">
+  <meta property="og:locale" content="zh_TW">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://wayto.com.tw/services.html">
+  <meta name="twitter:title" content="3D 繪圖服務 | 虛擬展場開發 | 全球服務 | Wayto Metaverse">
+  <meta name="twitter:description" content="透明定價，室內3D約NT$10,000/3天。">
+  <!-- <script src="/_sdk/element_sdk.js"></script> --> <!-- SDK文件不存在，已注释 -->
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .font-noto {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .refined-shadow {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    nav {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .service-card {
+      border-bottom: 1px solid #f5f5f4;
+      padding: 4rem 0;
+      transition: background 0.3s ease;
+    }
+
+    .service-card:hover {
+      background: #fafaf9;
+    }
+
+    .service-image-wrapper {
+      overflow: hidden;
+      transition: transform 0.4s ease;
+      cursor: pointer;
+    }
+
+    .service-image-wrapper:hover {
+      transform: translateY(-4px);
+    }
+
+    .service-image-wrapper svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .service-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: #c9b896;
+      opacity: 0.6;
+    }
+
+    .guide-item {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+
+    .guide-arrow {
+      color: #c9b896;
+      font-weight: 300;
+    }
+
+    .contact-form {
+      max-width: 600px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e5e5;
+      background: #fafaf9;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #c9b896;
+      background: #ffffff;
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      padding: 1rem 3rem;
+      background: #1c1917;
+      color: #ffffff;
+      border: none;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-button:hover {
+      background: #c9b896;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .submit-button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-message, .error-message {
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .success-message {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-noto bg-white text-gray-900 overflow-auto"><!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100">
+   <div class="max-w-screen-2xl mx-auto px-6 lg:px-16 h-24 flex items-center justify-between">
+    <a href="visual.html" class="font-cormorant text-2xl font-light tracking-wide hover:text-gray-600 transition-colors" id="nav-title">
+     SERVICES
+    </a>
+    <div class="flex gap-8 text-sm tracking-widest uppercase"><a href="visual.html" class="hover:text-gray-600 transition-colors">3D 首頁</a> <a href="#services" class="hover:text-gray-600 transition-colors">服務</a> <a href="portfolio.html" class="hover:text-gray-600 transition-colors">作品集</a> <a href="process.html" class="hover:text-gray-600 transition-colors">流程</a> <a href="#contact" class="hover:text-gray-600 transition-colors">聯絡</a>
+    </div>
+   </div>
+  </nav><!-- Main Content -->
+  <main class="h-full pt-24"><!-- Hero Section -->
+   <section class="py-32 px-6 lg:px-16">
+    <div class="max-w-screen-2xl mx-auto">
+     <div class="max-w-4xl fade-up">
+      <p class="text-xs tracking-widest uppercase text-gray-500 mb-4" id="hero-label">SERVICES</p>
+      <h1 class="font-cormorant text-6xl lg:text-7xl font-light mb-8" id="hero-title">服務項目</h1>
+      <div class="text-lg leading-loose text-gray-600 max-w-2xl">
+       <p id="intro-line1">我們依不同提案與溝通需求，</p>
+       <p id="intro-line2">提供多種空間與展示的呈現方式。</p>
+       <p class="mt-6">每一種形式，都是為了讓設計與想法<br>
+        能被更清楚地理解與討論。</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Services Section -->
+   <section id="services" class="px-6 lg:px-16">
+    <div class="max-w-screen-2xl mx-auto"><!-- Service 01 -->
+     <article class="service-card fade-up">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16">
+       <div class="lg:col-span-2">
+        <div class="service-number">
+         01
+        </div>
+       </div>
+       <div class="lg:col-span-10">
+        <h2 class="font-cormorant text-3xl font-light mb-4 text-gray-900">3D 效果圖</h2>
+        <p class="text-sm tracking-widest uppercase text-gray-400 mb-6">單張 / 多視角</p>
+        <div class="max-w-3xl space-y-4 text-gray-600 leading-relaxed mb-12">
+         <p>以單一或多個關鍵視角，<br>
+          呈現空間比例、材質搭配與整體氛圍。</p>
+         <p class="text-sm text-gray-500">適合用於設計提案、客戶溝通與初期方向確認。</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="600" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="150" y="200" width="200" height="200" fill="#f5f5f4" /> <rect x="450" y="200" width="200" height="200" fill="#e7e5e4" /> <line x1="350" y1="450" x2="450" y2="450" stroke="#c9b896" stroke-width="8" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="100" width="500" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="250" r="60" fill="#c9b896" opacity="0.3" /> <rect x="250" y="350" width="100" height="120" fill="#f5f5f4" /> <rect x="450" y="350" width="100" height="120" fill="#e7e5e4" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="250" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="450" y="150" width="250" height="300" fill="#f5f5f4" /> <rect x="200" y="250" width="80" height="150" fill="#e7e5e4" /> <rect x="550" y="250" width="80" height="150" fill="#d6d3d1" />
+          </svg>
+         </div>
+        </div>
+       </div>
+      </div>
+     </article><!-- Service 02 -->
+     <article class="service-card fade-up">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16">
+       <div class="lg:col-span-2">
+        <div class="service-number">
+         02
+        </div>
+       </div>
+       <div class="lg:col-span-10">
+        <h2 class="font-cormorant text-3xl font-light mb-4 text-gray-900">鳥瞰圖 / 空拍視角</h2>
+        <p class="text-sm tracking-widest uppercase text-gray-400 mb-6">Aerial View</p>
+        <div class="max-w-3xl space-y-4 text-gray-600 leading-relaxed mb-12">
+         <p>以高視角呈現整體配置與空間關係，<br>
+          協助理解建築量體、景觀與動線安排。</p>
+         <p class="text-sm text-gray-500">常用於建案、公設與整體規劃說明。</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#e0f2fe" /> <rect x="150" y="200" width="180" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="350" y="150" width="180" height="350" fill="#fafaf9" stroke="#e5e5e5" stroke-width="2" /> <rect x="550" y="180" width="180" height="320" fill="#f5f5f4" stroke="#e5e5e5" stroke-width="2" /> <rect x="100" y="500" width="600" height="20" fill="#c9b896" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <ellipse cx="400" cy="450" rx="250" ry="80" fill="#dbeafe" /> <rect x="200" y="200" width="400" height="250" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="300" y="280" width="80" height="120" fill="#f5f5f4" /> <rect x="420" y="280" width="80" height="120" fill="#f5f5f4" /> <circle cx="400" cy="350" r="30" fill="#c9b896" opacity="0.4" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#e0f2fe" /> <ellipse cx="400" cy="500" rx="300" ry="60" fill="#c9b896" opacity="0.2" /> <rect x="200" y="180" width="150" height="280" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="370" y="150" width="150" height="310" fill="#fafaf9" stroke="#e5e5e5" stroke-width="2" /> <rect x="540" y="200" width="150" height="260" fill="#f5f5f4" stroke="#e5e5e5" stroke-width="2" />
+          </svg>
+         </div>
+        </div>
+       </div>
+      </div>
+     </article><!-- Service 03 -->
+     <article class="service-card fade-up">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16">
+       <div class="lg:col-span-2">
+        <div class="service-number">
+         03
+        </div>
+       </div>
+       <div class="lg:col-span-10">
+        <h2 class="font-cormorant text-3xl font-light mb-4 text-gray-900">720° 環景導覽</h2>
+        <p class="text-sm tracking-widest uppercase text-gray-400 mb-6">Panoramic Tour</p>
+        <div class="max-w-3xl space-y-4 text-gray-600 leading-relaxed mb-12">
+         <p>透過環景方式呈現完整空間體驗，<br>
+          讓觀看者能自由切換視角，<br>
+          理解空間尺度與配置。</p>
+         <p class="text-sm text-gray-500">適合遠端溝通、內部討論與展示使用。</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <circle cx="400" cy="300" r="200" fill="none" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="300" r="150" fill="none" stroke="#c9b896" stroke-width="1" stroke-dasharray="10,5" /> <circle cx="400" cy="300" r="100" fill="none" stroke="#e5e5e5" stroke-width="2" /> <line x1="200" y1="300" x2="600" y2="300" stroke="#e5e5e5" stroke-width="1" /> <line x1="400" y1="100" x2="400" y2="500" stroke="#e5e5e5" stroke-width="1" /> <circle cx="400" cy="300" r="8" fill="#c9b896" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="600" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <path d="M 200 300 Q 400 200 600 300" fill="none" stroke="#c9b896" stroke-width="2" /> <circle cx="200" cy="300" r="6" fill="#c9b896" /> <circle cx="400" cy="200" r="6" fill="#c9b896" /> <circle cx="600" cy="300" r="6" fill="#c9b896" /> <rect x="250" y="250" width="100" height="150" fill="#f5f5f4" /> <rect x="450" y="250" width="100" height="150" fill="#e7e5e4" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="100" width="500" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="300" r="120" fill="none" stroke="#c9b896" stroke-width="2" opacity="0.3" /> <circle cx="400" cy="300" r="80" fill="none" stroke="#c9b896" stroke-width="2" opacity="0.5" /> <circle cx="400" cy="300" r="40" fill="#c9b896" opacity="0.3" /> <text x="400" y="310" text-anchor="middle" font-size="20" fill="#9ca3af">
+            360°
+           </text>
+          </svg>
+         </div>
+        </div>
+       </div>
+      </div>
+     </article><!-- Service 04 -->
+     <article class="service-card fade-up">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16">
+       <div class="lg:col-span-2">
+        <div class="service-number">
+         04
+        </div>
+       </div>
+       <div class="lg:col-span-10">
+        <h2 class="font-cormorant text-3xl font-light mb-4 text-gray-900">動畫展示</h2>
+        <p class="text-sm tracking-widest uppercase text-gray-400 mb-6">Animation</p>
+        <div class="max-w-3xl space-y-4 text-gray-600 leading-relaxed mb-12">
+         <p>以動態方式呈現空間動線、<br>
+          使用情境與設計重點，</p>
+         <p>協助說明平面圖或靜態畫面較難表達的內容。</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="200" width="600" height="200" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <path d="M 150 300 L 250 300 L 300 250 L 400 300 L 500 280 L 650 300" fill="none" stroke="#c9b896" stroke-width="3" /> <circle cx="150" cy="300" r="8" fill="#c9b896" /> <circle cx="300" cy="250" r="8" fill="#c9b896" /> <circle cx="500" cy="280" r="8" fill="#c9b896" /> <circle cx="650" cy="300" r="8" fill="#c9b896" /> <polygon points="640,295 660,300 640,305" fill="#c9b896" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="150" width="500" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="200" y="220" width="120" height="160" fill="#f5f5f4" /> <rect x="350" y="220" width="120" height="160" fill="#e7e5e4" /> <rect x="500" y="220" width="120" height="160" fill="#d6d3d1" /> <path d="M 200 200 Q 400 150 600 200" fill="none" stroke="#c9b896" stroke-width="2" stroke-dasharray="5,5" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="100" width="600" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="250" cy="250" r="40" fill="#c9b896" opacity="0.2" /> <circle cx="400" cy="300" r="50" fill="#c9b896" opacity="0.3" /> <circle cx="550" cy="280" r="45" fill="#c9b896" opacity="0.25" /> <path d="M 250 250 Q 325 275 400 300" fill="none" stroke="#c9b896" stroke-width="2" /> <path d="M 400 300 Q 475 290 550 280" fill="none" stroke="#c9b896" stroke-width="2" />
+          </svg>
+         </div>
+        </div>
+       </div>
+      </div>
+     </article><!-- Service 05 -->
+     <article class="service-card fade-up">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-16">
+       <div class="lg:col-span-2">
+        <div class="service-number">
+         05
+        </div>
+       </div>
+       <div class="lg:col-span-10">
+        <h2 class="font-cormorant text-3xl font-light mb-4 text-gray-900">虛擬展場 / 互動展示</h2>
+        <p class="text-sm tracking-widest uppercase text-gray-400 mb-6">Virtual Showroom</p>
+        <div class="max-w-3xl space-y-4 text-gray-600 leading-relaxed mb-12">
+         <p>將空間或產品整合為可操作的虛擬展示形式，<br>
+          讓使用者能在數位環境中自由探索。</p>
+         <p class="text-sm text-gray-500">適合建案展示、建材應用說明與品牌展示需求。</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#e0f2fe" /> <rect x="200" y="180" width="400" height="240" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="250" y="230" width="120" height="140" fill="#f5f5f4" /> <rect x="420" y="230" width="120" height="140" fill="#c9b896" opacity="0.3" /> <circle cx="400" cy="300" r="100" fill="none" stroke="#c9b896" stroke-width="1" stroke-dasharray="5,5" /> <circle cx="400" cy="300" r="6" fill="#c9b896" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="120" width="600" height="360" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="180" y="200" width="100" height="200" fill="#d6d3d1" /> <rect x="300" y="200" width="100" height="200" fill="#e7e5e4" /> <rect x="420" y="200" width="100" height="200" fill="#f5f5f4" /> <rect x="540" y="200" width="100" height="200" fill="#fafaf9" /> <rect x="350" y="150" width="100" height="30" fill="#c9b896" opacity="0.5" />
+          </svg>
+         </div>
+         <div class="service-image-wrapper">
+          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="150" width="500" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="200" y="200" width="150" height="200" fill="#f5f5f4" /> <rect x="380" y="200" width="150" height="200" fill="#e7e5e4" /> <circle cx="275" cy="300" r="30" fill="#c9b896" opacity="0.4" /> <circle cx="455" cy="300" r="30" fill="#c9b896" opacity="0.4" /> <path d="M 275 270 L 275 330 M 255 300 L 295 300" stroke="#ffffff" stroke-width="2" /> <path d="M 455 270 L 455 330 M 435 300 L 475 300" stroke="#ffffff" stroke-width="2" />
+          </svg>
+         </div>
+        </div>
+       </div>
+      </div>
+     </article>
+    </div>
+   </section><!-- Capabilities Section -->
+   <section class="py-32 px-6 lg:px-16 bg-fafaf9">
+    <div class="max-w-screen-2xl mx-auto">
+     <div class="max-w-3xl mx-auto text-center fade-up">
+      <p class="text-xs tracking-widest uppercase text-gray-400 mb-6">Capabilities</p>
+      <h2 class="font-cormorant text-4xl font-light mb-8 text-gray-900">能力說明</h2>
+      <div class="text-gray-600 leading-loose space-y-4">
+       <p>我們的工作不只限於室內空間，<br>
+        也包含建築外觀、公設配置與空間尺度理解。</p>
+       <p>這讓我們能在同一套邏輯下，<br>
+        協助整合設計、提案與展示需求。</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Selection Guide -->
+   <section class="py-32 px-6 lg:px-16">
+    <div class="max-w-screen-2xl mx-auto">
+     <div class="max-w-4xl fade-up">
+      <p class="text-xs tracking-widest uppercase text-gray-400 mb-6">Guide</p>
+      <h2 class="font-cormorant text-4xl font-light mb-12 text-gray-900">如何選擇呈現方式</h2>
+      <div class="space-y-6 text-gray-600">
+       <div class="guide-item"><span class="guide-arrow">・</span>
+        <p>初期提案與方向確認 <span class="text-gray-400">→</span> 3D 效果圖</p>
+       </div>
+       <div class="guide-item"><span class="guide-arrow">・</span>
+        <p>需要整體關係說明 <span class="text-gray-400">→</span> 鳥瞰圖 / 空拍視角</p>
+       </div>
+       <div class="guide-item"><span class="guide-arrow">・</span>
+        <p>空間體驗與遠端溝通 <span class="text-gray-400">→</span> 720° 環景</p>
+       </div>
+       <div class="guide-item"><span class="guide-arrow">・</span>
+        <p>動線與使用情境說明 <span class="text-gray-400">→</span> 動畫展示</p>
+       </div>
+       <div class="guide-item"><span class="guide-arrow">・</span>
+        <p>整合展示與互動體驗 <span class="text-gray-400">→</span> 虛擬展場</p>
+       </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-gray-200">
+       <p class="text-sm text-gray-500 leading-relaxed">實際呈現方式會依案型、使用情境與溝通目的進行調整。<br>
+         我們會在合作初期一同討論最適合的呈現方式。</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-32 px-6 lg:px-16 bg-fafaf9">
+    <div class="max-w-screen-2xl mx-auto">
+     <div class="max-w-4xl mx-auto">
+      <div class="mb-16 text-center fade-up">
+       <p class="text-xs tracking-widest uppercase text-gray-400 mb-6">Contact</p>
+       <h2 class="font-cormorant text-4xl lg:text-5xl font-light mb-8 text-gray-900">聯絡我們</h2>
+       <p class="text-gray-600 leading-loose max-w-2xl mx-auto">如果你有正在進行的案子，<br>
+         或需要評估適合的呈現方式，<br>
+         歡迎與我們聯絡，一起討論合作方向。</p>
+      </div>
+      <div class="fade-up"><!-- Contact Info -->
+       <div class="mb-12 text-center space-y-3">
+        <p class="text-gray-600"><span class="text-sm text-gray-400 uppercase tracking-wider">Email</span><br><a href="#" id="contact-email-link" class="text-lg hover:text-gray-500 transition-colors">wayto.metaverse@gmail.com</a></p>
+        <p class="text-gray-600"><span class="text-sm text-gray-400 uppercase tracking-wider">Phone</span><br><a href="#" id="contact-phone-link" class="text-lg hover:text-gray-500 transition-colors">0981-286-889</a></p>
+       </div><!-- Contact Form -->
+       <div class="contact-form mx-auto">
+        <p class="text-sm text-gray-500 mb-8 text-center">留下簡單的案型與需求，<br>
+          我們會回覆並協助評估適合的呈現方式。</p>
+        <form id="contact-form">
+         <div class="space-y-4">
+          <div><label for="name" class="sr-only">姓名</label> <input type="text" id="name" name="name" placeholder="姓名" required class="form-input">
+          </div>
+          <div><label for="email" class="sr-only">Email</label> <input type="email" id="email" name="email" placeholder="Email" required class="form-input">
+          </div>
+          <div><label for="phone" class="sr-only">電話</label> <input type="tel" id="phone" name="phone" placeholder="電話（選填）" class="form-input">
+          </div>
+          <div><label for="message" class="sr-only">案型與需求</label> <textarea id="message" name="message" placeholder="請簡述您的案型與需求" required class="form-textarea"></textarea>
+          </div>
+          <div class="text-center pt-4"><button type="submit" class="submit-button"> 送出訊息 </button>
+          </div>
+         </div>
+        </form>
+        <div id="form-message"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-16 px-6 lg:px-16 border-t border-gray-100">
+    <div class="max-w-screen-2xl mx-auto">
+     <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
+      <div>
+       <div class="font-cormorant text-xl font-light tracking-wide mb-4">
+        SERVICES
+       </div>
+       <p class="text-sm text-gray-500">3D Visualization Studio</p>
+      </div>
+      <div class="text-sm text-gray-500">
+       <p>© 2024 Wayto Metaverse Technology Co., Ltd. All rights reserved.</p>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </main>
+  <script>
+    const defaultConfig = {
+      background_color: '#ffffff',
+      surface_color: '#fafaf9',
+      text_color: '#1c1917',
+      button_color: '#1c1917',
+      accent_color: '#c9b896',
+      font_family: 'Noto Sans TC',
+      font_size: 16,
+      page_title: 'SERVICES',
+      page_subtitle: '服務項目',
+      intro_line1: '我們依不同提案與溝通需求，',
+      intro_line2: '提供多種空間與展示的呈現方式。',
+      contact_email: 'wayto.metaverse@gmail.com',
+      contact_phone: '0981-286-889'
+    };
+
+    async function onConfigChange(config) {
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const buttonColor = config.button_color || defaultConfig.button_color;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const baseFontStack = '-apple-system, BlinkMacSystemFont, sans-serif';
+
+      document.body.style.backgroundColor = backgroundColor;
+      document.body.style.color = textColor;
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.body.style.fontSize = `${baseSize}px`;
+
+      document.querySelectorAll('.service-card:hover').forEach(card => {
+        card.style.backgroundColor = surfaceColor;
+      });
+
+      document.querySelectorAll('.service-number, .guide-arrow').forEach(el => {
+        el.style.color = accentColor;
+      });
+
+      document.querySelector('.submit-button').style.backgroundColor = buttonColor;
+
+      document.getElementById('nav-title').textContent = config.page_title || defaultConfig.page_title;
+      document.getElementById('hero-label').textContent = config.page_title || defaultConfig.page_title;
+      document.getElementById('hero-title').textContent = config.page_subtitle || defaultConfig.page_subtitle;
+      document.getElementById('intro-line1').textContent = config.intro_line1 || defaultConfig.intro_line1;
+      document.getElementById('intro-line2').textContent = config.intro_line2 || defaultConfig.intro_line2;
+
+      const email = config.contact_email || defaultConfig.contact_email;
+      const phone = config.contact_phone || defaultConfig.contact_phone;
+      document.getElementById('contact-email-link').textContent = email;
+      document.getElementById('contact-email-link').href = `mailto:${email}`;
+      document.getElementById('contact-phone-link').textContent = phone;
+      document.getElementById('contact-phone-link').href = `tel:${phone.replace(/[^0-9]/g, '')}`;
+
+      document.querySelectorAll('h1').forEach(el => {
+        el.style.fontSize = `${baseSize * 3.5}px`;
+        el.style.color = textColor;
+      });
+
+      document.querySelectorAll('h2').forEach(el => {
+        el.style.color = textColor;
+      });
+    }
+
+    // EmailJS 配置
+    const EMAILJS_CONFIG = {
+      publicKey: 'bvOvfXx0nSTervS4-',
+      serviceId: 'service_jryj1my',
+      templateId: 'template_mc47tot'
+    };
+
+    // 初始化 EmailJS
+    (function(){
+      emailjs.init(EMAILJS_CONFIG.publicKey);
+    })();
+
+    // Form submission
+    const form = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = form.querySelector('.submit-button');
+      const originalText = submitButton.textContent;
+      
+      submitButton.disabled = true;
+      submitButton.textContent = '送出中...';
+      formMessage.innerHTML = '';
+
+      // 使用 EmailJS 发送邮件
+      try {
+        const formData = {
+          from_name: form.querySelector('#name').value,
+          from_email: form.querySelector('#email').value,
+          phone: form.querySelector('#phone').value || '未提供',
+          message: form.querySelector('#message').value,
+          to_email: 'wayto.metaverse@gmail.com'
+        };
+
+        await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.templateId,
+          formData
+        );
+
+        // 成功
+        formMessage.innerHTML = '<div class="success-message">感謝您的訊息！我們會盡快與您聯絡。</div>';
+        form.reset();
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+
+        setTimeout(() => {
+          formMessage.innerHTML = '';
+        }, 5000);
+
+      } catch (error) {
+        // 错误处理
+        console.error('EmailJS Error:', error);
+        formMessage.innerHTML = '<div class="error-message">發送失敗，請稍後再試或直接發送郵件至 wayto.metaverse@gmail.com</div>';
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+
+        setTimeout(() => {
+          formMessage.innerHTML = '';
+        }, 5000);
+      }
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.button_color || defaultConfig.button_color,
+              set: (value) => {
+                config.button_color = value;
+                window.elementSdk.setConfig({ button_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['page_title', config.page_title || defaultConfig.page_title],
+          ['page_subtitle', config.page_subtitle || defaultConfig.page_subtitle],
+          ['intro_line1', config.intro_line1 || defaultConfig.intro_line1],
+          ['intro_line2', config.intro_line2 || defaultConfig.intro_line2],
+          ['contact_email', config.contact_email || defaultConfig.contact_email],
+          ['contact_phone', config.contact_phone || defaultConfig.contact_phone]
+        ])
+      });
+    }
+
+    // Trigger initial animation
+    setTimeout(() => {
+      document.querySelectorAll('.fade-up').forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, index * 100);
+      });
+    }, 300);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b5843e641b3f1e0',t:'MTc2NzAwMDQ4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+

@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="zh-TW" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D 視覺化服務 | 跨國遠端協作 | Wayto Metaverse</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Wayto Visual 專業3D視覺化服務 - 建案3D視覺化、室內/商空3D、虛擬展場。8年經驗，500+專案，減少溝通成本，提升銷售轉化。以1:1建模還原設計，不做過度美化。">
+  <meta name="keywords" content="3D效果圖外包,建案3D渲染,室內設計3D,商空3D,虛擬展場,720環景,VR空間體驗,建案外觀渲染,預售屋銷售動畫,跨國遠端協作">
+  <meta name="author" content="Wayto Metaverse Technology Co., Ltd.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wayto.com.tw/visual.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wayto.com.tw/visual.html">
+  <meta property="og:title" content="3D 視覺化服務 | 跨國遠端協作 | Wayto Metaverse">
+  <meta property="og:description" content="專業3D視覺化服務 - 建案3D視覺化、室內/商空3D、虛擬展場。8年經驗，減少溝通成本，提升銷售轉化。">
+  <meta property="og:locale" content="zh_TW">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://wayto.com.tw/visual.html">
+  <meta name="twitter:title" content="3D 視覺化服務 | 跨國遠端協作 | Wayto Metaverse">
+  <meta name="twitter:description" content="專業3D視覺化服務 - 建案3D視覺化、室內/商空3D、虛擬展場。">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200;300;400;500&amp;family=Cormorant+Garamond:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    /* 極簡動畫 */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* 優雅的hover效果 */
+    .elegant-hover {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .elegant-hover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.03) 100%);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    
+    .elegant-hover:hover::before {
+      opacity: 1;
+    }
+    
+    .elegant-hover:hover {
+      transform: translateY(-8px);
+    }
+    
+    /* 圖片容器 */
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      background: #f5f3f0;
+    }
+    
+    .image-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(245,243,240,0.5) 0%, rgba(235,233,230,0.5) 100%);
+    }
+    
+    /* 作品展示hover */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .project-card .project-image {
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+    
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.7) 100%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem;
+    }
+    
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    /* 導航列效果 */
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* 分隔線動畫 */
+    .divider-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9b896, transparent);
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .divider-line.visible {
+      width: 100%;
+    }
+    
+    /* 按鈕效果 */
+    .elegant-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .elegant-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .elegant-button:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .elegant-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(201,184,150,0.3);
+    }
+    
+    /* 細緻的陰影 */
+    .refined-shadow {
+      box-shadow: 0 20px 60px rgba(28,25,23,0.08);
+    }
+    
+    /* 服務卡片 */
+    .service-card {
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(201,184,150,0.2);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(201,184,150,0.4);
+      box-shadow: 0 30px 60px rgba(28,25,23,0.1);
+    }
+    
+    .service-number {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .service-card:hover .service-number {
+      transform: scale(1.1);
+      color: #c9b896;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto bg-white">
+  <div class="app-wrapper w-full h-full"><!-- 導航列 -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="flex items-center justify-between h-24">
+      <a href="index.html" class="flex items-center gap-3"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 48px; width: auto;"><span class="serif text-xl text-stone-900 font-light tracking-wider">Wayto Metaverse</span></a>
+      <div class="hidden md:flex items-center gap-12"><a href="services.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Services</a> <a href="#about" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">About</a> <a href="portfolio.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Portfolio</a> <a href="process.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Process</a> <a href="#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Contact</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Hero 區 -->
+   <section class="relative" style="padding-top: 96px; min-height: 100%; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16 py-32 lg:py-40">
+     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center"><!-- 左側文字 -->
+      <div>
+       <div class="fade-up">
+        <div class="text-xs tracking-[0.3em] text-stone-500 mb-8 uppercase font-light">
+         3D Visualization Studio
+        </div>
+       </div>
+       <h1 id="hero-title" class="fade-up serif text-6xl lg:text-7xl font-light text-stone-900 leading-[1.1] mb-10" style="transition-delay: 0.1s;">以 3D 與虛擬展示<br>
+        提升空間與品牌<br>
+        的價值</h1>
+       <p id="hero-subtitle" class="fade-up text-base text-stone-600 leading-loose mb-12 font-light max-w-lg" style="transition-delay: 0.2s;">專業建案視覺化與虛擬展示解決方案</p>
+       <div class="fade-up flex items-center gap-6" style="transition-delay: 0.3s;"><a href="#contact" class="elegant-button inline-block px-10 py-4 bg-stone-900 text-white text-xs tracking-widest uppercase"> 開始探索 </a> <a href="portfolio.html" class="text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase underline underline-offset-4"> 查看作品 </a>
+       </div>
+      </div><!-- 右側圖片 -->
+      <div class="fade-up" style="transition-delay: 0.4s;">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+         <div class="text-center">
+          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p class="text-xs tracking-widest text-stone-400 uppercase">Featured Project</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 服務項目區 -->
+   <section id="services" class="py-32 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="text-center mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+       What We Do
+      </div>
+      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-8">我們的服務</h2>
+      <div class="divider-line mx-auto"></div>
+     </div>
+     <div class="grid lg:grid-cols-3 gap-8 lg:gap-12"><!-- 服務 1 -->
+      <div class="service-card fade-up bg-white p-12 rounded-sm" style="transition-delay: 0.1s;">
+       <div class="service-number serif text-6xl text-stone-300 mb-8 font-light">
+        01
+       </div>
+       <h3 id="service-1-title" class="text-xl font-light text-stone-900 mb-6 tracking-wide">建案 3D 視覺化</h3>
+       <p id="service-1-desc" class="text-sm text-stone-600 leading-loose font-light">專業建案渲染與預售屋視覺呈現</p>
+       <div class="mt-8 pt-8 border-t border-stone-200"><span class="text-xs tracking-widest text-stone-400 uppercase">Architecture</span>
+       </div>
+      </div><!-- 服務 2 -->
+      <div class="service-card fade-up bg-white p-12 rounded-sm" style="transition-delay: 0.2s;">
+       <div class="service-number serif text-6xl text-stone-300 mb-8 font-light">
+        02
+       </div>
+       <h3 id="service-2-title" class="text-xl font-light text-stone-900 mb-6 tracking-wide">室內 / 商空 3D</h3>
+       <p id="service-2-desc" class="text-sm text-stone-600 leading-loose font-light">精緻室內與商業空間 3D 製作</p>
+       <div class="mt-8 pt-8 border-t border-stone-200"><span class="text-xs tracking-widest text-stone-400 uppercase">Interior Design</span>
+       </div>
+      </div><!-- 服務 3 -->
+      <div class="service-card fade-up bg-white p-12 rounded-sm" style="transition-delay: 0.3s;">
+       <div class="service-number serif text-6xl text-stone-300 mb-8 font-light">
+        03
+       </div>
+       <h3 id="service-3-title" class="text-xl font-light text-stone-900 mb-6 tracking-wide">虛擬展場</h3>
+       <p id="service-3-desc" class="text-sm text-stone-600 leading-loose font-light">建案接待中心與建材品牌虛擬展示</p>
+       <div class="mt-8 pt-8 border-t border-stone-200"><span class="text-xs tracking-widest text-stone-400 uppercase">Virtual Space</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 關於我們區 -->
+   <section id="about" class="py-32 bg-white">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center"><!-- 左側文字 -->
+      <div class="fade-up">
+       <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+        About Us
+       </div>
+       <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-10">關於我們</h2>
+       <div class="space-y-6 text-base text-stone-600 leading-loose font-light">
+        <p>維次元宇宙科技專注於 3D 視覺化與虛擬展示領域，我們相信優秀的視覺呈現能夠跨越空間與時間的限制，讓未來的空間在當下就能被完整體驗。</p>
+        <p>從建案預售到室內設計，從商業空間到虛擬展場，我們運用專業的 3D 技術與創意思維，為客戶打造極具說服力的視覺方案。每一個專案都是我們對品質的堅持與對細節的追求。</p>
+        <p>我們不只是製作 3D 圖像，更是在創造一個能夠感動人心的視覺體驗。</p>
+       </div>
+       <div class="mt-12 pt-12 border-t border-stone-200">
+        <div class="grid grid-cols-3 gap-8">
+         <div>
+          <div class="text-sm text-stone-500 font-light tracking-wide mb-2 uppercase">
+           Our Mission
+          </div>
+          <div class="text-xs text-stone-600 leading-relaxed">
+           以創新技術實現空間視覺化
+          </div>
+         </div>
+         <div>
+          <div class="text-sm text-stone-500 font-light tracking-wide mb-2 uppercase">
+           Our Vision
+          </div>
+          <div class="text-xs text-stone-600 leading-relaxed">
+           成為業界首選夥伴
+          </div>
+         </div>
+         <div>
+          <div class="text-sm text-stone-500 font-light tracking-wide mb-2 uppercase">
+           Our Value
+          </div>
+          <div class="text-xs text-stone-600 leading-relaxed">
+           品質至上·細節完美
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- 右側圖片 -->
+      <div class="fade-up" style="transition-delay: 0.2s;">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+         <div class="text-center">
+          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <p class="text-xs tracking-widest text-stone-400 uppercase">Our Team</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 合作實績區 -->
+   <section class="py-32 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="text-center mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+       Our Achievements
+      </div>
+      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-8">合作實績</h2>
+      <div class="divider-line mx-auto"></div>
+     </div><!-- 數據統計 -->
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.1s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        500+
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        完成專案數
+       </div>
+      </div>
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.2s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        200+
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        合作客戶
+       </div>
+      </div>
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.3s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        8+
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        服務年資
+       </div>
+      </div>
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.4s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        98%
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        客戶滿意度
+       </div>
+      </div>
+     </div><!-- 合作客戶 -->
+     <div class="fade-up">
+      <h3 class="text-center text-2xl font-light text-stone-900 mb-16 tracking-wide">合作夥伴</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          建設公司
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          設計事務所
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          建材品牌
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          代銷公司
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          地產開發
+         </div>
+        </div>
+       </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          商空設計
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 作品展示區 -->
+   <section id="portfolio" class="py-32 bg-white">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+       Selected Works
+      </div>
+      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900">精選作品</h2>
+     </div><!-- 作品網格 -->
+     <div class="space-y-16"><!-- 作品 1 -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
+       <div class="project-card rounded-sm overflow-hidden refined-shadow">
+        <div class="project-image image-container aspect-[16/10]">
+         <div class="absolute inset-0 flex items-center justify-center z-10">
+          <svg class="w-16 h-16 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5" />
+          </svg>
+         </div>
+        </div>
+        <div class="project-overlay">
+         <div>
+          <h3 class="serif text-3xl text-white mb-2">豪宅建案視覺化</h3>
+          <p class="text-sm text-white/80 tracking-wide">預售屋 3D 渲染</p>
+         </div>
+        </div>
+       </div>
+       <div class="lg:pl-16">
+        <div class="serif text-7xl text-stone-200 mb-6">
+         01
+        </div>
+        <h3 class="text-2xl font-light text-stone-900 mb-6">豪宅建案視覺化</h3>
+        <p class="text-sm text-stone-600 leading-loose font-light mb-8">運用專業 3D 技術，為高端建案打造逼真的視覺呈現，協助客戶在預售階段就能完整體驗未來的居住空間。</p><span class="text-xs tracking-widest text-stone-400 uppercase">Architecture / Visualization</span>
+       </div>
+      </div><!-- 作品 2 -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
+       <div class="lg:order-2 project-card rounded-sm overflow-hidden refined-shadow">
+        <div class="project-image image-container aspect-[16/10]">
+         <div class="absolute inset-0 flex items-center justify-center z-10">
+          <svg class="w-16 h-16 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+         </div>
+        </div>
+        <div class="project-overlay">
+         <div>
+          <h3 class="serif text-3xl text-white mb-2">商業空間設計</h3>
+          <p class="text-sm text-white/80 tracking-wide">室內 3D 視覺化</p>
+         </div>
+        </div>
+       </div>
+       <div class="lg:order-1 lg:pr-16">
+        <div class="serif text-7xl text-stone-200 mb-6">
+         02
+        </div>
+        <h3 class="text-2xl font-light text-stone-900 mb-6">商業空間設計</h3>
+        <p class="text-sm text-stone-600 leading-loose font-light mb-8">精緻的室內與商業空間 3D 製作，完美呈現設計細節與空間氛圍，讓概念設計更具說服力。</p><span class="text-xs tracking-widest text-stone-400 uppercase">Interior / Commercial</span>
+       </div>
+      </div><!-- 作品 3 -->
+      <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
+       <div class="project-card rounded-sm overflow-hidden refined-shadow">
+        <div class="project-image image-container aspect-[16/10]">
+         <div class="absolute inset-0 flex items-center justify-center z-10">
+          <svg class="w-16 h-16 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+         </div>
+        </div>
+        <div class="project-overlay">
+         <div>
+          <h3 class="serif text-3xl text-white mb-2">虛擬展場規劃</h3>
+          <p class="text-sm text-white/80 tracking-wide">品牌虛擬展示</p>
+         </div>
+        </div>
+       </div>
+       <div class="lg:pl-16">
+        <div class="serif text-7xl text-stone-200 mb-6">
+         03
+        </div>
+        <h3 class="text-2xl font-light text-stone-900 mb-6">虛擬展場規劃</h3>
+        <p class="text-sm text-stone-600 leading-loose font-light mb-8">為建材品牌與接待中心打造沉浸式虛擬展示空間，突破實體空間限制，提供全新的品牌體驗。</p><span class="text-xs tracking-widest text-stone-400 uppercase">Virtual / Exhibition</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA 區 -->
+   <section id="contact" class="py-40 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16 text-center">
+     <div class="max-w-4xl mx-auto">
+      <div class="fade-up">
+       <div class="text-xs tracking-[0.3em] text-stone-500 mb-8 uppercase font-light">
+        Get In Touch
+       </div>
+      </div>
+      <h2 id="cta-title" class="fade-up serif text-5xl lg:text-7xl font-light text-stone-900 mb-10 leading-tight" style="transition-delay: 0.1s;">讓空間說故事</h2>
+      <p id="cta-desc" class="fade-up text-base text-stone-600 mb-16 leading-loose font-light" style="transition-delay: 0.2s;">讓我們協助您實現空間視覺化的理想</p>
+      <div class="fade-up" style="transition-delay: 0.3s;"><a href="mailto:wayto.metaverse@gmail.com" class="elegant-button inline-block px-12 py-5 bg-stone-900 text-white text-xs tracking-widest uppercase"> <span id="cta-button">開始對話</span> </a>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-16 bg-white border-t border-stone-200">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+      <div class="serif text-lg text-stone-400 font-light tracking-wider">
+       <a href="index.html" class="flex items-center"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 28px; width: auto; opacity: 0.6;"></a>
+      </div>
+      <div class="flex items-center gap-10"><a href="services.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Services</a> <a href="#about" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">About</a> <a href="portfolio.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Portfolio</a> <a href="process.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Process</a> <a href="#contact" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Contact</a>
+      </div>
+      <div class="text-xs text-stone-400 tracking-wide">
+       © 2024 Wayto Metaverse Technology Co., Ltd. All rights reserved.
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      background_color: "#ffffff",
+      surface_color: "#fafaf9",
+      text_color: "#1c1917",
+      primary_action_color: "#1c1917",
+      accent_color: "#c9b896",
+      font_family: "'Noto Sans TC', sans-serif",
+      font_size: 16,
+      hero_title: "以 3D 與虛擬展示\n提升空間與品牌\n的價值",
+      hero_subtitle: "專業建案視覺化與虛擬展示解決方案",
+      service_1_title: "建案 3D 視覺化",
+      service_1_desc: "專業建案渲染與預售屋視覺呈現",
+      service_2_title: "室內 / 商空 3D",
+      service_2_desc: "精緻室內與商業空間 3D 製作",
+      service_3_title: "虛擬展場",
+      service_3_desc: "建案接待中心與建材品牌虛擬展示",
+      cta_title: "讓空間說故事",
+      cta_desc: "讓我們協助您實現空間視覺化的理想",
+      cta_button: "開始對話"
+    };
+
+    async function onConfigChange(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      document.body.style.fontFamily = customFont;
+
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) {
+        heroTitle.style.fontSize = `${baseSize * 4}px`;
+        heroTitle.innerHTML = (config.hero_title || defaultConfig.hero_title).replace(/\n/g, '<br>');
+      }
+
+      const h2Elements = document.querySelectorAll('h2');
+      h2Elements.forEach(el => el.style.fontSize = `${baseSize * 3}px`);
+
+      const h3Elements = document.querySelectorAll('h3');
+      h3Elements.forEach(el => el.style.fontSize = `${baseSize * 1.5}px`);
+
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      if (heroSubtitle) {
+        heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+        heroSubtitle.style.fontSize = `${baseSize}px`;
+      }
+
+      const service1Title = document.getElementById('service-1-title');
+      if (service1Title) service1Title.textContent = config.service_1_title || defaultConfig.service_1_title;
+
+      const service1Desc = document.getElementById('service-1-desc');
+      if (service1Desc) service1Desc.textContent = config.service_1_desc || defaultConfig.service_1_desc;
+
+      const service2Title = document.getElementById('service-2-title');
+      if (service2Title) service2Title.textContent = config.service_2_title || defaultConfig.service_2_title;
+
+      const service2Desc = document.getElementById('service-2-desc');
+      if (service2Desc) service2Desc.textContent = config.service_2_desc || defaultConfig.service_2_desc;
+
+      const service3Title = document.getElementById('service-3-title');
+      if (service3Title) service3Title.textContent = config.service_3_title || defaultConfig.service_3_title;
+
+      const service3Desc = document.getElementById('service-3-desc');
+      if (service3Desc) service3Desc.textContent = config.service_3_desc || defaultConfig.service_3_desc;
+
+      const ctaTitle = document.getElementById('cta-title');
+      if (ctaTitle) ctaTitle.textContent = config.cta_title || defaultConfig.cta_title;
+
+      const ctaDesc = document.getElementById('cta-desc');
+      if (ctaDesc) ctaDesc.textContent = config.cta_desc || defaultConfig.cta_desc;
+
+      const ctaButton = document.getElementById('cta-button');
+      if (ctaButton) ctaButton.textContent = config.cta_button || defaultConfig.cta_button;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["service_1_title", config.service_1_title || defaultConfig.service_1_title],
+        ["service_1_desc", config.service_1_desc || defaultConfig.service_1_desc],
+        ["service_2_title", config.service_2_title || defaultConfig.service_2_title],
+        ["service_2_desc", config.service_2_desc || defaultConfig.service_2_desc],
+        ["service_3_title", config.service_3_title || defaultConfig.service_3_title],
+        ["service_3_desc", config.service_3_desc || defaultConfig.service_3_desc],
+        ["cta_title", config.cta_title || defaultConfig.cta_title],
+        ["cta_desc", config.cta_desc || defaultConfig.cta_desc],
+        ["cta_button", config.cta_button || defaultConfig.cta_button]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // 滾動顯示動畫
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      fadeObserver.observe(el);
+    });
+
+    // 分隔線動畫
+    const dividerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.divider-line').forEach(el => {
+      dividerObserver.observe(el);
+    });
+
+    // 平滑滾動
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b4773b8f174f1e0',t:'MTc2NjgyNDE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+

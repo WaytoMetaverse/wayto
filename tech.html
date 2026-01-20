@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="zh-TW" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>數位解決方案 | 工程管理系統 | 智慧門禁 | Wayto Metaverse</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Wayto Tech 數位解決方案 - ProjEase工程管理系統、薀光智慧門禁、扶青社團管理、AI互動系統、NFC會員感應。解決電腦地獄、門禁管理麻煩、展場互動不足等痛點。">
+  <meta name="keywords" content="工程管理系統,智慧門禁,AI互動系統,NFC會員感應,社團管理平台,工程報價單,門禁自動化,點數錢包系統,PWA技術">
+  <meta name="author" content="Wayto Metaverse Technology Co., Ltd.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wayto.com.tw/tech.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wayto.com.tw/tech.html">
+  <meta property="og:title" content="數位解決方案 | 工程管理系統 | 智慧門禁 | Wayto Metaverse">
+  <meta property="og:description" content="解決電腦地獄、門禁管理麻煩、展場互動不足等痛點。ProjEase、薀光、扶青等數位解決方案。">
+  <meta property="og:locale" content="zh_TW">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://wayto.com.tw/tech.html">
+  <meta name="twitter:title" content="數位解決方案 | 工程管理系統 | 智慧門禁 | Wayto Metaverse">
+  <meta name="twitter:description" content="解決電腦地獄、門禁管理麻煩、展場互動不足等痛點。">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="/_sdk/element_sdk.js"></script> --> <!-- SDK文件不存在，已注释 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200;300;400;500&amp;family=Cormorant+Garamond:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .fade-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .elegant-hover {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .elegant-hover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.03) 100%);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    
+    .elegant-hover:hover::before {
+      opacity: 1;
+    }
+    
+    .elegant-hover:hover {
+      transform: translateY(-8px);
+    }
+    
+    .image-container {
+      position: relative;
+      overflow: hidden;
+      background: #f5f3f0;
+    }
+    
+    .image-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(245,243,240,0.5) 0%, rgba(235,233,230,0.5) 100%);
+    }
+    
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .project-card .project-image {
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+    
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.7) 100%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem;
+    }
+    
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    /* 解决方案卡片 - Hover 毛玻璃效果 */
+    .solution-card {
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1;
+    }
+    
+    .solution-card:hover::before {
+      opacity: 1;
+    }
+    
+    .solution-title {
+      position: relative;
+      z-index: 2;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #1c1917;
+      transition: opacity 0.3s ease;
+    }
+    
+    .solution-content {
+      position: absolute;
+      inset: 0;
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 3;
+      pointer-events: none;
+    }
+    
+    .solution-card:hover .solution-content {
+      opacity: 1;
+    }
+    
+    .solution-card:hover .solution-title {
+      opacity: 0;
+    }
+    
+    .solution-pain-point {
+      font-size: 0.875rem;
+      color: #78716c;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .solution-pain-point strong {
+      color: #1c1917;
+      font-weight: 500;
+    }
+    
+    .solution-value {
+      font-size: 0.875rem;
+      color: #1c1917;
+      line-height: 1.6;
+    }
+    
+    .solution-value strong {
+      color: #c9b896;
+      font-weight: 500;
+    }
+    
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .divider-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9b896, transparent);
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .divider-line.visible {
+      width: 100%;
+    }
+    
+    .elegant-button {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .elegant-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .elegant-button:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .elegant-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(201,184,150,0.3);
+    }
+    
+    .refined-shadow {
+      box-shadow: 0 20px 60px rgba(28,25,23,0.08);
+    }
+    
+    .service-card {
+      position: relative;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(201,184,150,0.2);
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1;
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(201,184,150,0.4);
+      box-shadow: 0 30px 60px rgba(28,25,23,0.1);
+    }
+    
+    .service-icon {
+      position: relative;
+      z-index: 2;
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+      color: #78716c;
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-icon {
+      opacity: 0;
+    }
+    
+    .service-title {
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+    
+    .service-card:hover .service-title {
+      opacity: 0;
+    }
+    
+    .service-hover-content {
+      position: absolute;
+      inset: 0;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 3;
+      pointer-events: none;
+    }
+    
+    .service-card:hover .service-hover-content {
+      opacity: 1;
+    }
+    
+    .service-pain-point {
+      font-size: 0.875rem;
+      color: #78716c;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .service-pain-point strong {
+      color: #1c1917;
+      font-weight: 500;
+    }
+    
+    .service-solution {
+      font-size: 0.875rem;
+      color: #1c1917;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-solution strong {
+      color: #c9b896;
+      font-weight: 500;
+    }
+    
+    .service-tag {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 3rem;
+      right: 3rem;
+      font-size: 0.75rem;
+      color: #c9b896;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 3;
+    }
+    
+    .service-card:hover .service-tag {
+      opacity: 1;
+    }
+    
+    .service-number {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .service-card:hover .service-number {
+      transform: scale(1.1);
+      color: #c9b896;
+    }
+    
+    /* 方案2+3：增强版卡片样式（增大尺寸，无颜色） */
+    .service-card-enhanced {
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      min-height: 420px;
+    }
+    
+    .service-card-enhanced:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(28,25,23,0.12);
+      border-color: rgba(201,184,150,0.4);
+    }
+    
+    /* Modal 弹窗样式 */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 23, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 9998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      max-width: 800px;
+      width: 90%;
+      max-height: 85vh;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 40px 100px rgba(28, 25, 23, 0.3);
+      z-index: 9999;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .modal-container.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .modal-content {
+      padding: 3rem;
+      overflow-y: auto;
+      max-height: 85vh;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e7e5e4;
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #78716c;
+      cursor: pointer;
+      padding: 0.5rem;
+      line-height: 1;
+      transition: color 0.2s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-close:hover {
+      color: #1c1917;
+    }
+    
+    .modal-body {
+      line-height: 1.8;
+      font-size: 1.125rem;
+    }
+    
+    .modal-body h3 {
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #1c1917;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .modal-body h4 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #1c1917;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .modal-body p {
+      font-size: 1.125rem;
+      color: #57534e;
+      margin-bottom: 1.25rem;
+    }
+    
+    .modal-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0;
+    }
+    
+    .modal-body li {
+      font-size: 1.125rem;
+      color: #57534e;
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+    
+    .modal-body li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #c9b896;
+      font-weight: bold;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <!-- <script src="/_sdk/data_sdk.js" type="text/javascript"></script> --> <!-- SDK文件不存在，已注释 -->
+</head>
+ <body class="h-full overflow-auto bg-white">
+  <div class="app-wrapper w-full h-full"><!-- 導航列 -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="flex items-center justify-between h-24">
+      <div class="serif text-xl text-stone-900 font-light tracking-wider">
+       <a href="index.html" class="flex items-center gap-3"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 32px; width: auto;"></a>
+      </div>
+      <div class="hidden md:flex items-center gap-12"><a href="#services" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Services</a> <a href="#about" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">About</a> <a href="#services" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Portfolio</a> <a href="#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Contact</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Hero 區 -->
+   <section class="relative" style="padding-top: 96px; min-height: 100%; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16 py-32 lg:py-40">
+     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div>
+       <div class="fade-up">
+        <div class="text-xs tracking-[0.3em] text-stone-500 mb-8 uppercase font-light">
+         Digital Solutions
+        </div>
+       </div>
+       <h1 id="hero-title" class="fade-up serif text-6xl lg:text-7xl font-light text-stone-900 leading-[1.1] mb-10" style="transition-delay: 0.1s;">數位科技<br>
+        賦能空間體驗<br>
+        的未來</h1>
+       <p id="hero-subtitle" class="fade-up text-base text-stone-600 leading-loose mb-12 font-light max-w-lg" style="transition-delay: 0.2s;">整合虛擬展示、互動技術與數據分析的創新解決方案</p>
+       <div class="fade-up flex items-center gap-6" style="transition-delay: 0.3s;"><a href="#services" class="elegant-button inline-block px-10 py-4 bg-stone-900 text-white text-xs tracking-widest uppercase"> 開始探索 </a> <a href="#services" class="text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase underline underline-offset-4"> 查看案例 </a>
+       </div>
+      </div>
+      <div class="fade-up" style="transition-delay: 0.4s;">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+         <div class="text-center">
+          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <p class="text-xs tracking-widest text-stone-400 uppercase">Tech Platform</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 服務項目區 -->
+   <section id="services" class="py-32 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="text-center mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+       What We Do
+      </div>
+      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-8">數位解決方案</h2>
+      <div class="divider-line mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+      <!-- ProjEase -->
+      <div class="service-card-enhanced fade-up bg-white p-12 rounded-sm border border-stone-200 cursor-pointer" style="transition-delay: 0.1s;" data-modal="projease">
+       <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+         <div class="flex gap-2">
+          <svg class="w-12 h-12 text-stone-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <svg class="w-10 h-10 text-stone-400 opacity-60" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+         </div>
+            </div>
+        <span class="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full">工程專用</span>
+       </div>
+       
+       <h3 class="text-2xl font-light text-stone-900 mb-4 tracking-wide">ProjEase</h3>
+       <p class="text-base text-stone-600 mb-6 leading-relaxed">雲端工程專案管理系統</p>
+       
+       <div class="space-y-3 mb-6">
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>一鍵生成專業 PDF 報價單</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>手機即時掌握帳款進度</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>數位化記錄工時，一鍵發薪</span>
+        </div>
+            </div>
+       
+       <div class="mt-6 pt-6 border-t border-stone-200">
+        <span class="text-sm tracking-widest text-stone-500 uppercase">行政虛擬助理</span>
+       </div>
+      </div>
+      
+      <!-- 薀光 -->
+      <div class="service-card-enhanced fade-up bg-white p-12 rounded-sm border border-stone-200 cursor-pointer" style="transition-delay: 0.2s;" data-modal="wenguang">
+       <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+         <div class="flex gap-2">
+          <svg class="w-12 h-12 text-stone-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+          </svg>
+          <svg class="w-10 h-10 text-stone-400 opacity-60" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+         </div>
+        </div>
+        <span class="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full">100+會員</span>
+       </div>
+       
+       <h3 class="text-2xl font-light text-stone-900 mb-4 tracking-wide">薀光</h3>
+       <p class="text-base text-stone-600 mb-6 leading-relaxed">智慧空間預約管理平台</p>
+       
+       <div class="space-y-3 mb-6">
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>預約成功自動發送限時門禁鎖密碼</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>會員制線上預約簽到簽退管控</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>結合Line pay支付</span>
+        </div>
+       </div>
+       
+       <div class="mt-6 pt-6 border-t border-stone-200">
+        <span class="text-sm tracking-widest text-stone-500 uppercase">24H無人商店自動化經營</span>
+       </div>
+      </div>
+      
+      <!-- 扶青 -->
+      <div class="service-card-enhanced fade-up bg-white p-12 rounded-sm border border-stone-200 cursor-pointer" style="transition-delay: 0.3s;" data-modal="fuqing">
+       <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+         <div class="flex gap-2">
+          <svg class="w-12 h-12 text-stone-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <svg class="w-10 h-10 text-stone-400 opacity-60" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+         </div>
+        </div>
+        <span class="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full">70+活動</span>
+       </div>
+       
+       <h3 class="text-2xl font-light text-stone-900 mb-4 tracking-wide">扶青</h3>
+       <p class="text-base text-stone-600 mb-6 leading-relaxed">一站式社團管理平台</p>
+       
+       <div class="space-y-3 mb-6">
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>整合活動大廳、年度計畫與財務管理</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>PWA 技術免下載免安裝</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>出席率分析、社費收支一覽無虞</span>
+        </div>
+       </div>
+       
+       <div class="mt-6 pt-6 border-t border-stone-200">
+        <span class="text-sm tracking-widest text-stone-500 uppercase">煩惱的行政庶務難不倒我們</span>
+       </div>
+      </div>
+      
+      <!-- 磐石砌好厝 -->
+      <div class="service-card-enhanced fade-up bg-white p-12 rounded-sm border border-stone-200 cursor-pointer" style="transition-delay: 0.4s;" data-modal="panshiqihouchuo">
+       <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+         <div class="flex gap-2">
+          <svg class="w-12 h-12 text-stone-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <svg class="w-10 h-10 text-stone-400 opacity-60" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+         </div>
+        </div>
+        <span class="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full">100+來賓</span>
+       </div>
+       
+       <h3 class="text-2xl font-light text-stone-900 mb-4 tracking-wide">磐石砌好厝</h3>
+       <p class="text-base text-stone-600 mb-6 leading-relaxed">商務活動管理系統</p>
+       
+       <div class="space-y-3 mb-6">
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>一鍵 LINE 邀請功能，支援個別設定文案</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>專屬講師預約與 PPT 上傳系統</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>系統自動彙整出席名單與菜單數量</span>
+        </div>
+       </div>
+       
+       <div class="mt-6 pt-6 border-t border-stone-200">
+        <span class="text-sm tracking-widest text-stone-500 uppercase">辦理活動超easy</span>
+       </div>
+      </div>
+      
+      <!-- 展覽 AI -->
+      <div class="service-card-enhanced fade-up bg-white p-12 rounded-sm border border-stone-200 cursor-pointer" style="transition-delay: 0.5s;" data-modal="exhibition_ai">
+       <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+         <div class="flex gap-2">
+          <svg class="w-12 h-12 text-stone-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <svg class="w-10 h-10 text-stone-400 opacity-60" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+         </div>
+        </div>
+        <span class="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full">虛實整合</span>
+       </div>
+       
+       <h3 class="text-2xl font-light text-stone-900 mb-4 tracking-wide">展覽｜AI 互動藝術合成系統</h3>
+       <p class="text-base text-stone-600 mb-6 leading-relaxed">提升展場現場參與感</p>
+       
+       <div class="space-y-3 mb-6">
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>整合Ai分析技術</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>即時與專屬模板合成</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>透過 QR Code 快速下載分享</span>
+        </div>
+       </div>
+       
+       <div class="mt-6 pt-6 border-t border-stone-200">
+        <span class="text-sm tracking-widest text-stone-500 uppercase">結合Ai生成互動</span>
+       </div>
+      </div>
+      
+      <!-- NFC -->
+      <div class="service-card-enhanced fade-up bg-white p-12 rounded-sm border border-stone-200 cursor-pointer" style="transition-delay: 0.6s;" data-modal="nfc">
+       <div class="flex items-start justify-between mb-6">
+        <div class="flex items-center gap-4">
+         <div class="flex gap-2">
+          <svg class="w-12 h-12 text-stone-700" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <svg class="w-10 h-10 text-stone-400 opacity-60" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+          </svg>
+         </div>
+        </div>
+        <span class="text-xs px-3 py-1 bg-stone-100 text-stone-600 rounded-full">企業專用</span>
+       </div>
+       
+       <h3 class="text-2xl font-light text-stone-900 mb-4 tracking-wide">NFC｜數位會員感應系統</h3>
+       <p class="text-base text-stone-600 mb-6 leading-relaxed">無需部屬設備的會員系統</p>
+       
+       <div class="space-y-3 mb-6">
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>結合實體 NFC 卡片與 PWA 技術</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>感應後自動啟動系統進行發送驗證</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm text-stone-600">
+         <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+         </svg>
+         <span>具備隱私保護機制，卡片遺失他人無法識別</span>
+        </div>
+       </div>
+       
+       <div class="mt-6 pt-6 border-t border-stone-200">
+        <span class="text-sm tracking-widest text-stone-500 uppercase">無需購置讀卡機降低大規模部署的阻力</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 技術優勢區 -->
+   <section id="about" class="py-32 bg-white">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div class="fade-up">
+       <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+        About Us
+       </div>
+       <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-10">技術優勢</h2>
+       <div class="space-y-6 text-base text-stone-600 leading-loose font-light">
+        <p>我們整合最新的數位科技，為建設公司與品牌商打造全方位的數位解決方案。從虛擬展示平台到互動體驗系統，從數據分析到雲端部署，我們提供完整的技術支援。</p>
+        <p>採用 WebGL、Three.js 等先進技術，確保虛擬展示在各種裝置上都能流暢運行。結合 AI 與大數據分析，我們協助客戶深入了解使用者行為，優化銷售策略。</p>
+        <p>我們不只是提供技術工具，更是您的數位轉型夥伴，協助您在數位時代保持競爭優勢。</p>
+       </div>
+       <div class="mt-12 pt-12 border-t border-stone-200">
+        <div class="grid grid-cols-3 gap-8">
+         <div>
+          <div class="text-sm text-stone-500 font-light tracking-wide mb-2 uppercase">
+           Cloud Native
+          </div>
+          <div class="text-xs text-stone-600 leading-relaxed">
+           雲端架構·彈性擴展
+          </div>
+         </div>
+         <div>
+          <div class="text-sm text-stone-500 font-light tracking-wide mb-2 uppercase">
+           Cross Platform
+          </div>
+          <div class="text-xs text-stone-600 leading-relaxed">
+           跨裝置·無縫體驗
+          </div>
+         </div>
+         <div>
+          <div class="text-sm text-stone-500 font-light tracking-wide mb-2 uppercase">
+           Data Driven
+          </div>
+          <div class="text-xs text-stone-600 leading-relaxed">
+           數據驅動·精準決策
+          </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+      <div class="fade-up" style="transition-delay: 0.2s;">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+         <div class="text-center">
+          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+          </svg>
+          <p class="text-xs tracking-widest text-stone-400 uppercase">Technology</p>
+         </div>
+        </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+   </section><!-- 技術實績區 -->
+   <section class="py-32 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="text-center mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+       Our Achievements
+      </div>
+      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-8">技術實績</h2>
+      <div class="divider-line mx-auto"></div>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.1s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        50+
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        虛擬展場部署
+       </div>
+      </div>
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.2s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        99.9%
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        系統穩定度
+       </div>
+      </div>
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.3s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        1M+
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        月活躍用戶
+       </div>
+      </div>
+      <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.4s;">
+       <div class="serif text-6xl text-stone-900 font-light mb-4">
+        24/7
+       </div>
+       <div class="text-sm text-stone-600 font-light tracking-wide">
+        技術支援
+       </div>
+      </div>
+                            </div>
+     <div class="fade-up">
+      <h3 class="text-center text-2xl font-light text-stone-900 mb-16 tracking-wide">技術合作</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          AWS
+                            </div>
+                        </div>
+                    </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          Google Cloud
+         </div>
+        </div>
+                            </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          Unity
+                            </div>
+                        </div>
+                    </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          Unreal
+         </div>
+        </div>
+                            </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          Three.js
+                            </div>
+                        </div>
+                    </div>
+       <div class="bg-white p-8 rounded-sm refined-shadow flex items-center justify-center aspect-square hover:scale-105 transition-transform duration-500">
+        <div class="text-center">
+         <div class="text-xs tracking-widest text-stone-400 uppercase">
+          WebGL
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   </section><!-- CTA 區 -->
+   <section id="contact" class="py-40 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16 text-center">
+     <div class="max-w-4xl mx-auto">
+      <div class="fade-up">
+       <div class="text-xs tracking-[0.3em] text-stone-500 mb-8 uppercase font-light">
+        Get In Touch
+                    </div>
+                    </div>
+      <h2 id="cta-title" class="fade-up serif text-5xl lg:text-7xl font-light text-stone-900 mb-10 leading-tight" style="transition-delay: 0.1s;">啟動數位轉型</h2>
+      <p id="cta-desc" class="fade-up text-base text-stone-600 mb-16 leading-loose font-light" style="transition-delay: 0.2s;">讓我們協助您打造領先業界的數位解決方案</p>
+      <div class="fade-up" style="transition-delay: 0.3s;"><a href="mailto:wayto.metaverse@gmail.com" class="elegant-button inline-block px-12 py-5 bg-stone-900 text-white text-xs tracking-widest uppercase"> <span id="cta-button">諮詢方案</span> </a>
+                    </div>
+                </div>
+            </div>
+   </section><!-- Footer -->
+   <footer class="py-16 bg-white border-t border-stone-200">
+    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+     <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+      <div class="serif text-lg text-stone-400 font-light tracking-wider">
+       <a href="index.html" class="flex items-center gap-3"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 32px; width: auto;"></a>
+      </div>
+      <div class="flex items-center gap-10"><a href="#services" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Services</a> <a href="#about" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">About</a> <a href="#services" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Portfolio</a> <a href="#contact" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">Contact</a>
+      </div>
+      <div class="text-xs text-stone-400 tracking-wide">
+       © 2024 Wayto Metaverse Technology Co., Ltd. All rights reserved.
+                </div>
+                </div>
+            </div>
+   </footer>
+  </div>
+  
+  <!-- Modal 弹窗 -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="modal-container" id="modal-container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-title" style="font-size: 2.5rem; font-weight: 400; letter-spacing: -0.02em;">ProjEase</h3>
+          <p id="modal-subtitle" class="text-stone-600 mt-1" style="font-size: 1.25rem;">雲端工程專案管理系統</p>
+        </div>
+        <button class="modal-close" id="modal-close">×</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- 内容将通过 JavaScript 填充 -->
+      </div>
+            </div>
+        </div>
+  
+  <script>
+    const defaultConfig = {
+      background_color: "#ffffff",
+      surface_color: "#fafaf9",
+      text_color: "#1c1917",
+      primary_action_color: "#1c1917",
+      accent_color: "#c9b896",
+      font_family: "'Noto Sans TC', sans-serif",
+      font_size: 16,
+      hero_title: "數位科技\n賦能空間體驗\n的未來",
+      hero_subtitle: "整合虛擬展示、互動技術與數據分析的創新解決方案",
+      service_1_title: "虛擬展示平台",
+      service_1_desc: "沉浸式 3D 虛擬展場與線上看房系統",
+      service_2_title: "互動體驗系統",
+      service_2_desc: "AR/VR 互動裝置與數位接待中心",
+      service_3_title: "數據分析儀表板",
+      service_3_desc: "客戶行為追蹤與銷售數據視覺化分析",
+      cta_title: "啟動數位轉型",
+      cta_desc: "讓我們協助您打造領先業界的數位解決方案",
+      cta_button: "諮詢方案"
+    };
+
+    async function onConfigChange(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      document.body.style.fontFamily = customFont;
+
+      const heroTitle = document.getElementById('hero-title');
+      if (heroTitle) {
+        heroTitle.style.fontSize = `${baseSize * 4}px`;
+        heroTitle.innerHTML = (config.hero_title || defaultConfig.hero_title).replace(/\n/g, '<br>');
+      }
+
+      const h2Elements = document.querySelectorAll('h2');
+      h2Elements.forEach(el => el.style.fontSize = `${baseSize * 3}px`);
+
+      const h3Elements = document.querySelectorAll('h3');
+      h3Elements.forEach(el => el.style.fontSize = `${baseSize * 1.5}px`);
+
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      if (heroSubtitle) {
+        heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+        heroSubtitle.style.fontSize = `${baseSize}px`;
+      }
+
+      const service1Title = document.getElementById('service-1-title');
+      if (service1Title) service1Title.textContent = config.service_1_title || defaultConfig.service_1_title;
+
+      const service1Desc = document.getElementById('service-1-desc');
+      if (service1Desc) service1Desc.textContent = config.service_1_desc || defaultConfig.service_1_desc;
+
+      const service2Title = document.getElementById('service-2-title');
+      if (service2Title) service2Title.textContent = config.service_2_title || defaultConfig.service_2_title;
+
+      const service2Desc = document.getElementById('service-2-desc');
+      if (service2Desc) service2Desc.textContent = config.service_2_desc || defaultConfig.service_2_desc;
+
+      const service3Title = document.getElementById('service-3-title');
+      if (service3Title) service3Title.textContent = config.service_3_title || defaultConfig.service_3_title;
+
+      const service3Desc = document.getElementById('service-3-desc');
+      if (service3Desc) service3Desc.textContent = config.service_3_desc || defaultConfig.service_3_desc;
+
+      const ctaTitle = document.getElementById('cta-title');
+      if (ctaTitle) ctaTitle.textContent = config.cta_title || defaultConfig.cta_title;
+
+      const ctaDesc = document.getElementById('cta-desc');
+      if (ctaDesc) ctaDesc.textContent = config.cta_desc || defaultConfig.cta_desc;
+
+      const ctaButton = document.getElementById('cta-button');
+      if (ctaButton) ctaButton.textContent = config.cta_button || defaultConfig.cta_button;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["service_1_title", config.service_1_title || defaultConfig.service_1_title],
+        ["service_1_desc", config.service_1_desc || defaultConfig.service_1_desc],
+        ["service_2_title", config.service_2_title || defaultConfig.service_2_title],
+        ["service_2_desc", config.service_2_desc || defaultConfig.service_2_desc],
+        ["service_3_title", config.service_3_title || defaultConfig.service_3_title],
+        ["service_3_desc", config.service_3_desc || defaultConfig.service_3_desc],
+        ["cta_title", config.cta_title || defaultConfig.cta_title],
+        ["cta_desc", config.cta_desc || defaultConfig.cta_desc],
+        ["cta_button", config.cta_button || defaultConfig.cta_button]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      fadeObserver.observe(el);
+    });
+
+    const dividerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.divider-line').forEach(el => {
+      dividerObserver.observe(el);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Modal 弹窗控制
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalContainer = document.getElementById('modal-container');
+    const modalClose = document.getElementById('modal-close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalBody = document.getElementById('modal-body');
+
+    // Modal 数据内容
+    const modalData = {
+      projease: {
+        title: 'ProjEase',
+        subtitle: '雲端工程專案管理系統',
+        content: `
+          <h3>痛點描述</h3>
+          <p>解決工程業主收工回家後，仍需面對 Excel 公式跑掉、報價紀錄散亂及半夜算薪水的<strong>「電腦地獄」</strong>。</p>
+          
+          <h3>核心功能</h3>
+          <ul>
+            <li><strong>智慧報價：</strong>建立工項範本，一鍵勾選產出專業 PDF 報價單。</li>
+            <li><strong>帳款追蹤：</strong>手機即時掌握各案場請款進度，確保現金流健康。</li>
+            <li><strong>出工薪資：</strong>數位化記錄工時，實現一鍵發薪，減少計算爭議。</li>
+          </ul>
+          
+          <h3>價值體現</h3>
+          <p>讓老闆從行政雜事中解脫，專注於工程品質與事業發展。</p>
+        `
+      },
+      wenguang: {
+        title: '薀光',
+        subtitle: '智慧空間預約管理平台',
+        content: `
+          <h3>痛點描述</h3>
+          <p>解決共享空間經營者需手動透過 LINE 傳送門禁密碼、帳務混亂以及單次客難以留存的問題。</p>
+          
+          <h3>核心功能</h3>
+          <ul>
+            <li><strong>自動門禁：</strong>整合 Tongtong Lock，預約成功自動發送限時門禁鎖密碼。</li>
+            <li><strong>會員制管理：</strong>會員制線上預約簽到簽退管控。</li>
+            <li><strong>支付整合：</strong>結合Line pay支付。</li>
+          </ul>
+          
+          <h3>價值體現</h3>
+          <p>實現 24H 無人值守經營，讓空間管理全面自動化。</p>
+        `
+      },
+      fuqing: {
+        title: '扶青',
+        subtitle: '一站式社團管理平台',
+        content: `
+          <h3>痛點描述</h3>
+          <p>擺脫資訊分散的 Google 表單與行政地獄，解決出席統計與社費催繳耗費大量人工的問題。</p>
+          
+          <h3>核心功能</h3>
+          <ul>
+            <li><strong>數位社務：</strong>整合活動大廳、年度計畫、電子名片與財務管理系統。</li>
+            <li><strong>PWA 技術：</strong>免下載、免安裝，使用者點擊「加入主畫面」即可直接開啟系統。</li>
+            <li><strong>數據分析：</strong>出席率分析、社費收支一覽無虞。</li>
+          </ul>
+          
+          <h3>價值體現</h3>
+          <p>讓社團幹部專注於「連結與經營」，而非繁雜的行政庶務。</p>
+        `
+      },
+      panshiqihouchuo: {
+        title: '磐石砌好厝',
+        subtitle: '商務活動管理系統',
+        content: `
+          <h3>痛點描述</h3>
+          <p>解決活動邀請難以啟口、LINE 報名接龍頻繁洗版，以及手動統計餐飲菜單的瑣碎困擾。</p>
+          
+          <h3>核心功能</h3>
+          <ul>
+            <li><strong>一鍵邀請：</strong>提供一鍵 LINE 邀請功能，支援個別設定邀請文案與精美圖片。</li>
+            <li><strong>講師預約：</strong>專屬講師預約與 PPT 上傳系統，簡化商務引薦流程。</li>
+            <li><strong>自動統計：</strong>系統自動彙整出席名單與菜單數量，數據一目了然。</li>
+          </ul>
+          
+          <h3>價值體現</h3>
+          <p>提升商務對接效率，讓活動參與更有溫度。</p>
+        `
+      },
+      exhibition_ai: {
+        title: '展覽｜AI 互動藝術合成系統',
+        subtitle: '提升展場現場參與感',
+        content: `
+          <h3>解決痛點</h3>
+          <p>提升展場現場參與感，將傳統單調的拍照牆升級為具備社群擴散力的 AI 體驗。</p>
+          
+          <h3>功能亮點</h3>
+          <ul>
+            <li>整合Ai分析技術，使用者拍照後即時與專屬模板合成。</li>
+            <li>透過 QR Code 快速下載分享。</li>
+          </ul>
+        `
+      },
+      nfc: {
+        title: 'NFC｜數位會員感應系統',
+        subtitle: '無需部屬設備的會員系統',
+        content: `
+          <h3>解決痛點</h3>
+          <p>讓品牌端無需購買昂貴的感應設備，即可在現有行動裝置上實施會員管理。</p>
+          
+          <h3>功能亮點</h3>
+          <ul>
+            <li>結合實體 NFC 卡片與 PWA 技術，感應後自動啟動系統進行發送驗證。</li>
+            <li>具備隱私保護機制，卡片遺失他人亦無法識別。</li>
+          </ul>
+        `
+      }
+    };
+
+    function openModal(modalId) {
+      const data = modalData[modalId];
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalSubtitle.textContent = data.subtitle;
+      modalBody.innerHTML = data.content;
+
+      // 触发动画（360度展开）
+      modalOverlay.classList.add('active');
+      setTimeout(() => {
+        modalContainer.classList.add('active');
+      }, 10);
+
+      // 阻止背景滚动
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalContainer.classList.remove('active');
+      setTimeout(() => {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    // 点击卡片打开弹窗
+    document.querySelectorAll('[data-modal]').forEach(card => {
+      card.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        openModal(modalId);
+      });
+    });
+
+    // 关闭弹窗
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', closeModal);
+    }
+
+    // ESC 键关闭
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
+
