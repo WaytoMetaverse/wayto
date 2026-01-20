@@ -1,0 +1,20 @@
+# 开发文档和说明文件
+EmailJS配置说明.md
+已提供的资料清单.md
+需要提供的资料清单.md
+DEPLOY.md
+
+# 本地开发服务器
+server.js
+
+# 开发工具和配置文件
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+
