@@ -1,0 +1,398 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.app-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1c1917;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #1c1917;
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #3a3633;
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e8e8e8;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 左側圖片選擇區域 */
+.image-selector-panel {
+  width: 400px;
+  background: #fff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.panel-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.filter-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-controls select,
+.filter-controls input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.image-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.image-item {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+
+.image-item:hover {
+  border-color: #c9b896;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.image-item.selected {
+  border-color: #1c1917;
+  background: #f5f5f5;
+}
+
+.image-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 8px;
+}
+
+.image-item-name {
+  font-weight: 500;
+  font-size: 14px;
+  color: #1c1917;
+  flex: 1;
+}
+
+.image-item-category {
+  font-size: 11px;
+  color: #78716c;
+  margin-top: 4px;
+}
+
+.image-status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #e0e0e0;
+  color: #666;
+}
+
+.image-status.has-image {
+  background: #d4edda;
+  color: #155724;
+}
+
+.image-preview-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.image-preview {
+  width: 80px;
+  height: 60px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #999;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.image-actions {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.btn-select-image, .btn-select-video {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #1c1917;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-select-image:hover, .btn-select-video:hover {
+  background: #3a3633;
+}
+
+.btn-select-video {
+  background: #c9b896;
+}
+
+.btn-select-video:hover {
+  background: #b8956a;
+}
+
+.btn-remove-image {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-remove-image:hover {
+  background: #c82333;
+}
+
+/* 右側預覽區域 */
+.preview-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  overflow: hidden;
+}
+
+.preview-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.page-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.page-btn {
+  padding: 6px 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.page-btn:hover {
+  background: #f5f5f5;
+}
+
+.page-btn.active {
+  background: #1c1917;
+  color: #fff;
+  border-color: #1c1917;
+}
+
+.preview-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+#preview-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 模態對話框 */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #1c1917;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+#result-content {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 16px 0;
+}
+
+.result-item {
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.result-item.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.result-item.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* 滾動條樣式 */
+.image-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.image-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.image-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.image-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

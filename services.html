@@ -82,6 +82,7 @@
       overflow: hidden;
       transition: transform 0.4s ease;
       cursor: pointer;
+      position: relative;
     }
 
     .service-image-wrapper:hover {
@@ -92,6 +93,38 @@
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    .service-image-wrapper {
+      aspect-ratio: 4/3;
+      position: relative;
+    }
+
+    .service-image-wrapper .media-display {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-image-wrapper img.media-display {
+      display: block;
+      z-index: 1;
+    }
+
+    .service-image-wrapper video.media-display {
+      display: none;
+      z-index: 2;
+    }
+
+    .service-image-wrapper video.media-display[src]:not([src=""]) {
+      display: block;
+    }
+    
+    .service-image-wrapper:has(video.media-display[src]:not([src=""])) img.media-display {
+      display: none;
     }
 
     .service-number {
@@ -232,16 +265,16 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="600" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="150" y="200" width="200" height="200" fill="#f5f5f4" /> <rect x="450" y="200" width="200" height="200" fill="#e7e5e4" /> <line x1="350" y1="450" x2="450" y2="450" stroke="#c9b896" stroke-width="8" />
-          </svg>
+          <img src="images/services/3d-effect-1.jpg" alt="3D效果圖示例1" class="w-full h-full object-cover media-display">
+          <video src="images/services/3d-effect-1.mp4" alt="3D效果圖示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="100" width="500" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="250" r="60" fill="#c9b896" opacity="0.3" /> <rect x="250" y="350" width="100" height="120" fill="#f5f5f4" /> <rect x="450" y="350" width="100" height="120" fill="#e7e5e4" />
-          </svg>
+          <img src="images/services/3d-effect-2.jpg" alt="3D效果圖示例2" class="w-full h-full object-cover media-display">
+          <video src="images/services/3d-effect-2.mp4" alt="3D效果圖示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="250" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="450" y="150" width="250" height="300" fill="#f5f5f4" /> <rect x="200" y="250" width="80" height="150" fill="#e7e5e4" /> <rect x="550" y="250" width="80" height="150" fill="#d6d3d1" />
-          </svg>
+          <img src="images/services/3d-effect-3.jpg" alt="3D效果圖示例3" class="w-full h-full object-cover media-display">
+          <video src="images/services/3d-effect-3.mp4" alt="3D效果圖示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
         </div>
        </div>
@@ -264,16 +297,16 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#e0f2fe" /> <rect x="150" y="200" width="180" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="350" y="150" width="180" height="350" fill="#fafaf9" stroke="#e5e5e5" stroke-width="2" /> <rect x="550" y="180" width="180" height="320" fill="#f5f5f4" stroke="#e5e5e5" stroke-width="2" /> <rect x="100" y="500" width="600" height="20" fill="#c9b896" />
-          </svg>
+          <img src="images/services/aerial-1.jpg" alt="鳥瞰圖示例1" class="w-full h-full object-cover media-display">
+          <video src="images/services/aerial-1.mp4" alt="鳥瞰圖示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <ellipse cx="400" cy="450" rx="250" ry="80" fill="#dbeafe" /> <rect x="200" y="200" width="400" height="250" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="300" y="280" width="80" height="120" fill="#f5f5f4" /> <rect x="420" y="280" width="80" height="120" fill="#f5f5f4" /> <circle cx="400" cy="350" r="30" fill="#c9b896" opacity="0.4" />
-          </svg>
+          <img src="images/services/aerial-2.jpg" alt="鳥瞰圖示例2" class="w-full h-full object-cover media-display">
+          <video src="images/services/aerial-2.mp4" alt="鳥瞰圖示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#e0f2fe" /> <ellipse cx="400" cy="500" rx="300" ry="60" fill="#c9b896" opacity="0.2" /> <rect x="200" y="180" width="150" height="280" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="370" y="150" width="150" height="310" fill="#fafaf9" stroke="#e5e5e5" stroke-width="2" /> <rect x="540" y="200" width="150" height="260" fill="#f5f5f4" stroke="#e5e5e5" stroke-width="2" />
-          </svg>
+          <img src="images/services/aerial-3.jpg" alt="鳥瞰圖示例3" class="w-full h-full object-cover media-display">
+          <video src="images/services/aerial-3.mp4" alt="鳥瞰圖示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
         </div>
        </div>
@@ -297,18 +330,16 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <circle cx="400" cy="300" r="200" fill="none" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="300" r="150" fill="none" stroke="#c9b896" stroke-width="1" stroke-dasharray="10,5" /> <circle cx="400" cy="300" r="100" fill="none" stroke="#e5e5e5" stroke-width="2" /> <line x1="200" y1="300" x2="600" y2="300" stroke="#e5e5e5" stroke-width="1" /> <line x1="400" y1="100" x2="400" y2="500" stroke="#e5e5e5" stroke-width="1" /> <circle cx="400" cy="300" r="8" fill="#c9b896" />
-          </svg>
+          <img src="images/services/panoramic-1.jpg" alt="720°環景示例1" class="w-full h-full object-cover media-display">
+          <video src="images/services/panoramic-1.mp4" alt="720°環景示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="600" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <path d="M 200 300 Q 400 200 600 300" fill="none" stroke="#c9b896" stroke-width="2" /> <circle cx="200" cy="300" r="6" fill="#c9b896" /> <circle cx="400" cy="200" r="6" fill="#c9b896" /> <circle cx="600" cy="300" r="6" fill="#c9b896" /> <rect x="250" y="250" width="100" height="150" fill="#f5f5f4" /> <rect x="450" y="250" width="100" height="150" fill="#e7e5e4" />
-          </svg>
+          <img src="images/services/panoramic-2.jpg" alt="720°環景示例2" class="w-full h-full object-cover media-display">
+          <video src="images/services/panoramic-2.mp4" alt="720°環景示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="100" width="500" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="300" r="120" fill="none" stroke="#c9b896" stroke-width="2" opacity="0.3" /> <circle cx="400" cy="300" r="80" fill="none" stroke="#c9b896" stroke-width="2" opacity="0.5" /> <circle cx="400" cy="300" r="40" fill="#c9b896" opacity="0.3" /> <text x="400" y="310" text-anchor="middle" font-size="20" fill="#9ca3af">
-            360°
-           </text>
-          </svg>
+          <img src="images/services/panoramic-3.jpg" alt="720°環景示例3" class="w-full h-full object-cover media-display">
+          <video src="images/services/panoramic-3.mp4" alt="720°環景示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
         </div>
        </div>
@@ -331,16 +362,16 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="200" width="600" height="200" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <path d="M 150 300 L 250 300 L 300 250 L 400 300 L 500 280 L 650 300" fill="none" stroke="#c9b896" stroke-width="3" /> <circle cx="150" cy="300" r="8" fill="#c9b896" /> <circle cx="300" cy="250" r="8" fill="#c9b896" /> <circle cx="500" cy="280" r="8" fill="#c9b896" /> <circle cx="650" cy="300" r="8" fill="#c9b896" /> <polygon points="640,295 660,300 640,305" fill="#c9b896" />
-          </svg>
+          <img src="images/services/animation-1.jpg" alt="動畫展示示例1" class="w-full h-full object-cover media-display">
+          <video src="images/services/animation-1.mp4" alt="動畫展示示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="150" width="500" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="200" y="220" width="120" height="160" fill="#f5f5f4" /> <rect x="350" y="220" width="120" height="160" fill="#e7e5e4" /> <rect x="500" y="220" width="120" height="160" fill="#d6d3d1" /> <path d="M 200 200 Q 400 150 600 200" fill="none" stroke="#c9b896" stroke-width="2" stroke-dasharray="5,5" />
-          </svg>
+          <img src="images/services/animation-2.jpg" alt="動畫展示示例2" class="w-full h-full object-cover media-display">
+          <video src="images/services/animation-2.mp4" alt="動畫展示示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="100" width="600" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="250" cy="250" r="40" fill="#c9b896" opacity="0.2" /> <circle cx="400" cy="300" r="50" fill="#c9b896" opacity="0.3" /> <circle cx="550" cy="280" r="45" fill="#c9b896" opacity="0.25" /> <path d="M 250 250 Q 325 275 400 300" fill="none" stroke="#c9b896" stroke-width="2" /> <path d="M 400 300 Q 475 290 550 280" fill="none" stroke="#c9b896" stroke-width="2" />
-          </svg>
+          <img src="images/services/animation-3.jpg" alt="動畫展示示例3" class="w-full h-full object-cover media-display">
+          <video src="images/services/animation-3.mp4" alt="動畫展示示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
         </div>
        </div>
@@ -363,16 +394,16 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#e0f2fe" /> <rect x="200" y="180" width="400" height="240" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="250" y="230" width="120" height="140" fill="#f5f5f4" /> <rect x="420" y="230" width="120" height="140" fill="#c9b896" opacity="0.3" /> <circle cx="400" cy="300" r="100" fill="none" stroke="#c9b896" stroke-width="1" stroke-dasharray="5,5" /> <circle cx="400" cy="300" r="6" fill="#c9b896" />
-          </svg>
+          <img src="images/services/virtual-showroom-1.jpg" alt="虛擬展場示例1" class="w-full h-full object-cover media-display">
+          <video src="images/services/virtual-showroom-1.mp4" alt="虛擬展場示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="120" width="600" height="360" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="180" y="200" width="100" height="200" fill="#d6d3d1" /> <rect x="300" y="200" width="100" height="200" fill="#e7e5e4" /> <rect x="420" y="200" width="100" height="200" fill="#f5f5f4" /> <rect x="540" y="200" width="100" height="200" fill="#fafaf9" /> <rect x="350" y="150" width="100" height="30" fill="#c9b896" opacity="0.5" />
-          </svg>
+          <img src="images/services/virtual-showroom-2.jpg" alt="虛擬展場示例2" class="w-full h-full object-cover media-display">
+          <video src="images/services/virtual-showroom-2.mp4" alt="虛擬展場示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
          <div class="service-image-wrapper">
-          <svg viewbox="0 0 800 600" class="w-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="150" width="500" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="200" y="200" width="150" height="200" fill="#f5f5f4" /> <rect x="380" y="200" width="150" height="200" fill="#e7e5e4" /> <circle cx="275" cy="300" r="30" fill="#c9b896" opacity="0.4" /> <circle cx="455" cy="300" r="30" fill="#c9b896" opacity="0.4" /> <path d="M 275 270 L 275 330 M 255 300 L 295 300" stroke="#ffffff" stroke-width="2" /> <path d="M 455 270 L 455 330 M 435 300 L 475 300" stroke="#ffffff" stroke-width="2" />
-          </svg>
+          <img src="images/services/virtual-showroom-3.jpg" alt="虛擬展場示例3" class="w-full h-full object-cover media-display">
+          <video src="images/services/virtual-showroom-3.mp4" alt="虛擬展場示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
          </div>
         </div>
        </div>
@@ -712,6 +743,51 @@
         }, index * 100);
       });
     }, 300);
+
+    // 自動檢測並顯示視頻或圖片
+    function checkAndDisplayMedia() {
+      document.querySelectorAll('.service-image-wrapper').forEach(container => {
+        const img = container.querySelector('img.media-display');
+        const video = container.querySelector('video.media-display');
+        
+        if (img && video && video.src) {
+          // 檢查視頻是否存在
+          const checkVideo = () => {
+            fetch(video.src, { method: 'HEAD' })
+              .then(response => {
+                if (response.ok) {
+                  // 視頻存在，顯示視頻
+                  img.style.display = 'none';
+                  video.style.display = 'block';
+                  video.play().catch(() => {}); // 自動播放，忽略錯誤
+                } else {
+                  // 視頻不存在，顯示圖片
+                  img.style.display = 'block';
+                  video.style.display = 'none';
+                }
+              })
+              .catch(() => {
+                // 請求失敗，顯示圖片
+                img.style.display = 'block';
+                video.style.display = 'none';
+              });
+          };
+          
+          // 延遲檢查，確保頁面已載入
+          setTimeout(checkVideo, 100);
+        } else if (img) {
+          // 只有圖片，直接顯示
+          img.style.display = 'block';
+        }
+      });
+    }
+
+    // 頁面載入後執行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkAndDisplayMedia);
+    } else {
+      checkAndDisplayMedia();
+    }
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b5843e641b3f1e0',t:'MTc2NzAwMDQ4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

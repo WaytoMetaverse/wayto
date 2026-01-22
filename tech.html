@@ -88,6 +88,34 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg, rgba(245,243,240,0.5) 0%, rgba(235,233,230,0.5) 100%);
+      z-index: 3;
+    }
+    
+    .image-container .media-display {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .image-container img.media-display {
+      display: block;
+      z-index: 1;
+    }
+    
+    .image-container video.media-display {
+      display: none;
+      z-index: 2;
+    }
+    
+    .image-container video.media-display[src]:not([src=""]) {
+      display: block;
+    }
+    
+    .image-container:has(video.media-display[src]:not([src=""])) img.media-display {
+      display: none;
     }
     
     .project-card {
@@ -553,13 +581,8 @@
       </div>
       <div class="fade-up" style="transition-delay: 0.4s;">
        <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-         <div class="text-center">
-          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <p class="text-xs tracking-widest text-stone-400 uppercase">Tech Platform</p>
-         </div>
-        </div>
+        <img src="images/hero/hero-tech.jpg" alt="數位解決方案" class="w-full h-full object-cover media-display">
+        <video src="images/hero/hero-tech.mp4" alt="數位解決方案" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
        </div>
       </div>
      </div>
@@ -861,13 +884,8 @@
                     </div>
       <div class="fade-up" style="transition-delay: 0.2s;">
        <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-         <div class="text-center">
-          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-          </svg>
-          <p class="text-xs tracking-widest text-stone-400 uppercase">Technology</p>
-         </div>
-        </div>
+        <img src="images/hero/about-tech.jpg" alt="技術優勢" class="w-full h-full object-cover media-display">
+        <video src="images/hero/about-tech.mp4" alt="技術優勢" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                             </div>
                             </div>
                         </div>
@@ -1363,6 +1381,54 @@
         closeModal();
       }
     });
+
+    // 自動檢測並顯示視頻或圖片
+    function checkAndDisplayMedia() {
+      // 檢查所有包含media-display的元素
+      document.querySelectorAll('.image-container, .project-image').forEach(container => {
+        const img = container.querySelector('img.media-display');
+        const video = container.querySelector('video.media-display');
+        
+        if (img && video && video.src) {
+          // 檢查視頻是否存在
+          const checkVideo = () => {
+            fetch(video.src, { method: 'HEAD' })
+              .then(response => {
+                if (response.ok) {
+                  // 視頻存在，顯示視頻，隱藏圖片
+                  if (img) img.style.display = 'none';
+                  if (video) {
+                    video.style.display = 'block';
+                    video.play().catch(() => {}); // 自動播放，忽略錯誤
+                  }
+                } else {
+                  // 視頻不存在，顯示圖片，隱藏視頻
+                  if (img) img.style.display = 'block';
+                  if (video) video.style.display = 'none';
+                }
+              })
+              .catch(() => {
+                // 請求失敗，顯示圖片，隱藏視頻
+                if (img) img.style.display = 'block';
+                if (video) video.style.display = 'none';
+              });
+          };
+          
+          // 延遲檢查，確保頁面已載入
+          setTimeout(checkVideo, 100);
+        } else if (img) {
+          // 只有圖片，直接顯示
+          img.style.display = 'block';
+        }
+      });
+    }
+
+    // 頁面載入後執行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkAndDisplayMedia);
+    } else {
+      checkAndDisplayMedia();
+    }
   </script>
 </body>
 </html>

@@ -86,6 +86,64 @@
       background: #f5f3f0;
     }
     
+    .image-container .media-display {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .image-container img.media-display {
+      display: block;
+      z-index: 1;
+    }
+    
+    .image-container video.media-display {
+      display: none;
+      z-index: 2;
+    }
+    
+    .image-container video.media-display[src]:not([src=""]) {
+      display: block;
+    }
+    
+    .image-container:has(video.media-display[src]:not([src=""])) img.media-display {
+      display: none;
+    }
+    
+    .project-image {
+      position: relative;
+    }
+    
+    .project-image .media-display {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .project-image img.media-display {
+      display: block;
+      z-index: 1;
+    }
+    
+    .project-image video.media-display {
+      display: none;
+      z-index: 2;
+    }
+    
+    .project-image video.media-display[src]:not([src=""]) {
+      display: block;
+    }
+    
+    .project-image:has(video.media-display[src]:not([src=""])) img.media-display {
+      display: none;
+    }
+    
     .image-container::after {
       content: '';
       position: absolute;
@@ -239,13 +297,8 @@
       </div><!-- 右側圖片 -->
       <div class="fade-up" style="transition-delay: 0.4s;">
        <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-         <div class="text-center">
-          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <p class="text-xs tracking-widest text-stone-400 uppercase">Featured Project</p>
-         </div>
-        </div>
+        <img src="images/hero/hero-visual.jpg" alt="3D視覺化服務" class="w-full h-full object-cover media-display">
+        <video src="images/hero/hero-visual.mp4" alt="3D視覺化服務" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
        </div>
       </div>
      </div>
@@ -335,13 +388,8 @@
       </div><!-- 右側圖片 -->
       <div class="fade-up" style="transition-delay: 0.2s;">
        <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-         <div class="text-center">
-          <svg class="w-20 h-20 text-stone-400 mx-auto mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <p class="text-xs tracking-widest text-stone-400 uppercase">Our Team</p>
-         </div>
-        </div>
+        <img src="images/hero/about-visual.jpg" alt="關於我們" class="w-full h-full object-cover media-display">
+        <video src="images/hero/about-visual.mp4" alt="關於我們" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
        </div>
       </div>
      </div>
@@ -451,10 +499,8 @@
       <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
        <div class="project-card rounded-sm overflow-hidden refined-shadow">
         <div class="project-image image-container aspect-[16/10]">
-         <div class="absolute inset-0 flex items-center justify-center z-10">
-          <svg class="w-16 h-16 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5" />
-          </svg>
-         </div>
+         <img src="images/portfolio/featured-1.jpg" alt="豪宅建案視覺化" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/featured-1.mp4" alt="豪宅建案視覺化" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-overlay">
          <div>
@@ -474,10 +520,8 @@
       <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
        <div class="lg:order-2 project-card rounded-sm overflow-hidden refined-shadow">
         <div class="project-image image-container aspect-[16/10]">
-         <div class="absolute inset-0 flex items-center justify-center z-10">
-          <svg class="w-16 h-16 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-          </svg>
-         </div>
+         <img src="images/portfolio/featured-2.jpg" alt="商業空間設計" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/featured-2.mp4" alt="商業空間設計" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-overlay">
          <div>
@@ -497,10 +541,8 @@
       <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
        <div class="project-card rounded-sm overflow-hidden refined-shadow">
         <div class="project-image image-container aspect-[16/10]">
-         <div class="absolute inset-0 flex items-center justify-center z-10">
-          <svg class="w-16 h-16 text-stone-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-         </div>
+         <img src="images/portfolio/featured-3.jpg" alt="虛擬展場規劃" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/featured-3.mp4" alt="虛擬展場規劃" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-overlay">
          <div>
@@ -742,6 +784,54 @@
         }
       });
     });
+
+    // 自動檢測並顯示視頻或圖片
+    function checkAndDisplayMedia() {
+      // 檢查所有包含media-display的元素
+      document.querySelectorAll('.image-container, .project-image').forEach(container => {
+        const img = container.querySelector('img.media-display');
+        const video = container.querySelector('video.media-display');
+        
+        if (img && video && video.src) {
+          // 檢查視頻是否存在
+          const checkVideo = () => {
+            fetch(video.src, { method: 'HEAD' })
+              .then(response => {
+                if (response.ok) {
+                  // 視頻存在，顯示視頻，隱藏圖片
+                  if (img) img.style.display = 'none';
+                  if (video) {
+                    video.style.display = 'block';
+                    video.play().catch(() => {}); // 自動播放，忽略錯誤
+                  }
+                } else {
+                  // 視頻不存在，顯示圖片，隱藏視頻
+                  if (img) img.style.display = 'block';
+                  if (video) video.style.display = 'none';
+                }
+              })
+              .catch(() => {
+                // 請求失敗，顯示圖片，隱藏視頻
+                if (img) img.style.display = 'block';
+                if (video) video.style.display = 'none';
+              });
+          };
+          
+          // 延遲檢查，確保頁面已載入
+          setTimeout(checkVideo, 100);
+        } else if (img) {
+          // 只有圖片，直接顯示
+          img.style.display = 'block';
+        }
+      });
+    }
+
+    // 頁面載入後執行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkAndDisplayMedia);
+    } else {
+      checkAndDisplayMedia();
+    }
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b4773b8f174f1e0',t:'MTc2NjgyNDE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圖片替換工具</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 標題欄 -->
+    <header class="app-header">
+      <h1>圖片替換工具</h1>
+      <div class="header-actions">
+        <button id="btn-preview-all" class="btn-secondary">預覽所有變更</button>
+        <button id="btn-confirm" class="btn-primary" disabled>確認並替換</button>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <!-- 左側：圖片選擇區域 -->
+      <aside class="image-selector-panel">
+        <div class="panel-header">
+          <h2>圖片列表</h2>
+          <div class="filter-controls">
+            <select id="filter-category">
+              <option value="all">所有分類</option>
+            </select>
+            <input type="text" id="search-box" placeholder="搜尋圖片...">
+          </div>
+        </div>
+        
+        <div class="image-list" id="image-list">
+          <!-- 圖片項目將由JavaScript動態生成 -->
+        </div>
+      </aside>
+
+      <!-- 右側：預覽區域 -->
+      <main class="preview-panel">
+        <div class="preview-header">
+          <h2>網頁預覽</h2>
+          <div class="page-selector">
+            <button class="page-btn active" data-page="portfolio.html">作品集</button>
+            <button class="page-btn" data-page="services.html">服務</button>
+            <button class="page-btn" data-page="visual.html">Visual</button>
+            <button class="page-btn" data-page="tech.html">Tech</button>
+          </div>
+        </div>
+        
+        <div class="preview-container">
+          <iframe id="preview-frame" src=""></iframe>
+        </div>
+      </main>
+    </div>
+
+    <!-- 確認對話框 -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content">
+        <h3>確認替換</h3>
+        <p>即將替換 <span id="replace-count">0</span> 張圖片，確定要繼續嗎？</p>
+        <div class="modal-actions">
+          <button id="btn-cancel" class="btn-secondary">取消</button>
+          <button id="btn-proceed" class="btn-primary">確定替換</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 進度對話框 -->
+    <div id="progress-modal" class="modal">
+      <div class="modal-content">
+        <h3>正在替換圖片...</h3>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <p id="progress-text">準備中...</p>
+      </div>
+    </div>
+
+    <!-- 結果對話框 -->
+    <div id="result-modal" class="modal">
+      <div class="modal-content">
+        <h3 id="result-title">替換完成</h3>
+        <div id="result-content"></div>
+        <div class="modal-actions">
+          <button id="btn-close-result" class="btn-primary">關閉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

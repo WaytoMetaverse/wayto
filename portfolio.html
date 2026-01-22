@@ -140,6 +140,37 @@
       overflow: hidden;
       position: relative;
     }
+    
+    .project-image {
+      position: relative;
+    }
+    
+    .project-image .media-display {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .project-image img.media-display {
+      display: block;
+      z-index: 1;
+    }
+    
+    .project-image video.media-display {
+      display: none;
+      z-index: 2;
+    }
+    
+    .project-image video.media-display[src]:not([src=""]) {
+      display: block;
+    }
+    
+    .project-image:has(video.media-display[src]:not([src=""])) img.media-display {
+      display: none;
+    }
 
     .project-info {
       padding: 2rem 0;
@@ -207,10 +238,8 @@
       <div class="project-grid">
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="600" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="150" y="200" width="200" height="200" fill="#f5f5f4" /> <rect x="450" y="200" width="200" height="200" fill="#e7e5e4" /> <line x1="350" y1="450" x2="450" y2="450" stroke="#c9b896" stroke-width="8" /> <text x="400" y="520" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           現代住宅客廳
-          </text>
-         </svg>
+         <img src="images/portfolio/interior-1.jpg" alt="豪宅室內與720°環景" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/interior-1.mp4" alt="豪宅室內與720°環景" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -222,10 +251,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="100" width="500" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="400" cy="250" r="60" fill="#c9b896" opacity="0.3" /> <rect x="250" y="350" width="100" height="120" fill="#f5f5f4" /> <rect x="450" y="350" width="100" height="120" fill="#e7e5e4" /> <text x="400" y="540" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           臥室空間
-          </text>
-         </svg>
+         <img src="images/portfolio/interior-2.jpg" alt="主臥室設計" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/interior-2.mp4" alt="主臥室設計" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -237,10 +264,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="250" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="450" y="150" width="250" height="300" fill="#f5f5f4" /> <rect x="200" y="250" width="80" height="150" fill="#e7e5e4" /> <rect x="550" y="250" width="80" height="150" fill="#d6d3d1" /> <text x="400" y="520" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           廚房設計
-          </text>
-         </svg>
+         <img src="images/portfolio/interior-3.jpg" alt="開放式廚房" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/interior-3.mp4" alt="開放式廚房" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -260,10 +285,8 @@
       <div class="project-grid">
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="100" width="600" height="400" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <circle cx="250" cy="300" r="40" fill="#c9b896" /> <circle cx="400" cy="300" r="40" fill="#c9b896" /> <circle cx="550" cy="300" r="40" fill="#c9b896" /> <rect x="200" y="380" width="400" height="4" fill="#1c1917" /> <text x="400" y="540" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           咖啡廳空間
-          </text>
-         </svg>
+         <img src="images/portfolio/commercial-1.jpg" alt="國際連鎖商空" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/commercial-1.mp4" alt="國際連鎖商空" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -275,10 +298,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="150" width="500" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="200" y="200" width="150" height="200" fill="#f5f5f4" /> <rect x="400" y="200" width="200" height="200" fill="#e7e5e4" /> <line x1="350" y1="300" x2="400" y2="300" stroke="#c9b896" stroke-width="3" /> <text x="400" y="500" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           辦公室
-          </text>
-         </svg>
+         <img src="images/portfolio/commercial-2.jpg" alt="企業辦公室" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/commercial-2.mp4" alt="企業辦公室" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -290,10 +311,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="120" width="600" height="360" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="180" y="200" width="120" height="180" fill="#f5f5f4" /> <rect x="340" y="200" width="120" height="180" fill="#e7e5e4" /> <rect x="500" y="200" width="120" height="180" fill="#d6d3d1" /> <text x="400" y="530" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           服飾店面
-          </text>
-         </svg>
+         <img src="images/portfolio/commercial-3.jpg" alt="服飾零售空間" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/commercial-3.mp4" alt="服飾零售空間" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -313,10 +332,8 @@
       <div class="project-grid">
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#e0f2fe" /> <rect x="150" y="200" width="180" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="350" y="150" width="180" height="350" fill="#fafaf9" stroke="#e5e5e5" stroke-width="2" /> <rect x="550" y="180" width="180" height="320" fill="#f5f5f4" stroke="#e5e5e5" stroke-width="2" /> <rect x="100" y="500" width="600" height="20" fill="#c9b896" /> <text x="400" y="560" text-anchor="middle" font-size="24" fill="#6b7280" font-family="Noto Sans TC">
-           建築外觀
-          </text>
-         </svg>
+         <img src="images/portfolio/construction-1.jpg" alt="頂級指標建案" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/construction-1.mp4" alt="頂級指標建案" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
         </div>
         <div class="project-info">
          <div class="category-label">
@@ -328,10 +345,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <ellipse cx="400" cy="450" rx="250" ry="80" fill="#dbeafe" /> <rect x="200" y="200" width="400" height="250" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="300" y="280" width="80" height="120" fill="#f5f5f4" /> <rect x="420" y="280" width="80" height="120" fill="#f5f5f4" /> <circle cx="400" cy="350" r="30" fill="#c9b896" opacity="0.4" /> <text x="400" y="560" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           中庭景觀
-          </text>
-         </svg>
+         <img src="images/portfolio/construction-2.jpg" alt="社區中庭景觀" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/construction-2.mp4" alt="社區中庭景觀" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                             </div>
         <div class="project-info">
          <div class="category-label">
@@ -343,10 +358,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="150" width="600" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="180" y="220" width="180" height="180" fill="#dbeafe" /> <rect x="440" y="220" width="180" height="180" fill="#f5f5f4" /> <circle cx="270" cy="310" r="25" fill="#c9b896" /> <circle cx="530" cy="310" r="25" fill="#c9b896" /> <text x="400" y="500" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           公設空間
-          </text>
-         </svg>
+         <img src="images/portfolio/construction-3.jpg" alt="接待中心與公設" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/construction-3.mp4" alt="接待中心與公設" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                 </div>
         <div class="project-info">
          <div class="category-label">
@@ -366,10 +379,8 @@
       <div class="project-grid">
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="100" width="250" height="400" fill="#f5f5f4" /> <rect x="370" y="100" width="250" height="400" fill="#e7e5e4" /> <rect x="640" y="100" width="60" height="400" fill="#d6d3d1" /> <line x1="100" y1="300" x2="700" y2="300" stroke="#c9b896" stroke-width="2" stroke-dasharray="10,5" /> <text x="400" y="550" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           磁磚系列
-          </text>
-         </svg>
+         <img src="images/portfolio/material-1.jpg" alt="建材與虛擬展示間" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/material-1.mp4" alt="建材與虛擬展示間" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                     </div>
         <div class="project-info">
          <div class="category-label">
@@ -381,10 +392,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="150" y="150" width="500" height="300" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="200" y="200" width="150" height="200" fill="#f5f5f4" /> <rect x="380" y="200" width="150" height="200" fill="#e7e5e4" /> <rect x="560" y="220" width="60" height="160" fill="#c9b896" opacity="0.6" /> <text x="400" y="500" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           衛浴設備
-          </text>
-         </svg>
+         <img src="images/portfolio/material-2.jpg" alt="衛浴設備展示" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/material-2.mp4" alt="衛浴設備展示" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                         </div>
         <div class="project-info">
          <div class="category-label">
@@ -396,10 +405,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#fafaf9" /> <rect x="100" y="120" width="600" height="360" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="180" y="200" width="100" height="200" fill="#d6d3d1" /> <rect x="300" y="200" width="100" height="200" fill="#e7e5e4" /> <rect x="420" y="200" width="100" height="200" fill="#f5f5f4" /> <rect x="540" y="200" width="100" height="200" fill="#fafaf9" /> <text x="400" y="520" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           木地板系列
-          </text>
-         </svg>
+         <img src="images/portfolio/material-3.jpg" alt="木地板色系展示" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/material-3.mp4" alt="木地板色系展示" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                     </div>
         <div class="project-info">
          <div class="category-label">
@@ -411,10 +418,8 @@
        </article>
        <article class="project-card hover-lift fade-up">
         <div class="project-image">
-         <svg viewbox="0 0 800 600" class="w-full h-full"><rect width="800" height="600" fill="#e0f2fe" /> <rect x="200" y="180" width="400" height="240" fill="#ffffff" stroke="#e5e5e5" stroke-width="2" /> <rect x="250" y="230" width="120" height="140" fill="#f5f5f4" /> <rect x="420" y="230" width="120" height="140" fill="#c9b896" opacity="0.3" /> <circle cx="400" cy="300" r="100" fill="none" stroke="#c9b896" stroke-width="1" stroke-dasharray="5,5" /> <text x="400" y="480" text-anchor="middle" font-size="24" fill="#9ca3af" font-family="Noto Sans TC">
-           虛擬展場
-          </text>
-         </svg>
+         <img src="images/portfolio/material-4.jpg" alt="線上展示間" class="w-full h-full object-cover media-display">
+         <video src="images/portfolio/material-4.mp4" alt="線上展示間" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
                         </div>
         <div class="project-info">
          <div class="category-label">
@@ -628,6 +633,51 @@
         }, index * 100);
       });
     }, 300);
+
+    // 自動檢測並顯示視頻或圖片
+    function checkAndDisplayMedia() {
+      document.querySelectorAll('.project-image').forEach(container => {
+        const img = container.querySelector('img.media-display');
+        const video = container.querySelector('video.media-display');
+        
+        if (img && video && video.src) {
+          // 檢查視頻是否存在
+          const checkVideo = () => {
+            fetch(video.src, { method: 'HEAD' })
+              .then(response => {
+                if (response.ok) {
+                  // 視頻存在，顯示視頻
+                  img.style.display = 'none';
+                  video.style.display = 'block';
+                  video.play().catch(() => {}); // 自動播放，忽略錯誤
+                } else {
+                  // 視頻不存在，顯示圖片
+                  img.style.display = 'block';
+                  video.style.display = 'none';
+                }
+              })
+              .catch(() => {
+                // 請求失敗，顯示圖片
+                img.style.display = 'block';
+                video.style.display = 'none';
+              });
+          };
+          
+          // 延遲檢查，確保頁面已載入
+          setTimeout(checkVideo, 100);
+        } else if (img) {
+          // 只有圖片，直接顯示
+          img.style.display = 'block';
+        }
+      });
+    }
+
+    // 頁面載入後執行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkAndDisplayMedia);
+    } else {
+      checkAndDisplayMedia();
+    }
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b56d94ec4a5f1e0',t:'MTc2Njk4NTYzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

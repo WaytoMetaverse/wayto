@@ -1,0 +1,16 @@
+{
+  "name": "image-replacer",
+  "version": "1.0.0",
+  "description": "圖片替換工具 - 用於替換網站中的圖片",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": ["electron", "image", "replacer"],
+  "author": "Wayto Metaverse",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0"
+  }
+}
