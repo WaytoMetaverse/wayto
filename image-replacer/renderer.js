@@ -1,6 +1,7 @@
 // 全局狀態
 let imageConfig = [];
 let selectedImages = new Map(); // Map<imageId, {sourcePath, targetPath, targetPathVideo, preview, isVideo}>
+let panoramicEmbeds = {}; // 720° 環景外部網址 { id: url }
 let currentPreviewPage = 'portfolio.html';
 let previewFrame = null;
 
@@ -23,6 +24,11 @@ async function loadImageConfig() {
   try {
     imageConfig = await window.electronAPI.getImageConfig();
     await checkExistingImages();
+    try {
+      panoramicEmbeds = await window.electronAPI.getPanoramicEmbeds() || {};
+    } catch {
+      panoramicEmbeds = {};
+    }
     renderImageList();
   } catch (error) {
     console.error('載入配置失敗:', error);
@@ -125,10 +131,46 @@ function initializeUI() {
   document.getElementById('btn-close-result').addEventListener('click', () => {
     document.getElementById('result-modal').classList.remove('show');
   });
+
+  // 設定環景網址彈窗
+  document.getElementById('btn-embed-cancel').addEventListener('click', closeEmbedUrlModal);
+  document.getElementById('btn-embed-ok').addEventListener('click', confirmEmbedUrl);
+  document.getElementById('embed-url-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'embed-url-modal') closeEmbedUrlModal();
+  });
+  document.getElementById('embed-url-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') confirmEmbedUrl();
+    if (e.key === 'Escape') closeEmbedUrlModal();
+  });
   
   // 預覽所有變更按鈕
   document.getElementById('btn-preview-all').addEventListener('click', () => {
     updatePreview();
+  });
+
+  // 左側面板切換：圖片列表 / 作品集
+  document.querySelectorAll('.panel-tab[data-panel]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.dataset.panel;
+      document.querySelectorAll('.panel-tab[data-panel]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-images').style.display = panel === 'images' ? 'block' : 'none';
+      document.getElementById('panel-portfolio').style.display = panel === 'portfolio' ? 'block' : 'none';
+      document.getElementById('filter-controls-images').style.display = panel === 'images' ? 'flex' : 'none';
+      document.getElementById('filter-controls-portfolio').style.display = panel === 'portfolio' ? 'flex' : 'none';
+      if (panel === 'portfolio') loadAndRenderPortfolioList();
+    });
+  });
+  document.getElementById('btn-add-portfolio-inline').addEventListener('click', openPortfolioModal);
+
+  // 新增/編輯作品集
+  document.getElementById('btn-add-portfolio').addEventListener('click', openPortfolioModal);
+  document.getElementById('btn-portfolio-cancel').addEventListener('click', closePortfolioModal);
+  document.getElementById('btn-portfolio-save').addEventListener('click', savePortfolioItem);
+  document.getElementById('portfolio-select-images').addEventListener('click', selectPortfolioImages);
+  document.getElementById('portfolio-select-videos').addEventListener('click', selectPortfolioVideos);
+  document.getElementById('portfolio-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'portfolio-modal') closePortfolioModal();
   });
 }
 
@@ -158,15 +200,18 @@ function createImageItem(image) {
   const preview = selectedData ? selectedData.preview : null;
   const isVideo = selectedData ? selectedData.isVideo : false;
   const supportsVideo = image.supportsVideo || false;
+  const supportsEmbedUrl = image.supportsEmbedUrl || false;
+  const hasEmbedUrl = !!(panoramicEmbeds[image.id] || '').trim();
+  const statusText = hasEmbedUrl ? '已設定環景' : (selected || image.exists || image.videoExists ? (isVideo ? '已選擇(影片)' : '已選擇') : '未選擇');
   
   div.innerHTML = `
     <div class="image-item-header">
       <div>
         <div class="image-item-name">${image.name}</div>
-        <div class="image-item-category">${image.category}${supportsVideo ? ' (支援影片)' : ''}</div>
+        <div class="image-item-category">${image.category}${supportsVideo ? ' (支援影片)' : ''}${supportsEmbedUrl ? ' · 可設環景網址' : ''}</div>
       </div>
-      <span class="image-status ${selected || image.exists || image.videoExists ? 'has-image' : ''}">
-        ${selected || image.exists || image.videoExists ? (isVideo ? '已選擇(影片)' : '已選擇') : '未選擇'}
+      <span class="image-status ${selected || image.exists || image.videoExists || hasEmbedUrl ? 'has-image' : ''}">
+        ${statusText}
       </span>
     </div>
     <div class="image-preview-container">
@@ -175,19 +220,19 @@ function createImageItem(image) {
           isVideo 
             ? `<video src="${preview.data}" muted style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;"></video>`
             : `<img src="${preview.data}" alt="預覽">`
-        ) : '無預覽'}
+        ) : hasEmbedUrl ? '<span class="embed-placeholder">環景網址已設定</span>' : '無預覽'}
       </div>
       <div class="image-actions">
         <button class="btn-select-image" data-action="select" data-image-id="${image.id}" data-supports-video="${supportsVideo}">
           ${selected ? '更換' : '選擇圖片'}
         </button>
         ${supportsVideo ? `<button class="btn-select-video" data-action="select-video" data-image-id="${image.id}">${selected && isVideo ? '更換' : '選擇影片'}</button>` : ''}
+        ${supportsEmbedUrl ? `<button class="btn-set-embed" data-action="set-embed" data-image-id="${image.id}">${hasEmbedUrl ? '更改環景網址' : '設定環景網址'}</button>` : ''}
         ${selected ? `<button class="btn-remove-image" data-action="remove" data-image-id="${image.id}">移除</button>` : ''}
       </div>
     </div>
   `;
   
-  // 添加事件監聽器
   div.querySelector('[data-action="select"]').addEventListener('click', () => {
     selectImage(image.id, false);
   });
@@ -198,6 +243,12 @@ function createImageItem(image) {
     });
   }
   
+  if (supportsEmbedUrl) {
+    div.querySelector('[data-action="set-embed"]').addEventListener('click', () => {
+      setPanoramicEmbedUrl(image.id, image.name);
+    });
+  }
+  
   if (selected) {
     div.querySelector('[data-action="remove"]').addEventListener('click', () => {
       removeImage(image.id);
@@ -205,6 +256,272 @@ function createImageItem(image) {
   }
   
   return div;
+}
+
+// 目前正在編輯環景網址的項目 id
+let embedUrlEditingId = null;
+// 環景網址已修改但尚未按「確認並替換」套用
+let embedUrlsDirty = false;
+
+// 新增作品集：已選圖片路徑（第一張為封面）、影片路徑；編輯時目前項目 id 與既有數量
+let portfolioSelectedPaths = [];
+let portfolioSelectedVideos = [];
+let currentEditingItemId = null;
+let editingItemExistingImages = 0;
+let editingItemExistingVideos = 0;
+
+// 開啟「設定環景網址」彈窗
+function openEmbedUrlModal(imageId, imageName) {
+  embedUrlEditingId = imageId;
+  document.getElementById('embed-url-modal-title').textContent = '設定環景網址：' + (imageName || imageId);
+  document.getElementById('embed-url-input').value = (panoramicEmbeds[imageId] || '').trim();
+  document.getElementById('embed-url-modal').classList.add('show');
+  setTimeout(() => document.getElementById('embed-url-input').focus(), 100);
+}
+
+// 關閉環景網址彈窗
+function closeEmbedUrlModal() {
+  embedUrlEditingId = null;
+  document.getElementById('embed-url-modal').classList.remove('show');
+}
+
+// 確定環景網址（僅更新記憶體，實際寫入在「確認並替換」時執行）
+function confirmEmbedUrl() {
+  if (!embedUrlEditingId) return;
+  const input = document.getElementById('embed-url-input');
+  const url = (input.value || '').trim();
+  panoramicEmbeds[embedUrlEditingId] = url;
+  embedUrlsDirty = true;
+  closeEmbedUrlModal();
+  renderImageList();
+  if (currentPreviewPage === 'services.html') loadPreview('services.html');
+  updateConfirmButton();
+}
+
+// 設定 720° 環景外部平台網址（點擊按鈕時開啟彈窗）
+function setPanoramicEmbedUrl(imageId, imageName) {
+  openEmbedUrlModal(imageId, imageName);
+}
+
+// --- 作品集管理 ---
+async function loadAndRenderPortfolioList() {
+  const data = await window.electronAPI.getPortfolio();
+  const listEl = document.getElementById('portfolio-list');
+  const items = data.items || [];
+  const categoryNames = { interior: '室內設計 3D', commercial: '商業空間', construction: '建案', material: '建材 / 虛擬展場' };
+  if (items.length === 0) {
+    listEl.innerHTML = '<p class="text-gray-500" style="padding: 12px;">尚無作品，點「新增作品集」新增。</p>';
+    return;
+  }
+  listEl.innerHTML = items.map((item, index) => {
+    const catName = categoryNames[item.category] || item.category;
+    const canUp = index > 0;
+    const canDown = index < items.length - 1;
+    return '<div class="portfolio-item" data-item-id="' + item.id + '" data-index="' + index + '">' +
+      '<div class="portfolio-item-name">' + (item.name || '未命名') + '</div>' +
+      '<div class="portfolio-item-meta">' + catName + '</div>' +
+      '<div class="portfolio-item-actions">' +
+      (canUp ? '<button type="button" class="btn-move-portfolio" data-action="move-up" data-item-id="' + item.id + '" title="上移">↑</button>' : '') +
+      (canDown ? '<button type="button" class="btn-move-portfolio" data-action="move-down" data-item-id="' + item.id + '" title="下移">↓</button>' : '') +
+      '<button type="button" class="btn-edit-portfolio" data-action="edit" data-item-id="' + item.id + '">編輯</button>' +
+      '<button type="button" class="btn-delete-portfolio" data-action="delete" data-item-id="' + item.id + '">刪除</button>' +
+      '</div></div>';
+  }).join('');
+  listEl.querySelectorAll('[data-action="edit"]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.itemId;
+      const data = await window.electronAPI.getPortfolio();
+      const item = (data.items || []).find(i => i.id === id);
+      if (item) openPortfolioModalForEdit(item);
+    });
+  });
+  listEl.querySelectorAll('[data-action="delete"]').forEach(btn => {
+    btn.addEventListener('click', () => deletePortfolioItem(btn.dataset.itemId));
+  });
+  listEl.querySelectorAll('[data-action="move-up"]').forEach(btn => {
+    btn.addEventListener('click', () => movePortfolioItem(btn.dataset.itemId, -1));
+  });
+  listEl.querySelectorAll('[data-action="move-down"]').forEach(btn => {
+    btn.addEventListener('click', () => movePortfolioItem(btn.dataset.itemId, 1));
+  });
+}
+
+async function movePortfolioItem(itemId, direction) {
+  const data = await window.electronAPI.getPortfolio();
+  const items = data.items || [];
+  const index = items.findIndex(i => i.id === itemId);
+  if (index === -1) return;
+  const newIndex = index + direction;
+  if (newIndex < 0 || newIndex >= items.length) return;
+  [items[index], items[newIndex]] = [items[newIndex], items[index]];
+  data.items = items;
+  await window.electronAPI.savePortfolio(data);
+  loadAndRenderPortfolioList();
+  loadPreview('portfolio.html');
+}
+
+async function deletePortfolioItem(itemId) {
+  if (!confirm('確定要刪除此作品？')) return;
+  const data = await window.electronAPI.getPortfolio();
+  data.items = (data.items || []).filter(i => i.id !== itemId);
+  await window.electronAPI.savePortfolio(data);
+  loadAndRenderPortfolioList();
+  loadPreview('portfolio.html');
+}
+
+function openPortfolioModal() {
+  currentEditingItemId = null;
+  editingItemExistingImages = 0;
+  editingItemExistingVideos = 0;
+  portfolioSelectedPaths = [];
+  portfolioSelectedVideos = [];
+  document.getElementById('portfolio-modal-title').textContent = '新增作品集';
+  document.getElementById('portfolio-category').value = 'interior';
+  document.getElementById('portfolio-name').value = '';
+  document.getElementById('portfolio-desc').value = '';
+  document.getElementById('portfolio-images-list').innerHTML = '';
+  document.getElementById('portfolio-videos-list').innerHTML = '';
+  document.getElementById('portfolio-embed-url').value = '';
+  document.getElementById('portfolio-modal').classList.add('show');
+}
+
+function openPortfolioModalForEdit(item) {
+  currentEditingItemId = item.id;
+  editingItemExistingImages = (item.images || []).length;
+  editingItemExistingVideos = (item.videos || []).length;
+  portfolioSelectedPaths = [];
+  portfolioSelectedVideos = [];
+  document.getElementById('portfolio-modal-title').textContent = '編輯作品集';
+  document.getElementById('portfolio-category').value = item.category || 'interior';
+  document.getElementById('portfolio-name').value = item.name || '';
+  document.getElementById('portfolio-desc').value = item.description || '';
+  document.getElementById('portfolio-embed-url').value = item.embedUrl || '';
+  renderPortfolioImagesList();
+  renderPortfolioVideosList();
+  document.getElementById('portfolio-modal').classList.add('show');
+}
+
+function closePortfolioModal() {
+  document.getElementById('portfolio-modal').classList.remove('show');
+}
+
+function renderPortfolioImagesList() {
+  const el = document.getElementById('portfolio-images-list');
+  if (portfolioSelectedPaths.length > 0) {
+    el.innerHTML = portfolioSelectedPaths.map((p, i) => {
+      const name = p.split(/[/\\]/).pop();
+      return '<div class="img-item">' + (i + 1) + '. ' + name + (i === 0 ? ' <em>（封面）</em>' : '') + '</div>';
+    }).join('');
+    return;
+  }
+  if (currentEditingItemId && editingItemExistingImages > 0) {
+    el.innerHTML = '<span class="text-gray-600">目前 ' + editingItemExistingImages + ' 張圖片（點「選擇圖片」可替換）</span>';
+    return;
+  }
+  el.innerHTML = '<span class="text-gray-400">尚未選擇圖片</span>';
+}
+
+function renderPortfolioVideosList() {
+  const el = document.getElementById('portfolio-videos-list');
+  if (portfolioSelectedVideos.length > 0) {
+    el.innerHTML = portfolioSelectedVideos.map((p, i) => {
+      const name = p.split(/[/\\]/).pop();
+      return '<div class="img-item">' + (i + 1) + '. ' + name + '</div>';
+    }).join('');
+    return;
+  }
+  if (currentEditingItemId && editingItemExistingVideos > 0) {
+    el.innerHTML = '<span class="text-gray-600">目前 ' + editingItemExistingVideos + ' 支影片（點「選擇影片」可替換）</span>';
+    return;
+  }
+  el.innerHTML = '<span class="text-gray-400">尚未選擇影片</span>';
+}
+
+async function selectPortfolioImages() {
+  const paths = await window.electronAPI.selectMultipleImages();
+  if (paths.length > 0) {
+    portfolioSelectedPaths = paths;
+    renderPortfolioImagesList();
+  }
+}
+
+async function selectPortfolioVideos() {
+  const paths = await window.electronAPI.selectMultipleVideos();
+  if (paths.length > 0) {
+    portfolioSelectedVideos = paths;
+    renderPortfolioVideosList();
+  }
+}
+
+async function savePortfolioItem() {
+  const category = document.getElementById('portfolio-category').value.trim();
+  const name = document.getElementById('portfolio-name').value.trim();
+  const description = document.getElementById('portfolio-desc').value.trim();
+  const embedUrl = (document.getElementById('portfolio-embed-url').value || '').trim();
+  if (!name) {
+    alert('請填寫作品名稱');
+    return;
+  }
+  const hasNewImages = portfolioSelectedPaths.length > 0;
+  const hasNewVideos = portfolioSelectedVideos.length > 0;
+  const hasEmbed = !!embedUrl;
+  const isEdit = !!currentEditingItemId;
+  const hasExistingMedia = isEdit && (editingItemExistingImages > 0 || editingItemExistingVideos > 0);
+  if (!hasNewImages && !hasNewVideos && !hasEmbed && !hasExistingMedia) {
+    alert('請至少選擇圖片、影片，或填寫環景網址');
+    return;
+  }
+  const data = await window.electronAPI.getPortfolio();
+  if (!data.categories || data.categories.length === 0) {
+    data.categories = [
+      { id: 'interior', name: '室內設計 3D' },
+      { id: 'commercial', name: '商業空間' },
+      { id: 'construction', name: '建案' },
+      { id: 'material', name: '建材 / 虛擬展場' }
+    ];
+  }
+  if (!data.items) data.items = [];
+  let item;
+  if (isEdit) {
+    item = data.items.find(i => i.id === currentEditingItemId);
+    if (!item) {
+      alert('找不到該作品');
+      return;
+    }
+    item.category = category;
+    item.name = name;
+    item.description = description;
+    item.embedUrl = hasEmbed ? embedUrl : '';
+    if (hasNewImages) {
+      item.images = await window.electronAPI.copyPortfolioImages(portfolioSelectedPaths, item.id);
+    }
+    if (hasNewVideos) {
+      item.videos = await window.electronAPI.copyPortfolioVideos(portfolioSelectedVideos, item.id);
+    }
+    if (!item.images) item.images = [];
+    if (!item.videos) item.videos = [];
+  } else {
+    const itemId = 'item-' + Date.now();
+    const imagePaths = hasNewImages ? await window.electronAPI.copyPortfolioImages(portfolioSelectedPaths, itemId) : [];
+    const videoPaths = hasNewVideos ? await window.electronAPI.copyPortfolioVideos(portfolioSelectedVideos, itemId) : [];
+    item = {
+      id: itemId,
+      category: category,
+      name: name,
+      description: description,
+      images: imagePaths,
+      videos: videoPaths
+    };
+    if (hasEmbed) item.embedUrl = embedUrl;
+    data.items.push(item);
+  }
+  await window.electronAPI.savePortfolio(data);
+  closePortfolioModal();
+  currentEditingItemId = null;
+  if (document.getElementById('panel-portfolio').style.display !== 'none') {
+    loadAndRenderPortfolioList();
+  }
+  loadPreview('portfolio.html');
 }
 
 // 選擇圖片或視頻
@@ -380,13 +697,14 @@ function updatePreview() {
   }
 }
 
-// 更新確認按鈕狀態
+// 更新確認按鈕狀態（有未套用的圖片/影片替換，或有未套用的環景網址時可按）
 function updateConfirmButton() {
   const btnConfirm = document.getElementById('btn-confirm');
   const hasNewFiles = Array.from(selectedImages.values()).some(
     data => data.sourcePath !== null
   );
-  btnConfirm.disabled = !hasNewFiles;
+  const hasEmbedChanges = embedUrlsDirty;
+  btnConfirm.disabled = !hasNewFiles && !hasEmbedChanges;
 }
 
 // 顯示確認對話框
@@ -394,13 +712,17 @@ function showConfirmModal() {
   const newFiles = Array.from(selectedImages.values()).filter(
     data => data.sourcePath !== null
   );
+  const hasEmbedChanges = embedUrlsDirty;
   
-  if (newFiles.length === 0) {
-    alert('請先選擇要替換的圖片或影片');
+  if (newFiles.length === 0 && !hasEmbedChanges) {
+    alert('請先選擇要替換的圖片/影片，或設定環景網址');
     return;
   }
   
-  document.getElementById('replace-count').textContent = newFiles.length;
+  let text = '';
+  if (newFiles.length > 0) text += `替換 ${newFiles.length} 個檔案`;
+  if (hasEmbedChanges) text += (text ? ' 並 ' : '') + '套用環景網址';
+  document.getElementById('replace-count').textContent = text || '—';
   document.getElementById('confirm-modal').classList.add('show');
 }
 
@@ -421,23 +743,31 @@ async function executeReplace() {
   const progressText = document.getElementById('progress-text');
   
   try {
-    // 更新進度
     progressFill.style.width = '0%';
-    progressText.textContent = `準備替換 ${total} 個文件...`;
+    if (total > 0 && embedUrlsDirty) {
+      progressText.textContent = '準備替換檔案與套用環景網址...';
+    } else if (embedUrlsDirty) {
+      progressText.textContent = '正在套用環景網址...';
+    } else {
+      progressText.textContent = `準備替換 ${total} 個文件...`;
+    }
     
-    const results = await window.electronAPI.copyImagesBatch(newFiles);
+    const results = total > 0 ? await window.electronAPI.copyImagesBatch(newFiles) : [];
+    const didWriteEmbeds = embedUrlsDirty;
+    if (embedUrlsDirty) {
+      await window.electronAPI.writePanoramicEmbeds(panoramicEmbeds);
+      embedUrlsDirty = false;
+    }
     
-    // 更新進度條
     progressFill.style.width = '100%';
     progressText.textContent = '完成！';
     
-    // 顯示結果
     setTimeout(() => {
-      showResultModal(results);
+      showResultModal(results, null, didWriteEmbeds && total === 0);
     }, 500);
   } catch (error) {
     console.error('替換失敗:', error);
-    showResultModal([], error.message);
+    showResultModal([], error.message, false);
   } finally {
     setTimeout(() => {
       document.getElementById('progress-modal').classList.remove('show');
@@ -445,8 +775,8 @@ async function executeReplace() {
   }
 }
 
-// 顯示結果對話框
-function showResultModal(results, error = null) {
+// 顯示結果對話框（onlyEmbeds = 僅套用環景網址、無檔案替換）
+function showResultModal(results, error = null, onlyEmbeds = false) {
   const resultModal = document.getElementById('result-modal');
   const resultTitle = document.getElementById('result-title');
   const resultContent = document.getElementById('result-content');
@@ -454,6 +784,9 @@ function showResultModal(results, error = null) {
   if (error) {
     resultTitle.textContent = '替換失敗';
     resultContent.innerHTML = `<div class="result-item error">錯誤: ${error}</div>`;
+  } else if (onlyEmbeds) {
+    resultTitle.textContent = '套用完成';
+    resultContent.innerHTML = '<div class="result-item success">✓ 環景網址已套用</div>';
   } else {
     const successCount = results.filter(r => r.success).length;
     const failCount = results.filter(r => !r.success).length;

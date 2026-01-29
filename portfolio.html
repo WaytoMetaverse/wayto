@@ -118,8 +118,15 @@
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
@@ -132,30 +139,34 @@
     .project-card {
       background: #ffffff;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
     }
 
     .project-image {
-      aspect-ratio: 4/3;
       background: #fafaf9;
       overflow: hidden;
       position: relative;
+      flex-shrink: 0;
+      border-radius: 12px 12px 0 0;
     }
-    
-    .project-image {
-      position: relative;
+    /* 僅環景 iframe 時固定比例（iframe 無內建比例） */
+    .project-image:has(.portfolio-embed) {
+      aspect-ratio: 4/3;
     }
-    
+    /* 圖/影片依原比例，但限制最大高度使卡片比例協調 */
     .project-image .media-display {
-      position: absolute;
-      top: 0;
-      left: 0;
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
+      object-position: top;
+      vertical-align: top;
     }
     
     .project-image img.media-display {
-      display: block;
       z-index: 1;
     }
     
@@ -172,30 +183,159 @@
       display: none;
     }
 
-    .project-info {
-      padding: 2rem 0;
+    /* 作品集：環景 iframe */
+    .project-image .portfolio-embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      z-index: 2;
     }
 
-    .category-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 0.75rem;
+    .project-info {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex: 1;
+      min-height: 0;
     }
 
     .project-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: 1.375rem;
       font-weight: 300;
       color: #1c1917;
       margin-bottom: 0.5rem;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
     }
 
     .project-desc {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: #6b7280;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.625;
+      color: #4b5563;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      max-height: calc(1.625em * 3);
+      overflow: hidden;
+    }
+
+    .project-card {
+      cursor: pointer;
+    }
+
+    /* 相片模塊（lightbox） */
+    .gallery-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .gallery-modal.open {
+      display: flex;
+      flex-direction: column;
+    }
+    .gallery-modal .gallery-header {
+      width: 100%;
+      max-width: 900px;
+      padding: 0 0 1rem;
+      color: #fff;
+      text-align: center;
+    }
+    .gallery-modal .gallery-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.375rem;
+      font-weight: 300;
+      margin-bottom: 0.25rem;
+    }
+    .gallery-modal .gallery-desc {
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.85);
+    }
+    .gallery-modal .gallery-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      position: relative;
+    }
+    .gallery-modal .gallery-slide {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: none;
+    }
+    .gallery-modal .gallery-slide.active {
+      display: block;
+    }
+    .gallery-modal .gallery-slide video,
+    .gallery-modal .gallery-slide iframe {
+      width: 100%;
+      min-height: 50vh;
+      max-height: 75vh;
+      object-fit: contain;
+    }
+    .gallery-modal .gallery-prev,
+    .gallery-modal .gallery-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .gallery-modal .gallery-prev:hover,
+    .gallery-modal .gallery-next:hover {
+      background: rgba(255,255,255,0.35);
+    }
+    .gallery-modal .gallery-prev { left: 0.5rem; }
+    .gallery-modal .gallery-next { right: 0.5rem; }
+    .gallery-modal .gallery-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1.25rem;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    .gallery-modal .gallery-dots {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+    .gallery-modal .gallery-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+    }
+    .gallery-modal .gallery-dots span.active {
+      background: #fff;
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -225,213 +365,54 @@
                         </div>
    </section><!-- Portfolio Section -->
    <section id="works" class="py-16 px-6 lg:px-16">
-    <div class="max-w-screen-2xl mx-auto"><!-- Category Tabs -->
+    <div class="max-w-screen-2xl mx-auto">
      <div class="mb-16 border-b border-gray-200">
-      <div class="flex gap-12 overflow-x-auto" id="tabs-container"><button class="tab-button active" data-category="interior">室內設計 3D</button> <button class="tab-button" data-category="commercial">商業空間</button> <button class="tab-button" data-category="construction">建案</button> <button class="tab-button" data-category="material">建材 / 虛擬展場</button>
+      <div class="flex gap-12 overflow-x-auto" id="tabs-container">
+       <button class="tab-button active" data-category="interior">室內設計 3D</button>
+       <button class="tab-button" data-category="commercial">商業空間</button>
+       <button class="tab-button" data-category="construction">建案</button>
+       <button class="tab-button" data-category="material">建材 / 虛擬展場</button>
       </div>
-     </div><!-- Interior Design Tab -->
+     </div>
      <div class="tab-content active" data-content="interior">
       <div class="mb-12 fade-up">
-       <p class="text-gray-600 leading-relaxed max-w-3xl">包含地標性豪宅之全室空間建模渲染，提供 720° 環景體驗。<br>
-         提升溝通效率，讓客戶在預售階段即可完整體驗未來空間。</p>
+       <p class="text-gray-600 leading-relaxed max-w-3xl">包含地標性豪宅之全室空間建模渲染，提供 720° 環景體驗。<br>提升溝通效率，讓客戶在預售階段即可完整體驗未來空間。</p>
       </div>
-      <div class="project-grid">
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/interior-1.jpg" alt="豪宅室內與720°環景" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/interior-1.mp4" alt="豪宅室內與720°環景" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Residential Interior
-         </div>
-         <h3 class="project-title">豪宅室內與 720° 環景</h3>
-         <p class="project-desc">地標性豪宅全室空間建模渲染，提供沉浸式 720° 環景體驗</p>
-        </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/interior-2.jpg" alt="主臥室設計" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/interior-2.mp4" alt="主臥室設計" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Bedroom Design
-         </div>
-         <h3 class="project-title">主臥室設計</h3>
-         <p class="project-desc">溫潤木質基調，營造放鬆的睡眠環境</p>
-        </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/interior-3.jpg" alt="開放式廚房" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/interior-3.mp4" alt="開放式廚房" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Kitchen Space
-         </div>
-         <h3 class="project-title">開放式廚房</h3>
-         <p class="project-desc">中島設計與收納機能整合，呈現動線與使用情境</p>
-        </div>
-       </article>
-      </div>
-     </div><!-- Commercial Space Tab -->
+      <div class="project-grid" data-category="interior"></div>
+     </div>
      <div class="tab-content" data-content="commercial">
       <div class="mb-12 fade-up">
-       <p class="text-gray-600 leading-relaxed max-w-3xl">為知名跨國餐飲集團與海外連鎖品牌（涵蓋美國、土耳其等地區）提供視覺 2.0 更新模擬與全區渲染。<br>
-         跨國遠端協作，協助品牌在實體店面施工前精準掌控全球統一視覺規範。</p>
+       <p class="text-gray-600 leading-relaxed max-w-3xl">為知名跨國餐飲集團與海外連鎖品牌（涵蓋美國、土耳其等地區）提供視覺 2.0 更新模擬與全區渲染。<br>跨國遠端協作，協助品牌在實體店面施工前精準掌控全球統一視覺規範。</p>
       </div>
-      <div class="project-grid">
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/commercial-1.jpg" alt="國際連鎖商空" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/commercial-1.mp4" alt="國際連鎖商空" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Café Design
-         </div>
-         <h3 class="project-title">國際連鎖商空</h3>
-         <p class="project-desc">為跨國連鎖餐飲集團提供視覺模擬與全區渲染，確保全球統一視覺規範</p>
-        </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/commercial-2.jpg" alt="企業辦公室" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/commercial-2.mp4" alt="企業辦公室" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Office Space
-         </div>
-         <h3 class="project-title">企業辦公室</h3>
-         <p class="project-desc">開放式工作區與會議室配置，提升工作效率</p>
-        </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/commercial-3.jpg" alt="服飾零售空間" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/commercial-3.mp4" alt="服飾零售空間" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Retail Design
-         </div>
-         <h3 class="project-title">服飾零售空間</h3>
-         <p class="project-desc">陳列動線與燈光設計，呈現品牌形象</p>
-        </div>
-       </article>
-      </div>
-     </div><!-- Construction Tab -->
+      <div class="project-grid" data-category="commercial"></div>
+     </div>
      <div class="tab-content" data-content="construction">
       <div class="mb-12 fade-up">
-       <p class="text-gray-600 leading-relaxed max-w-3xl">承接多項指標性豪宅與景觀規劃，提供包含建築外觀、公設渲染與空拍環景銷售動畫。<br>
-         以 1:1 建模還原設計，不做過度美化，確保「圖做得出，現場也做得出」。8年經驗，500+專案實績。</p>
+       <p class="text-gray-600 leading-relaxed max-w-3xl">承接多項指標性豪宅與景觀規劃，提供包含建築外觀、公設渲染與空拍環景銷售動畫。<br>以 1:1 建模還原設計，不做過度美化，確保「圖做得出，現場也做得出」。8年經驗，500+專案實績。</p>
       </div>
-      <div class="project-grid">
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/construction-1.jpg" alt="頂級指標建案" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/construction-1.mp4" alt="頂級指標建案" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Exterior Visualization
-         </div>
-         <h3 class="project-title">頂級指標建案</h3>
-         <p class="project-desc">承接指標性地產商豪宅建案，提供建築外觀、公設渲染與空拍環景銷售動畫</p>
-        </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/construction-2.jpg" alt="社區中庭景觀" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/construction-2.mp4" alt="社區中庭景觀" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-                            </div>
-        <div class="project-info">
-         <div class="category-label">
-          Landscape Design
-                        </div>
-         <h3 class="project-title">社區中庭景觀</h3>
-         <p class="project-desc">公共空間綠化與休閒設施規劃</p>
-                    </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/construction-3.jpg" alt="接待中心與公設" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/construction-3.mp4" alt="接待中心與公設" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-                </div>
-        <div class="project-info">
-         <div class="category-label">
-          Public Facilities
-                            </div>
-         <h3 class="project-title">接待中心與公設</h3>
-         <p class="project-desc">交誼廳、健身房等公共設施視覺化</p>
-                        </div>
-       </article>
-                            </div>
-     </div><!-- Material / Virtual Showroom Tab -->
+      <div class="project-grid" data-category="construction"></div>
+     </div>
      <div class="tab-content" data-content="material">
       <div class="mb-12 fade-up">
-       <p class="text-gray-600 leading-relaxed max-w-3xl">為跨國建材商與家具品牌打造動態展示動畫與可互動的「線上數位目錄」。<br>
-         呈現產品在實際空間中的應用效果，協助客戶選材決策，減少實體樣品成本。</p>
-                        </div>
-      <div class="project-grid">
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/material-1.jpg" alt="建材與虛擬展示間" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/material-1.mp4" alt="建材與虛擬展示間" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-                    </div>
-        <div class="project-info">
-         <div class="category-label">
-          Tile Collection
-                </div>
-         <h3 class="project-title">建材與虛擬展示間</h3>
-         <p class="project-desc">為跨國建材商打造動態展示動畫與可互動的線上數位目錄</p>
-                            </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/material-2.jpg" alt="衛浴設備展示" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/material-2.mp4" alt="衛浴設備展示" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-                        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Bathroom Fixtures
-                            </div>
-         <h3 class="project-title">衛浴設備展示</h3>
-         <p class="project-desc">產品在實際衛浴空間的配置與使用情境</p>
-                        </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/material-3.jpg" alt="木地板色系展示" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/material-3.mp4" alt="木地板色系展示" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-                    </div>
-        <div class="project-info">
-         <div class="category-label">
-          Flooring Materials
-                </div>
-         <h3 class="project-title">木地板色系展示</h3>
-         <p class="project-desc">不同色調木地板在居家空間的實際呈現</p>
-                            </div>
-       </article>
-       <article class="project-card hover-lift fade-up">
-        <div class="project-image">
-         <img src="images/portfolio/material-4.jpg" alt="線上展示間" class="w-full h-full object-cover media-display">
-         <video src="images/portfolio/material-4.mp4" alt="線上展示間" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
-                        </div>
-        <div class="project-info">
-         <div class="category-label">
-          Virtual Showroom
-                            </div>
-         <h3 class="project-title">線上展示間</h3>
-         <p class="project-desc">可互動式虛擬展場，展示完整產品線</p>
-                        </div>
-       </article>
-                    </div>
-                </div>
-            </div>
+       <p class="text-gray-600 leading-relaxed max-w-3xl">為跨國建材商與家具品牌打造動態展示動畫與可互動的「線上數位目錄」。<br>呈現產品在實際空間中的應用效果，協助客戶選材決策，減少實體樣品成本。</p>
+      </div>
+      <div class="project-grid" data-category="material"></div>
+     </div>
+     <!-- 相片模塊（點擊作品後顯示） -->
+     <div id="gallery-modal" class="gallery-modal" aria-hidden="true">
+      <button type="button" class="gallery-close" id="gallery-close" aria-label="關閉">×</button>
+      <div class="gallery-header">
+       <h2 class="gallery-title" id="gallery-title"></h2>
+       <p class="gallery-desc" id="gallery-desc"></p>
+      </div>
+      <div class="gallery-content">
+       <button type="button" class="gallery-prev" id="gallery-prev" aria-label="上一張">‹</button>
+       <div id="gallery-slides"></div>
+       <button type="button" class="gallery-next" id="gallery-next" aria-label="下一張">›</button>
+      </div>
+      <div class="gallery-dots" id="gallery-dots"></div>
+     </div>
+    </div>
    </section><!-- Footer -->
    <footer id="contact" class="py-16 px-6 lg:px-16 mt-32 border-t border-gray-100">
     <div class="max-w-screen-2xl mx-auto">
@@ -450,6 +431,147 @@
     </footer>
   </main>
   <script>
+    let portfolioData = { categories: [], items: [] };
+
+    (function loadPortfolio() {
+      fetch('data/portfolio.json')
+        .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+        .then(function(data) {
+          portfolioData = data;
+          renderPortfolio();
+          bindGallery();
+          setTimeout(function() {
+            document.querySelectorAll('.tab-content.active .fade-up').forEach(function(el, i) {
+              setTimeout(function() { el.classList.add('visible'); }, i * 100);
+            });
+          }, 100);
+        })
+        .catch(function() {
+          document.querySelectorAll('.project-grid[data-category]').forEach(function(g) {
+            g.innerHTML = '<p class="text-gray-500">無法載入作品集資料。</p>';
+          });
+        });
+    })();
+
+    function renderPortfolio() {
+      var data = portfolioData;
+      document.querySelectorAll('.project-grid[data-category]').forEach(function(grid) {
+        var category = grid.dataset.category;
+        var items = data.items.filter(function(i) { return i.category === category; });
+        if (!items || items.length === 0) {
+          grid.innerHTML = '<p class="text-gray-500">尚無作品，請使用工具「新增作品集」新增。</p>';
+          return;
+        }
+        grid.innerHTML = items.map(function(item) {
+          var name = (item.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          var desc = (item.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          var embedUrl = (item.embedUrl || '').trim();
+          var firstImg = (item.images && item.images[0]) ? item.images[0] : '';
+          var firstVideo = (item.videos && item.videos[0]) ? item.videos[0] : '';
+          var mediaHtml = '';
+          if (embedUrl) {
+            mediaHtml = '<iframe class="portfolio-embed" src="' + embedUrl.replace(/"/g, '&quot;') + '" title="' + name + '"></iframe>';
+          } else if (firstImg) {
+            mediaHtml = '<img src="' + firstImg.replace(/"/g, '&quot;') + '" alt="' + name + '" class="w-full media-display" style="height:auto" onerror="this.style.background=\'#f0f0f0\';this.style.minHeight=\'200px\'">';
+          } else if (firstVideo) {
+            mediaHtml = '<video class="w-full media-display" style="height:auto" src="' + firstVideo.replace(/"/g, '&quot;') + '" muted loop playsinline autoplay></video>';
+          } else {
+            mediaHtml = '<img src="" alt="' + name + '" class="w-full media-display" style="background:#f0f0f0;min-height:200px;height:auto" onerror="this.style.background=\'#f0f0f0\'">';
+          }
+          return '<article class="project-card hover-lift fade-up" data-item-id="' + item.id + '">' +
+            '<div class="project-image">' + mediaHtml + '</div>' +
+            '<div class="project-info"><h3 class="project-title">' + name + '</h3><p class="project-desc">' + desc + '</p></div></article>';
+        }).join('');
+      });
+    }
+
+    var galleryCurrentIndex = 0;
+    var gallerySlides = [];
+    var galleryItem = null;
+
+    function openGallery(item) {
+      galleryItem = item;
+      var embedUrl = (item.embedUrl || '').trim();
+      var imgs = item.images || [];
+      var vids = item.videos || [];
+      gallerySlides = [];
+      if (embedUrl) gallerySlides.push({ type: 'embed', url: embedUrl });
+      imgs.forEach(function(path) { gallerySlides.push({ type: 'image', path: path }); });
+      vids.forEach(function(path) { gallerySlides.push({ type: 'video', path: path }); });
+      galleryCurrentIndex = 0;
+      document.getElementById('gallery-title').textContent = item.name || '';
+      document.getElementById('gallery-desc').textContent = item.description || '';
+      var slidesEl = document.getElementById('gallery-slides');
+      slidesEl.innerHTML = gallerySlides.map(function(s, i) {
+        var active = i === 0 ? ' active' : '';
+        if (s.type === 'embed') {
+          return '<iframe class="gallery-slide' + active + '" src="' + s.url.replace(/"/g, '&quot;') + '" title=""></iframe>';
+        }
+        if (s.type === 'video') {
+          return '<video class="gallery-slide' + active + '" src="' + s.path.replace(/"/g, '&quot;') + '" controls playsinline></video>';
+        }
+        return '<img class="gallery-slide' + active + '" src="' + s.path.replace(/"/g, '&quot;') + '" alt="">';
+      }).join('');
+      var dotsEl = document.getElementById('gallery-dots');
+      dotsEl.innerHTML = gallerySlides.map(function(_, i) {
+        return '<span data-index="' + i + '"' + (i === 0 ? ' class="active"' : '') + '></span>';
+      }).join('');
+      document.getElementById('gallery-modal').classList.add('open');
+      document.getElementById('gallery-modal').setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+      document.getElementById('gallery-modal').classList.remove('open');
+      document.getElementById('gallery-modal').setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function showGallerySlide(index) {
+      if (gallerySlides.length === 0) return;
+      galleryCurrentIndex = (index + gallerySlides.length) % gallerySlides.length;
+      document.querySelectorAll('#gallery-slides .gallery-slide').forEach(function(el, i) {
+        el.classList.toggle('active', i === galleryCurrentIndex);
+        if (el.tagName === 'VIDEO') {
+          if (i === galleryCurrentIndex) el.play().catch(function() {});
+          else { el.pause(); el.currentTime = 0; }
+        }
+      });
+      document.querySelectorAll('#gallery-dots span').forEach(function(dot, i) {
+        dot.classList.toggle('active', i === galleryCurrentIndex);
+      });
+    }
+
+    function bindGallery() {
+      document.getElementById('works').addEventListener('click', function(e) {
+        var card = e.target.closest('.project-card[data-item-id]');
+        if (!card) return;
+        var id = card.dataset.itemId;
+        var item = portfolioData.items.find(function(i) { return i.id === id; });
+        if (item) openGallery(item);
+      });
+      document.getElementById('gallery-close').addEventListener('click', closeGallery);
+      document.getElementById('gallery-modal').addEventListener('click', function(e) {
+        if (e.target.id === 'gallery-modal') closeGallery();
+      });
+      document.getElementById('gallery-prev').addEventListener('click', function() {
+        showGallerySlide(galleryCurrentIndex - 1);
+      });
+      document.getElementById('gallery-next').addEventListener('click', function() {
+        showGallerySlide(galleryCurrentIndex + 1);
+      });
+      document.getElementById('gallery-dots').addEventListener('click', function(e) {
+        var idx = e.target.dataset.index;
+        if (idx != null) showGallerySlide(parseInt(idx, 10));
+      });
+      document.addEventListener('keydown', function(e) {
+        if (!document.getElementById('gallery-modal').classList.contains('open')) return;
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') showGallerySlide(galleryCurrentIndex - 1);
+        if (e.key === 'ArrowRight') showGallerySlide(galleryCurrentIndex + 1);
+      });
+    }
+
     const defaultConfig = {
       background_color: '#ffffff',
       surface_color: '#fafaf9',

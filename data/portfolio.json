@@ -1,0 +1,341 @@
+{
+  "categories": [
+    {
+      "id": "interior",
+      "name": "室內設計 3D"
+    },
+    {
+      "id": "commercial",
+      "name": "商業空間"
+    },
+    {
+      "id": "construction",
+      "name": "建案"
+    },
+    {
+      "id": "material",
+      "name": "建材 / 虛擬展場"
+    }
+  ],
+  "items": [
+    {
+      "id": "item-1769670318054",
+      "category": "interior",
+      "name": "惠宇謙和",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769670318054/1.jpg",
+        "images/portfolio/items/item-1769670318054/2.jpg",
+        "images/portfolio/items/item-1769670318054/3.jpg",
+        "images/portfolio/items/item-1769670318054/4.jpg",
+        "images/portfolio/items/item-1769670318054/5.jpg",
+        "images/portfolio/items/item-1769670318054/6.jpg",
+        "images/portfolio/items/item-1769670318054/7.jpg"
+      ]
+    },
+    {
+      "id": "item-1769672771822",
+      "category": "interior",
+      "name": "南港雙美館",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769672771822/1.jpg",
+        "images/portfolio/items/item-1769672771822/2.jpg",
+        "images/portfolio/items/item-1769672771822/3.jpg",
+        "images/portfolio/items/item-1769672771822/4.jpg",
+        "images/portfolio/items/item-1769672771822/5.jpg",
+        "images/portfolio/items/item-1769672771822/6.jpg",
+        "images/portfolio/items/item-1769672771822/7.jpg",
+        "images/portfolio/items/item-1769672771822/8.jpg",
+        "images/portfolio/items/item-1769672771822/9.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769673037224",
+      "category": "interior",
+      "name": "大湖朕保",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769673037224/1.jpg",
+        "images/portfolio/items/item-1769673037224/2.jpg",
+        "images/portfolio/items/item-1769673037224/3.jpg",
+        "images/portfolio/items/item-1769673037224/4.jpg",
+        "images/portfolio/items/item-1769673037224/5.jpg",
+        "images/portfolio/items/item-1769673037224/6.jpg",
+        "images/portfolio/items/item-1769673037224/7.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769673322247",
+      "category": "interior",
+      "name": "微笑台北",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769673322247/1.jpg",
+        "images/portfolio/items/item-1769673322247/2.jpg",
+        "images/portfolio/items/item-1769673322247/3.jpg",
+        "images/portfolio/items/item-1769673322247/4.jpg",
+        "images/portfolio/items/item-1769673322247/5.jpg",
+        "images/portfolio/items/item-1769673322247/6.jpg",
+        "images/portfolio/items/item-1769673322247/7.jpg",
+        "images/portfolio/items/item-1769673322247/8.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769671837931",
+      "category": "interior",
+      "name": "漢陽街",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/7819367"
+    },
+    {
+      "id": "item-1769671882068",
+      "category": "interior",
+      "name": "竹慶筑光",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/7800472"
+    },
+    {
+      "id": "item-1769671913504",
+      "category": "interior",
+      "name": "豐邑之森",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/7682355"
+    },
+    {
+      "id": "item-1769671949991",
+      "category": "interior",
+      "name": "元心中友湛",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/7323482"
+    },
+    {
+      "id": "item-1769673638945",
+      "category": "commercial",
+      "name": "理髮廳",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769673638945/1.jpg",
+        "images/portfolio/items/item-1769673638945/2.jpg",
+        "images/portfolio/items/item-1769673638945/3.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769673880114",
+      "category": "commercial",
+      "name": "共享商辦",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769673880114/1.jpg",
+        "images/portfolio/items/item-1769673880114/2.jpg",
+        "images/portfolio/items/item-1769673880114/3.jpg",
+        "images/portfolio/items/item-1769673880114/4.jpg",
+        "images/portfolio/items/item-1769673880114/5.jpg",
+        "images/portfolio/items/item-1769673880114/6.jpg",
+        "images/portfolio/items/item-1769673880114/7.jpg",
+        "images/portfolio/items/item-1769673880114/8.jpg",
+        "images/portfolio/items/item-1769673880114/9.jpg",
+        "images/portfolio/items/item-1769673880114/10.jpg",
+        "images/portfolio/items/item-1769673880114/11.jpg",
+        "images/portfolio/items/item-1769673880114/12.jpg",
+        "images/portfolio/items/item-1769673880114/13.jpg",
+        "images/portfolio/items/item-1769673880114/14.jpg",
+        "images/portfolio/items/item-1769673880114/15.jpg",
+        "images/portfolio/items/item-1769673880114/16.jpg",
+        "images/portfolio/items/item-1769673880114/17.jpg",
+        "images/portfolio/items/item-1769673880114/18.jpg",
+        "images/portfolio/items/item-1769673880114/19.jpg",
+        "images/portfolio/items/item-1769673880114/20.jpg",
+        "images/portfolio/items/item-1769673880114/21.jpg",
+        "images/portfolio/items/item-1769673880114/22.jpg"
+      ],
+      "videos": [],
+      "embedUrl": ""
+    },
+    {
+      "id": "item-1769674087001",
+      "category": "commercial",
+      "name": "百貨櫃位",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769674087001/1.jpg",
+        "images/portfolio/items/item-1769674087001/2.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769674358619",
+      "category": "construction",
+      "name": "建案",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769674358619/1.jpg",
+        "images/portfolio/items/item-1769674358619/2.jpg",
+        "images/portfolio/items/item-1769674358619/3.jpg",
+        "images/portfolio/items/item-1769674358619/4.jpg",
+        "images/portfolio/items/item-1769674358619/5.jpg",
+        "images/portfolio/items/item-1769674358619/6.jpg",
+        "images/portfolio/items/item-1769674358619/7.jpg",
+        "images/portfolio/items/item-1769674358619/8.jpg",
+        "images/portfolio/items/item-1769674358619/9.jpg",
+        "images/portfolio/items/item-1769674358619/10.jpg",
+        "images/portfolio/items/item-1769674358619/11.jpg",
+        "images/portfolio/items/item-1769674358619/12.jpg",
+        "images/portfolio/items/item-1769674358619/13.jpg",
+        "images/portfolio/items/item-1769674358619/14.jpg",
+        "images/portfolio/items/item-1769674358619/15.jpg"
+      ],
+      "videos": [],
+      "embedUrl": ""
+    },
+    {
+      "id": "item-1769674819179",
+      "category": "construction",
+      "name": "建案",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769674819179/1.jpg",
+        "images/portfolio/items/item-1769674819179/2.png"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769676951722",
+      "category": "construction",
+      "name": "建案電子展板",
+      "description": "",
+      "images": [],
+      "videos": [
+        "images/portfolio/items/item-1769676951722/v1.mp4"
+      ]
+    },
+    {
+      "id": "item-1769676602427",
+      "category": "construction",
+      "name": "建案",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769676602427/1.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769676169627",
+      "category": "construction",
+      "name": "慶合建設",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769676169627/1.jpg",
+        "images/portfolio/items/item-1769676169627/2.jpg",
+        "images/portfolio/items/item-1769676169627/3.jpg",
+        "images/portfolio/items/item-1769676169627/4.jpg"
+      ],
+      "videos": []
+    },
+    {
+      "id": "item-1769676311443",
+      "category": "construction",
+      "name": "森活臻城2",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769676311443/1.jpg"
+      ],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/vr/index_detail_7763484.asp"
+    },
+    {
+      "id": "item-1769676403040",
+      "category": "construction",
+      "name": "森活臻城1",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/7763194"
+    },
+    {
+      "id": "item-1769676458910",
+      "category": "construction",
+      "name": "樣品屋",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/7323482"
+    },
+    {
+      "id": "item-1769676537962",
+      "category": "construction",
+      "name": "房角石悅",
+      "description": "",
+      "images": [],
+      "videos": [],
+      "embedUrl": "https://vr.3d66.com/next/vr/view/6838285"
+    },
+    {
+      "id": "item-1769676704288",
+      "category": "material",
+      "name": "三久摺疊門",
+      "description": "",
+      "images": [],
+      "videos": [
+        "images/portfolio/items/item-1769676704288/v1.mp4"
+      ],
+      "embedUrl": ""
+    },
+    {
+      "id": "item-1769676862387",
+      "category": "material",
+      "name": "未來門市",
+      "description": "",
+      "images": [],
+      "videos": [
+        "images/portfolio/items/item-1769676862387/v1.mp4"
+      ]
+    },
+    {
+      "id": "item-1769677231668",
+      "category": "material",
+      "name": "建案電子展板",
+      "description": "",
+      "images": [],
+      "videos": [
+        "images/portfolio/items/item-1769677231668/v1.mp4"
+      ]
+    },
+    {
+      "id": "item-1769677500708",
+      "category": "material",
+      "name": "三久動態智能外牆",
+      "description": "",
+      "images": [],
+      "videos": [
+        "images/portfolio/items/item-1769677500708/v1.mp4"
+      ]
+    },
+    {
+      "id": "item-1769677624007",
+      "category": "construction",
+      "name": "崇恩工學賦",
+      "description": "",
+      "images": [
+        "images/portfolio/items/item-1769677624007/1.jpg",
+        "images/portfolio/items/item-1769677624007/2.jpg",
+        "images/portfolio/items/item-1769677624007/3.jpg",
+        "images/portfolio/items/item-1769677624007/4.jpg",
+        "images/portfolio/items/item-1769677624007/5.jpg"
+      ],
+      "videos": []
+    }
+  ]
+}

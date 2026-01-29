@@ -12,26 +12,36 @@
     <header class="app-header">
       <h1>圖片替換工具</h1>
       <div class="header-actions">
+        <button id="btn-add-portfolio" class="btn-secondary">新增作品集</button>
         <button id="btn-preview-all" class="btn-secondary">預覽所有變更</button>
         <button id="btn-confirm" class="btn-primary" disabled>確認並替換</button>
       </div>
     </header>
 
     <div class="main-content">
-      <!-- 左側：圖片選擇區域 -->
+      <!-- 左側：圖片選擇 / 作品集管理 -->
       <aside class="image-selector-panel">
         <div class="panel-header">
-          <h2>圖片列表</h2>
-          <div class="filter-controls">
+          <div class="panel-tabs">
+            <button type="button" class="panel-tab active" data-panel="images">圖片列表</button>
+            <button type="button" class="panel-tab" data-panel="portfolio">作品集</button>
+          </div>
+          <div class="filter-controls" id="filter-controls-images">
             <select id="filter-category">
               <option value="all">所有分類</option>
             </select>
             <input type="text" id="search-box" placeholder="搜尋圖片...">
           </div>
+          <div class="filter-controls" id="filter-controls-portfolio" style="display: none;">
+            <button type="button" id="btn-add-portfolio-inline" class="btn-secondary" style="width: 100%;">新增作品集</button>
+          </div>
         </div>
         
-        <div class="image-list" id="image-list">
-          <!-- 圖片項目將由JavaScript動態生成 -->
+        <div class="panel-content" id="panel-images">
+          <div class="image-list" id="image-list"></div>
+        </div>
+        <div class="panel-content" id="panel-portfolio" style="display: none;">
+          <div class="portfolio-list" id="portfolio-list"></div>
         </div>
       </aside>
 
@@ -57,7 +67,7 @@
     <div id="confirm-modal" class="modal">
       <div class="modal-content">
         <h3>確認替換</h3>
-        <p>即將替換 <span id="replace-count">0</span> 張圖片，確定要繼續嗎？</p>
+        <p>即將 <span id="replace-count">—</span>，確定要繼續嗎？</p>
         <div class="modal-actions">
           <button id="btn-cancel" class="btn-secondary">取消</button>
           <button id="btn-proceed" class="btn-primary">確定替換</button>
@@ -83,6 +93,61 @@
         <div id="result-content"></div>
         <div class="modal-actions">
           <button id="btn-close-result" class="btn-primary">關閉</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新增/編輯作品集對話框 -->
+    <div id="portfolio-modal" class="modal">
+      <div class="modal-content modal-content-wide">
+        <h3 id="portfolio-modal-title">新增作品集</h3>
+        <div class="form-group">
+          <label>分類</label>
+          <select id="portfolio-category" class="form-input">
+            <option value="interior">室內設計 3D</option>
+            <option value="commercial">商業空間</option>
+            <option value="construction">建案</option>
+            <option value="material">建材 / 虛擬展場</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>名稱</label>
+          <input type="text" id="portfolio-name" class="form-input" placeholder="作品名稱">
+        </div>
+        <div class="form-group">
+          <label>說明</label>
+          <textarea id="portfolio-desc" class="form-input form-textarea" rows="3" placeholder="作品說明"></textarea>
+        </div>
+        <div class="form-group">
+          <label>圖片（可多選，第一張為網頁封面）</label>
+          <button type="button" id="portfolio-select-images" class="btn-secondary">選擇圖片</button>
+          <div id="portfolio-images-list" class="portfolio-images-list"></div>
+        </div>
+        <div class="form-group">
+          <label>影片（可多選，選填）</label>
+          <button type="button" id="portfolio-select-videos" class="btn-secondary">選擇影片</button>
+          <div id="portfolio-videos-list" class="portfolio-images-list"></div>
+        </div>
+        <div class="form-group">
+          <label>環景網址（選填，外部 720° 平台嵌入網址）</label>
+          <input type="url" id="portfolio-embed-url" class="form-input" placeholder="https://kuula.co/share/xxx">
+        </div>
+        <div class="modal-actions">
+          <button id="btn-portfolio-cancel" class="btn-secondary">取消</button>
+          <button id="btn-portfolio-save" class="btn-primary">儲存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 設定環景網址對話框 -->
+    <div id="embed-url-modal" class="modal">
+      <div class="modal-content">
+        <h3 id="embed-url-modal-title">設定環景網址</h3>
+        <p class="modal-hint">請貼上環景平台提供的「嵌入網址」（iframe 的 src），例如：<br><code>https://kuula.co/share/xxx</code></p>
+        <input type="url" id="embed-url-input" class="embed-url-input" placeholder="https://...">
+        <div class="modal-actions">
+          <button id="btn-embed-cancel" class="btn-secondary">取消</button>
+          <button id="btn-embed-ok" class="btn-primary">確定</button>
         </div>
       </div>
     </div>

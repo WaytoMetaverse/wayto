@@ -98,6 +98,92 @@ body {
   margin-bottom: 12px;
 }
 
+.panel-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.panel-tabs .panel-tab {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid #e0e0e0;
+  background: #f5f5f5;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.panel-tabs .panel-tab.active {
+  background: #1c1917;
+  color: #fff;
+  border-color: #1c1917;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.portfolio-list {
+  padding: 8px;
+}
+
+.portfolio-item {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.portfolio-item-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.portfolio-item-meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.portfolio-item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.portfolio-item-actions button {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-move-portfolio {
+  background: #e5e7eb;
+  color: #374151;
+  min-width: 28px;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.btn-move-portfolio:hover {
+  background: #d1d5db;
+}
+
+.btn-edit-portfolio {
+  background: #0d9488;
+  color: #fff;
+}
+
+.btn-delete-portfolio {
+  background: #dc3545;
+  color: #fff;
+}
+
 .filter-controls {
   display: flex;
   flex-direction: column;
@@ -198,6 +284,13 @@ body {
   border-radius: 4px;
 }
 
+.image-preview .embed-placeholder {
+  font-size: 10px;
+  color: #6b7280;
+  text-align: center;
+  padding: 0 4px;
+}
+
 .image-actions {
   display: flex;
   gap: 8px;
@@ -225,6 +318,21 @@ body {
 
 .btn-select-video:hover {
   background: #b8956a;
+}
+
+.btn-set-embed {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #0d9488;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-set-embed:hover {
+  background: #0f766e;
 }
 
 .btn-remove-image {
@@ -327,10 +435,82 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
+.modal-content-wide {
+  max-width: 560px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-group .form-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.form-group .form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.portfolio-images-list {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #6b7280;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.portfolio-images-list .img-item {
+  padding: 4px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
 .modal-content h3 {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 16px;
+}
+
+.modal-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.modal-hint code {
+  font-size: 12px;
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.embed-url-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.embed-url-input:focus {
+  outline: none;
+  border-color: #0d9488;
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2);
 }
 
 .modal-actions {

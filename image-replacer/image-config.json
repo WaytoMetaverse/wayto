@@ -1,184 +1,88 @@
 {
   "images": [
     {
-      "id": "portfolio-interior-1",
-      "name": "豪宅室內與720°環景",
-      "targetPath": "images/portfolio/interior-1.jpg",
-      "targetPathVideo": "images/portfolio/interior-1.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 室內設計",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-interior-2",
-      "name": "主臥室設計",
-      "targetPath": "images/portfolio/interior-2.jpg",
-      "targetPathVideo": "images/portfolio/interior-2.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 室內設計",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-interior-3",
-      "name": "開放式廚房",
-      "targetPath": "images/portfolio/interior-3.jpg",
-      "targetPathVideo": "images/portfolio/interior-3.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 室內設計",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-commercial-1",
-      "name": "國際連鎖商空",
-      "targetPath": "images/portfolio/commercial-1.jpg",
-      "targetPathVideo": "images/portfolio/commercial-1.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 商業空間",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-commercial-2",
-      "name": "企業辦公室",
-      "targetPath": "images/portfolio/commercial-2.jpg",
-      "targetPathVideo": "images/portfolio/commercial-2.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 商業空間",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-commercial-3",
-      "name": "服飾零售空間",
-      "targetPath": "images/portfolio/commercial-3.jpg",
-      "targetPathVideo": "images/portfolio/commercial-3.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 商業空間",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-construction-1",
-      "name": "頂級指標建案",
-      "targetPath": "images/portfolio/construction-1.jpg",
-      "targetPathVideo": "images/portfolio/construction-1.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建案",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-construction-2",
-      "name": "社區中庭景觀",
-      "targetPath": "images/portfolio/construction-2.jpg",
-      "targetPathVideo": "images/portfolio/construction-2.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建案",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-construction-3",
-      "name": "接待中心與公設",
-      "targetPath": "images/portfolio/construction-3.jpg",
-      "targetPathVideo": "images/portfolio/construction-3.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建案",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-material-1",
-      "name": "建材與虛擬展示間",
-      "targetPath": "images/portfolio/material-1.jpg",
-      "targetPathVideo": "images/portfolio/material-1.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建材/虛擬展場",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-material-2",
-      "name": "衛浴設備展示",
-      "targetPath": "images/portfolio/material-2.jpg",
-      "targetPathVideo": "images/portfolio/material-2.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建材/虛擬展場",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-material-3",
-      "name": "木地板色系展示",
-      "targetPath": "images/portfolio/material-3.jpg",
-      "targetPathVideo": "images/portfolio/material-3.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建材/虛擬展場",
-      "supportsVideo": true
-    },
-    {
-      "id": "portfolio-material-4",
-      "name": "線上展示間",
-      "targetPath": "images/portfolio/material-4.jpg",
-      "targetPathVideo": "images/portfolio/material-4.mp4",
-      "htmlFile": "portfolio.html",
-      "category": "作品集 - 建材/虛擬展場",
-      "supportsVideo": true
-    },
-    {
       "id": "service-3d-1",
       "name": "3D效果圖示例1",
       "targetPath": "images/services/3d-effect-1.jpg",
+      "targetPathVideo": "images/services/3d-effect-1.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 3D效果圖"
+      "category": "服務頁面 - 3D效果圖",
+      "supportsVideo": true
     },
     {
       "id": "service-3d-2",
       "name": "3D效果圖示例2",
       "targetPath": "images/services/3d-effect-2.jpg",
+      "targetPathVideo": "images/services/3d-effect-2.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 3D效果圖"
+      "category": "服務頁面 - 3D效果圖",
+      "supportsVideo": true
     },
     {
       "id": "service-3d-3",
       "name": "3D效果圖示例3",
       "targetPath": "images/services/3d-effect-3.jpg",
+      "targetPathVideo": "images/services/3d-effect-3.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 3D效果圖"
+      "category": "服務頁面 - 3D效果圖",
+      "supportsVideo": true
     },
     {
       "id": "service-aerial-1",
       "name": "鳥瞰圖示例1",
       "targetPath": "images/services/aerial-1.jpg",
+      "targetPathVideo": "images/services/aerial-1.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 鳥瞰圖"
+      "category": "服務頁面 - 鳥瞰圖",
+      "supportsVideo": true
     },
     {
       "id": "service-aerial-2",
       "name": "鳥瞰圖示例2",
       "targetPath": "images/services/aerial-2.jpg",
+      "targetPathVideo": "images/services/aerial-2.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 鳥瞰圖"
+      "category": "服務頁面 - 鳥瞰圖",
+      "supportsVideo": true
     },
     {
       "id": "service-aerial-3",
       "name": "鳥瞰圖示例3",
       "targetPath": "images/services/aerial-3.jpg",
+      "targetPathVideo": "images/services/aerial-3.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 鳥瞰圖"
+      "category": "服務頁面 - 鳥瞰圖",
+      "supportsVideo": true
     },
     {
       "id": "service-panoramic-1",
       "name": "720°環景示例1",
       "targetPath": "images/services/panoramic-1.jpg",
+      "targetPathVideo": "images/services/panoramic-1.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 720°環景"
+      "category": "服務頁面 - 720°環景",
+      "supportsVideo": true,
+      "supportsEmbedUrl": true
     },
     {
       "id": "service-panoramic-2",
       "name": "720°環景示例2",
       "targetPath": "images/services/panoramic-2.jpg",
+      "targetPathVideo": "images/services/panoramic-2.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 720°環景"
+      "category": "服務頁面 - 720°環景",
+      "supportsVideo": true,
+      "supportsEmbedUrl": true
     },
     {
       "id": "service-panoramic-3",
       "name": "720°環景示例3",
       "targetPath": "images/services/panoramic-3.jpg",
+      "targetPathVideo": "images/services/panoramic-3.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 720°環景"
+      "category": "服務頁面 - 720°環景",
+      "supportsVideo": true,
+      "supportsEmbedUrl": true
     },
     {
       "id": "service-animation-1",
@@ -211,22 +115,28 @@
       "id": "service-virtual-1",
       "name": "虛擬展場示例1",
       "targetPath": "images/services/virtual-showroom-1.jpg",
+      "targetPathVideo": "images/services/virtual-showroom-1.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 虛擬展場"
+      "category": "服務頁面 - 虛擬展場",
+      "supportsVideo": true
     },
     {
       "id": "service-virtual-2",
       "name": "虛擬展場示例2",
       "targetPath": "images/services/virtual-showroom-2.jpg",
+      "targetPathVideo": "images/services/virtual-showroom-2.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 虛擬展場"
+      "category": "服務頁面 - 虛擬展場",
+      "supportsVideo": true
     },
     {
       "id": "service-virtual-3",
       "name": "虛擬展場示例3",
       "targetPath": "images/services/virtual-showroom-3.jpg",
+      "targetPathVideo": "images/services/virtual-showroom-3.mp4",
       "htmlFile": "services.html",
-      "category": "服務頁面 - 虛擬展場"
+      "category": "服務頁面 - 虛擬展場",
+      "supportsVideo": true
     },
     {
       "id": "hero-visual",
