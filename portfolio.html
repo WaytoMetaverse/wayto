@@ -266,31 +266,47 @@
     .gallery-modal .gallery-content {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
       width: 100%;
       max-width: 100%;
       min-height: 0;
       position: relative;
     }
+    .gallery-modal #gallery-slides {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+    }
     .gallery-modal .gallery-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
-      max-height: 88vh;
-      width: auto;
-      height: auto;
+      max-height: 100%;
       object-fit: contain;
       display: none;
     }
     .gallery-modal .gallery-slide.active {
       display: block;
     }
-    .gallery-modal .gallery-slide video,
+    .gallery-modal .gallery-slide img,
+    .gallery-modal .gallery-slide video {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    /* 環景 iframe 填滿整個閱覽區 */
     .gallery-modal .gallery-slide iframe {
       width: 100%;
-      height: 88vh;
-      min-height: 60vh;
-      max-height: 88vh;
-      object-fit: contain;
+      height: 100%;
+      min-height: 100%;
+      border: 0;
     }
     .gallery-modal .gallery-prev,
     .gallery-modal .gallery-next {
@@ -345,7 +361,7 @@
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <!-- <script src="/_sdk/data_sdk.js" type="text/javascript"></script> --> <!-- SDK 檔案不存在，已註解 -->
  </head>
  <body class="h-full font-noto bg-white text-gray-900 overflow-auto"><!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100">
