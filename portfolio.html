@@ -228,16 +228,16 @@
       cursor: pointer;
     }
 
-    /* 相片模塊（lightbox） */
+    /* 相片模塊（lightbox）— 盡可能大 */
     .gallery-modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 9999;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.95);
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 0.75rem;
     }
     .gallery-modal.open {
       display: flex;
@@ -245,21 +245,22 @@
     }
     .gallery-modal .gallery-header {
       width: 100%;
-      max-width: 900px;
-      padding: 0 0 1rem;
+      max-width: 100%;
+      padding: 0 0 0.5rem;
       color: #fff;
       text-align: center;
+      flex-shrink: 0;
     }
     .gallery-modal .gallery-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.375rem;
+      font-size: 1.25rem;
       font-weight: 300;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
     }
     .gallery-modal .gallery-desc {
       font-family: 'Noto Sans TC', sans-serif;
-      font-size: 0.875rem;
-      line-height: 1.65;
+      font-size: 0.8125rem;
+      line-height: 1.5;
       color: rgba(255,255,255,0.85);
     }
     .gallery-modal .gallery-content {
@@ -268,12 +269,15 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      max-width: 1200px;
+      max-width: 100%;
+      min-height: 0;
       position: relative;
     }
     .gallery-modal .gallery-slide {
       max-width: 100%;
-      max-height: 75vh;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
       object-fit: contain;
       display: none;
     }
@@ -283,8 +287,9 @@
     .gallery-modal .gallery-slide video,
     .gallery-modal .gallery-slide iframe {
       width: 100%;
-      min-height: 50vh;
-      max-height: 75vh;
+      height: 88vh;
+      min-height: 60vh;
+      max-height: 88vh;
       object-fit: contain;
     }
     .gallery-modal .gallery-prev,
@@ -325,7 +330,8 @@
       display: flex;
       gap: 0.5rem;
       justify-content: center;
-      padding: 1rem 0;
+      padding: 0.5rem 0;
+      flex-shrink: 0;
     }
     .gallery-modal .gallery-dots span {
       width: 8px;
