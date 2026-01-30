@@ -235,20 +235,98 @@
       color: #991b1b;
       border: 1px solid #fecaca;
     }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0) !important;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      button, a {
+        min-height: 44px;
+      }
+      .form-input, .form-textarea {
+        padding: 0.875rem 1rem;
+        font-size: 0.875rem;
+      }
+      .submit-button {
+        width: 100%;
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <!-- <script src="/_sdk/data_sdk.js" type="text/javascript"></script> --> <!-- SDK 檔案不存在，已註解 -->
  </head>
  <body class="h-full font-noto bg-white text-gray-900 overflow-auto"><!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100">
-   <div class="max-w-screen-2xl mx-auto px-6 lg:px-16 h-24 flex items-center justify-between">
-    <a href="visual.html" class="font-cormorant text-2xl font-light tracking-wide hover:text-gray-600 transition-colors" id="nav-title">
-     SERVICES
-    </a>
-    <div class="flex gap-8 text-sm tracking-widest uppercase"><a href="visual.html" class="hover:text-gray-600 transition-colors">3D 首頁</a> <a href="#services" class="hover:text-gray-600 transition-colors">服務</a> <a href="portfolio.html" class="hover:text-gray-600 transition-colors">作品集</a> <a href="process.html" class="hover:text-gray-600 transition-colors">流程</a> <a href="#contact" class="hover:text-gray-600 transition-colors">聯絡</a>
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-md">
+   <div class="max-w-screen-2xl mx-auto px-5 sm:px-6 lg:px-16 h-20 sm:h-24 flex items-center justify-between">
+    <a href="visual.html" class="font-cormorant text-xl sm:text-2xl font-light tracking-wide hover:text-gray-600 transition-colors" id="nav-title">SERVICES</a>
+    <div class="hidden md:flex gap-6 lg:gap-8 text-xs sm:text-sm tracking-widest uppercase">
+      <a href="visual.html" class="hover:text-gray-600 transition-colors">3D 首頁</a>
+      <a href="#services" class="hover:text-gray-600 transition-colors">服務</a>
+      <a href="portfolio.html" class="hover:text-gray-600 transition-colors">作品集</a>
+      <a href="process.html" class="hover:text-gray-600 transition-colors">流程</a>
+      <a href="#contact" class="hover:text-gray-600 transition-colors">聯絡</a>
     </div>
+    <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-button" aria-label="打開選單">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
    </div>
-  </nav><!-- Main Content -->
+  </nav>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed inset-0 bg-white z-[9999] transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between p-5 border-b border-stone-100">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="LOGO2.png" alt="Wayto Metaverse" class="h-9 w-auto">
+          <span class="serif text-lg text-stone-900 font-light tracking-wider">Wayto Metaverse</span>
+        </a>
+        <button class="p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-close" aria-label="關閉選單">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto py-8 px-5">
+        <div class="space-y-1">
+          <a href="visual.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">3D 視覺化首頁</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">3D HOME</div>
+          </a>
+          <a href="#services" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">服務項目</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">SERVICES</div>
+          </a>
+          <a href="portfolio.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">作品集</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">PORTFOLIO</div>
+          </a>
+          <a href="process.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">服務流程</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">PROCESS</div>
+          </a>
+          <a href="#contact" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">聯絡我們</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">CONTACT</div>
+          </a>
+        </div>
+      </nav>
+      <div class="p-5 border-t border-stone-100">
+        <div class="text-xs text-stone-500 text-center">© 2024 Wayto Metaverse Technology</div>
+      </div>
+    </div>
+  </div><!-- Main Content -->
   <main class="h-full pt-24"><!-- Hero Section -->
    <section class="py-32 px-6 lg:px-16">
     <div class="max-w-screen-2xl mx-auto">
@@ -826,6 +904,43 @@
     } else {
       initMedia();
     }
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const body = document.body;
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      body.classList.add('menu-open');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      body.classList.remove('menu-open');
+    }
+
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener('click', openMobileMenu);
+    }
+
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileMenuLinks) {
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b5843e641b3f1e0',t:'MTc2NzAwMDQ4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

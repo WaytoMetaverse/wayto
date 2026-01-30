@@ -264,6 +264,25 @@
       transform: scale(1.1);
       color: #c9b896;
     }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0) !important;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      button, a {
+        min-height: 44px;
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <!-- <script src="/_sdk/data_sdk.js" type="text/javascript"></script> --> <!-- SDK 檔案不存在，已註解 -->
@@ -271,28 +290,85 @@
  <body class="h-full overflow-auto bg-white">
   <div class="app-wrapper w-full h-full"><!-- 導航列 -->
    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100">
-    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
-     <div class="flex items-center justify-between h-24">
-      <a href="index.html" class="flex items-center gap-3"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 48px; width: auto;"><span class="serif text-xl text-stone-900 font-light tracking-wider">Wayto Metaverse</span></a>
-      <div class="hidden md:flex items-center gap-12"><a href="services.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Services</a> <a href="#about" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">About</a> <a href="portfolio.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Portfolio</a> <a href="process.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Process</a> <a href="#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Contact</a>
+    <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16">
+     <div class="flex items-center justify-between h-20 sm:h-24">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="LOGO2.png" alt="Wayto Metaverse" class="h-10 sm:h-12 w-auto">
+        <span class="serif text-lg sm:text-xl text-stone-900 font-light tracking-wider hidden sm:inline">Wayto Metaverse</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 lg:gap-12">
+        <a href="services.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Services</a>
+        <a href="#about" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">About</a>
+        <a href="portfolio.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Portfolio</a>
+        <a href="process.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Process</a>
+        <a href="#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Contact</a>
       </div>
+      <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-button" aria-label="打開選單">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
      </div>
     </div>
-   </nav><!-- Hero 區 -->
-   <section class="relative" style="padding-top: 96px; min-height: 100%; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);">
-    <div class="max-w-[1800px] mx-auto px-6 lg:px-16 py-32 lg:py-40">
-     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center"><!-- 左側文字 -->
+   </nav>
+   
+   <!-- Mobile Menu -->
+   <div class="mobile-menu fixed inset-0 bg-white z-[9999] transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between p-5 border-b border-stone-100">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="LOGO2.png" alt="Wayto Metaverse" class="h-9 w-auto">
+          <span class="serif text-lg text-stone-900 font-light tracking-wider">Wayto Metaverse</span>
+        </a>
+        <button class="p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-close" aria-label="關閉選單">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto py-8 px-5">
+        <div class="space-y-1">
+          <a href="services.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">服務項目</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">SERVICES</div>
+          </a>
+          <a href="#about" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">關於我們</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">ABOUT</div>
+          </a>
+          <a href="portfolio.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">作品集</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">PORTFOLIO</div>
+          </a>
+          <a href="process.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">服務流程</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">PROCESS</div>
+          </a>
+          <a href="#contact" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">聯絡我們</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">CONTACT</div>
+          </a>
+        </div>
+      </nav>
+      <div class="p-5 border-t border-stone-100">
+        <div class="text-xs text-stone-500 text-center">© 2024 Wayto Metaverse Technology</div>
+      </div>
+    </div>
+   </div><!-- Hero 區 -->
+   <section class="relative pt-20 sm:pt-24" style="min-height: 100%; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);">
+    <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16 py-16 sm:py-20 md:py-28 lg:py-40">
+     <div class="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center"><!-- 左側文字 -->
       <div>
        <div class="fade-up">
-        <div class="text-xs tracking-[0.3em] text-stone-500 mb-8 uppercase font-light">
+        <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 sm:mb-8 uppercase font-light">
          3D Visualization Studio
         </div>
        </div>
-       <h1 id="hero-title" class="fade-up serif text-6xl lg:text-7xl font-light text-stone-900 leading-[1.1] mb-10" style="transition-delay: 0.1s;">以 3D 與虛擬展示<br>
+       <h1 id="hero-title" class="fade-up serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-stone-900 leading-[1.1] mb-8 sm:mb-10" style="transition-delay: 0.1s;">以 3D 與虛擬展示<br>
         提升空間與品牌<br>
         的價值</h1>
-       <p id="hero-subtitle" class="fade-up text-base text-stone-600 leading-loose mb-12 font-light max-w-lg" style="transition-delay: 0.2s;">專業建案視覺化與虛擬展示解決方案</p>
-       <div class="fade-up flex items-center gap-6" style="transition-delay: 0.3s;"><a href="#contact" class="elegant-button inline-block px-10 py-4 bg-stone-900 text-white text-xs tracking-widest uppercase"> 開始探索 </a> <a href="portfolio.html" class="text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase underline underline-offset-4"> 查看作品 </a>
+       <p id="hero-subtitle" class="fade-up text-sm sm:text-base text-stone-600 leading-loose mb-10 sm:mb-12 font-light max-w-lg" style="transition-delay: 0.2s;">專業建案視覺化與虛擬展示解決方案</p>
+       <div class="fade-up flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6" style="transition-delay: 0.3s;"><a href="#contact" class="elegant-button inline-block px-8 py-3 sm:px-10 sm:py-4 bg-stone-900 text-white text-xs tracking-widest uppercase text-center"> 開始探索 </a> <a href="portfolio.html" class="text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase underline underline-offset-4 text-center sm:text-left py-3 sm:py-0"> 查看作品 </a>
        </div>
       </div><!-- 右側圖片 -->
       <div class="fade-up" style="transition-delay: 0.4s;">
@@ -304,16 +380,16 @@
      </div>
     </div>
    </section><!-- 服務項目區 -->
-   <section id="services" class="py-32 bg-stone-50">
-    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
-     <div class="text-center mb-24 fade-up">
-      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+   <section id="services" class="py-16 sm:py-20 md:py-28 lg:py-32 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16">
+     <div class="text-center mb-16 sm:mb-20 md:mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-4 sm:mb-6 uppercase font-light">
        What We Do
       </div>
-      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-8">我們的服務</h2>
+      <h2 class="serif text-4xl sm:text-5xl lg:text-6xl font-light text-stone-900 mb-6 sm:mb-8">我們的服務</h2>
       <div class="divider-line mx-auto"></div>
      </div>
-     <div class="grid lg:grid-cols-3 gap-8 lg:gap-12"><!-- 服務 1 -->
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12"><!-- 服務 1 -->
       <div class="service-card fade-up bg-white p-12 rounded-sm" style="transition-delay: 0.1s;">
        <div class="service-number serif text-6xl text-stone-300 mb-8 font-light">
         01
@@ -395,16 +471,16 @@
      </div>
     </div>
    </section><!-- 合作實績區 -->
-   <section class="py-32 bg-stone-50">
-    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
-     <div class="text-center mb-24 fade-up">
-      <div class="text-xs tracking-[0.3em] text-stone-500 mb-6 uppercase font-light">
+   <section class="py-16 sm:py-20 md:py-28 lg:py-32 bg-stone-50">
+    <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16">
+     <div class="text-center mb-16 sm:mb-20 md:mb-24 fade-up">
+      <div class="text-xs tracking-[0.3em] text-stone-500 mb-4 sm:mb-6 uppercase font-light">
        Our Achievements
       </div>
-      <h2 class="serif text-5xl lg:text-6xl font-light text-stone-900 mb-8">合作實績</h2>
+      <h2 class="serif text-4xl sm:text-5xl lg:text-6xl font-light text-stone-900 mb-6 sm:mb-8">合作實績</h2>
       <div class="divider-line mx-auto"></div>
      </div><!-- 數據統計 -->
-     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-16 sm:mb-20 md:mb-24">
       <div class="fade-up text-center bg-white p-12 rounded-sm refined-shadow" style="transition-delay: 0.1s;">
        <div class="serif text-6xl text-stone-900 font-light mb-4">
         500+
@@ -832,6 +908,43 @@
     } else {
       checkAndDisplayMedia();
     }
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const body = document.body;
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      body.classList.add('menu-open');
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      body.classList.remove('menu-open');
+    }
+
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener('click', openMobileMenu);
+    }
+
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileMenuLinks) {
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b4773b8f174f1e0',t:'MTc2NjgyNDE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
