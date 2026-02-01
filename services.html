@@ -895,7 +895,19 @@
         .catch(() => {});
     }
 
-    // 載入 YouTube 網址並顯示 iframe（若該格已設環景則不覆蓋）
+    // 載入 YouTube 網址並顯示 iframe（若該格已設環景則不覆蓋），加入自動播放與循環
+    function youtubeEmbedWithAutoplay(url) {
+      if (!url || typeof url !== 'string') return '';
+      const u = url.trim();
+      let vid = '';
+      if (u.indexOf('youtube.com/embed/') !== -1) {
+        const e = u.split('embed/')[1] || '';
+        vid = (e.split(/[?&#]/)[0] || '').trim();
+      }
+      if (!vid) return u;
+      const sep = u.indexOf('?') !== -1 ? '&' : '?';
+      return u + sep + 'autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(vid);
+    }
     function loadYoutubeUrls() {
       fetch('data/youtube-urls.json')
         .then(res => res.ok ? res.json() : {})
@@ -907,7 +919,7 @@
             if (!wrapper || wrapper.classList.contains('has-panoramic-embed')) return;
             const iframe = wrapper.querySelector('.youtube-embed');
             if (!iframe) return;
-            iframe.src = url;
+            iframe.src = youtubeEmbedWithAutoplay(url);
             wrapper.classList.add('has-youtube-embed');
           });
         })

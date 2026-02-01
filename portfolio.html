@@ -554,6 +554,18 @@
       }
       return id ? 'https://www.youtube.com/embed/' + id : '';
     }
+    function youtubeEmbedWithAutoplay(url) {
+      if (!url || typeof url !== 'string') return '';
+      var u = url.trim();
+      var id = '';
+      if (u.indexOf('youtube.com/embed/') !== -1) {
+        var e = u.split('embed/')[1] || '';
+        id = (e.split(/[?&#]/)[0] || '').trim();
+      }
+      if (!id) return u;
+      var sep = u.indexOf('?') !== -1 ? '&' : '?';
+      return u + sep + 'autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(id);
+    }
     function youtubeThumbnail(url) {
       var embed = youtubeToEmbed(url);
       if (!embed) return '';
@@ -634,7 +646,7 @@
       vids.forEach(function(path) { gallerySlides.push({ type: 'video', path: path }); });
       ytUrls.forEach(function(url) {
         var emb = youtubeToEmbed(url);
-        if (emb) gallerySlides.push({ type: 'youtube', url: emb });
+        if (emb) gallerySlides.push({ type: 'youtube', url: youtubeEmbedWithAutoplay(emb) });
       });
       galleryCurrentIndex = 0;
       document.getElementById('gallery-title').textContent = item.name || '';

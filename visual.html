@@ -887,7 +887,19 @@
       });
     });
 
-    // 載入 YouTube 網址並顯示 iframe（回傳 Promise）
+    // 載入 YouTube 網址並顯示 iframe（回傳 Promise），加入自動播放與循環
+    function youtubeEmbedWithAutoplay(url) {
+      if (!url || typeof url !== 'string') return '';
+      const u = url.trim();
+      let vid = '';
+      if (u.indexOf('youtube.com/embed/') !== -1) {
+        const e = u.split('embed/')[1] || '';
+        vid = (e.split(/[?&#]/)[0] || '').trim();
+      }
+      if (!vid) return u;
+      const sep = u.indexOf('?') !== -1 ? '&' : '?';
+      return u + sep + 'autoplay=1&mute=1&loop=1&playlist=' + encodeURIComponent(vid);
+    }
     function loadYoutubeUrls() {
       return fetch('data/youtube-urls.json')
         .then(res => res.ok ? res.json() : {})
@@ -899,7 +911,7 @@
             if (!container) return;
             const iframe = container.querySelector('.youtube-embed');
             if (!iframe) return;
-            iframe.src = url;
+            iframe.src = youtubeEmbedWithAutoplay(url);
             container.classList.add('has-youtube-embed');
           });
         })
