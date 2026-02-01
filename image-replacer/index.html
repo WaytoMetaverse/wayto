@@ -132,6 +132,10 @@
           <label>環景網址（選填，外部 720° 平台嵌入網址）</label>
           <input type="url" id="portfolio-embed-url" class="form-input" placeholder="https://kuula.co/share/xxx">
         </div>
+        <div class="form-group">
+          <label>YouTube 網址（可多筆，一行一個）</label>
+          <textarea id="portfolio-youtube-urls" class="form-input form-textarea" rows="3" placeholder="https://www.youtube.com/watch?v=xxxx 或 https://youtu.be/xxxx"></textarea>
+        </div>
         <div class="modal-actions">
           <button id="btn-portfolio-cancel" class="btn-secondary">取消</button>
           <button id="btn-portfolio-save" class="btn-primary">儲存</button>
@@ -148,6 +152,19 @@
         <div class="modal-actions">
           <button id="btn-embed-cancel" class="btn-secondary">取消</button>
           <button id="btn-embed-ok" class="btn-primary">確定</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 設定 YouTube 網址對話框 -->
+    <div id="youtube-url-modal" class="modal">
+      <div class="modal-content">
+        <h3 id="youtube-url-modal-title">設定 YouTube 網址</h3>
+        <p class="modal-hint">請貼上 YouTube 影片網址，例如：<br><code>https://www.youtube.com/watch?v=xxxx</code> 或 <code>https://youtu.be/xxxx</code></p>
+        <input type="url" id="youtube-url-input" class="embed-url-input" placeholder="https://www.youtube.com/watch?v=...">
+        <div class="modal-actions">
+          <button id="btn-youtube-cancel" class="btn-secondary">取消</button>
+          <button id="btn-youtube-ok" class="btn-primary">確定</button>
         </div>
       </div>
     </div>

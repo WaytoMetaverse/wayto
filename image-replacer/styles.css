@@ -335,6 +335,20 @@ body {
   background: #0f766e;
 }
 
+.btn-set-youtube {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #b91c1c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-set-youtube:hover {
+  background: #991b1b;
+}
+
 .btn-remove-image {
   padding: 6px 12px;
   font-size: 12px;

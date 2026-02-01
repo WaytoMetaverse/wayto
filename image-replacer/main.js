@@ -171,6 +171,25 @@ ipcMain.handle('write-panoramic-embeds', async (event, embeds) => {
   return true;
 });
 
+// YouTube 網址：讀取 / 寫入 data/youtube-urls.json（各頁面媒體區塊可設 YouTube 嵌入）
+const youtubeUrlsPath = path.join(projectRoot, 'data', 'youtube-urls.json');
+
+ipcMain.handle('get-youtube-urls', async () => {
+  try {
+    const data = await fs.readFile(youtubeUrlsPath, 'utf-8');
+    return JSON.parse(data);
+  } catch {
+    return {};
+  }
+});
+
+ipcMain.handle('write-youtube-urls', async (event, urls) => {
+  const data = urls && typeof urls === 'object' ? urls : {};
+  await fs.mkdir(path.dirname(youtubeUrlsPath), { recursive: true });
+  await fs.writeFile(youtubeUrlsPath, JSON.stringify(data, null, 2), 'utf-8');
+  return true;
+});
+
 // 作品集：讀取 / 寫入 data/portfolio.json
 const portfolioPath = path.join(projectRoot, 'data', 'portfolio.json');
 

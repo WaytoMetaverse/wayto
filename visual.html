@@ -143,6 +143,27 @@
     .project-image:has(video.media-display[src]:not([src=""])) img.media-display {
       display: none;
     }
+
+    /* YouTube 嵌入 */
+    .image-container .youtube-embed,
+    .project-image .youtube-embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      z-index: 3;
+      display: none;
+    }
+    .image-container.has-youtube-embed .youtube-embed,
+    .project-image.has-youtube-embed .youtube-embed {
+      display: block;
+    }
+    .image-container.has-youtube-embed .media-display,
+    .project-image.has-youtube-embed .media-display {
+      display: none !important;
+    }
     
     .image-container::after {
       content: '';
@@ -372,9 +393,10 @@
        </div>
       </div><!-- 右側圖片 -->
       <div class="fade-up" style="transition-delay: 0.4s;">
-       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow" data-media-id="hero-visual">
         <img src="images/hero/hero-visual.jpg" alt="3D視覺化服務" class="w-full h-full object-cover media-display">
         <video src="images/hero/hero-visual.mp4" alt="3D視覺化服務" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+        <iframe class="youtube-embed" title="3D視覺化服務"></iframe>
        </div>
       </div>
      </div>
@@ -463,9 +485,10 @@
        </div>
       </div><!-- 右側圖片 -->
       <div class="fade-up" style="transition-delay: 0.2s;">
-       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow" data-media-id="hero-about-visual">
         <img src="images/hero/about-visual.jpg" alt="關於我們" class="w-full h-full object-cover media-display">
         <video src="images/hero/about-visual.mp4" alt="關於我們" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+        <iframe class="youtube-embed" title="關於我們"></iframe>
        </div>
       </div>
      </div>
@@ -574,9 +597,10 @@
      <div class="space-y-16"><!-- 作品 1 -->
       <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
        <div class="project-card rounded-sm overflow-hidden refined-shadow">
-        <div class="project-image image-container aspect-[16/10]">
+        <div class="project-image image-container aspect-[16/10]" data-media-id="featured-1">
          <img src="images/portfolio/featured-1.jpg" alt="豪宅建案視覺化" class="w-full h-full object-cover media-display">
          <video src="images/portfolio/featured-1.mp4" alt="豪宅建案視覺化" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+         <iframe class="youtube-embed" title="豪宅建案視覺化"></iframe>
         </div>
         <div class="project-overlay">
          <div>
@@ -595,9 +619,10 @@
       </div><!-- 作品 2 -->
       <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
        <div class="lg:order-2 project-card rounded-sm overflow-hidden refined-shadow">
-        <div class="project-image image-container aspect-[16/10]">
+        <div class="project-image image-container aspect-[16/10]" data-media-id="featured-2">
          <img src="images/portfolio/featured-2.jpg" alt="商業空間設計" class="w-full h-full object-cover media-display">
          <video src="images/portfolio/featured-2.mp4" alt="商業空間設計" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+         <iframe class="youtube-embed" title="商業空間設計"></iframe>
         </div>
         <div class="project-overlay">
          <div>
@@ -616,9 +641,10 @@
       </div><!-- 作品 3 -->
       <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
        <div class="project-card rounded-sm overflow-hidden refined-shadow">
-        <div class="project-image image-container aspect-[16/10]">
+        <div class="project-image image-container aspect-[16/10]" data-media-id="featured-3">
          <img src="images/portfolio/featured-3.jpg" alt="虛擬展場規劃" class="w-full h-full object-cover media-display">
          <video src="images/portfolio/featured-3.mp4" alt="虛擬展場規劃" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+         <iframe class="youtube-embed" title="虛擬展場規劃"></iframe>
         </div>
         <div class="project-overlay">
          <div>
@@ -861,10 +887,30 @@
       });
     });
 
-    // 自動檢測並顯示視頻或圖片
+    // 載入 YouTube 網址並顯示 iframe（回傳 Promise）
+    function loadYoutubeUrls() {
+      return fetch('data/youtube-urls.json')
+        .then(res => res.ok ? res.json() : {})
+        .then(urls => {
+          Object.keys(urls || {}).forEach(id => {
+            const url = (urls[id] || '').trim();
+            if (!url) return;
+            const container = document.querySelector('[data-media-id="' + id + '"]');
+            if (!container) return;
+            const iframe = container.querySelector('.youtube-embed');
+            if (!iframe) return;
+            iframe.src = url;
+            container.classList.add('has-youtube-embed');
+          });
+        })
+        .catch(() => {});
+    }
+
+    // 自動檢測並顯示視頻或圖片（若有 YouTube 則略過）
     function checkAndDisplayMedia() {
       // 檢查所有包含media-display的元素
       document.querySelectorAll('.image-container, .project-image').forEach(container => {
+        if (container.classList.contains('has-youtube-embed')) return;
         const img = container.querySelector('img.media-display');
         const video = container.querySelector('video.media-display');
         
@@ -902,11 +948,16 @@
       });
     }
 
-    // 頁面載入後執行
+    // 頁面載入後執行：先載入 YouTube 網址，再檢測視頻/圖片
+    function initMedia() {
+      loadYoutubeUrls().then(function() {
+        setTimeout(checkAndDisplayMedia, 200);
+      });
+    }
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', checkAndDisplayMedia);
+      document.addEventListener('DOMContentLoaded', initMedia);
     } else {
-      checkAndDisplayMedia();
+      initMedia();
     }
 
     // Mobile Menu Toggle

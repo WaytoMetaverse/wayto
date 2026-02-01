@@ -2,8 +2,27 @@
 let imageConfig = [];
 let selectedImages = new Map(); // Map<imageId, {sourcePath, targetPath, targetPathVideo, preview, isVideo}>
 let panoramicEmbeds = {}; // 720° 環景外部網址 { id: url }
+let youtubeUrls = {}; // 各頁面媒體區塊 YouTube 嵌入網址 { id: embedUrl }
 let currentPreviewPage = 'portfolio.html';
 let previewFrame = null;
+
+// 將 YouTube 網址轉為 embed 格式
+function youtubeToEmbed(url) {
+  if (!url || typeof url !== 'string') return '';
+  const u = url.trim();
+  let id = '';
+  if (u.indexOf('youtube.com/watch') !== -1) {
+    const m = u.match(/[?&]v=([^&]+)/);
+    id = m ? m[1] : '';
+  } else if (u.indexOf('youtu.be/') !== -1) {
+    const p = u.split('youtu.be/')[1] || '';
+    id = p.split(/[?&#]/)[0] || '';
+  } else if (u.indexOf('youtube.com/embed/') !== -1) {
+    const e = u.split('embed/')[1] || '';
+    id = e.split(/[?&#]/)[0] || '';
+  }
+  return id ? 'https://www.youtube.com/embed/' + id : '';
+}
 
 // 初始化
 document.addEventListener('DOMContentLoaded', async () => {
@@ -28,6 +47,11 @@ async function loadImageConfig() {
       panoramicEmbeds = await window.electronAPI.getPanoramicEmbeds() || {};
     } catch {
       panoramicEmbeds = {};
+    }
+    try {
+      youtubeUrls = await window.electronAPI.getYoutubeUrls() || {};
+    } catch {
+      youtubeUrls = {};
     }
     renderImageList();
   } catch (error) {
@@ -142,6 +166,17 @@ function initializeUI() {
     if (e.key === 'Enter') confirmEmbedUrl();
     if (e.key === 'Escape') closeEmbedUrlModal();
   });
+
+  // 設定 YouTube 網址彈窗
+  document.getElementById('btn-youtube-cancel').addEventListener('click', closeYoutubeUrlModal);
+  document.getElementById('btn-youtube-ok').addEventListener('click', confirmYoutubeUrl);
+  document.getElementById('youtube-url-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'youtube-url-modal') closeYoutubeUrlModal();
+  });
+  document.getElementById('youtube-url-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') confirmYoutubeUrl();
+    if (e.key === 'Escape') closeYoutubeUrlModal();
+  });
   
   // 預覽所有變更按鈕
   document.getElementById('btn-preview-all').addEventListener('click', () => {
@@ -201,16 +236,18 @@ function createImageItem(image) {
   const isVideo = selectedData ? selectedData.isVideo : false;
   const supportsVideo = image.supportsVideo || false;
   const supportsEmbedUrl = image.supportsEmbedUrl || false;
+  const supportsYoutubeUrl = image.supportsYoutubeUrl || false;
   const hasEmbedUrl = !!(panoramicEmbeds[image.id] || '').trim();
-  const statusText = hasEmbedUrl ? '已設定環景' : (selected || image.exists || image.videoExists ? (isVideo ? '已選擇(影片)' : '已選擇') : '未選擇');
+  const hasYoutubeUrl = !!(youtubeUrls[image.id] || '').trim();
+  const statusText = hasEmbedUrl ? '已設定環景' : hasYoutubeUrl ? '已設定 YouTube' : (selected || image.exists || image.videoExists ? (isVideo ? '已選擇(影片)' : '已選擇') : '未選擇');
   
   div.innerHTML = `
     <div class="image-item-header">
       <div>
         <div class="image-item-name">${image.name}</div>
-        <div class="image-item-category">${image.category}${supportsVideo ? ' (支援影片)' : ''}${supportsEmbedUrl ? ' · 可設環景網址' : ''}</div>
+        <div class="image-item-category">${image.category}${supportsVideo ? ' (支援影片)' : ''}${supportsEmbedUrl ? ' · 可設環景網址' : ''}${supportsYoutubeUrl ? ' · 可設 YouTube' : ''}</div>
       </div>
-      <span class="image-status ${selected || image.exists || image.videoExists || hasEmbedUrl ? 'has-image' : ''}">
+      <span class="image-status ${selected || image.exists || image.videoExists || hasEmbedUrl || hasYoutubeUrl ? 'has-image' : ''}">
         ${statusText}
       </span>
     </div>
@@ -220,7 +257,7 @@ function createImageItem(image) {
           isVideo 
             ? `<video src="${preview.data}" muted style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;"></video>`
             : `<img src="${preview.data}" alt="預覽">`
-        ) : hasEmbedUrl ? '<span class="embed-placeholder">環景網址已設定</span>' : '無預覽'}
+        ) : hasEmbedUrl ? '<span class="embed-placeholder">環景網址已設定</span>' : hasYoutubeUrl ? '<span class="embed-placeholder">YouTube 已設定</span>' : '無預覽'}
       </div>
       <div class="image-actions">
         <button class="btn-select-image" data-action="select" data-image-id="${image.id}" data-supports-video="${supportsVideo}">
@@ -228,6 +265,7 @@ function createImageItem(image) {
         </button>
         ${supportsVideo ? `<button class="btn-select-video" data-action="select-video" data-image-id="${image.id}">${selected && isVideo ? '更換' : '選擇影片'}</button>` : ''}
         ${supportsEmbedUrl ? `<button class="btn-set-embed" data-action="set-embed" data-image-id="${image.id}">${hasEmbedUrl ? '更改環景網址' : '設定環景網址'}</button>` : ''}
+        ${supportsYoutubeUrl ? `<button class="btn-set-youtube" data-action="set-youtube" data-image-id="${image.id}">${hasYoutubeUrl ? '更改 YouTube' : '設定 YouTube'}</button>` : ''}
         ${selected ? `<button class="btn-remove-image" data-action="remove" data-image-id="${image.id}">移除</button>` : ''}
       </div>
     </div>
@@ -246,6 +284,12 @@ function createImageItem(image) {
   if (supportsEmbedUrl) {
     div.querySelector('[data-action="set-embed"]').addEventListener('click', () => {
       setPanoramicEmbedUrl(image.id, image.name);
+    });
+  }
+  
+  if (supportsYoutubeUrl) {
+    div.querySelector('[data-action="set-youtube"]').addEventListener('click', () => {
+      openYoutubeUrlModal(image.id, image.name);
     });
   }
   
@@ -301,6 +345,38 @@ function confirmEmbedUrl() {
 // 設定 720° 環景外部平台網址（點擊按鈕時開啟彈窗）
 function setPanoramicEmbedUrl(imageId, imageName) {
   openEmbedUrlModal(imageId, imageName);
+}
+
+// YouTube 網址：目前編輯的項目 id、未套用標記
+let youtubeUrlEditingId = null;
+let youtubeUrlsDirty = false;
+
+function openYoutubeUrlModal(imageId, imageName) {
+  youtubeUrlEditingId = imageId;
+  document.getElementById('youtube-url-modal-title').textContent = '設定 YouTube 網址：' + (imageName || imageId);
+  // 顯示時可還原為 watch 網址供編輯（optional）；這裡直接顯示已存的 embed，或留空
+  const current = (youtubeUrls[imageId] || '').trim();
+  document.getElementById('youtube-url-input').value = current;
+  document.getElementById('youtube-url-modal').classList.add('show');
+  setTimeout(() => document.getElementById('youtube-url-input').focus(), 100);
+}
+
+function closeYoutubeUrlModal() {
+  youtubeUrlEditingId = null;
+  document.getElementById('youtube-url-modal').classList.remove('show');
+}
+
+function confirmYoutubeUrl() {
+  if (!youtubeUrlEditingId) return;
+  const input = document.getElementById('youtube-url-input');
+  const raw = (input.value || '').trim();
+  const embed = raw ? youtubeToEmbed(raw) : '';
+  youtubeUrls[youtubeUrlEditingId] = embed;
+  youtubeUrlsDirty = true;
+  closeYoutubeUrlModal();
+  renderImageList();
+  loadPreview(currentPreviewPage);
+  updateConfirmButton();
 }
 
 // --- 作品集管理 ---
@@ -382,6 +458,7 @@ function openPortfolioModal() {
   document.getElementById('portfolio-images-list').innerHTML = '';
   document.getElementById('portfolio-videos-list').innerHTML = '';
   document.getElementById('portfolio-embed-url').value = '';
+  document.getElementById('portfolio-youtube-urls').value = '';
   document.getElementById('portfolio-modal').classList.add('show');
 }
 
@@ -396,6 +473,7 @@ function openPortfolioModalForEdit(item) {
   document.getElementById('portfolio-name').value = item.name || '';
   document.getElementById('portfolio-desc').value = item.description || '';
   document.getElementById('portfolio-embed-url').value = item.embedUrl || '';
+  document.getElementById('portfolio-youtube-urls').value = (item.youtubeUrls || []).join('\n');
   renderPortfolioImagesList();
   renderPortfolioVideosList();
   document.getElementById('portfolio-modal').classList.add('show');
@@ -458,6 +536,8 @@ async function savePortfolioItem() {
   const name = document.getElementById('portfolio-name').value.trim();
   const description = document.getElementById('portfolio-desc').value.trim();
   const embedUrl = (document.getElementById('portfolio-embed-url').value || '').trim();
+  const youtubeRaw = (document.getElementById('portfolio-youtube-urls').value || '').split(/\n/).map(s => s.trim()).filter(Boolean);
+  const youtubeUrls = youtubeRaw.map(u => youtubeToEmbed(u)).filter(Boolean);
   if (!name) {
     alert('請填寫作品名稱');
     return;
@@ -465,10 +545,11 @@ async function savePortfolioItem() {
   const hasNewImages = portfolioSelectedPaths.length > 0;
   const hasNewVideos = portfolioSelectedVideos.length > 0;
   const hasEmbed = !!embedUrl;
+  const hasYouTube = youtubeUrls.length > 0;
   const isEdit = !!currentEditingItemId;
   const hasExistingMedia = isEdit && (editingItemExistingImages > 0 || editingItemExistingVideos > 0);
-  if (!hasNewImages && !hasNewVideos && !hasEmbed && !hasExistingMedia) {
-    alert('請至少選擇圖片、影片，或填寫環景網址');
+  if (!hasNewImages && !hasNewVideos && !hasEmbed && !hasYouTube && !hasExistingMedia) {
+    alert('請至少選擇圖片、影片、填寫環景網址或 YouTube 網址');
     return;
   }
   const data = await window.electronAPI.getPortfolio();
@@ -492,6 +573,7 @@ async function savePortfolioItem() {
     item.name = name;
     item.description = description;
     item.embedUrl = hasEmbed ? embedUrl : '';
+    item.youtubeUrls = youtubeUrls;
     if (hasNewImages) {
       item.images = await window.electronAPI.copyPortfolioImages(portfolioSelectedPaths, item.id);
     }
@@ -510,7 +592,8 @@ async function savePortfolioItem() {
       name: name,
       description: description,
       images: imagePaths,
-      videos: videoPaths
+      videos: videoPaths,
+      youtubeUrls: youtubeUrls
     };
     if (hasEmbed) item.embedUrl = embedUrl;
     data.items.push(item);
@@ -697,13 +780,13 @@ function updatePreview() {
   }
 }
 
-// 更新確認按鈕狀態（有未套用的圖片/影片替換，或有未套用的環景網址時可按）
+// 更新確認按鈕狀態（有未套用的圖片/影片替換、環景網址或 YouTube 網址時可按）
 function updateConfirmButton() {
   const btnConfirm = document.getElementById('btn-confirm');
   const hasNewFiles = Array.from(selectedImages.values()).some(
     data => data.sourcePath !== null
   );
-  const hasEmbedChanges = embedUrlsDirty;
+  const hasEmbedChanges = embedUrlsDirty || youtubeUrlsDirty;
   btnConfirm.disabled = !hasNewFiles && !hasEmbedChanges;
 }
 
@@ -712,16 +795,17 @@ function showConfirmModal() {
   const newFiles = Array.from(selectedImages.values()).filter(
     data => data.sourcePath !== null
   );
-  const hasEmbedChanges = embedUrlsDirty;
+  const hasEmbedChanges = embedUrlsDirty || youtubeUrlsDirty;
   
   if (newFiles.length === 0 && !hasEmbedChanges) {
-    alert('請先選擇要替換的圖片/影片，或設定環景網址');
+    alert('請先選擇要替換的圖片/影片，或設定環景網址／YouTube 網址');
     return;
   }
   
   let text = '';
   if (newFiles.length > 0) text += `替換 ${newFiles.length} 個檔案`;
-  if (hasEmbedChanges) text += (text ? ' 並 ' : '') + '套用環景網址';
+  if (embedUrlsDirty) text += (text ? ' 並 ' : '') + '套用環景網址';
+  if (youtubeUrlsDirty) text += (text ? ' 並 ' : '') + '套用 YouTube 網址';
   document.getElementById('replace-count').textContent = text || '—';
   document.getElementById('confirm-modal').classList.add('show');
 }
@@ -744,26 +828,31 @@ async function executeReplace() {
   
   try {
     progressFill.style.width = '0%';
-    if (total > 0 && embedUrlsDirty) {
-      progressText.textContent = '準備替換檔案與套用環景網址...';
-    } else if (embedUrlsDirty) {
-      progressText.textContent = '正在套用環景網址...';
+    if (total > 0 && (embedUrlsDirty || youtubeUrlsDirty)) {
+      progressText.textContent = '準備替換檔案與套用網址...';
+    } else if (embedUrlsDirty || youtubeUrlsDirty) {
+      progressText.textContent = '正在套用環景／YouTube 網址...';
     } else {
       progressText.textContent = `準備替換 ${total} 個文件...`;
     }
     
     const results = total > 0 ? await window.electronAPI.copyImagesBatch(newFiles) : [];
     const didWriteEmbeds = embedUrlsDirty;
+    const didWriteYoutube = youtubeUrlsDirty;
     if (embedUrlsDirty) {
       await window.electronAPI.writePanoramicEmbeds(panoramicEmbeds);
       embedUrlsDirty = false;
+    }
+    if (youtubeUrlsDirty) {
+      await window.electronAPI.writeYoutubeUrls(youtubeUrls);
+      youtubeUrlsDirty = false;
     }
     
     progressFill.style.width = '100%';
     progressText.textContent = '完成！';
     
     setTimeout(() => {
-      showResultModal(results, null, didWriteEmbeds && total === 0);
+      showResultModal(results, null, didWriteEmbeds && total === 0, didWriteYoutube && total === 0, didWriteEmbeds, didWriteYoutube);
     }, 500);
   } catch (error) {
     console.error('替換失敗:', error);
@@ -775,8 +864,8 @@ async function executeReplace() {
   }
 }
 
-// 顯示結果對話框（onlyEmbeds = 僅套用環景網址、無檔案替換）
-function showResultModal(results, error = null, onlyEmbeds = false) {
+// 顯示結果對話框（onlyEmbeds = 僅套用環景、onlyYoutube = 僅套用 YouTube、didWriteEmbeds/didWriteYoutube = 本次有寫入）
+function showResultModal(results, error = null, onlyEmbeds = false, onlyYoutube = false, didWriteEmbeds = false, didWriteYoutube = false) {
   const resultModal = document.getElementById('result-modal');
   const resultTitle = document.getElementById('result-title');
   const resultContent = document.getElementById('result-content');
@@ -784,22 +873,28 @@ function showResultModal(results, error = null, onlyEmbeds = false) {
   if (error) {
     resultTitle.textContent = '替換失敗';
     resultContent.innerHTML = `<div class="result-item error">錯誤: ${error}</div>`;
-  } else if (onlyEmbeds) {
+  } else if (onlyEmbeds || onlyYoutube) {
     resultTitle.textContent = '套用完成';
-    resultContent.innerHTML = '<div class="result-item success">✓ 環景網址已套用</div>';
+    const parts = [];
+    if (onlyEmbeds) parts.push('<div class="result-item success">✓ 環景網址已套用</div>');
+    if (onlyYoutube) parts.push('<div class="result-item success">✓ YouTube 網址已套用</div>');
+    resultContent.innerHTML = parts.join('');
   } else {
     const successCount = results.filter(r => r.success).length;
     const failCount = results.filter(r => !r.success).length;
     
     resultTitle.textContent = `替換完成 (成功: ${successCount}, 失敗: ${failCount})`;
     
-    resultContent.innerHTML = results.map(result => {
+    let html = results.map(result => {
       if (result.success) {
         return `<div class="result-item success">✓ ${result.targetPath}</div>`;
       } else {
         return `<div class="result-item error">✗ ${result.targetPath}: ${result.error}</div>`;
       }
     }).join('');
+    if (didWriteEmbeds) html += '<div class="result-item success">✓ 環景網址已套用</div>';
+    if (didWriteYoutube) html += '<div class="result-item success">✓ YouTube 網址已套用</div>';
+    resultContent.innerHTML = html;
   }
   
   resultModal.classList.add('show');

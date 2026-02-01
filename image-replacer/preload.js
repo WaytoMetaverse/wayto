@@ -12,6 +12,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getPanoramicEmbeds: () => ipcRenderer.invoke('get-panoramic-embeds'),
   setPanoramicEmbed: (id, url) => ipcRenderer.invoke('set-panoramic-embed', id, url),
   writePanoramicEmbeds: (embeds) => ipcRenderer.invoke('write-panoramic-embeds', embeds),
+  getYoutubeUrls: () => ipcRenderer.invoke('get-youtube-urls'),
+  writeYoutubeUrls: (urls) => ipcRenderer.invoke('write-youtube-urls', urls),
   getPortfolio: () => ipcRenderer.invoke('get-portfolio'),
   savePortfolio: (data) => ipcRenderer.invoke('save-portfolio', data),
   selectMultipleImages: () => ipcRenderer.invoke('select-multiple-images'),

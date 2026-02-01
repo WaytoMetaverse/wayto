@@ -117,6 +117,24 @@
     .image-container:has(video.media-display[src]:not([src=""])) img.media-display {
       display: none;
     }
+
+    /* YouTube 嵌入 */
+    .image-container .youtube-embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      z-index: 3;
+      display: none;
+    }
+    .image-container.has-youtube-embed .youtube-embed {
+      display: block;
+    }
+    .image-container.has-youtube-embed .media-display {
+      display: none !important;
+    }
     
     .project-card {
       position: relative;
@@ -713,9 +731,10 @@
        </div>
       </div>
       <div class="fade-up" style="transition-delay: 0.4s;">
-       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow" data-media-id="hero-tech">
         <img src="images/hero/hero-tech.jpg" alt="數位解決方案" class="w-full h-full object-cover media-display">
         <video src="images/hero/hero-tech.mp4" alt="數位解決方案" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+        <iframe class="youtube-embed" title="數位解決方案"></iframe>
        </div>
       </div>
      </div>
@@ -1016,9 +1035,10 @@
                         </div>
                     </div>
       <div class="fade-up" style="transition-delay: 0.2s;">
-       <div class="image-container aspect-[4/5] rounded-sm refined-shadow">
+       <div class="image-container aspect-[4/5] rounded-sm refined-shadow" data-media-id="hero-about-tech">
         <img src="images/hero/about-tech.jpg" alt="技術優勢" class="w-full h-full object-cover media-display">
         <video src="images/hero/about-tech.mp4" alt="技術優勢" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+        <iframe class="youtube-embed" title="技術優勢"></iframe>
                             </div>
                             </div>
                         </div>
@@ -1515,10 +1535,30 @@
       }
     });
 
-    // 自動檢測並顯示視頻或圖片
+    // 載入 YouTube 網址並顯示 iframe（回傳 Promise）
+    function loadYoutubeUrls() {
+      return fetch('data/youtube-urls.json')
+        .then(res => res.ok ? res.json() : {})
+        .then(urls => {
+          Object.keys(urls || {}).forEach(id => {
+            const url = (urls[id] || '').trim();
+            if (!url) return;
+            const container = document.querySelector('[data-media-id="' + id + '"]');
+            if (!container) return;
+            const iframe = container.querySelector('.youtube-embed');
+            if (!iframe) return;
+            iframe.src = url;
+            container.classList.add('has-youtube-embed');
+          });
+        })
+        .catch(() => {});
+    }
+
+    // 自動檢測並顯示視頻或圖片（若有 YouTube 則略過）
     function checkAndDisplayMedia() {
       // 檢查所有包含media-display的元素
       document.querySelectorAll('.image-container, .project-image').forEach(container => {
+        if (container.classList.contains('has-youtube-embed')) return;
         const img = container.querySelector('img.media-display');
         const video = container.querySelector('video.media-display');
         
@@ -1556,11 +1596,16 @@
       });
     }
 
-    // 頁面載入後執行
+    // 頁面載入後執行：先載入 YouTube 網址，再檢測視頻/圖片
+    function initMedia() {
+      loadYoutubeUrls().then(function() {
+        setTimeout(checkAndDisplayMedia, 200);
+      });
+    }
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', checkAndDisplayMedia);
+      document.addEventListener('DOMContentLoaded', initMedia);
     } else {
-      checkAndDisplayMedia();
+      initMedia();
     }
 
     // Mobile Menu Toggle

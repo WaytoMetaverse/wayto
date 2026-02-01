@@ -145,6 +145,24 @@
       display: none !important;
     }
 
+    /* YouTube 嵌入 */
+    .service-image-wrapper .youtube-embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      z-index: 3;
+      display: none;
+    }
+    .service-image-wrapper.has-youtube-embed .youtube-embed {
+      display: block;
+    }
+    .service-image-wrapper.has-youtube-embed .media-display {
+      display: none !important;
+    }
+
     .service-number {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3rem;
@@ -360,17 +378,20 @@
          <p class="text-sm text-gray-500">適合用於設計提案、客戶溝通與初期方向確認。</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-3d-1">
           <img src="images/services/3d-effect-1.jpg" alt="3D效果圖示例1" class="w-full h-full object-cover media-display">
           <video src="images/services/3d-effect-1.mp4" alt="3D效果圖示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="3D效果圖示例1"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-3d-2">
           <img src="images/services/3d-effect-2.jpg" alt="3D效果圖示例2" class="w-full h-full object-cover media-display">
           <video src="images/services/3d-effect-2.mp4" alt="3D效果圖示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="3D效果圖示例2"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-3d-3">
           <img src="images/services/3d-effect-3.jpg" alt="3D效果圖示例3" class="w-full h-full object-cover media-display">
           <video src="images/services/3d-effect-3.mp4" alt="3D效果圖示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="3D效果圖示例3"></iframe>
          </div>
         </div>
        </div>
@@ -392,17 +413,20 @@
          <p class="text-sm text-gray-500">常用於建案、公設與整體規劃說明。</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-aerial-1">
           <img src="images/services/aerial-1.jpg" alt="鳥瞰圖示例1" class="w-full h-full object-cover media-display">
           <video src="images/services/aerial-1.mp4" alt="鳥瞰圖示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="鳥瞰圖示例1"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-aerial-2">
           <img src="images/services/aerial-2.jpg" alt="鳥瞰圖示例2" class="w-full h-full object-cover media-display">
           <video src="images/services/aerial-2.mp4" alt="鳥瞰圖示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="鳥瞰圖示例2"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-aerial-3">
           <img src="images/services/aerial-3.jpg" alt="鳥瞰圖示例3" class="w-full h-full object-cover media-display">
           <video src="images/services/aerial-3.mp4" alt="鳥瞰圖示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="鳥瞰圖示例3"></iframe>
          </div>
         </div>
        </div>
@@ -425,20 +449,23 @@
          <p class="text-sm text-gray-500">適合遠端溝通、內部討論與展示使用。</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div class="service-image-wrapper" data-panoramic-id="service-panoramic-1">
+         <div class="service-image-wrapper" data-panoramic-id="service-panoramic-1" data-media-id="service-panoramic-1">
           <img src="images/services/panoramic-1.jpg" alt="720°環景示例1" class="w-full h-full object-cover media-display">
           <video src="images/services/panoramic-1.mp4" alt="720°環景示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
           <iframe class="panoramic-embed" title="720°環景示例1"></iframe>
+          <iframe class="youtube-embed" title="720°環景示例1"></iframe>
          </div>
-         <div class="service-image-wrapper" data-panoramic-id="service-panoramic-2">
+         <div class="service-image-wrapper" data-panoramic-id="service-panoramic-2" data-media-id="service-panoramic-2">
           <img src="images/services/panoramic-2.jpg" alt="720°環景示例2" class="w-full h-full object-cover media-display">
           <video src="images/services/panoramic-2.mp4" alt="720°環景示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
           <iframe class="panoramic-embed" title="720°環景示例2"></iframe>
+          <iframe class="youtube-embed" title="720°環景示例2"></iframe>
          </div>
-         <div class="service-image-wrapper" data-panoramic-id="service-panoramic-3">
+         <div class="service-image-wrapper" data-panoramic-id="service-panoramic-3" data-media-id="service-panoramic-3">
           <img src="images/services/panoramic-3.jpg" alt="720°環景示例3" class="w-full h-full object-cover media-display">
           <video src="images/services/panoramic-3.mp4" alt="720°環景示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
           <iframe class="panoramic-embed" title="720°環景示例3"></iframe>
+          <iframe class="youtube-embed" title="720°環景示例3"></iframe>
          </div>
         </div>
        </div>
@@ -460,17 +487,20 @@
          <p>協助說明平面圖或靜態畫面較難表達的內容。</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-animation-1">
           <img src="images/services/animation-1.jpg" alt="動畫展示示例1" class="w-full h-full object-cover media-display">
           <video src="images/services/animation-1.mp4" alt="動畫展示示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="動畫展示示例1"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-animation-2">
           <img src="images/services/animation-2.jpg" alt="動畫展示示例2" class="w-full h-full object-cover media-display">
           <video src="images/services/animation-2.mp4" alt="動畫展示示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="動畫展示示例2"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-animation-3">
           <img src="images/services/animation-3.jpg" alt="動畫展示示例3" class="w-full h-full object-cover media-display">
           <video src="images/services/animation-3.mp4" alt="動畫展示示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="動畫展示示例3"></iframe>
          </div>
         </div>
        </div>
@@ -492,17 +522,20 @@
          <p class="text-sm text-gray-500">適合建案展示、建材應用說明與品牌展示需求。</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-virtual-1">
           <img src="images/services/virtual-showroom-1.jpg" alt="虛擬展場示例1" class="w-full h-full object-cover media-display">
           <video src="images/services/virtual-showroom-1.mp4" alt="虛擬展場示例1" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="虛擬展場示例1"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-virtual-2">
           <img src="images/services/virtual-showroom-2.jpg" alt="虛擬展場示例2" class="w-full h-full object-cover media-display">
           <video src="images/services/virtual-showroom-2.mp4" alt="虛擬展場示例2" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="虛擬展場示例2"></iframe>
          </div>
-         <div class="service-image-wrapper">
+         <div class="service-image-wrapper" data-media-id="service-virtual-3">
           <img src="images/services/virtual-showroom-3.jpg" alt="虛擬展場示例3" class="w-full h-full object-cover media-display">
           <video src="images/services/virtual-showroom-3.mp4" alt="虛擬展場示例3" class="w-full h-full object-cover media-display" autoplay loop muted playsinline style="display: none;"></video>
+          <iframe class="youtube-embed" title="虛擬展場示例3"></iframe>
          </div>
         </div>
        </div>
@@ -843,9 +876,9 @@
       });
     }, 300);
 
-    // 載入 720° 環景外部平台網址並顯示 iframe
+    // 載入 720° 環景外部平台網址並顯示 iframe（回傳 Promise 供後續載入 YouTube）
     function loadPanoramicEmbeds() {
-      fetch('data/panoramic-embeds.json')
+      return fetch('data/panoramic-embeds.json')
         .then(res => res.ok ? res.json() : {})
         .then(embeds => {
           Object.keys(embeds || {}).forEach(id => {
@@ -862,10 +895,29 @@
         .catch(() => {});
     }
 
-    // 自動檢測並顯示視頻或圖片（若有環景 iframe 則略過該格）
+    // 載入 YouTube 網址並顯示 iframe（若該格已設環景則不覆蓋）
+    function loadYoutubeUrls() {
+      fetch('data/youtube-urls.json')
+        .then(res => res.ok ? res.json() : {})
+        .then(urls => {
+          Object.keys(urls || {}).forEach(id => {
+            const url = (urls[id] || '').trim();
+            if (!url) return;
+            const wrapper = document.querySelector('.service-image-wrapper[data-media-id="' + id + '"]');
+            if (!wrapper || wrapper.classList.contains('has-panoramic-embed')) return;
+            const iframe = wrapper.querySelector('.youtube-embed');
+            if (!iframe) return;
+            iframe.src = url;
+            wrapper.classList.add('has-youtube-embed');
+          });
+        })
+        .catch(() => {});
+    }
+
+    // 自動檢測並顯示視頻或圖片（若有環景或 YouTube iframe 則略過該格）
     function checkAndDisplayMedia() {
       document.querySelectorAll('.service-image-wrapper').forEach(container => {
-        if (container.classList.contains('has-panoramic-embed')) return;
+        if (container.classList.contains('has-panoramic-embed') || container.classList.contains('has-youtube-embed')) return;
         const img = container.querySelector('img.media-display');
         const video = container.querySelector('video.media-display');
         
@@ -895,8 +947,10 @@
     }
 
     function initMedia() {
-      loadPanoramicEmbeds();
-      setTimeout(checkAndDisplayMedia, 200);
+      loadPanoramicEmbeds().then(function() {
+        loadYoutubeUrls();
+        setTimeout(checkAndDisplayMedia, 200);
+      });
     }
 
     if (document.readyState === 'loading') {
