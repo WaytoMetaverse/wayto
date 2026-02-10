@@ -1,4 +1,34 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://wayto.com.tw/:path*",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "www.kinghouse3d.com"
+        }
+      ]
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://wayto.com.tw/:path*",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "kinghouse3d.com"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -23,15 +53,6 @@
     },
     {
       "source": "/(.*\\.html)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.htm)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -138,12 +159,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/index.html"
-    }
   ]
 }
-

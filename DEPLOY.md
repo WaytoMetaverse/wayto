@@ -179,6 +179,46 @@ Vercel 会自动检测项目类型。对于静态网站：
 3. 添加您的域名
 4. 按照提示配置 DNS 记录
 
+### 2. 舊域名重定向設定
+
+如果您的舊網站域名（如 `www.kinghouse3d.com`）需要永久重定向到新網站：
+
+#### 步驟 1：在 Vercel 添加舊域名
+
+1. 在 Vercel Dashboard 中打開項目
+2. 進入 **Settings** > **Domains**
+3. 點擊 **Add Domain**
+4. 添加舊域名：
+   - `www.kinghouse3d.com`
+   - `kinghouse3d.com`（如果有的話）
+5. 按照提示在舊域名的 DNS 設定中添加 CNAME 記錄指向 Vercel
+
+#### 步驟 2：驗證重定向設定
+
+`vercel.json` 已包含重定向規則，會自動將所有來自舊域名的請求重定向到新域名：
+
+- 舊域名訪問：`https://www.kinghouse3d.com/` → `https://wayto.com.tw/`
+- 保留路徑：`https://www.kinghouse3d.com/old-page.html` → `https://wayto.com.tw/old-page.html`
+- 使用 301 永久重定向（對 SEO 友好）
+
+#### 步驟 3：測試重定向
+
+部署後，測試重定向是否正常：
+
+```bash
+# 使用 curl 測試
+curl -I https://www.kinghouse3d.com/
+
+# 應該看到 HTTP 301 狀態碼和 Location 標頭
+```
+
+或在瀏覽器中訪問舊域名，應該自動跳轉到新域名。
+
+**注意事項：**
+- DNS 傳播可能需要 24-48 小時
+- 確保舊域名已正確連接到 Vercel 專案
+- 重定向規則已在 `vercel.json` 中配置，無需額外設定
+
 ### 2. 环境变量（如果需要）
 
 如果将来需要环境变量：
@@ -297,4 +337,6 @@ vercel --prod
 ---
 
 **部署完成后，您的网站将获得一个类似 `https://wayto-metaverse.vercel.app` 的 URL。**
+
+
 

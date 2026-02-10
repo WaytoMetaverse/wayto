@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 Sitemap: https://wayto.com.tw/sitemap.xml
 
+
+
