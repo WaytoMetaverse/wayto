@@ -147,6 +147,10 @@
       font-family: 'Inter', 'Noto Sans TC', sans-serif;
     }
 
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
     /* Brand Intro Animation */
     .brand-intro-overlay {
       position: fixed;
@@ -547,20 +551,23 @@
         </div>
   
   <!-- Navigation Bar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100" style="opacity: 0; animation: fadeIn 1s ease 3s forwards;">
     <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16">
       <div class="flex items-center justify-between h-20 sm:h-24">
         <a href="index.html" class="flex items-center gap-3">
           <img src="LOGO2.png" alt="Wayto Metaverse" class="h-10 sm:h-12 w-auto">
           <span class="serif text-lg sm:text-xl text-stone-900 font-light tracking-wider hidden sm:inline">Wayto Metaverse</span>
         </a>
+        
+        <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center gap-8 lg:gap-12">
+          <a href="visual.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Visual</a>
+          <a href="tech.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Tech</a>
           <a href="services.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Services</a>
-          <a href="visual.html#about" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">About</a>
           <a href="portfolio.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Portfolio</a>
           <a href="process.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Process</a>
-          <a href="visual.html#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">Contact</a>
         </div>
+        
         <!-- Mobile Menu Button -->
         <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-button" aria-label="打開選單">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -590,13 +597,17 @@
       <!-- Mobile Menu Links -->
       <nav class="flex-1 overflow-y-auto py-8 px-5">
         <div class="space-y-1">
+          <a href="visual.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">3D 視覺化服務</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">VISUAL</div>
+          </a>
+          <a href="tech.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">數位解決方案</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">TECH</div>
+          </a>
           <a href="services.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">服務項目</div>
             <div class="text-xs text-stone-500 mt-1 tracking-wide">SERVICES</div>
-          </a>
-          <a href="visual.html#about" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
-            <div class="font-light">關於我們</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">ABOUT</div>
           </a>
           <a href="portfolio.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">作品集</div>
@@ -605,10 +616,6 @@
           <a href="process.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">服務流程</div>
             <div class="text-xs text-stone-500 mt-1 tracking-wide">PROCESS</div>
-          </a>
-          <a href="visual.html#contact" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
-            <div class="font-light">聯絡我們</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">CONTACT</div>
           </a>
         </div>
       </nav>
