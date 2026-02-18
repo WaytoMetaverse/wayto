@@ -139,6 +139,27 @@
       overflow-x: hidden;
     }
 
+    /* 手機版只允許上下捲動，禁止左右滑動 */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+      body {
+        touch-action: pan-y;
+      }
+      #app {
+        overflow-x: hidden !important;
+        overflow-y: auto;
+        max-width: 100vw;
+      }
+    }
+
+    #app {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
     .serif-font {
       font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
     }
