@@ -16,7 +16,7 @@
     '#wayto-dynamic-bg { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }',
     'body.wayto-has-dynamic-bg > main { position: relative; z-index: 1; }',
     'body.wayto-has-dynamic-bg > .app-wrapper { position: relative; z-index: 1; }',
-    'body.wayto-has-dynamic-bg > *:not(#wayto-dynamic-bg):not(nav) { position: relative; z-index: 1; }',
+    'body.wayto-has-dynamic-bg > *:not(#wayto-dynamic-bg):not(nav):not(#mobile-menu) { position: relative; z-index: 1; }',
     '.wayto-glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; pointer-events: none; will-change: transform; }',
     '.wayto-floating-particle { position: absolute; border-radius: 50%; pointer-events: none; }',
     '@keyframes waytoOrbFloat { 0%,100%{transform:translate(0,0) scale(1)} 25%{transform:translate(30px,-30px) scale(1.1)} 50%{transform:translate(-20px,-50px) scale(0.9)} 75%{transform:translate(40px,-20px) scale(1.05)} }',
