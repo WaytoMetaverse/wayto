@@ -11,12 +11,17 @@
   <meta name="author" content="Wayto Metaverse Technology Co., Ltd.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://wayto.com.tw/portfolio.html">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="LOGO2.png">
+  <link rel="apple-touch-icon" href="LOGO2.png">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wayto.com.tw/portfolio.html">
   <meta property="og:title" content="3D 渲染作品集 | 指標建案案例 | Wayto Metaverse">
   <meta property="og:description" content="頂級指標建案、國際連鎖商空、豪宅室內與720°環景。8年經驗，500+專案實績。">
+  <meta property="og:image" content="https://wayto.com.tw/LOGO2.png">
   <meta property="og:locale" content="zh_TW">
   
   <!-- Twitter Card -->
@@ -24,8 +29,18 @@
   <meta name="twitter:url" content="https://wayto.com.tw/portfolio.html">
   <meta name="twitter:title" content="3D 渲染作品集 | 指標建案案例 | Wayto Metaverse">
   <meta name="twitter:description" content="頂級指標建案、國際連鎖商空、豪宅室內與720°環景。">
+  <meta name="twitter:image" content="https://wayto.com.tw/LOGO2.png">
   <!-- <script src="/_sdk/element_sdk.js"></script> --> <!-- SDK文件不存在，已注释 -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    window.WAYTO_SEO = {
+      ga4Id: "G-XXXXXXXXXX",
+      gtmId: "GTM-XXXXXXX",
+      debug: false
+    };
+  </script>
+  <script src="seo-tracking.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -39,6 +54,10 @@
     }
 
     .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .serif {
       font-family: 'Cormorant Garamond', serif;
     }
 
@@ -73,6 +92,46 @@
     nav {
       backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.95);
+    }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-switch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid #c9b896;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #78716c;
+      background: transparent;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .nav-switch-btn:hover {
+      background: #c9b896;
+      color: #fff;
+      border-color: #c9b896;
     }
 
     .tab-button {
@@ -142,6 +201,7 @@
       display: flex;
       flex-direction: column;
       border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(28,25,23,0.08);
     }
 
     .project-image {
@@ -360,6 +420,81 @@
       background: #fff;
     }
 
+    .contact-form {
+      max-width: 600px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      background: #fafaf9;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      color: #1f2937;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #c9b896;
+      background: #ffffff;
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      padding: 1rem 3rem;
+      background: #111827;
+      color: #ffffff;
+      border: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      min-height: 48px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .submit-button:hover {
+      background: #c9b896;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .submit-button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .success-message, .error-message {
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .success-message {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
     /* Mobile Menu */
     .mobile-menu {
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -395,22 +530,28 @@
   <!-- <script src="/_sdk/data_sdk.js" type="text/javascript"></script> --> <!-- SDK 檔案不存在，已註解 -->
  </head>
  <body class="h-full font-noto bg-white text-gray-900 overflow-auto"><!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-md">
-   <div class="max-w-screen-2xl mx-auto px-5 sm:px-6 lg:px-16 h-20 sm:h-24 flex items-center justify-between">
-    <a href="visual.html" class="font-cormorant text-xl sm:text-2xl font-light tracking-wide hover:text-gray-600 transition-colors" id="nav-title">WORKS</a>
-    <div class="hidden md:flex gap-6 lg:gap-8 text-xs sm:text-sm tracking-widest uppercase">
-      <a href="visual.html" class="hover:text-gray-600 transition-colors">3D 首頁</a>
-      <a href="services.html" class="hover:text-gray-600 transition-colors">服務</a>
-      <a href="#works" class="hover:text-gray-600 transition-colors">作品</a>
-      <a href="process.html" class="hover:text-gray-600 transition-colors">流程</a>
-      <a href="#contact" class="hover:text-gray-600 transition-colors">聯絡</a>
-    </div>
-    <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-button" aria-label="打開選單">
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-stone-100 bg-white/95 backdrop-blur-md">
+   <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16">
+    <div class="flex items-center justify-between h-20 sm:h-24">
+     <a href="index.html" class="flex items-center gap-3">
+      <img src="LOGO2.png" alt="Wayto Metaverse" class="h-10 sm:h-12 w-auto">
+      <span class="serif text-lg sm:text-xl text-stone-900 font-light tracking-wider hidden sm:inline">Wayto Metaverse</span>
+     </a>
+     <div class="hidden md:flex items-center gap-8 lg:gap-12">
+      <a href="visual.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">3D 首頁</a>
+      <a href="services.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">服務</a>
+      <a href="portfolio.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">作品集</a>
+      <a href="process.html" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">流程</a>
+      <a href="#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">聯絡</a>
+     </div>
+     <a href="tech.html" class="nav-switch-btn hidden md:inline-flex ml-4" title="切換至數位解決方案">數位解決方案</a>
+     <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-button" aria-label="打開選單">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
-    </button>
-                        </div>
+     </button>
+    </div>
+   </div>
   </nav>
   
   <!-- Mobile Menu -->
@@ -431,26 +572,29 @@
         <div class="space-y-1">
           <a href="visual.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">3D 視覺化首頁</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">3D HOME</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">3D 首頁</div>
           </a>
           <a href="services.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">服務項目</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">SERVICES</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">服務</div>
           </a>
-          <a href="#works" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
-            <div class="font-light">作品展示</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">WORKS</div>
+          <a href="portfolio.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
+            <div class="font-light">作品集</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">作品集</div>
           </a>
           <a href="process.html" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">服務流程</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">PROCESS</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">流程</div>
           </a>
           <a href="#contact" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
             <div class="font-light">聯絡我們</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">CONTACT</div>
+            <div class="text-xs text-stone-500 mt-1 tracking-wide">聯絡</div>
           </a>
         </div>
       </nav>
+      <div class="px-5 pb-5">
+        <a href="tech.html" class="nav-switch-btn w-full justify-center py-3 mt-2">切換至 數位解決方案</a>
+      </div>
       <div class="p-5 border-t border-stone-100">
         <div class="text-xs text-stone-500 text-center">© 2024 Wayto Metaverse Technology</div>
       </div>
@@ -518,22 +662,54 @@
       <div class="gallery-dots" id="gallery-dots"></div>
      </div>
     </div>
-   </section><!-- Footer -->
-   <footer id="contact" class="py-16 px-6 lg:px-16 mt-32 border-t border-gray-100">
+   </section>
+   <section id="contact" class="py-32 px-6 lg:px-16 bg-fafaf9">
     <div class="max-w-screen-2xl mx-auto">
-     <div class="flex flex-col lg:flex-row justify-between items-start gap-12">
-      <div>
-       <div class="font-cormorant text-xl font-light tracking-wide mb-4">
-        WORKS
-                </div>
-       <p class="text-sm text-gray-500">3D Visualization Studio</p>
-            </div>
-      <div class="text-sm text-gray-500">
-       <p>© 2024 All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+     <div class="max-w-4xl mx-auto">
+      <div class="mb-16 text-center fade-up">
+       <p class="text-xs tracking-widest uppercase text-gray-400 mb-6">Contact</p>
+       <h2 class="font-cormorant text-4xl lg:text-5xl font-light mb-8 text-gray-900">聯絡我們</h2>
+       <p class="text-gray-600 leading-loose max-w-2xl mx-auto">如果你有正在進行的案子，<br>
+         或需要評估適合的呈現方式，<br>
+         歡迎與我們聯絡，一起討論合作方向。</p>
+      </div>
+      <div class="fade-up">
+       <div class="mb-12 text-center space-y-3">
+        <p class="text-gray-600"><span class="text-sm text-gray-400 uppercase tracking-wider">Email</span><br><a href="mailto:wayto.metaverse@gmail.com" class="text-lg hover:text-gray-500 transition-colors">wayto.metaverse@gmail.com</a></p>
+        <p class="text-gray-600"><span class="text-sm text-gray-400 uppercase tracking-wider">Phone</span><br><a href="tel:0981286889" class="text-lg hover:text-gray-500 transition-colors">0981-286-889</a></p>
+       </div>
+       <div class="contact-form mx-auto">
+        <p class="text-sm text-gray-500 mb-8 text-center">留下簡單的案型與需求，<br>
+          我們會回覆並協助評估適合的呈現方式。</p>
+        <form id="contact-form">
+         <div class="space-y-4">
+          <div><label for="name" class="sr-only">姓名</label> <input type="text" id="name" name="name" placeholder="姓名" required class="form-input"></div>
+          <div><label for="email" class="sr-only">Email</label> <input type="email" id="email" name="email" placeholder="Email" required class="form-input"></div>
+          <div><label for="phone" class="sr-only">電話</label> <input type="tel" id="phone" name="phone" placeholder="電話（選填）" class="form-input"></div>
+          <div><label for="message" class="sr-only">案型與需求</label> <textarea id="message" name="message" placeholder="請簡述您的案型與需求" required class="form-textarea"></textarea></div>
+          <div class="text-center pt-4"><button type="submit" class="submit-button">送出訊息</button></div>
+         </div>
+        </form>
+        <div id="form-message"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+  <footer class="py-16 bg-white border-t border-stone-200">
+   <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+     <div class="text-lg text-stone-400 font-light tracking-wider">
+      <a href="index.html" class="flex items-center"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 28px; width: auto; opacity: 0.6;"></a>
+     </div>
+     <div class="flex items-center gap-10"><a href="visual.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">3D 首頁</a> <a href="tech.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">數位解決方案</a> <a href="services.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">服務</a> <a href="portfolio.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">作品集</a> <a href="process.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">流程</a> <a href="#contact" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">聯絡</a>
+     </div>
+     <div class="text-xs text-stone-400 tracking-wide">
+      © 2024 Wayto Metaverse Technology Co., Ltd. All rights reserved.
+     </div>
+    </div>
+   </div>
+  </footer>
   </main>
   <script>
     let portfolioData = { categories: [], items: [] };
@@ -758,7 +934,6 @@
         btn.style.borderBottomColor = accentColor;
       });
 
-      document.getElementById('nav-title').textContent = config.page_title || defaultConfig.page_title;
       document.getElementById('hero-label').textContent = config.page_title || defaultConfig.page_title;
       document.getElementById('hero-title').textContent = config.page_subtitle || defaultConfig.page_subtitle;
       document.getElementById('hero-description').innerHTML = (config.intro_text || defaultConfig.intro_text).replace(/\n/g, '<br>');
@@ -987,7 +1162,66 @@
         closeMobileMenu();
       }
     });
+
+    const EMAILJS_CONFIG = {
+      publicKey: 'bvOvfXx0nSTervS4-',
+      serviceId: 'service_jryj1my',
+      templateId: 'template_mc47tot'
+    };
+
+    (function() {
+      emailjs.init(EMAILJS_CONFIG.publicKey);
+    })();
+
+    const contactForm = document.getElementById('contact-form');
+    const formMessage = document.getElementById('form-message');
+
+    if (contactForm && formMessage) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitButton = contactForm.querySelector('.submit-button');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = '送出中...';
+        formMessage.innerHTML = '';
+
+        try {
+          const formData = {
+            from_name: contactForm.querySelector('#name').value,
+            from_email: contactForm.querySelector('#email').value,
+            phone: contactForm.querySelector('#phone').value || '未提供',
+            message: contactForm.querySelector('#message').value,
+            to_email: 'wayto.metaverse@gmail.com'
+          };
+
+          await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateId,
+            formData
+          );
+
+          formMessage.innerHTML = '<div class="success-message">感謝您的訊息！我們會盡快與您聯絡。</div>';
+          contactForm.reset();
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+
+          setTimeout(() => {
+            formMessage.innerHTML = '';
+          }, 5000);
+        } catch (error) {
+          console.error('EmailJS Error:', error);
+          formMessage.innerHTML = '<div class="error-message">發送失敗，請稍後再試或直接發送郵件至 wayto.metaverse@gmail.com</div>';
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+
+          setTimeout(() => {
+            formMessage.innerHTML = '';
+          }, 5000);
+        }
+      });
+    }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b56d94ec4a5f1e0',t:'MTc2Njk4NTYzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  <script src="dynamic-bg.js"></script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b56d94ec4a5f1e0',t:'MTc2Njk4NTYzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
 
