@@ -10,25 +10,35 @@
 
 body.wayto-has-shared-nav {
   padding-top: 64px;
+  overflow-x: hidden;
 }
 
-/* NAV */
-nav {
+/* Fixed wrapper avoids legacy page overflow/transform breaking position:fixed */
+#shared-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 9999;
+  height: 64px;
+  pointer-events: none;
+}
+
+/* NAV */
+#mainNav {
+  position: relative;
+  width: 100%;
+  height: 64px;
+  pointer-events: auto;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  height: 64px;
   display: flex;
   align-items: center;
   transition: box-shadow 0.3s;
 }
 
-nav.scrolled {
+#mainNav.scrolled {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
