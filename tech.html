@@ -765,70 +765,13 @@
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <!-- <script src="/_sdk/data_sdk.js" type="text/javascript"></script> --> <!-- SDK文件不存在，已注释 -->
+  <link rel="stylesheet" href="/wayto1/shared/layout.css">
 </head>
- <body class="h-full overflow-auto bg-white">
-  <div class="app-wrapper w-full h-full"><!-- 導航列 -->
-   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100">
-    <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16">
-     <div class="flex items-center justify-between h-20 sm:h-24">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="LOGO2.png" alt="Wayto Metaverse" class="h-10 sm:h-12 w-auto">
-        <span class="serif text-lg sm:text-xl text-stone-900 font-light tracking-wider hidden sm:inline">Wayto Metaverse</span>
-      </a>
-      <div class="hidden md:flex items-center gap-8 lg:gap-12">
-        <a href="#services" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">服務</a>
-        <a href="#about" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">關於</a>
-        <a href="#contact" class="nav-link text-xs tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase">聯絡</a>
-      </div>
-      <a href="visual.html" class="nav-switch-btn hidden md:inline-flex ml-4" title="切換至 3D 視覺化">3D 視覺化</a>
-      <button class="md:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-button" aria-label="打開選單">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-     </div>
-    </div>
-   </nav>
-   
-   <!-- Mobile Menu -->
-   <div class="mobile-menu fixed inset-0 bg-white z-[9999] transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
-    <div class="flex flex-col h-full">
-      <div class="flex items-center justify-between p-5 border-b border-stone-100">
-        <a href="index.html" class="flex items-center gap-3">
-          <img src="LOGO2.png" alt="Wayto Metaverse" class="h-9 w-auto">
-          <span class="serif text-lg text-stone-900 font-light tracking-wider">Wayto Metaverse</span>
-        </a>
-        <button class="p-2 text-stone-600 hover:text-stone-900 transition-colors" id="mobile-menu-close" aria-label="關閉選單">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <nav class="flex-1 overflow-y-auto py-8 px-5">
-        <div class="space-y-1">
-          <a href="#services" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
-            <div class="font-light">數位服務</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">服務</div>
-          </a>
-          <a href="#about" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
-            <div class="font-light">技術優勢</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">關於</div>
-          </a>
-          <a href="#contact" class="block py-4 px-4 text-lg text-stone-900 hover:bg-stone-50 transition-colors border-b border-stone-100">
-            <div class="font-light">聯絡我們</div>
-            <div class="text-xs text-stone-500 mt-1 tracking-wide">聯絡</div>
-          </a>
-        </div>
-      </nav>
-      <div class="px-5 pb-5">
-        <a href="visual.html" class="nav-switch-btn w-full justify-center py-3 mt-2">切換至 3D 視覺化</a>
-      </div>
-      <div class="p-5 border-t border-stone-100">
-        <div class="text-xs text-stone-500 text-center">© 2024 Wayto Metaverse Technology</div>
-      </div>
-    </div>
-   </div><!-- Hero 區 -->
-   <section class="relative pt-20 sm:pt-24" style="min-height: 100%; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);">
+ <body class="wayto-has-shared-nav h-full overflow-auto bg-white" data-nav-current="solutions">
+  <div id="shared-nav"></div>
+  <div class="app-wrapper w-full h-full">
+   <!-- Hero 區 -->
+   <section class="relative" style="min-height: 100%; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);">
     <div class="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-16 py-16 sm:py-20 md:py-28 lg:py-40">
      <div class="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center">
       <div>
@@ -1286,22 +1229,7 @@
       </div>
      </div>
     </div>
-   </section><!-- Footer -->
-   <footer class="py-16 bg-white border-t border-stone-200">
-    <div class="max-w-[1800px] mx-auto px-6 lg:px-16">
-     <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
-      <div class="serif text-lg text-stone-400 font-light tracking-wider">
-       <a href="index.html" class="flex items-center"><img src="LOGO2.png" alt="Wayto Metaverse" style="height: 28px; width: auto; opacity: 0.6;"></a>
-      </div>
-      <div class="flex items-center gap-10"><a href="visual.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">3D 首頁</a> <a href="tech.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">數位解決方案</a> <a href="services.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">服務</a> <a href="portfolio.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">作品集</a> <a href="process.html" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">流程</a> <a href="#contact" class="text-xs tracking-widest text-stone-500 hover:text-stone-900 transition-colors uppercase">聯絡</a>
-      </div>
-      <div class="text-xs text-stone-400 tracking-wide">
-       © 2024 Wayto Metaverse Technology Co., Ltd. All rights reserved.
-                </div>
-                </div>
-            </div>
-   </footer>
-  </div>
+   </section></div>
   
   <!-- Modal 弹窗 -->
   <div class="modal-overlay" id="modal-overlay"></div>
@@ -1870,6 +1798,8 @@
     });
   </script>
   <script src="dynamic-bg.js"></script>
+  <div id="shared-footer"></div>
+  <script src="/wayto1/shared/layout-root.js"></script>
 </body>
 </html>
 
