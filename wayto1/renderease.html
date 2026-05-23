@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RenderEase 空間即時預覽｜AI 建材視覺化平台｜Wayto Metaverse</title>
+<meta name="description" content="RenderEase 空間即時預覽 — 給建材商與展示業者的 AI 視覺化平台。上傳一張室內照片，即可在原始光影下換上你的建材，牆面、地板即時可換 — 不用建模、不用渲染、不用寄樣品。">
+<meta name="keywords" content="建材視覺化,建材線上目錄,AI 換建材,室內材質模擬,牆面材質替換,地板替換,建材展示工具">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/renderease.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RenderEase 空間即時預覽｜AI 建材視覺化平台">
+<meta property="og:description" content="上傳一張照片，把你的建材，裝進客戶的房子裡 — 光影自然延續，所見即所得。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/renderease/after-dark-wood.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RenderEase","alternateName":"空間即時預覽","description":"AI 驅動的建材視覺化平台 — 上傳室內照片即可即時更換牆面與地板材質，保留原始光影。","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://wayto.com.tw/wayto1/renderease.html","image":"https://wayto.com.tw/wayto1/uploads/renderease/after-dark-wood.png","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+
+/* HERO */
+.wf-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#f5f7fa 0%,#fff 100%)}
+.wf-hero-inner{max-width:1320px;margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
+.wf-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:6px 16px 6px 8px;background:#fff;border:1px solid var(--border);border-radius:999px}
+.wf-brand-row img{height:22px;width:auto}
+.wf-brand-row span{font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;color:var(--navy);letter-spacing:1px}
+.wf-brand-row b{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:1px;padding-left:10px;border-left:1px solid var(--border)}
+.wf-hero h1{font-size:clamp(34px,4.2vw,54px);font-weight:900;color:#0f172a;line-height:1.25;letter-spacing:-0.6px;margin-bottom:24px}
+.wf-hero h1 em{font-style:normal;color:var(--blue)}
+.wf-hero-desc{font-size:15px;color:#1e293b;line-height:2;margin-bottom:32px;max-width:540px}
+.wf-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.wf-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.wf-btn-primary{background:var(--navy);color:#fff}
+.wf-btn-primary:hover{background:var(--blue);transform:translateY(-1px)}
+.wf-btn-outline{background:transparent;color:var(--navy);border:1px solid rgba(26,43,94,.35)}
+.wf-btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.wf-hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:24px;border-top:1px solid #cbd5e1;padding-top:22px;max-width:620px}
+.wf-hero-meta .lab{font-size:11px;font-weight:600;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.wf-hero-meta .val{font-size:13.5px;font-weight:700;color:#0f172a}
+
+/* BEFORE/AFTER SLIDER */
+.ba-slider{position:relative;width:100%;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(15,23,42,.18);aspect-ratio:4/3;background:#0a1224;user-select:none;touch-action:pan-y}
+.ba-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.ba-after-wrap{position:absolute;inset:0;width:100%;clip-path:inset(0 50% 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;transform:translateX(-50%);box-shadow:0 0 0 1px rgba(15,23,42,.15),0 4px 16px rgba(15,23,42,.25);cursor:ew-resize}
+.ba-handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 6px 22px rgba(15,23,42,.25)}
+.ba-handle::after{content:'⇆';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:18px;color:var(--navy);font-weight:700;pointer-events:none}
+.ba-label{position:absolute;top:16px;background:rgba(15,23,42,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;padding:6px 12px;border-radius:4px;font-family:'Outfit',sans-serif;text-transform:uppercase;pointer-events:none}
+.ba-label.before{left:16px}.ba-label.after{right:16px}
+
+/* SECTION HEAD */
+.wf-section-head{margin-bottom:48px;max-width:760px}
+.wf-section-head .tag{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.wf-section-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.wf-section-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* PAIN POINTS */
+.wf-pain{padding:80px;max-width:1320px;margin:0 auto}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;transition:all .25s;position:relative;overflow:hidden}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#60a5fa);opacity:0;transition:opacity .25s}
+.pain-card:hover{border-color:#bfdbfe;box-shadow:0 12px 36px rgba(37,99,235,.1);transform:translateY(-4px)}
+.pain-card:hover::before{opacity:1}
+.pain-num{font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:var(--blue);letter-spacing:2px;margin-bottom:16px}
+.pain-card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.pain-card p{font-size:13.5px;color:var(--muted);line-height:1.95}
+
+/* FLOW */
+.wf-flow{background:var(--gray-bg);padding:80px}
+.wf-flow-inner{max-width:1320px;margin:0 auto}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+.flow-step{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 24px 26px;position:relative;transition:all .25s}
+.flow-step:hover{border-color:var(--blue);box-shadow:0 10px 28px rgba(37,99,235,.1)}
+.flow-num{font-family:'Outfit',sans-serif;font-size:48px;font-weight:200;color:#94a3b8;line-height:1;margin-bottom:16px;letter-spacing:-1px}
+.flow-step h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.flow-step p{font-size:13px;color:var(--muted);line-height:1.85}
+.flow-step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--blue);font-weight:300;background:var(--gray-bg);width:24px;height:24px;display:flex;align-items:center;justify-content:center;z-index:2}
+.flow-step:last-child::after{display:none}
+
+/* SHOWCASE */
+.wf-showcase{padding:80px;max-width:1320px;margin:0 auto}
+.showcase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:16px;max-width:1080px}
+.show-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
+.show-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(15,23,42,.12)}
+.show-img{aspect-ratio:4/3;overflow:hidden;background:#0a1224}
+.show-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.show-card:hover .show-img img{transform:scale(1.03)}
+.show-info{padding:18px 22px 22px}
+.show-tag{font-family:'Outfit',sans-serif;font-size:10px;font-weight:500;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.show-info h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.show-info p{font-size:12.5px;color:var(--muted);line-height:1.75}
+
+/* WHY */
+.wf-why{padding:80px;max-width:1320px;margin:0 auto}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.why-card{border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;background:#fff;transition:all .25s}
+.why-card:hover{border-color:#bfdbfe;box-shadow:0 6px 28px rgba(37,99,235,.08);transform:translateY(-3px)}
+.why-card-num{font-family:'Outfit',sans-serif;font-size:36px;font-weight:200;color:#94a3b8;line-height:1;margin-bottom:18px;letter-spacing:-1px}
+.why-card h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.why-card p{font-size:13.5px;color:var(--muted);line-height:1.95}
+
+/* AUDIENCE */
+.wf-audience{background:var(--gray-bg);padding:80px}
+.wf-audience-inner{max-width:1320px;margin:0 auto}
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.aud-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.aud-icon{width:48px;height:48px;border-radius:12px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;font-family:'Outfit',sans-serif}
+.aud-card h3{font-size:16px;font-weight:800;color:var(--navy)}
+.aud-card p{font-size:13px;color:var(--muted);line-height:1.85}
+
+/* BEHIND THE SCENES */
+.wf-behind{padding:80px;max-width:1320px;margin:0 auto}
+.behind-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.behind-img{border-radius:16px;overflow:hidden;background:#0a1224;aspect-ratio:4/3}
+.behind-img img{width:100%;height:100%;object-fit:cover;display:block}
+.behind-text h2{font-size:clamp(24px,2.8vw,32px);font-weight:900;color:#0f172a;line-height:1.4;margin-bottom:16px}
+.behind-text p{font-size:14px;color:var(--muted);line-height:2;margin-bottom:14px}
+
+/* CTA */
+.wf-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.wf-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(96,165,250,.2),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(186,230,253,.12),transparent 60%);pointer-events:none}
+.wf-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.wf-cta .tag{font-size:12px;font-weight:600;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.wf-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.wf-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.wf-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.wf-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.wf-cta-primary{background:#fff;color:var(--navy)}
+.wf-cta-primary:hover{background:var(--sky)}
+.wf-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.wf-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .wf-hero-inner{padding:64px 32px;grid-template-columns:1fr;gap:48px}
+  .wf-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .wf-pain,.wf-flow,.wf-showcase,.wf-why,.wf-audience,.wf-behind,.wf-cta{padding:64px 32px}
+  .pain-grid,.why-grid,.aud-grid{grid-template-columns:repeat(2,1fr)}
+  .showcase-grid{max-width:none}
+  .flow-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .flow-step::after{display:none}
+  .behind-grid{grid-template-columns:1fr;gap:32px}
+  .wf-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .wf-hero-inner{padding:48px 20px;gap:36px}
+  .wf-brand-row{padding:6px 14px 6px 8px;margin-bottom:20px}
+  .wf-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .wf-hero h1 br{display:none}
+  .wf-hero-desc{font-size:14px;line-height:1.95}
+  .wf-hero-desc br{display:none}
+  .wf-hero-btns .wf-btn{flex:1;justify-content:center;min-width:0}
+  .wf-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .ba-handle::before{width:38px;height:38px}
+  .wf-pain,.wf-flow,.wf-showcase,.wf-why,.wf-audience,.wf-behind{padding:56px 20px}
+  .wf-cta{padding:64px 20px}
+  .wf-section-head{margin-bottom:36px}
+  .wf-section-head h2{font-size:24px}
+  .pain-grid,.showcase-grid,.why-grid,.aud-grid,.flow-grid{grid-template-columns:1fr;gap:14px}
+  .pain-card,.why-card,.aud-card{padding:26px 22px 24px}
+  .flow-step{padding:24px 22px 22px}
+  .flow-num{font-size:42px;margin-bottom:14px}
+  .behind-text h2{font-size:22px}
+  .wf-cta h2{font-size:22px}
+  .wf-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .wf-hero-inner{padding:40px 16px}
+  .wf-hero h1{font-size:clamp(24px,8vw,32px)}
+  .wf-hero-desc{font-size:13.5px}
+  .wf-hero-meta{grid-template-columns:1fr;gap:12px}
+  .wf-btn{padding:11px 22px;font-size:14px}
+  .wf-pain,.wf-flow,.wf-showcase,.wf-why,.wf-audience,.wf-behind,.wf-cta{padding:48px 16px}
+  .wf-section-head h2{font-size:22px;line-height:1.4}
+  .wf-section-head p{font-size:13.5px}
+  .wf-section-head p br{display:none}
+  .pain-card h3,.why-card h3,.aud-card h3,.flow-step h3{font-size:15.5px}
+  .pain-card p,.why-card p,.aud-card p,.flow-step p,.show-info p{font-size:13px}
+  .ba-handle::before{width:34px;height:34px}
+  .ba-handle::after{font-size:15px}
+  .ba-label{font-size:10px;padding:5px 10px;top:12px}
+  .ba-label.before{left:12px}.ba-label.after{right:12px}
+  .behind-text h2{font-size:20px;line-height:1.45}
+  .behind-text h2 br,.behind-text p br{display:none}
+  .wf-cta h2{font-size:20px}
+  .wf-cta h2 br,.wf-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="solutions">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="wf-hero">
+  <div class="wf-hero-inner">
+    <div class="wf-hero-left">
+      <div class="wf-brand-row reveal">
+        <img src="uploads/renderease/logo.png" alt="RenderEase 空間即時預覽">
+        <span>RenderEase</span>
+        <b>空間即時預覽</b>
+      </div>
+      <h1 class="reveal reveal-d1">把你的<em>建材</em>，<br>裝進客戶的<em>房子</em>裡</h1>
+      <p class="wf-hero-desc reveal reveal-d2">
+        上傳一張室內照片，<br>
+        在原本的光影下換上你的建材 ——<br>
+        客戶當場看到「我家換成這個」會長什麼樣，<br>
+        不用建模、不用渲染、不用寄樣品。
+      </p>
+      <div class="wf-hero-btns reveal reveal-d2">
+        <a class="wf-btn wf-btn-primary" href="#contact">申請建材商方案 →</a>
+        <a class="wf-btn wf-btn-outline" href="#flow">看怎麼運作</a>
+      </div>
+      <div class="wf-hero-meta reveal reveal-d3">
+        <div><div class="lab">Built for</div><div class="val">建材商 / 展示業</div></div>
+        <div><div class="lab">Input</div><div class="val">一張室內照片</div></div>
+        <div><div class="lab">Output</div><div class="val">即時換材結果</div></div>
+        <div><div class="lab">Setup</div><div class="val">免建模 / 免渲染</div></div>
+      </div>
+    </div>
+
+    <div class="wf-hero-right reveal reveal-d1">
+      <div class="ba-slider" id="baSlider">
+        <img src="uploads/renderease/before.jpg" alt="原始空間照片">
+        <div class="ba-after-wrap" id="baAfter">
+          <img src="uploads/renderease/after-dark-wood.png" alt="替換建材後的空間">
+        </div>
+        <div class="ba-label before">Before</div>
+        <div class="ba-label after">After</div>
+        <div class="ba-handle" id="baHandle"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="wf-pain" id="pain">
+  <div class="wf-section-head reveal">
+    <div class="tag">The Challenge</div>
+    <h2>建材銷售卡的不是建材本身，<br>而是客戶「想像不出來」</h2>
+    <p>實品再美，從目錄翻到自己家裡這段距離，<br>是大多數客戶遲遲不下單的真正原因。</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal">
+      <div class="pain-num">01</div>
+      <h3>實體樣品成本高</h3>
+      <p>寄一塊樣品，是運費 + 包裝 + 寄回；<br>客戶看到的是 10 公分小方塊，<br>不是「貼在我家牆上的樣子」。</p>
+    </div>
+    <div class="pain-card reveal reveal-d1">
+      <div class="pain-num">02</div>
+      <h3>拍實品案場照很貴</h3>
+      <p>找攝影師、找完工現場、做造型、後製 ——<br>一張像樣的案場照動輒幾萬，<br>而且只能呈現你建材的一種搭配。</p>
+    </div>
+    <div class="pain-card reveal reveal-d2">
+      <div class="pain-num">03</div>
+      <h3>線上目錄轉換率低</h3>
+      <p>客戶看到的永遠只是色票或產品照，<br>沒辦法把建材「套」進自己的空間，<br>下單前的決策斷層難以跨越。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="wf-flow" id="flow">
+  <div class="wf-flow-inner">
+    <div class="wf-section-head reveal">
+      <div class="tag">How it works</div>
+      <h2>四步，把建材裝進客戶的房子</h2>
+      <p>不需要設計背景、不需要 3D 軟體，<br>業務或客戶自己用瀏覽器就能完成。</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <h3>上傳一張照片</h3>
+        <p>客戶自己拍、業務示範拍、或用品牌示範空間。手機照片就行。</p>
+      </div>
+      <div class="flow-step reveal reveal-d1">
+        <div class="flow-num">02</div>
+        <h3>系統自動分區</h3>
+        <p>幾秒內自動辨識牆面與地板等可換材區域，不用手動描邊。</p>
+      </div>
+      <div class="flow-step reveal reveal-d2">
+        <div class="flow-num">03</div>
+        <h3>點選 + 套用建材</h3>
+        <p>點想換的區域，從你的建材庫挑一款套上去，馬上看到結果。</p>
+      </div>
+      <div class="flow-step reveal reveal-d3">
+        <div class="flow-num">04</div>
+        <h3>所見即所得</h3>
+        <p>原本的光線、陰影、立體感自動延續，看起來像實際施工後拍的。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="wf-showcase">
+  <div class="wf-section-head reveal">
+    <div class="tag">Real samples</div>
+    <h2>牆面與地板，<br>同一張照片即時切換</h2>
+    <p>業務跟客戶開會時可以即時換材討論，<br>客戶也可以自己在你的線上目錄裡「試貼」自家照片。</p>
+  </div>
+  <div class="showcase-grid">
+    <div class="show-card reveal">
+      <div class="show-img"><img src="uploads/renderease/after-dark-wood.png" alt="深木紋牆面範例"></div>
+      <div class="show-info">
+        <div class="show-tag">Sample 01 · Wall</div>
+        <h3>牆面 · 深木紋飾板</h3>
+        <p>把暖色乳膠漆牆換成深色木紋飾板 — 光線與陰影完整延續。</p>
+      </div>
+    </div>
+    <div class="show-card reveal reveal-d1">
+      <div class="show-img"><img src="uploads/renderease/after-floor.png" alt="地板換材範例"></div>
+      <div class="show-info">
+        <div class="show-tag">Sample 02 · Floor</div>
+        <h3>地板 · 同房間另套材質</h3>
+        <p>只換地板、牆面保持原樣 — 光影、家具陰影、家具邊緣自動延續。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY FAST/EASY -->
+<section class="wf-why">
+  <div class="wf-section-head reveal">
+    <div class="tag">Why so fast</div>
+    <h2>為什麼可以做到「所見即所得」？</h2>
+    <p>把繁複的設計與渲染流程，<br>壓縮成業務跟客戶之間的一次點擊。</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-card-num">01</div>
+      <h3>不用建模、不用渲染</h3>
+      <p>從原圖直接套材質，省掉 3D 建模 + 等渲染的時間，從幾小時變成幾秒。</p>
+    </div>
+    <div class="why-card reveal reveal-d1">
+      <div class="why-card-num">02</div>
+      <h3>光影自然延續</h3>
+      <p>系統會保留原圖的光線方向、陰影、立體感，新材質不會看起來像「貼上去」。</p>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <div class="why-card-num">03</div>
+      <h3>一張原圖，無限換材</h3>
+      <p>客戶拿一張自己家的照片，就能在你的建材庫裡反覆試貼，直到挑到滿意。</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="wf-audience">
+  <div class="wf-audience-inner">
+    <div class="wf-section-head reveal">
+      <div class="tag">Who it&apos;s for</div>
+      <h2>誰最適合用空間即時預覽？</h2>
+      <p>所有需要讓客戶「想像建材在實際空間裡」的場景。</p>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card reveal">
+        <div class="aud-icon">01</div>
+        <h3>建材商 / 進口建材代理</h3>
+        <p>把線上目錄從「色票」升級成「客戶家裡的成果」，提升詢問品質與轉換。</p>
+      </div>
+      <div class="aud-card reveal reveal-d1">
+        <div class="aud-icon">02</div>
+        <h3>建材展示中心 / 樣品屋</h3>
+        <p>業務帶客戶逛展示中心時，現場用平板換材，省掉「想像」這個最大障礙。</p>
+      </div>
+      <div class="aud-card reveal reveal-d2">
+        <div class="aud-icon">03</div>
+        <h3>線上建材電商</h3>
+        <p>串接成自家網站的試用功能，客戶上傳照片試貼，留下高意圖名單。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEHIND THE SCENES -->
+<section class="wf-behind">
+  <div class="behind-grid">
+    <div class="behind-img reveal">
+      <img src="uploads/renderease/depth-analysis.png" alt="系統自動分析空間深度與光線">
+    </div>
+    <div class="behind-text reveal reveal-d1">
+      <div class="wf-section-head" style="margin-bottom:0">
+        <div class="tag">Behind the scenes</div>
+        <h2>看起來簡單，<br>背後其實在做這些事</h2>
+        <p>系統會在幾秒內讀懂這張照片 ——<br>哪邊是牆、哪邊是地板、光從哪個方向來、<br>每個物件離鏡頭多遠。</p>
+        <p>所以你換上去的建材，<br>會自動跟著原本的光線跟透視走，<br>而不是平貼上去的色塊。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="wf-cta" id="contact">
+  <div class="wf-cta-inner">
+    <div>
+      <div class="tag">Talk to us</div>
+      <h2>把這個工具，<br>串進你的建材銷售流程</h2>
+      <p>不論你是建材商、進口代理、展示中心、線上電商，<br>都可以聊聊我們怎麼幫你的客戶把「想像」變成「眼睛看見」。</p>
+    </div>
+    <div class="wf-cta-btns">
+      <a class="wf-cta-btn wf-cta-primary" href="mailto:wayto.metaverse@gmail.com">申請建材商方案 →</a>
+      <a class="wf-cta-btn wf-cta-ghost" href="/process.html#contact">先聊聊我的需求</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+// Before/After slider
+(function(){
+  var s = document.getElementById('baSlider');
+  if (!s) return;
+  var after = document.getElementById('baAfter');
+  var handle = document.getElementById('baHandle');
+  var dragging = false;
+
+  function setPos(clientX){
+    var rect = s.getBoundingClientRect();
+    var x = clientX - rect.left;
+    var pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+    handle.style.left = pct + '%';
+  }
+
+  function startDrag(e){
+    dragging = true;
+    s.style.cursor = 'ew-resize';
+    e.preventDefault();
+  }
+  function endDrag(){ dragging = false; s.style.cursor = ''; }
+  function move(e){
+    if (!dragging) return;
+    var x = e.touches ? e.touches[0].clientX : e.clientX;
+    setPos(x);
+  }
+
+  handle.addEventListener('mousedown', startDrag);
+  handle.addEventListener('touchstart', startDrag, { passive: false });
+  s.addEventListener('click', function(e){
+    if (e.target === handle) return;
+    setPos(e.clientX);
+  });
+  window.addEventListener('mousemove', move);
+  window.addEventListener('touchmove', move, { passive: true });
+  window.addEventListener('mouseup', endDrag);
+  window.addEventListener('touchend', endDrag);
+})();
+
+// Reveal on scroll
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
