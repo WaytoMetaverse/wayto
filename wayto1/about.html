@@ -200,14 +200,92 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 .reveal-d2 { transition-delay: .16s; }
 .reveal-d3 { transition-delay: .24s; }
 
+/* ─────────────── RWD ─────────────── */
+
+/* Tablet / small laptop */
 @media (max-width: 1100px) {
+  .about-hero { min-height: 480px; }
+  .about-hero-left { padding: 80px 32px; }
+  .about-hero-inner { max-width: 520px; }
+  .about-hero h1 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 24px; }
+
   .story-wrap {
     padding-left: 32px; padding-right: 32px;
     --timeline-x: 200px;
     --wrap-pad: 32px;
   }
-  .story-block { grid-template-columns: 180px 1fr 1fr; gap: 40px; }
+  .story-block { grid-template-columns: 180px 1fr 1.1fr; gap: 40px; }
   .story-content { padding-left: 32px; }
+
+  .dev-timeline { padding: 64px 32px 80px; }
+  .dev-grid { grid-template-columns: 1fr; gap: 36px; }
+
+  .believe-cta { padding: 60px 32px; flex-direction: column; align-items: flex-start; gap: 28px; }
+}
+
+/* Large phone / small tablet */
+@media (max-width: 720px) {
+  .about-hero { min-height: 420px; }
+  .about-hero-left { padding: 60px 24px; }
+  .about-hero-img img { object-position: 65% center; }
+  .about-hero-img::before {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0.75) 100%);
+  }
+  .about-hero h1 { font-size: 26px; margin-bottom: 20px; }
+  .about-hero-desc { font-size: 14px; line-height: 1.95; }
+  .about-hero-desc br { display: none; }
+
+  .story-wrap { padding: 32px 24px 24px; }
+  .story-wrap::before { display: none; }
+  .story-block { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+  .story-block::before { display: none; }
+  .story-side { padding-right: 0; }
+  .story-content { padding-left: 0; }
+  .story-num { font-size: 56px; margin-bottom: 18px; }
+  .story-title { font-size: 22px; }
+  .story-img {
+    margin: 0;
+    aspect-ratio: 16/10;
+    border-radius: 10px;
+    width: 100%;
+  }
+  .story-img::before { display: none; }
+
+  .dev-timeline { padding: 48px 24px 64px; }
+  .dev-head h2 { font-size: 24px; }
+  .dev-year-row { grid-template-columns: 56px 1fr; font-size: 13px; }
+
+  .believe-cta { padding: 48px 24px; gap: 24px; }
+  .believe-text h2 { font-size: 22px; }
+  .believe-cta-btn { width: 100%; max-width: 320px; justify-content: center; }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  .about-hero { min-height: 380px; }
+  .about-hero-left { padding: 48px 20px; }
+  .about-hero h1 { font-size: 22px; line-height: 1.4; }
+  .about-hero h1 br { display: none; }
+  .about-hero-tag { font-size: 12px; margin-bottom: 18px; }
+  .about-hero-desc { font-size: 13.5px; }
+
+  .story-wrap { padding: 24px 20px 16px; }
+  .story-block { padding: 24px 0; gap: 18px; }
+  .story-num { font-size: 48px; margin-bottom: 14px; }
+  .story-title { font-size: 20px; }
+  .story-sub { font-size: 14px; margin-bottom: 16px; }
+  .story-text { font-size: 13px; line-height: 1.95; }
+  .story-text br { display: none; }
+
+  .dev-timeline { padding: 40px 20px 56px; }
+  .dev-head h2 { font-size: 22px; }
+  .dev-head p { font-size: 13px; }
+
+  .believe-cta { padding: 40px 20px; }
+  .believe-tag { font-size: 12px; margin-bottom: 10px; }
+  .believe-text h2 { font-size: 20px; line-height: 1.45; }
+  .believe-text p { font-size: 13px; }
+  .believe-text p br { display: none; }
 }
 </style>
 </head>

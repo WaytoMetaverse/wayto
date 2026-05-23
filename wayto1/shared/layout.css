@@ -176,6 +176,64 @@ body.wayto-has-shared-nav {
   background: var(--blue);
 }
 
+/* ── HAMBURGER (mobile only) ── */
+.nav-hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: -8px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 11;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+#mainNav.menu-open .nav-hamburger span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+#mainNav.menu-open .nav-hamburger span:nth-child(2) {
+  opacity: 0;
+}
+#mainNav.menu-open .nav-hamburger span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── BACKDROP (mobile only) ── */
+.nav-mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(15, 23, 42, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 9998;
+}
+
+#mainNav.menu-open ~ .nav-mobile-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.nav-locked {
+  overflow: hidden;
+}
+
 /* FOOTER */
 footer {
   background: linear-gradient(135deg, #0a1635 0%, #061026 60%, #0a1635 100%);
@@ -398,6 +456,7 @@ footer::after {
   margin-left: 16px;
 }
 
+/* ── NAV: tablet/laptop compaction ── */
 @media (max-width: 1024px) {
   .footer-top {
     grid-template-columns: 1fr 1fr;
@@ -407,6 +466,118 @@ footer::after {
   .footer-brand {
     grid-column: 1 / -1;
   }
+
+  .nav-links { gap: 22px; }
+  .nav-links > li > a { font-size: 13.5px; }
+  .nav-inner { padding: 0 20px; }
+}
+
+/* ── NAV: switch to mobile menu ── */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+
+  .nav-cta {
+    display: none;
+  }
+
+  /* Turn nav-links into a slide-down drawer */
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: auto;
+    max-height: calc(100vh - 64px);
+    background: #fff;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0 24px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    overflow-y: auto;
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.28s ease, opacity 0.2s ease;
+    z-index: 10;
+  }
+
+  #mainNav.menu-open .nav-links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links > li {
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .nav-links > li:last-child { border-bottom: none; }
+
+  .nav-links > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    height: auto;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .nav-links > li.current > a::before { display: none; }
+  .nav-links > li.current > a { color: var(--blue); font-weight: 600; }
+
+  .nav-links .has-sub > a::after { margin-left: auto; }
+  .nav-links .has-sub:hover > a::after { transform: rotate(45deg) translateY(-2px); }
+
+  /* Sub-menu in mobile: always-visible indented list (no hover dropdown) */
+  .sub-menu {
+    position: static;
+    transform: none;
+    background: #fafafa;
+    border: none;
+    border-radius: 0;
+    padding: 4px 0 10px;
+    min-width: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  .nav-links > li:hover > .sub-menu {
+    transform: none;
+  }
+
+  .sub-menu li a {
+    padding: 10px 24px 10px 40px;
+    font-size: 13.5px;
+    color: #475569;
+  }
+
+  .sub-menu li a:hover {
+    background: transparent;
+    color: var(--blue);
+  }
+
+  /* Inline CTA inside drawer */
+  .nav-links::after {
+    content: "預約諮詢 →";
+    display: block;
+    margin: 16px 24px 0;
+    padding: 13px 22px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .nav-mobile-backdrop { display: block; }
 }
 
 @media (max-width: 640px) {
@@ -414,11 +585,5 @@ footer::after {
     grid-template-columns: 1fr;
   }
 
-  .nav-links {
-    display: none;
-  }
-
-  .nav-cta {
-    display: none;
-  }
+  .nav-inner { padding: 0 16px; }
 }

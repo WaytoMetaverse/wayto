@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pokēpokē 波奇波奇 加盟展店軟體案例 | 維次元宇宙科技股份有限公司 | Wayto Metaverse</title>
+<meta name="description" content="Wayto 為連鎖加盟品牌 pokēpokē 波奇波奇客製開發即時 3D 展店提案軟體：拖曳擺放、一鍵切換施工圖，把展店提案從外包設計師的數週流程，壓縮成業務在會議現場完成的 3D 體驗。">
+<meta name="keywords" content="加盟展店3D提案,連鎖品牌數位化,自動施工圖,pokepoke波奇波奇,客製3D軟體開發,展店提案編輯器">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/case-study-bocchi.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pokēpokē 波奇波奇 加盟展店軟體案例 | Wayto Metaverse">
+<meta property="og:description" content="把展店提案從找設計師畫圖的數週流程，壓縮成業務在會議現場完成的即時 3D 體驗與施工圖。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/bocchi/preview-interior.png">
+<meta property="og:locale" content="zh_TW">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "pokēpokē 波奇波奇加盟展店軟體開發案例",
+  "description": "Wayto 為連鎖餐飲品牌 pokēpokē 波奇波奇客製開發即時 3D 展店提案與自動施工圖軟體。",
+  "author": { "@type": "Organization", "name": "Wayto Metaverse Technology Co., Ltd." },
+  "publisher": { "@type": "Organization", "name": "Wayto Metaverse Technology Co., Ltd.", "url": "https://wayto.com.tw" },
+  "image": "https://wayto.com.tw/wayto1/uploads/bocchi/preview-interior.png",
+  "url": "https://wayto.com.tw/wayto1/case-study-bocchi.html"
+}
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1a2b5e;
+  --navy-dark: #111e45;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --sky: #e8f0fe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --gray-bg: #f5f7fa;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff; line-height: 1.7; font-weight: 400; }
+
+/* ── HERO ── */
+.case-hero {
+  margin-top: 64px; min-height: 540px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  background: #f5f7fa;
+}
+.case-hero-img { position: absolute; inset: 0; overflow: hidden; }
+.case-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; }
+.case-hero-img::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.45) 55%, rgba(255,255,255,0.12) 75%, transparent 90%);
+}
+.case-hero-left {
+  position: relative; z-index: 2;
+  max-width: 1320px; margin: 0 auto; padding: 100px 80px;
+  width: 100%;
+}
+.case-hero-inner { max-width: 620px; }
+.case-hero-tag {
+  font-size: 13px; font-weight: 600; color: #2563eb;
+  letter-spacing: 1.5px; margin-bottom: 24px;
+}
+.case-hero-client {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 400; color: #64748b;
+  letter-spacing: 1px; margin-bottom: 14px; text-transform: uppercase;
+}
+.case-hero h1 {
+  font-size: clamp(34px, 4vw, 52px); font-weight: 900;
+  color: #0f172a; line-height: 1.3; letter-spacing: -0.5px;
+  margin-bottom: 28px;
+}
+.case-hero-desc {
+  font-size: 15px; color: #1e293b; line-height: 2;
+  font-weight: 400; margin-bottom: 32px;
+}
+.case-hero-meta {
+  display: grid; grid-template-columns: repeat(3, auto); gap: 36px;
+  border-top: 1px solid #cbd5e1; padding-top: 24px;
+  max-width: 560px;
+}
+.case-hero-meta-item .lab {
+  font-size: 11px; font-weight: 600; color: #64748b;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+}
+.case-hero-meta-item .val {
+  font-size: 14px; font-weight: 700; color: #0f172a;
+}
+
+/* ── STORY BLOCKS (case study narrative) ── */
+.story-wrap {
+  padding: 60px 80px 60px; max-width: 1320px; margin: 0 auto; position: relative;
+  --timeline-x: 240px;
+  --wrap-pad: 80px;
+}
+.story-wrap::before {
+  content: ''; position: absolute;
+  left: var(--timeline-x); top: 60px; bottom: 60px;
+  width: 1px; background: #cbd5e1;
+  transform: translateX(-0.5px);
+}
+.story-block {
+  display: grid; grid-template-columns: 200px 1fr 1.4fr;
+  gap: 60px; padding: 56px 0;
+  position: relative;
+}
+.story-block::before {
+  content: ''; position: absolute;
+  left: calc(var(--timeline-x) - var(--wrap-pad));
+  top: 60px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: #2563eb; transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 3px #fff, 0 0 0 4px #2563eb;
+  z-index: 2;
+}
+.story-side {
+  padding-right: 24px;
+}
+.story-side-tag {
+  font-size: 12px; font-weight: 700; color: #2563eb;
+  letter-spacing: 1.5px; margin-bottom: 18px; text-transform: uppercase;
+}
+.story-side ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.story-side li { font-size: 13px; color: #334155; line-height: 1.65; }
+.story-side li b { display: block; font-weight: 600; color: #0f172a; margin-bottom: 2px; }
+.story-side li span { color: #64748b; }
+
+.story-content { padding-left: 60px; }
+.story-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 84px; font-weight: 200; color: #94a3b8;
+  line-height: 1; letter-spacing: -2px; margin-bottom: 28px;
+}
+.story-title {
+  font-size: 26px; font-weight: 800; color: #0f172a;
+  line-height: 1.4; letter-spacing: -0.3px;
+  margin-bottom: 14px;
+}
+.story-sub {
+  font-size: 15px; font-weight: 700; color: #0f172a;
+  margin-bottom: 22px;
+}
+.story-text {
+  font-size: 13.5px; color: #334155; line-height: 2;
+}
+.story-text p + p { margin-top: 8px; }
+.story-text ul { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.story-text ul li {
+  position: relative; padding-left: 18px; color: #334155; font-size: 13.5px;
+}
+.story-text ul li::before {
+  content: ''; position: absolute; left: 0; top: 12px;
+  width: 6px; height: 6px; border-radius: 50%; background: #2563eb;
+}
+
+.story-img {
+  position: relative; overflow: hidden;
+  align-self: stretch;
+  margin-top: -56px;
+  margin-bottom: -56px;
+  margin-right: min(-80px, calc(-1 * ((100vw - 1320px) / 2 + 80px)));
+  background: #f1f5f9;
+}
+.story-img::before {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 12%, rgba(255,255,255,0.25) 25%, rgba(255,255,255,0.05) 40%, transparent 55%);
+}
+.story-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── METRIC ROW ── */
+.metrics-band {
+  background: var(--gray-bg);
+  padding: 80px 80px;
+}
+.metrics-inner { max-width: 1320px; margin: 0 auto; }
+.metrics-head { margin-bottom: 48px; max-width: 720px; }
+.metrics-head .tag {
+  font-size: 12px; font-weight: 700; color: #2563eb;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px;
+}
+.metrics-head h2 {
+  font-size: 32px; font-weight: 900; color: #0f172a;
+  letter-spacing: -0.3px; line-height: 1.35; margin-bottom: 14px;
+}
+.metrics-head p { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+}
+.metric-item {
+  padding: 40px 36px; border-right: 1px solid var(--border);
+}
+.metric-item:last-child { border-right: none; }
+.metric-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 56px; font-weight: 300; color: var(--navy);
+  letter-spacing: -1.5px; line-height: 1; margin-bottom: 12px;
+}
+.metric-value .unit {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 18px; font-weight: 500; color: var(--navy); margin-left: 4px;
+  vertical-align: super;
+}
+.metric-label {
+  font-size: 12px; font-weight: 700; color: #2563eb;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;
+}
+.metric-desc { font-size: 13px; color: var(--muted); line-height: 1.85; }
+
+/* ── DUAL VIEW GALLERY ── */
+.dual-view {
+  padding: 80px 80px;
+  max-width: 1320px; margin: 0 auto;
+}
+.dual-view-head { margin-bottom: 40px; max-width: 720px; }
+.dual-view-head .tag {
+  font-size: 12px; font-weight: 700; color: #2563eb;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px;
+}
+.dual-view-head h2 {
+  font-size: 28px; font-weight: 900; color: #0f172a;
+  letter-spacing: -0.3px; line-height: 1.4; margin-bottom: 14px;
+}
+.dual-view-head p { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+.dual-view-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.dv-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; transition: transform .25s, box-shadow .25s;
+}
+.dv-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(15,23,42,0.08); }
+.dv-img { aspect-ratio: 16/9; background: #f1f5f9; overflow: hidden; }
+.dv-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dv-info { padding: 22px 26px 26px; }
+.dv-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 500; color: var(--blue);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;
+}
+.dv-info h3 { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 8px; letter-spacing: -0.2px; }
+.dv-info p { font-size: 13px; color: var(--muted); line-height: 1.85; }
+
+.demo-wrap {
+  margin-top: 32px;
+  border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+  background: #000;
+}
+.demo-wrap video { width: 100%; display: block; }
+.demo-caption {
+  margin-top: 16px;
+  display: flex; align-items: baseline; gap: 14px;
+  font-size: 13px; color: var(--muted); line-height: 1.85;
+}
+.demo-caption .badge {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px; font-weight: 500; color: var(--blue);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  background: var(--sky); padding: 4px 10px; border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ── WHY FAST/EASY ── */
+.why-fast { padding: 80px 80px; max-width: 1320px; margin: 0 auto; }
+.why-fast-head { margin-bottom: 48px; max-width: 720px; }
+.why-fast-head .tag {
+  font-size: 12px; font-weight: 700; color: #2563eb;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px;
+}
+.why-fast-head h2 {
+  font-size: 32px; font-weight: 900; color: #0f172a;
+  letter-spacing: -0.3px; line-height: 1.4; margin-bottom: 14px;
+}
+.why-fast-head p { font-size: 14px; color: var(--muted); line-height: 1.9; }
+
+.why-fast-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.why-card {
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 32px 28px 30px;
+  background: #fff; transition: all .25s;
+}
+.why-card:hover { border-color: #bfdbfe; box-shadow: 0 6px 28px rgba(37,99,235,0.08); transform: translateY(-3px); }
+.why-card-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 36px; font-weight: 200; color: #94a3b8;
+  line-height: 1; margin-bottom: 18px; letter-spacing: -1px;
+}
+.why-card h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 12px; letter-spacing: -0.2px; }
+.why-card p { font-size: 13px; color: var(--muted); line-height: 1.85; }
+
+/* ── BELIEVE / CTA ── */
+.believe-cta {
+  position: relative;
+  padding: 80px 80px;
+  display: flex; align-items: center; justify-content: space-between; gap: 60px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0a1224;
+}
+.believe-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url('uploads/believe_bg.png');
+  background-size: cover; background-position: center;
+  opacity: 0.6;
+  z-index: -2;
+}
+.believe-cta::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(5,8,18,0.88) 0%, rgba(5,8,18,0.6) 65%, rgba(5,8,18,0.3) 100%);
+  z-index: -1;
+}
+.believe-text { color: #fff; max-width: 720px; }
+.believe-tag {
+  font-size: 13px; font-weight: 600; color: #60a5fa;
+  letter-spacing: 2px; margin-bottom: 14px; text-transform: uppercase;
+}
+.believe-text h2 {
+  font-size: 28px; font-weight: 800; margin-bottom: 18px; letter-spacing: -0.3px;
+  line-height: 1.4;
+}
+.believe-text p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.95; }
+.believe-cta-btn {
+  background: rgba(255,255,255,0.08); color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 14px 28px; border-radius: 6px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all .2s; font-family: inherit;
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.believe-cta-btn:hover { background: rgba(37,99,235,0.45); border-color: var(--blue); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: .08s; }
+.reveal-d2 { transition-delay: .16s; }
+.reveal-d3 { transition-delay: .24s; }
+
+/* ── RWD ── */
+
+/* Tablet / small laptop */
+@media (max-width: 1100px) {
+  .case-hero-left { padding: 80px 32px; }
+  .case-hero-meta { grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+  .story-wrap {
+    padding-left: 32px; padding-right: 32px;
+    --timeline-x: 200px;
+    --wrap-pad: 32px;
+  }
+  .story-block { grid-template-columns: 180px 1fr 1.1fr; gap: 40px; }
+  .story-content { padding-left: 32px; }
+  .metrics-band { padding: 64px 32px; }
+  .dual-view, .why-fast { padding-left: 32px; padding-right: 32px; }
+  .believe-cta { padding: 60px 32px; flex-direction: column; align-items: flex-start; gap: 32px; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .metric-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .metric-item:last-child { border-bottom: none; }
+  .dual-view-grid, .why-fast-grid { grid-template-columns: 1fr; }
+}
+
+/* Large phone / small tablet */
+@media (max-width: 720px) {
+  .case-hero { min-height: 460px; }
+  .case-hero-left { padding: 60px 24px; }
+  .case-hero-img img { object-position: 65% center; }
+  .case-hero-img::before {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 45%, rgba(255,255,255,0.75) 100%);
+  }
+  .case-hero-meta { grid-template-columns: 1fr 1fr; gap: 16px 24px; padding-top: 20px; }
+
+  .story-wrap { padding: 32px 24px 24px; }
+  .story-wrap::before { display: none; }
+  .story-block { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+  .story-block::before { display: none; }
+  .story-side { padding-right: 0; }
+  .story-content { padding-left: 0; }
+  .story-num { font-size: 56px; margin-bottom: 18px; }
+  .story-title { font-size: 22px; }
+  .story-img {
+    margin: 0;
+    aspect-ratio: 16/10;
+    border-radius: 10px;
+    width: 100%;
+  }
+  .story-img::before { display: none; }
+
+  .metrics-band, .dual-view, .why-fast { padding: 56px 24px; }
+  .metrics-head h2, .dual-view-head h2, .why-fast-head h2 { font-size: 24px; }
+  .metric-value { font-size: 44px; }
+  .metric-item { padding: 32px 24px; }
+  .why-card { padding: 28px 22px 24px; }
+
+  .demo-caption { flex-direction: column; gap: 8px; align-items: flex-start; }
+
+  .believe-cta { padding: 48px 24px; gap: 24px; }
+  .believe-text h2 { font-size: 22px; }
+  .believe-cta-btn { width: 100%; max-width: 320px; justify-content: center; }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  .case-hero { min-height: 420px; }
+  .case-hero-left { padding: 48px 20px; }
+  .case-hero h1 { font-size: 26px; line-height: 1.35; }
+  .case-hero h1 br { display: none; }
+  .case-hero-desc { font-size: 14px; line-height: 1.95; }
+  .case-hero-desc br { display: none; }
+  .case-hero-meta { grid-template-columns: 1fr; gap: 14px; }
+  .case-hero-meta-item .val { font-size: 13.5px; }
+
+  .story-wrap { padding: 24px 20px 16px; }
+  .story-block { padding: 24px 0; gap: 18px; }
+  .story-num { font-size: 48px; margin-bottom: 14px; }
+  .story-title { font-size: 20px; }
+  .story-title br { display: none; }
+  .story-sub { font-size: 14px; margin-bottom: 16px; }
+  .story-text { font-size: 13px; line-height: 1.95; }
+  .story-text br { display: none; }
+  .story-text ul li { padding-left: 16px; font-size: 13px; }
+
+  .metrics-band, .dual-view, .why-fast { padding: 48px 20px; }
+  .metrics-head h2, .dual-view-head h2, .why-fast-head h2 { font-size: 22px; line-height: 1.4; }
+  .metrics-head p, .dual-view-head p, .why-fast-head p { font-size: 13px; }
+  .metrics-head p br, .dual-view-head p br, .why-fast-head p br { display: none; }
+  .metric-value { font-size: 38px; }
+  .metric-item { padding: 28px 20px; }
+  .dv-info { padding: 18px 20px 22px; }
+  .dv-info h3 { font-size: 16px; }
+  .why-card { padding: 24px 20px 22px; }
+  .why-card-num { font-size: 32px; margin-bottom: 14px; }
+  .why-card h3 { font-size: 16px; }
+
+  .believe-cta { padding: 40px 20px; }
+  .believe-text h2 { font-size: 20px; line-height: 1.45; }
+  .believe-text h2 br, .believe-text p br { display: none; }
+  .believe-text p { font-size: 13px; }
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="cases">
+
+<!-- NAV -->
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="case-hero">
+  <div class="case-hero-img">
+    <img src="uploads/bocchi/preview-interior.png" alt="pokēpokē 波奇波奇加盟店 3D 預覽">
+  </div>
+  <div class="case-hero-left">
+    <div class="case-hero-inner">
+      <div class="case-hero-tag reveal">Case Study · 客戶案例</div>
+      <div class="case-hero-client reveal reveal-d1">pokēpokē / 波奇波奇</div>
+      <h1 class="reveal reveal-d2">把加盟提案，<br>從外包週期，<br>變成會議現場的體驗</h1>
+      <div class="case-hero-desc reveal reveal-d2">
+        為連鎖加盟夏威夷 poke 丼飯品牌 <b style="color:#0f172a">pokēpokē 波奇波奇</b>，<br>
+        客製一套展店提案編輯器 ——<br>
+        業務帶著筆電就能在加盟主面前，<br>
+        即時排出未來店面、一鍵輸出施工圖。
+      </div>
+      <div class="case-hero-meta reveal reveal-d3">
+        <div class="case-hero-meta-item">
+          <div class="lab">Industry</div>
+          <div class="val">連鎖加盟餐飲</div>
+        </div>
+        <div class="case-hero-meta-item">
+          <div class="lab">Service</div>
+          <div class="val">客製 3D 軟體開發</div>
+        </div>
+        <div class="case-hero-meta-item">
+          <div class="lab">Outcome</div>
+          <div class="val">提案週期：週 → 分鐘</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY BLOCKS -->
+<div class="story-wrap">
+
+  <!-- BLOCK 01 ── 痛點 -->
+  <div class="story-block" id="story-1">
+    <div class="story-side reveal">
+      <div class="story-side-tag">The Challenge</div>
+      <ul>
+        <li><b>提案週期</b><span>1–2 週外包循環</span></li>
+        <li><b>沉沒成本</b><span>單案 3D / 施工圖費</span></li>
+        <li><b>累積斷層</b><span>每店都從頭做</span></li>
+      </ul>
+    </div>
+    <div class="story-content reveal reveal-d1">
+      <div class="story-num">01</div>
+      <h2 class="story-title">展店要快，<br>提案的瓶頸卻在外面</h2>
+      <div class="story-sub">傳統提案流程卡住業務節奏</div>
+      <div class="story-text">
+        <p>pokēpokē 波奇波奇正在快速展店、<br>招募加盟主，<br>但每談一位有意加盟的業主，<br>都得把店面平面圖丟給外部設計師，<br>等 3D 效果圖與施工圖回來，<br>再回頭跟客戶討論。</p>
+        <ul>
+          <li>從找設計師到確認材質，循環 1–2 週起跳</li>
+          <li>單一加盟案的視覺費，客戶沒簽就是沉沒成本</li>
+          <li>不同店點的格局差異大，幾乎每次都要重來</li>
+        </ul>
+      </div>
+    </div>
+    <div class="story-img reveal reveal-d2">
+      <img src="uploads/bocchi/floorplan.png" alt="傳統需要外部設計師繪製的店面平面圖">
+    </div>
+  </div>
+
+  <!-- BLOCK 02 ── 解法 -->
+  <div class="story-block" id="story-2">
+    <div class="story-side reveal">
+      <div class="story-side-tag">The Solution</div>
+      <ul>
+        <li><b>品牌資產 3D 化</b><span>家具、設備、招牌建檔</span></li>
+        <li><b>標準材質庫</b><span>品牌色、磁磚、燈光預設</span></li>
+        <li><b>拖曳即用</b><span>非設計背景也能上手</span></li>
+        <li><b>一鍵施工圖</b><span>從同一份場景輸出</span></li>
+      </ul>
+    </div>
+    <div class="story-content reveal reveal-d1">
+      <div class="story-num">02</div>
+      <h2 class="story-title">把品牌資產，<br>做進一個編輯器裡</h2>
+      <div class="story-sub">讓品牌標準變成可拖曳的選項</div>
+      <div class="story-text">
+        <p>為 pokēpokē 客製一套「展店提案編輯器」——<br>把品牌標準化的元件預先資產化，<br>業務或加盟顧問就能像玩遊戲一樣，<br>在會議現場排出未來店面的樣貌。</p>
+        <p>這不只是 3D 工具，<br>而是把「品牌標準」變成可拖曳的選項，<br>讓非設計背景的同事，<br>也能交付一致的視覺與規格。</p>
+      </div>
+    </div>
+    <div class="story-img reveal reveal-d2">
+      <img src="uploads/bocchi/preview-interior.png" alt="拖曳擺放完成的 pokēpokē 加盟店 3D 預覽">
+    </div>
+  </div>
+
+  <!-- BLOCK 03 ── 成效 -->
+  <div class="story-block" id="story-3">
+    <div class="story-side reveal">
+      <div class="story-side-tag">The Outcome</div>
+      <ul>
+        <li><b>提案週期</b><span>週 → 分鐘</span></li>
+        <li><b>外包成本</b><span>單案歸零</span></li>
+        <li><b>視覺一致性</b><span>100% 品牌規格</span></li>
+      </ul>
+    </div>
+    <div class="story-content reveal reveal-d1">
+      <div class="story-num">03</div>
+      <h2 class="story-title">提案的單位，<br>從週變成分鐘</h2>
+      <div class="story-sub">節奏回到業務手上</div>
+      <div class="story-text">
+        <p>業務在跟加盟主開會的當下就能調整格局、<br>即時看到成果，<br>提案命中率大幅提升。</p>
+        <p>不需設計師介入，<br>加盟招募節奏不再受外部資源排程影響；<br>施工圖直接從 3D 場景生成，<br>現場施作與提案視覺不會走樣。</p>
+      </div>
+    </div>
+    <div class="story-img reveal reveal-d2">
+      <img src="uploads/bocchi/floorplan.png" alt="一鍵輸出的施工圖配置（含設備尺寸標註）">
+    </div>
+  </div>
+
+</div>
+
+<!-- METRICS BAND -->
+<section class="metrics-band">
+  <div class="metrics-inner">
+    <div class="metrics-head reveal">
+      <div class="tag">Results</div>
+      <h2>三個關鍵變化</h2>
+      <p>導入這套編輯器後，pokēpokē 波奇波奇的加盟提案流程，<br>從外包循環變成可累積、可重複使用的內部資產。</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-item reveal">
+        <div class="metric-value">分鐘<span class="unit">級</span></div>
+        <div class="metric-label">Proposal Cycle</div>
+        <div class="metric-desc">展店提案從 1–2 週外包循環，<br>壓縮到會議現場即時完成。</div>
+      </div>
+      <div class="metric-item reveal reveal-d1">
+        <div class="metric-value">0<span class="unit">元</span></div>
+        <div class="metric-label">External Cost</div>
+        <div class="metric-desc">單案 3D 與施工圖外包費歸零，<br>加盟招募節奏不受外部排程影響。</div>
+      </div>
+      <div class="metric-item reveal reveal-d2">
+        <div class="metric-value">100<span class="unit">%</span></div>
+        <div class="metric-label">Brand Consistency</div>
+        <div class="metric-desc">品牌視覺與設備規格 100% 一致，<br>施工圖直接由 3D 場景生成。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL VIEW (3D + Floor Plan + Demo) -->
+<section class="dual-view">
+  <div class="dual-view-head reveal">
+    <div class="tag">In Action</div>
+    <h2>同一份場景，兩種視圖</h2>
+    <p>業務或加盟顧問在編輯器內排好店面後，<br>
+    可即時切換到俯視施工圖檢視 —— 兩種視圖綁定同一份場景資料，視覺提案與工班施作不再走樣。</p>
+  </div>
+
+  <div class="dual-view-grid">
+    <div class="dv-card reveal">
+      <div class="dv-img">
+        <img src="uploads/bocchi/preview-interior.png" alt="即時 3D 內裝預覽">
+      </div>
+      <div class="dv-info">
+        <div class="dv-tag">View 01 · 3D Preview</div>
+        <h3>即時 3D 預覽</h3>
+        <p>綠色品牌主色、磁磚吧台、品牌吊燈與菜單看板。<br>材質與光線變更即時呈現，不必等渲染。</p>
+      </div>
+    </div>
+    <div class="dv-card reveal reveal-d1">
+      <div class="dv-img">
+        <img src="uploads/bocchi/floorplan.png" alt="自動產出的施工圖配置">
+      </div>
+      <div class="dv-info">
+        <div class="dv-tag">View 02 · Auto Floor Plan</div>
+        <h3>一鍵施工圖</h3>
+        <p>同一份場景輸出 — 四門風冷冰箱、工作台、導餐櫃、座位皆標註精確尺寸，工班可直接施作。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-wrap reveal reveal-d2">
+    <video src="uploads/bocchi/demo.mp4" controls preload="metadata" playsinline></video>
+  </div>
+  <div class="demo-caption">
+    <span class="badge">Demo</span>
+    <span>實際在編輯器內拖曳擺放、調整材質、切換施工圖視圖的過程 —— 從動到靜，從提案到施作，全程在一個介面內完成。</span>
+  </div>
+</section>
+
+<!-- WHY SO FAST -->
+<section class="why-fast">
+  <div class="why-fast-head reveal">
+    <div class="tag">Why so fast</div>
+    <h2>為什麼可以這麼快、這麼好用？</h2>
+    <p>把對的設計決策提前到「資產建檔」階段，<br>讓現場操作只剩三個動作：拖、放、選。</p>
+  </div>
+  <div class="why-fast-grid">
+    <div class="why-card reveal">
+      <div class="why-card-num">01</div>
+      <h3>不必等渲染</h3>
+      <p>材質、燈光、家具位置一動，畫面即時跟著變 ——<br>像玩遊戲一樣，不用排隊出圖。</p>
+    </div>
+    <div class="why-card reveal reveal-d1">
+      <div class="why-card-num">02</div>
+      <h3>不需要設計背景</h3>
+      <p>品牌標準化的家具、設備、材質都預先準備好了，<br>業務只要拖、放、選 —— 上手 10 分鐘內就能排出一間店。</p>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <div class="why-card-num">03</div>
+      <h3>不必再畫第二次</h3>
+      <p>3D 場景、施工圖、設備清單共用同一份資料 ——<br>一處改動，全部同步，提案到施作之間少掉一整層出錯空間。</p>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEVE / CTA -->
+<section class="believe-cta">
+  <div class="believe-text">
+    <div class="believe-tag">下一個案子</div>
+    <h2>你的品牌，也有重複的 3D 提案流程嗎？</h2>
+    <p>連鎖加盟、建商代銷、製造業產品配置、室內設計提案 ——<br>只要 3D 提案是你業務的重複動作，<br>就有機會把它變成一套客製編輯器，讓品牌資產真正累積起來。</p>
+  </div>
+  <a class="believe-cta-btn" href="index.html#contact">
+    與我們聊聊你的需求
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => obs.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('visible'));
+}
+</script>
+</body>
+</html>
