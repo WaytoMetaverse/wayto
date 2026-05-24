@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaceEase 空間自營系統｜無人化空間租賃 SaaS｜Wayto Metaverse</title>
+<meta name="description" content="SpaceEase 空間自營系統 — 讓空間租賃從預約、付款、簽到、結帳到超時計費全自動化。客戶用手機自助完成全部流程，業者不用駐店、不用接訊息，也能把場地租出去。">
+<meta name="keywords" content="無人空間,空間租賃系統,自助預約系統,SaaS 預約,多品牌預約平台,場地租賃管理,儲值會員系統,密碼鎖,簽到簽退">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/spaceease.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SpaceEase 空間自營系統｜無人化空間租賃 SaaS">
+<meta property="og:description" content="預約、付款、簽到、結帳、超時計費 — 全程自動化。業者不開店也能跑營運。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/spaceease/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SpaceEase","alternateName":"空間自營系統","description":"無人化空間租賃 SaaS — 預約、付款、簽到、結帳、超時計費全自動化。","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://wayto.com.tw/wayto1/spaceease.html","image":"https://wayto.com.tw/wayto1/uploads/spaceease/logo.png","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+
+/* HERO */
+.se-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#f5f7fa 0%,#fff 100%)}
+.se-hero-inner{max-width:1320px;margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
+.se-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:6px 16px 6px 8px;background:#fff;border:1px solid var(--border);border-radius:999px}
+.se-brand-row img{height:22px;width:auto}
+.se-brand-row span{font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;color:var(--navy);letter-spacing:1px}
+.se-brand-row b{font-size:11px;font-weight:600;color:var(--blue);letter-spacing:1px;padding-left:10px;border-left:1px solid var(--border)}
+.se-hero h1{font-size:clamp(34px,4.2vw,54px);font-weight:900;color:#0f172a;line-height:1.25;letter-spacing:-0.6px;margin-bottom:24px}
+.se-hero h1 em{font-style:normal;color:var(--blue)}
+.se-hero-desc{font-size:15px;color:#1e293b;line-height:2;margin-bottom:32px;max-width:540px}
+.se-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+
+.se-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.se-btn-primary{background:var(--navy);color:#fff}
+.se-btn-primary:hover{background:var(--blue);transform:translateY(-1px)}
+.se-btn-outline{background:transparent;color:var(--navy);border:1px solid rgba(26,43,94,.35)}
+.se-btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+
+.se-hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:24px;border-top:1px solid #cbd5e1;padding-top:22px;max-width:620px}
+.se-hero-meta .lab{font-size:11px;font-weight:600;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.se-hero-meta .val{font-size:13.5px;font-weight:700;color:#0f172a}
+
+/* HERO VISUAL: phone + admin card */
+.se-hero-visual{position:relative;height:540px}
+.phone-frame{position:absolute;right:0;top:0;width:280px;height:540px;background:#0f172a;border-radius:36px;padding:12px;box-shadow:0 30px 60px rgba(15,23,42,.28);z-index:2}
+.phone-screen{width:100%;height:100%;background:#fafaf9;border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+.phone-bar{height:28px;background:#0f172a;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;font-size:10px;font-family:'Outfit',sans-serif}
+.phone-header{padding:14px 18px 10px;border-bottom:1px solid #e2e8f0;background:#fff}
+.phone-header .pt{font-size:14px;font-weight:800;color:#0f172a}
+.phone-header .ps{font-size:11px;color:#64748b;margin-top:2px}
+.phone-body{flex:1;padding:14px;overflow:hidden}
+.cal-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:12px}
+.cal-day{background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:6px 0;text-align:center;font-size:9px}
+.cal-day .d{font-weight:700;color:#0f172a;font-size:11px}
+.cal-day .w{color:#94a3b8;font-size:8px;margin-bottom:2px}
+.cal-day.sel{background:var(--blue);border-color:var(--blue);color:#fff}
+.cal-day.sel .d,.cal-day.sel .w{color:#fff}
+.slot-list{display:flex;flex-direction:column;gap:6px}
+.slot{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:9px 12px;font-size:11px}
+.slot .t{color:#0f172a;font-weight:600}
+.slot .p{color:var(--blue);font-weight:700;font-size:10px}
+.slot.taken{background:#f1f5f9;color:#94a3b8;opacity:.6}
+.slot.taken .t,.slot.taken .p{color:#94a3b8}
+.slot.act{background:var(--blue);border-color:var(--blue)}
+.slot.act .t,.slot.act .p{color:#fff}
+.phone-cta{margin-top:auto;padding:10px 14px;background:var(--navy);color:#fff;font-size:11px;font-weight:600;text-align:center;border-radius:8px}
+
+.admin-card{position:absolute;left:0;top:60px;width:380px;background:#fff;border-radius:16px;border:1px solid var(--border);box-shadow:0 20px 50px rgba(15,23,42,.12);padding:18px;z-index:1}
+.admin-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.admin-head .ll{font-family:'Outfit',sans-serif;font-size:10px;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase}
+.admin-head .tt{font-size:13px;font-weight:800;color:#0f172a}
+.admin-dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.admin-stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}
+.admin-stat .l{font-size:9px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.admin-stat .v{font-family:'Outfit',sans-serif;font-size:20px;font-weight:500;color:#0f172a}
+.admin-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid #f1f5f9;font-size:11px}
+.admin-row:first-of-type{border-top:none}
+.admin-row .n{color:#334155;font-weight:600}
+.admin-row .s{font-family:'Outfit',sans-serif;font-size:9px;color:#94a3b8;letter-spacing:1px}
+.admin-row .x{color:#10b981;font-weight:700;font-family:'Outfit',sans-serif;font-size:11px}
+.admin-row .x.warn{color:#f59e0b}
+.admin-row .x.cancel{color:#ef4444}
+
+/* SECTION HEAD */
+.se-head{margin-bottom:48px;max-width:760px}
+.se-head .tag{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.se-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.se-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* PAIN POINTS */
+.se-pain{padding:80px;max-width:1320px;margin:0 auto}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;transition:all .25s;position:relative;overflow:hidden}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#60a5fa);opacity:0;transition:opacity .25s}
+.pain-card:hover{border-color:#bfdbfe;box-shadow:0 12px 36px rgba(37,99,235,.1);transform:translateY(-4px)}
+.pain-card:hover::before{opacity:1}
+.pain-num{font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:var(--blue);letter-spacing:2px;margin-bottom:16px}
+.pain-card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.pain-card p{font-size:13.5px;color:var(--muted);line-height:1.95}
+
+/* FLOW */
+.se-flow{background:var(--gray-bg);padding:80px}
+.se-flow-inner{max-width:1320px;margin:0 auto}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+.flow-step{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 24px 26px;position:relative;transition:all .25s}
+.flow-step:hover{border-color:var(--blue);box-shadow:0 10px 28px rgba(37,99,235,.1)}
+.flow-num{font-family:'Outfit',sans-serif;font-size:48px;font-weight:200;color:#94a3b8;line-height:1;margin-bottom:16px;letter-spacing:-1px}
+.flow-step h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.flow-step p{font-size:13px;color:var(--muted);line-height:1.85}
+.flow-step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--blue);font-weight:300;background:var(--gray-bg);width:24px;height:24px;display:flex;align-items:center;justify-content:center;z-index:2}
+.flow-step:last-child::after{display:none}
+
+/* CAPABILITY GRID */
+.se-cap{padding:80px;max-width:1320px;margin:0 auto}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cap-card{border:1px solid var(--border);border-radius:14px;padding:28px 26px 26px;background:#fff;transition:all .25s}
+.cap-card:hover{border-color:#bfdbfe;box-shadow:0 6px 24px rgba(37,99,235,.08);transform:translateY(-3px)}
+.cap-icon{width:42px;height:42px;border-radius:10px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.cap-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+.cap-card h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.cap-card p{font-size:13px;color:var(--muted);line-height:1.85}
+
+/* MULTI-BRAND */
+.se-multi{background:var(--gray-bg);padding:80px}
+.se-multi-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.se-multi-img{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:0 20px 50px rgba(15,23,42,.06)}
+.mb-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#fafaf9;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:10px}
+.mb-row:last-child{margin-bottom:0}
+.mb-left{display:flex;align-items:center;gap:12px}
+.mb-logo{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;flex-shrink:0}
+.mb-info .n{font-size:13px;font-weight:700;color:#0f172a;line-height:1.3}
+.mb-info .u{font-family:'Outfit',sans-serif;font-size:10px;color:#64748b;letter-spacing:.5px;margin-top:2px}
+.mb-stat{font-family:'Outfit',sans-serif;font-size:13px;color:#10b981;font-weight:600}
+.mb-stat .lab{display:block;font-size:9px;color:#94a3b8;text-align:right;letter-spacing:1px;text-transform:uppercase}
+
+/* AUDIENCE */
+.se-aud{padding:80px;max-width:1320px;margin:0 auto}
+.aud-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.aud-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:#334155;transition:all .2s}
+.aud-chip:hover{border-color:var(--blue);color:var(--blue);background:var(--sky)}
+.aud-note{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.95}
+
+/* CTA */
+.se-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.se-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(96,165,250,.2),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(186,230,253,.12),transparent 60%);pointer-events:none}
+.se-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.se-cta .tag{font-size:12px;font-weight:600;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.se-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.se-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.se-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.se-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.se-cta-primary{background:#fff;color:var(--navy)}
+.se-cta-primary:hover{background:var(--sky)}
+.se-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.se-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .se-hero-inner{padding:64px 32px;grid-template-columns:1fr;gap:48px}
+  .se-hero-visual{height:520px;max-width:560px;margin:0 auto;width:100%}
+  .admin-card{left:auto;right:0;top:0;width:340px}
+  .phone-frame{right:auto;left:0;top:60px;width:240px;height:480px}
+  .se-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .se-pain,.se-flow,.se-cap,.se-multi,.se-aud,.se-cta{padding:64px 32px}
+  .pain-grid,.cap-grid{grid-template-columns:repeat(2,1fr)}
+  .flow-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .flow-step::after{display:none}
+  .se-multi-inner{grid-template-columns:1fr;gap:32px}
+  .se-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .se-hero-inner{padding:48px 20px;gap:36px}
+  .se-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .se-hero h1 br{display:none}
+  .se-hero-desc{font-size:14px;line-height:1.95}
+  .se-hero-desc br{display:none}
+  .se-hero-btns .se-btn{flex:1;justify-content:center;min-width:0}
+  .se-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .se-hero-visual{height:auto;display:flex;flex-direction:column;gap:20px}
+  .admin-card{position:static;width:100%;max-width:380px;margin:0 auto}
+  .phone-frame{position:static;margin:0 auto}
+  .se-pain,.se-flow,.se-cap,.se-multi,.se-aud{padding:56px 20px}
+  .se-cta{padding:64px 20px}
+  .se-head{margin-bottom:36px}
+  .se-head h2{font-size:24px}
+  .pain-grid,.cap-grid,.flow-grid{grid-template-columns:1fr;gap:14px}
+  .pain-card,.cap-card{padding:26px 22px 24px}
+  .flow-step{padding:24px 22px 22px}
+  .flow-num{font-size:42px;margin-bottom:14px}
+  .se-cta h2{font-size:22px}
+  .se-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .se-hero-inner{padding:40px 16px}
+  .se-hero h1{font-size:clamp(24px,8vw,32px)}
+  .se-hero-desc{font-size:13.5px}
+  .se-hero-meta{grid-template-columns:1fr;gap:12px}
+  .se-btn{padding:11px 22px;font-size:14px}
+  .phone-frame{width:220px;height:440px}
+  .admin-card{padding:16px}
+  .se-pain,.se-flow,.se-cap,.se-multi,.se-aud,.se-cta{padding:48px 16px}
+  .se-head h2{font-size:22px;line-height:1.4}
+  .se-head p{font-size:13.5px}
+  .se-head p br{display:none}
+  .pain-card h3,.cap-card h3,.flow-step h3{font-size:15.5px}
+  .pain-card p,.cap-card p,.flow-step p{font-size:13px}
+  .aud-chip{font-size:12.5px;padding:9px 15px}
+  .se-cta h2{font-size:20px}
+  .se-cta h2 br,.se-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="solutions">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="se-hero">
+  <div class="se-hero-inner">
+    <div class="se-hero-left">
+      <div class="se-brand-row reveal">
+        <img src="uploads/spaceease/logo.png" alt="SpaceEase 空間自營系統">
+        <span>SpaceEase</span>
+        <b>空間自營系統</b>
+      </div>
+      <h1 class="reveal reveal-d1">不開店、<br>不接訊息，<br>也能把空間<em>租出去</em></h1>
+      <p class="se-hero-desc reveal reveal-d2">
+        客戶用手機自己預約、自己付款、自己簽到、自動結帳 ——<br>
+        SpaceEase 把空間租賃的每一步都做進系統裡，<br>
+        業者不用駐店、不用人工接洽，<br>
+        場地也能 24 小時跑營運。
+      </p>
+      <div class="se-hero-btns reveal reveal-d2">
+        <a class="se-btn se-btn-primary" href="#contact">申請品牌方帳號 →</a>
+        <a class="se-btn se-btn-outline" href="#demo">看完整導覽</a>
+      </div>
+      <div class="se-hero-meta reveal reveal-d3">
+        <div><div class="lab">Built for</div><div class="val">無人化空間租賃</div></div>
+        <div><div class="lab">Customer</div><div class="val">手機自助操作</div></div>
+        <div><div class="lab">Brand</div><div class="val">多店鋪後台</div></div>
+        <div><div class="lab">Billing</div><div class="val">儲值 / 自動扣款</div></div>
+      </div>
+    </div>
+
+    <div class="se-hero-visual reveal reveal-d1">
+      <div class="admin-card">
+        <div class="admin-head">
+          <div>
+            <div class="ll">Brand Dashboard</div>
+            <div class="tt">本月場地使用</div>
+          </div>
+          <div class="admin-dot" title="即時"></div>
+        </div>
+        <div class="admin-grid">
+          <div class="admin-stat"><div class="l">Bookings</div><div class="v">128</div></div>
+          <div class="admin-stat"><div class="l">Members</div><div class="v">316</div></div>
+          <div class="admin-stat"><div class="l">Top-up</div><div class="v">42K</div></div>
+        </div>
+        <div class="admin-row"><span class="n">A 室 · 14:00–16:00</span><span class="s">已簽到</span><span class="x">$640</span></div>
+        <div class="admin-row"><span class="n">B 室 · 18:00–20:00</span><span class="s">使用中</span><span class="x warn">超時 +18m</span></div>
+        <div class="admin-row"><span class="n">攝影棚 · 21:00–23:00</span><span class="s">待簽到</span><span class="x">$1,200</span></div>
+        <div class="admin-row"><span class="n">會議室 · 19:00–20:00</span><span class="s">已取消</span><span class="x cancel">退儲值</span></div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-bar"><span>9:41</span><span>•••</span></div>
+          <div class="phone-header">
+            <div class="pt">預約場地</div>
+            <div class="ps">天玥共享空間 · 3 月</div>
+          </div>
+          <div class="phone-body">
+            <div class="cal-strip">
+              <div class="cal-day"><div class="w">一</div><div class="d">10</div></div>
+              <div class="cal-day"><div class="w">二</div><div class="d">11</div></div>
+              <div class="cal-day sel"><div class="w">三</div><div class="d">12</div></div>
+              <div class="cal-day"><div class="w">四</div><div class="d">13</div></div>
+              <div class="cal-day"><div class="w">五</div><div class="d">14</div></div>
+              <div class="cal-day"><div class="w">六</div><div class="d">15</div></div>
+              <div class="cal-day"><div class="w">日</div><div class="d">16</div></div>
+            </div>
+            <div class="slot-list">
+              <div class="slot"><span class="t">10:00–12:00</span><span class="p">$640</span></div>
+              <div class="slot taken"><span class="t">12:00–14:00</span><span class="p">已預約</span></div>
+              <div class="slot act"><span class="t">14:00–16:00</span><span class="p">已選</span></div>
+              <div class="slot"><span class="t">16:00–18:00</span><span class="p">$640</span></div>
+              <div class="slot"><span class="t">18:00–20:00</span><span class="p">$800</span></div>
+            </div>
+          </div>
+          <div class="phone-cta" style="margin:0 14px 14px">下一步 · 確認預約</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="se-pain">
+  <div class="se-head reveal">
+    <div class="tag">The Challenge</div>
+    <h2>無人空間最常卡在：<br>客戶問東問西，業者一直接訊息</h2>
+    <p>沒人在店裡接待，每個流程斷點都會變成 LINE 訊息回不完，<br>業者整天滑手機，反而比實體店還忙。</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal">
+      <div class="pain-num">01</div>
+      <h3>預約收費對不上</h3>
+      <p>誰已付款、誰只是先佔位、誰超時了 ——<br>分散在訊息、Excel、紙本，<br>對帳一次就要花掉半個下午。</p>
+    </div>
+    <div class="pain-card reveal reveal-d1">
+      <div class="pain-num">02</div>
+      <h3>進場驗證沒人盯</h3>
+      <p>沒人看著門，客戶是不是真的進場、<br>有沒有按時離場、<br>超時要不要加收 ——<br>全憑客戶自己誠實。</p>
+    </div>
+    <div class="pain-card reveal reveal-d2">
+      <div class="pain-num">03</div>
+      <h3>多店鋪管不過來</h3>
+      <p>每多開一間分店，<br>就多一套 Google 表單、多一個 LINE 群，<br>會員資料散在好幾個地方無法整合。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="se-flow" id="flow">
+  <div class="se-flow-inner">
+    <div class="se-head reveal">
+      <div class="tag">How it works</div>
+      <h2>四步，把整套租賃流程自動化</h2>
+      <p>客戶從打開連結到離場結帳，<br>業者只需要在後台看數字。</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <h3>手機自助預約</h3>
+        <p>客戶打開品牌連結，挑日期、挑時段、確認方案 — 手機驗證碼登入，免下載 App。</p>
+      </div>
+      <div class="flow-step reveal reveal-d1">
+        <div class="flow-num">02</div>
+        <h3>儲值或當下扣款</h3>
+        <p>儲值錢包扣款或當次線上付款，付完款預約才成立，不會佔到時段又沒人來。</p>
+      </div>
+      <div class="flow-step reveal reveal-d2">
+        <div class="flow-num">03</div>
+        <h3>現場自助簽到</h3>
+        <p>到場掃 QR 取得密碼鎖開門密碼，系統記錄實際進場時間，可串實體門鎖。</p>
+      </div>
+      <div class="flow-step reveal reveal-d3">
+        <div class="flow-num">04</div>
+        <h3>自動結帳離場</h3>
+        <p>離場簽退時系統自動結算 — 超時自動加收、未到自動標記，業者不用追客戶。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITY GRID -->
+<section class="se-cap">
+  <div class="se-head reveal">
+    <div class="tag">Why unattended works</div>
+    <h2>為什麼可以做到「真的不用人」？</h2>
+    <p>把容易斷點的環節都做進系統裡，<br>留給人做的只剩例外處理。</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card reveal">
+      <div class="cap-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+      <h3>手機驗證登入</h3>
+      <p>免下載 App，輸入手機收驗證碼就能用。註冊跟登入的摩擦降到最低。</p>
+    </div>
+    <div class="cap-card reveal reveal-d1">
+      <div class="cap-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 16h4"/></svg></div>
+      <h3>儲值錢包</h3>
+      <p>客戶預先儲值、每次預約自動扣款 — 降低金流手續費，提升回購率。</p>
+    </div>
+    <div class="cap-card reveal reveal-d2">
+      <div class="cap-icon"><svg viewBox="0 0 24 24"><rect x="6" y="10" width="12" height="10" rx="2"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg></div>
+      <h3>密碼鎖整合</h3>
+      <p>每次預約自動生成一次性密碼，到場簽到才取得，避免共用密碼洩漏。</p>
+    </div>
+    <div class="cap-card reveal">
+      <div class="cap-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3>超時自動計費</h3>
+      <p>離場時系統根據實際使用時間計算，超時自動加收，業者不用追討。</p>
+    </div>
+    <div class="cap-card reveal reveal-d1">
+      <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 22V12h6v10"/></svg></div>
+      <h3>多店鋪 / 多空間</h3>
+      <p>一個品牌帳號管所有分店與空間，分店各自定價、各自時段、共用會員池。</p>
+    </div>
+    <div class="cap-card reveal reveal-d2">
+      <div class="cap-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M15 11a3 3 0 1 0 0-6"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 20a5 5 0 0 1 5-5"/></svg></div>
+      <h3>會員與活動</h3>
+      <p>會員資料、儲值紀錄、活動報名集中管理，客製欄位記下你業務真正在乎的資訊。</p>
+    </div>
+  </div>
+</section>
+
+<!-- MULTI-BRAND -->
+<section class="se-multi">
+  <div class="se-multi-inner">
+    <div class="se-multi-left">
+      <div class="se-head reveal" style="margin-bottom:24px">
+        <div class="tag">Multi-brand by design</div>
+        <h2>一套系統，<br>多個品牌獨立營運</h2>
+        <p>每個品牌都有自己的專屬連結（slug）、會員池、儲值餘額、定價，<br>資料完全隔離 ——<br>適合連鎖加盟、聯合營運、或代營運多個場館。</p>
+      </div>
+    </div>
+    <div class="se-multi-img reveal reveal-d1">
+      <div class="mb-row">
+        <div class="mb-left">
+          <div class="mb-logo" style="background:#0ea5e9">天</div>
+          <div class="mb-info"><div class="n">天玥共享空間</div><div class="u">spaceease.app/<b>tenyue</b></div></div>
+        </div>
+        <div class="mb-stat">128<span class="lab">Bookings</span></div>
+      </div>
+      <div class="mb-row">
+        <div class="mb-left">
+          <div class="mb-logo" style="background:#8b5cf6">攝</div>
+          <div class="mb-info"><div class="n">明光攝影棚</div><div class="u">spaceease.app/<b>ming-light</b></div></div>
+        </div>
+        <div class="mb-stat">64<span class="lab">Bookings</span></div>
+      </div>
+      <div class="mb-row">
+        <div class="mb-left">
+          <div class="mb-logo" style="background:#f59e0b">瑜</div>
+          <div class="mb-info"><div class="n">山林瑜伽教室</div><div class="u">spaceease.app/<b>shanlin</b></div></div>
+        </div>
+        <div class="mb-stat">214<span class="lab">Bookings</span></div>
+      </div>
+      <div class="mb-row">
+        <div class="mb-left">
+          <div class="mb-logo" style="background:#10b981">桌</div>
+          <div class="mb-info"><div class="n">夜色桌遊店</div><div class="u">spaceease.app/<b>nightplay</b></div></div>
+        </div>
+        <div class="mb-stat">96<span class="lab">Bookings</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="se-aud">
+  <div class="se-head reveal">
+    <div class="tag">Who it&apos;s for</div>
+    <h2>哪些空間最適合？</h2>
+    <p>只要你的場地是「按時段收費 + 不需要長時間駐店」，SpaceEase 都能套用。</p>
+  </div>
+  <div class="aud-chips reveal">
+    <span class="aud-chip">共享空間</span>
+    <span class="aud-chip">會議室</span>
+    <span class="aud-chip">活動場地</span>
+    <span class="aud-chip">瑜伽教室</span>
+    <span class="aud-chip">舞蹈教室</span>
+    <span class="aud-chip">攝影棚</span>
+    <span class="aud-chip">錄音室</span>
+    <span class="aud-chip">桌遊店</span>
+    <span class="aud-chip">KTV 包廂</span>
+    <span class="aud-chip">運動場館</span>
+    <span class="aud-chip">頭髮車</span>
+    <span class="aud-chip">頭皮按摩</span>
+    <span class="aud-chip">充電車位</span>
+    <span class="aud-chip">私人廚房</span>
+  </div>
+  <p class="aud-note reveal reveal-d1">
+    無論是單點獨立空間，<br>
+    還是連鎖加盟、跨品牌代營運 —— SpaceEase 的多品牌架構都接得起來。
+  </p>
+</section>
+
+<!-- CTA -->
+<section class="se-cta" id="contact">
+  <div class="se-cta-inner">
+    <div>
+      <div class="tag">Get started</div>
+      <h2>讓你的場地，<br>從今天起 24 小時自己跑</h2>
+      <p>從建立品牌帳號到第一筆預約上線，最快一週可完成。<br>歡迎聊聊你的場地型態與想自動化的環節，我們會給出對應方案。</p>
+    </div>
+    <div class="se-cta-btns">
+      <a class="se-cta-btn se-cta-primary" href="mailto:wayto.metaverse@gmail.com">申請品牌方帳號 →</a>
+      <a class="se-cta-btn se-cta-ghost" href="#demo">先看完整導覽</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

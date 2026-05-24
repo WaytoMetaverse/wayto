@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>元境大喜 案例｜建案銷售 3D 即時導覽軟體｜Wayto Metaverse</title>
+<meta name="description" content="Wayto 為「元境大喜」客製建案銷售 3D 即時導覽軟體 — 建築外觀、周邊街景、景觀公設、樣品屋全部能自由走動觀看，還能即時切換日照時間。讓客戶在接待中心一台螢幕就走完整個建案。">
+<meta name="keywords" content="建案銷售軟體,3D 建案導覽,虛擬接待中心,公設預覽,樣品屋走動,日照模擬,建商銷售工具,元境大喜">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/proptech.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="元境大喜 案例｜建案銷售 3D 即時導覽軟體">
+<meta property="og:description" content="建築、周邊、公設、樣品屋全部一台螢幕走完，還能即時調日照 — 讓建案銷售提早 6 個月開跑。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/proptech/建築外觀視角1-夜景.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"元境大喜 建案銷售 3D 即時導覽軟體案例","description":"Wayto 為元境大喜建案客製即時 3D 銷售導覽軟體，整合外觀、周邊、公設、樣品屋與日照模擬。","author":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd."},"publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"},"image":"https://wayto.com.tw/wayto1/uploads/proptech/建築外觀視角1-夜景.jpg","url":"https://wayto.com.tw/wayto1/proptech.html"}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa;--gold:#c8a567}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+img{max-width:100%;display:block}
+
+/* HERO */
+.pt-hero{margin-top:64px;position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:#0a1224}
+.pt-hero-img{position:absolute;inset:0;overflow:hidden}
+.pt-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pt-hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,36,.25) 0%,rgba(10,18,36,.05) 40%,rgba(10,18,36,.6) 75%,rgba(10,18,36,.95) 100%);z-index:1}
+.pt-hero-inner{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:80px;width:100%;color:#fff}
+.pt-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;padding:6px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;backdrop-filter:blur(8px)}
+.pt-brand-row span{font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,.85);letter-spacing:1.5px;text-transform:uppercase}
+.pt-brand-row b{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.5px;padding-left:10px;border-left:1px solid rgba(255,255,255,.2)}
+.pt-hero h1{font-size:clamp(34px,4.6vw,60px);font-weight:900;line-height:1.18;letter-spacing:-0.6px;margin-bottom:24px;max-width:780px}
+.pt-hero h1 em{font-style:normal;color:var(--gold)}
+.pt-hero-desc{font-size:15px;color:rgba(255,255,255,.78);line-height:2;margin-bottom:32px;max-width:580px}
+.pt-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.pt-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.pt-btn-primary{background:#fff;color:var(--navy)}
+.pt-btn-primary:hover{background:var(--gold);color:#fff;transform:translateY(-1px)}
+.pt-btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.pt-btn-ghost:hover{background:rgba(255,255,255,.18)}
+.pt-hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);max-width:760px}
+.pt-hero-meta .lab{font-size:11px;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.pt-hero-meta .val{font-size:14px;font-weight:700;color:#fff}
+
+/* SECTION HEAD */
+.pt-head{margin-bottom:48px;max-width:780px}
+.pt-head .tag{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.pt-head .tag.gold{color:var(--gold)}
+.pt-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.pt-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* INTRO */
+.pt-intro{padding:80px;max-width:1320px;margin:0 auto}
+.intro-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:flex-start}
+.intro-left .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.intro-left h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.35}
+.intro-right p{font-size:14.5px;color:#334155;line-height:2;margin-bottom:18px}
+.intro-right p:last-child{margin-bottom:0}
+.intro-right strong{color:#0f172a;font-weight:700}
+
+/* CAPABILITY GRID */
+.pt-cap{background:var(--gray-bg);padding:80px}
+.pt-cap-inner{max-width:1320px;margin:0 auto}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cap-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
+.cap-card:hover{border-color:var(--gold);box-shadow:0 16px 40px rgba(15,23,42,.1);transform:translateY(-4px)}
+.cap-img{aspect-ratio:16/10;overflow:hidden;background:#0a1224;position:relative}
+.cap-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cap-img video{width:100%;height:100%;object-fit:cover;display:block;background:#0a1224;pointer-events:none}
+.cap-img video::-webkit-media-controls{display:none!important}
+.cap-img video::-webkit-media-controls-enclosure{display:none!important}
+.cap-card:hover .cap-img img{transform:scale(1.04)}
+.cap-info{padding:24px 26px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cap-tag{font-family:'Outfit',sans-serif;font-size:10px;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.cap-info h3{font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-0.2px}
+.cap-info p{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* GALLERY (masonry-like) */
+.pt-gallery{padding:80px;max-width:1320px;margin:0 auto}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:160px;gap:14px}
+.gal-cell{overflow:hidden;border-radius:14px;position:relative;background:#0a1224;cursor:zoom-in;transition:transform .3s}
+.gal-cell:hover{transform:translateY(-3px)}
+.gal-cell img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gal-cell:hover img{transform:scale(1.05)}
+.gal-cell::after{content:attr(data-cap);position:absolute;left:14px;bottom:14px;background:rgba(10,18,36,.7);color:#fff;font-size:11px;padding:5px 10px;border-radius:4px;font-weight:600;letter-spacing:.5px;backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.gal-cell:hover::after{opacity:1}
+.gc-a{grid-column:span 6;grid-row:span 2}
+.gc-b{grid-column:span 6;grid-row:span 2}
+.gc-c{grid-column:span 4;grid-row:span 2}
+.gc-d{grid-column:span 4;grid-row:span 2}
+.gc-e{grid-column:span 4;grid-row:span 2}
+.gc-f{grid-column:span 3;grid-row:span 2}
+.gc-g{grid-column:span 3;grid-row:span 2}
+.gc-h{grid-column:span 3;grid-row:span 2}
+.gc-i{grid-column:span 3;grid-row:span 2}
+
+/* DEMO VIDEO */
+.pt-demo{background:#0a1224;padding:80px;color:#fff}
+.pt-demo-inner{max-width:1320px;margin:0 auto}
+.pt-demo .pt-head h2{color:#fff}
+.pt-demo .pt-head p{color:rgba(255,255,255,.65)}
+.pt-demo .pt-head .tag{color:var(--gold)}
+.video-frame{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#000;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.video-frame video{width:100%;display:block}
+.video-caption{margin-top:20px;display:flex;align-items:flex-start;gap:14px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.95;max-width:780px}
+.video-caption .badge{font-family:'Outfit',sans-serif;font-size:10px;font-weight:500;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;background:rgba(200,165,103,.12);padding:5px 10px;border-radius:4px;flex-shrink:0}
+
+/* VALUE BAND */
+.pt-value{padding:80px;max-width:1320px;margin:0 auto}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.value-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;transition:all .25s}
+.value-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 32px rgba(200,165,103,.12)}
+.value-num{font-family:'Outfit',sans-serif;font-size:42px;font-weight:200;color:var(--gold);line-height:1;letter-spacing:-1.5px;margin-bottom:14px}
+.value-card h3{font-size:16.5px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.value-card p{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* CTA */
+.pt-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.pt-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(200,165,103,.18),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(96,165,250,.1),transparent 60%);pointer-events:none}
+.pt-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.pt-cta .tag{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.pt-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.pt-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.pt-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.pt-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.pt-cta-primary{background:#fff;color:var(--navy)}
+.pt-cta-primary:hover{background:var(--gold);color:#fff}
+.pt-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.pt-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .pt-hero{min-height:78vh}
+  .pt-hero-inner{padding:64px 32px}
+  .pt-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .pt-intro,.pt-cap,.pt-gallery,.pt-demo,.pt-value,.pt-cta{padding:64px 32px}
+  .intro-grid{grid-template-columns:1fr;gap:32px}
+  .cap-grid{grid-template-columns:repeat(2,1fr)}
+  .gal-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:140px}
+  .gc-a,.gc-b{grid-column:span 6}
+  .gc-c,.gc-d,.gc-e{grid-column:span 2}
+  .gc-f,.gc-g,.gc-h,.gc-i{grid-column:span 3}
+  .value-grid{grid-template-columns:1fr;gap:14px}
+  .pt-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .pt-hero{min-height:auto}
+  .pt-hero-inner{padding:80px 20px 56px}
+  .pt-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .pt-hero h1 br{display:none}
+  .pt-hero-desc{font-size:14px;line-height:1.95}
+  .pt-hero-desc br{display:none}
+  .pt-hero-btns .pt-btn{flex:1;justify-content:center;min-width:0}
+  .pt-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .pt-intro,.pt-cap,.pt-gallery,.pt-demo,.pt-value{padding:56px 20px}
+  .pt-cta{padding:64px 20px}
+  .pt-head{margin-bottom:36px}
+  .pt-head h2{font-size:24px}
+  .intro-left h2{font-size:22px}
+  .intro-right p{font-size:14px}
+  .cap-grid{grid-template-columns:1fr;gap:14px}
+  .cap-info{padding:20px 22px 22px}
+  .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;gap:10px}
+  .gc-a,.gc-b{grid-column:span 2;grid-row:span 2}
+  .gc-c,.gc-d,.gc-e,.gc-f,.gc-g,.gc-h,.gc-i{grid-column:span 1;grid-row:span 1}
+  .gal-cell::after{opacity:1;font-size:10px;padding:4px 8px}
+  .video-caption{flex-direction:column;gap:8px}
+  .pt-cta h2{font-size:22px}
+  .pt-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .pt-hero-inner{padding:60px 16px 40px}
+  .pt-hero h1{font-size:clamp(24px,8vw,32px)}
+  .pt-hero-desc{font-size:13.5px}
+  .pt-hero-meta{grid-template-columns:1fr;gap:12px}
+  .pt-btn{padding:11px 22px;font-size:14px}
+  .pt-intro,.pt-cap,.pt-gallery,.pt-demo,.pt-value,.pt-cta{padding:48px 16px}
+  .pt-head h2{font-size:22px;line-height:1.4}
+  .pt-head p{font-size:13.5px}
+  .pt-head p br{display:none}
+  .cap-info h3{font-size:16px}
+  .cap-info p{font-size:12.5px}
+  .gal-grid{grid-template-columns:1fr;grid-auto-rows:200px}
+  .gc-a,.gc-b,.gc-c,.gc-d,.gc-e,.gc-f,.gc-g,.gc-h,.gc-i{grid-column:span 1;grid-row:span 1}
+  .value-card{padding:26px 22px 24px}
+  .value-num{font-size:36px;margin-bottom:12px}
+  .pt-cta h2{font-size:20px}
+  .pt-cta h2 br,.pt-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="cases">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="pt-hero">
+  <div class="pt-hero-img">
+    <img src="uploads/proptech/建築外觀視角1-夜景.jpg" alt="元境大喜 建築外觀夜景">
+  </div>
+  <div class="pt-hero-inner">
+    <div class="pt-brand-row reveal">
+      <span>Case Study</span>
+      <b>元境大喜 · 建案銷售 3D 體驗</b>
+    </div>
+    <h1 class="reveal reveal-d1">在接待中心的<em>一台螢幕</em>裡，<br>走完整個未來的家</h1>
+    <p class="pt-hero-desc reveal reveal-d2">
+      為「元境大喜」建案打造的即時 3D 銷售導覽軟體 ——<br>
+      從建築外觀、街區環境、景觀公設一路到樣品屋，<br>
+      客戶都能自由走動、自由觀看；甚至能即時切換日照時間，<br>
+      看一看自己未來陽台早上跟黃昏的樣子。
+    </p>
+    <div class="pt-hero-btns reveal reveal-d2">
+      <a class="pt-btn pt-btn-primary" href="#demo">看操作影片 ▶</a>
+      <a class="pt-btn pt-btn-ghost" href="#contact">為我的建案打造</a>
+    </div>
+    <div class="pt-hero-meta reveal reveal-d3">
+      <div><div class="lab">Client</div><div class="val">元境大喜建案</div></div>
+      <div><div class="lab">Service</div><div class="val">建案銷售 3D 軟體</div></div>
+      <div><div class="lab">Scope</div><div class="val">外觀 / 公設 / 樣品屋</div></div>
+      <div><div class="lab">Feature</div><div class="val">日照模擬 · 街景串接</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="pt-intro" id="intro">
+  <div class="intro-grid">
+    <div class="intro-left reveal">
+      <div class="pre">About this case</div>
+      <h2>把實體接待中心，<br>裝進一台螢幕裡</h2>
+    </div>
+    <div class="intro-right reveal reveal-d1">
+      <p>建商賣預售屋最大的痛點，是「客戶看不到」 —— 平面圖看不懂、模型摸不出尺度、樣品屋蓋好已經是預售末期。<strong>客戶決策需要的東西</strong>，往往出現得太晚。</p>
+      <p>我們為元境大喜建案打造一套<strong>即時 3D 銷售導覽軟體</strong>，整合建築外觀、周邊街景、景觀公設與樣品屋為同一個可走動的場景。業務在接待中心的螢幕前帶客戶走一遍，比帶他爬完工地走一圈還清楚。</p>
+      <p>場景內每一處的<strong>日照、材質、視角</strong>都可即時調整 —— 早上的客廳、黃昏的陽台、雨後的中庭，銷售現場直接看給客戶。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="pt-cap" id="capabilities">
+  <div class="pt-cap-inner">
+    <div class="pt-head reveal">
+      <div class="tag gold">What we built</div>
+      <h2>五件事，把整個建案<br>裝進一個可走動的場景</h2>
+      <p>不是分散在不同 PDF、不同模型、不同 VR 體驗的零件，<br>而是一個介面、一條動線把全案走完。</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card reveal">
+        <div class="cap-img"><video src="uploads/proptech/建築外觀.mp4" poster="uploads/proptech/建築外觀(角度溝通用) (1).jpg" loop muted playsinline preload="none" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay></video></div>
+        <div class="cap-info">
+          <div class="cap-tag">Exterior</div>
+          <h3>建築外觀 · 任意視角</h3>
+          <p>白天、黃昏、夜景任意切換，街角、空拍、人視角任意切換 — 銷售圖不再是平面，是可以繞著走的真實量體。</p>
+        </div>
+      </div>
+      <div class="cap-card reveal reveal-d1">
+        <div class="cap-img"><video src="uploads/proptech/周邊環境.mp4" poster="uploads/proptech/車道.jpg" loop muted playsinline preload="none" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay></video></div>
+        <div class="cap-info">
+          <div class="cap-tag">Surroundings</div>
+          <h3>周邊環境 · 結合 Google 街景</h3>
+          <p>客戶不只看建築本身，也看得到周遭店家、學校、公園、捷運出口 — 串接街景資料，現場直接走出去看真實街區。</p>
+        </div>
+      </div>
+      <div class="cap-card reveal reveal-d2">
+        <div class="cap-img"><video src="uploads/proptech/景觀公設行走.mp4" poster="uploads/proptech/四季花園1-2.jpg" loop muted playsinline preload="none" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay></video></div>
+        <div class="cap-info">
+          <div class="cap-tag">Amenities</div>
+          <h3>景觀公設 · 自由走動觀看</h3>
+          <p>大廳、迎賓車道、四季花園、廊道、多功能室 —— 不是靜態照片，是可以自己走進去、停下來、轉頭看的真實尺度。</p>
+        </div>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-img"><video src="uploads/proptech/樣品屋.mp4" poster="uploads/proptech/迎賓大廳.jpg" loop muted playsinline preload="none" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay></video></div>
+        <div class="cap-info">
+          <div class="cap-tag">Show Unit</div>
+          <h3>樣品屋 · 走進去看每個角落</h3>
+          <p>客廳、主臥、廚房、陽台、收納櫃 — 客戶可以自己走、自己停、自己看細節，不被業務動線牽著走，停留更長、感受更深。</p>
+        </div>
+      </div>
+      <div class="cap-card reveal reveal-d1">
+        <div class="cap-img"><video src="uploads/proptech/日照模擬.mp4" poster="uploads/proptech/8.jpg" loop muted playsinline preload="none" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay></video></div>
+        <div class="cap-info">
+          <div class="cap-tag">Daylight</div>
+          <h3>日照模擬 · 一條時間軸搞定</h3>
+          <p>滑動時間軸，看清楚自己這間早上 8 點、下午 3 點、傍晚 6 點各是什麼光景 — 客戶最在意的「我家會不會西曬」，答案直接給。</p>
+        </div>
+      </div>
+      <div class="cap-card reveal reveal-d2">
+        <div class="cap-img"><img src="uploads/proptech/智能櫃-2.jpg" alt="機能設施完整呈現"></div>
+        <div class="cap-info">
+          <div class="cap-tag">Facilities</div>
+          <h3>機能設施 · 連細節都做</h3>
+          <p>智能櫃、信箱區、機車停車、曬被區、休息空間 — 這些日常會用到、卻常被銷售簡報省略的細節，全都做進場景裡。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pt-gallery" id="gallery">
+  <div class="pt-head reveal">
+    <div class="tag">Visual highlights</div>
+    <h2>實際場景擷取</h2>
+    <p>軟體內任意角度、任意位置截取的畫面 —— 銷售簡報、海報、社群素材都能直接使用。</p>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-cell gc-a reveal" data-cap="大廳"><img src="uploads/proptech/大廳.jpg" alt="大廳"></div>
+    <div class="gal-cell gc-b reveal reveal-d1" data-cap="迎賓大廳"><img src="uploads/proptech/迎賓大廳.jpg" alt="迎賓大廳"></div>
+    <div class="gal-cell gc-c reveal" data-cap="四季花園"><img src="uploads/proptech/四季花園2-2.jpg" alt="四季花園"></div>
+    <div class="gal-cell gc-d reveal reveal-d1" data-cap="四季廊道"><img src="uploads/proptech/四季廊道-2.jpg" alt="四季廊道"></div>
+    <div class="gal-cell gc-e reveal reveal-d2" data-cap="花園步道"><img src="uploads/proptech/花園-1-2.jpg" alt="花園步道"></div>
+    <div class="gal-cell gc-f reveal" data-cap="迎賓車道"><img src="uploads/proptech/迎賓車道2-2.jpg" alt="迎賓車道"></div>
+    <div class="gal-cell gc-g reveal reveal-d1" data-cap="第二門廳"><img src="uploads/proptech/第二門廳.jpg" alt="第二門廳"></div>
+    <div class="gal-cell gc-h reveal reveal-d2" data-cap="多功能室"><img src="uploads/proptech/多功能室-2.jpg" alt="多功能室"></div>
+    <div class="gal-cell gc-i reveal reveal-d3" data-cap="休息區"><img src="uploads/proptech/休息區.jpg" alt="休息區"></div>
+  </div>
+</section>
+
+<!-- DEMO VIDEO -->
+<section class="pt-demo" id="demo">
+  <div class="pt-demo-inner">
+    <div class="pt-head reveal">
+      <div class="tag">Live demo</div>
+      <h2>操作示範影片</h2>
+      <p>實際在軟體內走動 —— 切換場景、調整視角、切換日照、進出建築與公設的過程。</p>
+    </div>
+    <div class="video-frame reveal reveal-d1">
+      <video src="uploads/proptech/demo.mp4" poster="uploads/proptech/建築外觀視角1-夜景.jpg" loop muted playsinline preload="none" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay style="pointer-events:none"></video>
+    </div>
+    <div class="video-caption reveal reveal-d2">
+      <span class="badge">Demo</span>
+      <span>從建築外觀任意視角開始，走進迎賓車道、穿過大廳，到四季花園、廊道與多功能室 —— 全程一個介面，沒有跳場景、沒有換 App，客戶感受到的就是一段連續的「走進去」的體驗。</span>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section class="pt-value" id="value">
+  <div class="pt-head reveal">
+    <div class="tag gold">Sales value</div>
+    <h2>對建案銷售的意義</h2>
+    <p>不只是「好看的銷售工具」 —— 而是把建商賣預售屋時，<br>那些「靠想像」的環節變成「眼睛看見」的環節。</p>
+  </div>
+  <div class="value-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <h3>銷售提早開跑</h3>
+      <p>不用等實體樣品屋蓋好，從拿到設計圖就能進場銷售 — 銷售期可提早 3–6 個月。</p>
+    </div>
+    <div class="value-card reveal reveal-d1">
+      <div class="value-num">02</div>
+      <h3>溝通成本下降</h3>
+      <p>「我家會不會西曬」「我那層看到什麼」「我這戶離捷運多遠」 — 銷售現場直接給答案，不用等回去查。</p>
+    </div>
+    <div class="value-card reveal reveal-d2">
+      <div class="value-num">03</div>
+      <h3>修改更彈性</h3>
+      <p>設計微調、配色變更、家具搭配，軟體內更新，馬上反映 — 不用重新拍模型、重新印 DM。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pt-cta" id="contact">
+  <div class="pt-cta-inner">
+    <div>
+      <div class="tag">For developers</div>
+      <h2>為你的下一個建案，<br>打造一套即時 3D 銷售導覽</h2>
+      <p>不論是預售屋、樣品屋、社區更新還是商辦，<br>只要你的銷售流程會被「客戶看不到」拖慢，我們都能幫你把整個案子裝進一台螢幕裡。</p>
+    </div>
+    <div class="pt-cta-btns">
+      <a class="pt-cta-btn pt-cta-primary" href="mailto:wayto.metaverse@gmail.com">聊聊我的建案 →</a>
+      <a class="pt-cta-btn pt-cta-ghost" href="#capabilities">先看能做什麼</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+// Reveal on scroll
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+// Auto-play videos when in viewport, pause when out (saves bandwidth)
+(function(){
+  var vids = document.querySelectorAll('video[data-autoplay]');
+  if (!vids.length) return;
+  if (!('IntersectionObserver' in window)) {
+    vids.forEach(function(v){ v.play().catch(function(){}); });
+    return;
+  }
+  var vio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting) {
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+  vids.forEach(function(v){ vio.observe(v); });
+})();
+
+// Block drag-to-save on all videos
+document.addEventListener('dragstart', function(e){
+  if (e.target && e.target.tagName === 'VIDEO') e.preventDefault();
+});
+</script>
+</body>
+</html>
