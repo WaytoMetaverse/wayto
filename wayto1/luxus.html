@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富喜 LUXUS Paint 案例｜藝術塗料展場互動軟體｜Wayto Metaverse</title>
+<meta name="description" content="為「富喜 LUXUS Paint Taiwan」藝術塗料品牌打造的展場互動軟體 — 在預設好的高質感室內空間中，自由切換不同塗料、即時看到實際牆面效果。從色票升級到「客戶看到的就是我家牆面」的銷售工具。">
+<meta name="keywords" content="藝術塗料展示,塗料展場軟體,空間材質模擬,建材展互動裝置,室內塗料預覽,塗料銷售工具,客製空間展示軟體,富喜 LUXUS Paint">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/luxus.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="富喜 LUXUS Paint 案例｜藝術塗料展場互動軟體">
+<meta property="og:description" content="把塗料展示從色票，升級成客戶眼前的「我家牆面」 — 預設室內空間 + 自由換材，展場現場即時體驗。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/LUXUS%20Paint%20Taiwan/exhibition.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"富喜 LUXUS Paint 藝術塗料展場互動軟體案例","description":"Wayto 為富喜藝術塗料品牌打造展場互動軟體：預設室內空間 + 自由切換塗料即時預覽。","author":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd."},"publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"},"image":"https://wayto.com.tw/wayto1/uploads/LUXUS%20Paint%20Taiwan/exhibition.jpg","url":"https://wayto.com.tw/wayto1/luxus.html"}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa;--copper:#a16207;--copper-dark:#854d0e;--copper-soft:#fef9c3}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+img{max-width:100%;display:block}
+
+/* HERO */
+.lx-hero{margin-top:64px;position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:#0a0a0a}
+.lx-hero-img{position:absolute;inset:0;overflow:hidden}
+.lx-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center}
+.lx-hero-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.35) 0%,rgba(10,10,10,.15) 35%,rgba(10,10,10,.5) 65%,rgba(10,10,10,.95) 100%);z-index:1}
+.lx-hero-inner{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:80px;width:100%;color:#fff}
+.lx-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;padding:6px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;backdrop-filter:blur(8px)}
+.lx-brand-row span{font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,.85);letter-spacing:1.5px;text-transform:uppercase}
+.lx-brand-row b{font-size:11px;font-weight:600;color:#fbbf24;letter-spacing:.5px;padding-left:10px;border-left:1px solid rgba(255,255,255,.2)}
+.lx-hero h1{font-size:clamp(34px,4.6vw,60px);font-weight:900;line-height:1.18;letter-spacing:-0.6px;margin-bottom:24px;max-width:840px}
+.lx-hero h1 em{font-style:normal;color:#fbbf24}
+.lx-hero-desc{font-size:15px;color:rgba(255,255,255,.78);line-height:2;margin-bottom:32px;max-width:600px}
+.lx-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.lx-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.lx-btn-primary{background:#fff;color:#0a0a0a}
+.lx-btn-primary:hover{background:#fbbf24;color:#0a0a0a;transform:translateY(-1px)}
+.lx-btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.lx-btn-ghost:hover{background:rgba(255,255,255,.18)}
+.lx-hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);max-width:780px}
+.lx-hero-meta .lab{font-size:11px;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.lx-hero-meta .val{font-size:14px;font-weight:700;color:#fff}
+
+/* SECTION HEAD */
+.lx-head{margin-bottom:48px;max-width:780px}
+.lx-head .tag{font-size:12px;font-weight:700;color:var(--copper);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.lx-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.lx-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* ABOUT */
+.lx-about{padding:80px;max-width:1320px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:flex-start}
+.about-left .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--copper);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.about-left h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.35}
+.about-right p{font-size:14.5px;color:#334155;line-height:2;margin-bottom:18px}
+.about-right p:last-child{margin-bottom:0}
+.about-right strong{color:#0f172a;font-weight:700}
+
+/* CAPABILITY CARDS */
+.lx-cap{background:var(--gray-bg);padding:80px}
+.lx-cap-inner{max-width:1320px;margin:0 auto}
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cap-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:30px 28px 28px;transition:all .25s;display:flex;flex-direction:column;gap:14px}
+.cap-card:hover{border-color:var(--copper);box-shadow:0 12px 36px rgba(161,98,7,.1);transform:translateY(-4px)}
+.cap-icon{width:44px;height:44px;border-radius:11px;background:var(--copper-soft);color:var(--copper-dark);display:flex;align-items:center;justify-content:center}
+.cap-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cap-card h3{font-size:17px;font-weight:800;color:var(--navy)}
+.cap-card p{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* DEMO VIDEOS */
+.lx-demo{padding:80px;max-width:1320px;margin:0 auto}
+.demo-grid{display:block;max-width:980px;margin:8px auto 0}
+.demo-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .25s}
+.demo-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(15,23,42,.08)}
+.demo-media{aspect-ratio:16/10;background:#0a0a0a;position:relative;overflow:hidden}
+.demo-media video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.demo-info{padding:22px 26px 26px}
+.demo-tag{font-family:'Outfit',sans-serif;font-size:10px;color:var(--copper);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+.demo-info h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.demo-info p{font-size:13px;color:var(--muted);line-height:1.85}
+
+/* EVENT (建材展) */
+.lx-event{background:#0a0a0a;color:#fff;padding:96px 80px;overflow:hidden;position:relative}
+.lx-event::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 20%,rgba(251,191,36,.18),transparent 60%);pointer-events:none}
+.event-inner{position:relative;max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.event-img{border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:#1a1a1a}
+.event-img img{width:100%;height:100%;object-fit:cover;display:block}
+.event-text .tag{font-size:12px;font-weight:700;color:#fbbf24;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.event-text h2{font-size:clamp(28px,3.4vw,38px);font-weight:900;color:#fff;letter-spacing:-0.3px;line-height:1.35;margin-bottom:18px}
+.event-text p{font-size:14.5px;color:rgba(255,255,255,.75);line-height:2;margin-bottom:16px}
+.event-text p strong{color:#fff;font-weight:700}
+.event-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+.event-stat .lab{font-family:'Outfit',sans-serif;font-size:11px;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.event-stat .val{font-size:14px;color:#fff;font-weight:700}
+
+/* VALUE */
+.lx-value{padding:80px;max-width:1320px;margin:0 auto}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.value-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;transition:all .25s}
+.value-card:hover{border-color:var(--copper);transform:translateY(-3px);box-shadow:0 12px 32px rgba(161,98,7,.1)}
+.value-num{font-family:'Outfit',sans-serif;font-size:42px;font-weight:200;color:var(--copper);line-height:1;letter-spacing:-1.5px;margin-bottom:14px}
+.value-card h3{font-size:16.5px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.value-card p{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* CTA */
+.lx-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#451a03 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.lx-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(251,191,36,.18),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(254,215,170,.12),transparent 60%);pointer-events:none}
+.lx-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.lx-cta .tag{font-size:12px;font-weight:600;color:#fbbf24;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.lx-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.lx-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.lx-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.lx-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.lx-cta-primary{background:#fff;color:var(--navy)}
+.lx-cta-primary:hover{background:#fef3c7}
+.lx-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.lx-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .lx-hero{min-height:78vh}
+  .lx-hero-inner{padding:64px 32px}
+  .lx-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .lx-about,.lx-cap,.lx-demo,.lx-event,.lx-value,.lx-cta{padding:64px 32px}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .cap-grid,.value-grid{grid-template-columns:repeat(2,1fr)}
+  .demo-grid{max-width:none}
+  .event-inner{grid-template-columns:1fr;gap:32px}
+  .event-img{aspect-ratio:4/3;max-height:520px}
+  .lx-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .lx-hero{min-height:auto}
+  .lx-hero-inner{padding:80px 20px 56px}
+  .lx-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .lx-hero h1 br{display:none}
+  .lx-hero-desc{font-size:14px;line-height:1.95}
+  .lx-hero-desc br{display:none}
+  .lx-hero-btns .lx-btn{flex:1;justify-content:center;min-width:0}
+  .lx-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .lx-about,.lx-cap,.lx-demo,.lx-value{padding:56px 20px}
+  .lx-event{padding:64px 20px}
+  .lx-cta{padding:64px 20px}
+  .lx-head{margin-bottom:36px}
+  .lx-head h2{font-size:24px}
+  .about-left h2{font-size:22px}
+  .about-right p{font-size:14px}
+  .cap-grid,.value-grid{grid-template-columns:1fr;gap:14px}
+  .cap-card{padding:26px 22px}
+  .demo-info{padding:20px 22px 22px}
+  .event-stats{grid-template-columns:1fr;gap:14px}
+  .event-text h2{font-size:22px}
+  .lx-cta h2{font-size:22px}
+  .lx-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .lx-hero-inner{padding:60px 16px 40px}
+  .lx-hero h1{font-size:clamp(24px,8vw,32px)}
+  .lx-hero-desc{font-size:13.5px}
+  .lx-hero-meta{grid-template-columns:1fr;gap:12px}
+  .lx-btn{padding:11px 22px;font-size:14px}
+  .lx-about,.lx-cap,.lx-demo,.lx-event,.lx-value,.lx-cta{padding:48px 16px}
+  .lx-head h2{font-size:22px;line-height:1.4}
+  .lx-head p{font-size:13.5px}
+  .lx-head p br{display:none}
+  .cap-card h3,.value-card h3,.demo-info h3{font-size:15.5px}
+  .cap-card p,.value-card p,.demo-info p{font-size:13px}
+  .value-num{font-size:36px}
+  .event-text h2{font-size:20px;line-height:1.45}
+  .event-text h2 br,.event-text p br{display:none}
+  .lx-cta h2{font-size:20px}
+  .lx-cta h2 br,.lx-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="cases">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="lx-hero">
+  <div class="lx-hero-img">
+    <img src="uploads/LUXUS Paint Taiwan/exhibition.jpg" alt="富喜 LUXUS Paint Taiwan 在台北建材展現場展示互動軟體">
+  </div>
+  <div class="lx-hero-inner">
+    <div class="lx-brand-row reveal">
+      <span>Case Study</span>
+      <b>富喜 LUXUS Paint Taiwan · 藝術塗料展場互動軟體</b>
+    </div>
+    <h1 class="reveal reveal-d1">把塗料展示<br>從<em>色票</em>，升級到<em>「我家的牆」</em></h1>
+    <p class="lx-hero-desc reveal reveal-d2">
+      為富喜藝術塗料品牌打造的展場互動軟體 ——<br>
+      預設好的高質感室內空間，業務一手指就能換上任何一款富喜塗料，<br>
+      客戶眼前看到的不是色票、不是 DM，<br>
+      而是「這款塗料貼在我家牆上的樣子」。
+    </p>
+    <div class="lx-hero-btns reveal reveal-d2">
+      <a class="lx-btn lx-btn-primary" href="#demo">看軟體實際操作 ▶</a>
+      <a class="lx-btn lx-btn-ghost" href="#contact">為我的品牌打造</a>
+    </div>
+    <div class="lx-hero-meta reveal reveal-d3">
+      <div><div class="lab">Client</div><div class="val">富喜 LUXUS Paint Taiwan</div></div>
+      <div><div class="lab">Service</div><div class="val">展場互動軟體</div></div>
+      <div><div class="lab">Scope</div><div class="val">預設空間 + 即時換材</div></div>
+      <div><div class="lab">Showcase</div><div class="val">台北建材展現場</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THIS CASE -->
+<section class="lx-about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <div class="pre">About this case</div>
+      <h2>塗料銷售最大的距離，<br>是色票跟「我家牆」之間</h2>
+    </div>
+    <div class="about-right reveal reveal-d1">
+      <p>「富喜 LUXUS Paint Taiwan」是專注於<strong>藝術塗料</strong>的品牌 —— 不是一般工業漆，而是有質感、有層次、會說話的塗料。但這種塗料賣得越好，碰到的核心阻力就越大：<strong>客戶光看小張色票，沒辦法想像它貼在自家牆上會長什麼樣。</strong></p>
+      <p>業務帶著色票本去談、寄一小桶試漆樣品、印一本 DM，這些都是過去的解法 —— 但花了時間跟成本，客戶最後還是說「我再想想」。</p>
+      <p>我們為富喜打造一套<strong>展場互動軟體</strong>：預先做好幾組高質感的室內空間（客廳、餐廳、臥室），業務在現場一手指就能把富喜的任何一款塗料貼到指定的牆面，光線、陰影、質感全部即時更新 —— 客戶不再「想像」，而是<strong>直接看見</strong>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="lx-cap" id="features">
+  <div class="lx-cap-inner">
+    <div class="lx-head reveal">
+      <div class="tag">What we built</div>
+      <h2>讓塗料銷售現場，<br>從「講」變成「看」</h2>
+      <p>不是 3D 軟體、不是 VR、也不是設計師工具 —— 是一套<strong>業務拿著就會用</strong>的展場銷售工具。</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card reveal">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 22V12h6v10"/></svg></div>
+        <h3>預設高質感空間</h3>
+        <p>客廳、餐廳、臥室、玄關 —— 每一個空間都按照真實室內比例與光線打造，質感跟實拍照片沒兩樣。</p>
+      </div>
+      <div class="cap-card reveal reveal-d1">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M5.6 5.6l4.2 4.2m4.4 4.4l4.2 4.2M1 12h6m10 0h6M5.6 18.4l4.2-4.2m4.4-4.4l4.2-4.2"/></svg></div>
+        <h3>即時切換塗料</h3>
+        <p>業務點一下，塗料就上牆 —— 富喜整套產品線都整合在系統內，搭配組合一鍵切換。</p>
+      </div>
+      <div class="cap-card reveal reveal-d2">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9c2 0 4 .7 5.5 2"/><circle cx="17" cy="7" r="2.5"/></svg></div>
+        <h3>光影自然延續</h3>
+        <p>不是「貼上」一張色塊圖，是讓塗料融進空間的光線與陰影裡 —— 看起來就像實際施工完的樣子。</p>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4M14 14h2"/></svg></div>
+        <h3>業務即用</h3>
+        <p>觸控螢幕介面，業務不用學任何 3D 軟體、不用設計背景 —— 跟客戶聊天的同時就能切換給對方看。</p>
+      </div>
+      <div class="cap-card reveal reveal-d1">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M7 7h10v10H7zM4 4l3 3M20 4l-3 3M4 20l3-3M20 20l-3-3"/></svg></div>
+        <h3>多角度走動觀看</h3>
+        <p>客戶可以自己走進空間裡看不同角度 —— 牆角、轉角、開窗處的光影細節，都跟實際施工後一樣。</p>
+      </div>
+      <div class="cap-card reveal reveal-d2">
+        <div class="cap-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M9 10h6m-6 4h6M3 4l9 4 9-4"/></svg></div>
+        <h3>展場到門市都能用</h3>
+        <p>同一套軟體可以放在大型展場觸控螢幕、也可以變成門市 iPad 工具、業務筆電版本 —— 場景靈活切換。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO VIDEOS -->
+<section class="lx-demo" id="demo">
+  <div class="lx-head reveal">
+    <div class="tag">Live demo</div>
+    <h2>實際操作畫面</h2>
+    <p>業務在展場現場操作軟體切換不同塗料的過程 —— 從點選空間、選擇塗料、到看見上牆結果，整段流暢無需學習。</p>
+  </div>
+  <div class="demo-grid">
+    <div class="demo-card reveal">
+      <div class="demo-media">
+        <video src="uploads/LUXUS Paint Taiwan/demo-2.mp4" loop muted playsinline preload="metadata" disablepictureinpicture controlsList="nodownload noremoteplayback nofullscreen noplaybackrate" oncontextmenu="return false" data-autoplay></video>
+      </div>
+      <div class="demo-info">
+        <div class="demo-tag">Demo · 軟體實際操作</div>
+        <h3>預設空間 + 一鍵切換塗料</h3>
+        <p>在預先打造的室內空間裡走動、選一面牆、選一款塗料，光影與質感即時更新 —— 客戶看到的就是「這款貼在我家」的樣子。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENT (台北建材展) -->
+<section class="lx-event">
+  <div class="event-inner">
+    <div class="event-img reveal">
+      <img src="uploads/LUXUS Paint Taiwan/exhibition.jpg" alt="富喜在台北建材展現場展示互動軟體">
+    </div>
+    <div class="event-text reveal reveal-d1">
+      <div class="tag">On site · 台北建材展</div>
+      <h2>展場現場，<br>業務跟客戶說話的方式變了</h2>
+      <p>2026 年，wayto 跟富喜一起把這套軟體帶進<strong>台北建材展</strong> —— 攤位上不再是傳統的色票牆跟印刷 DM，而是一台直立大螢幕。</p>
+      <p>業務跟客戶介紹塗料時，<strong>不再是「想像一下」</strong>，而是直接點開空間、套上塗料、給對方看 —— 客戶當場就能比較不同色號、不同質感、不同搭配，做決策的速度跟確信感都不一樣。</p>
+      <div class="event-stats">
+        <div class="event-stat">
+          <div class="lab">Format</div>
+          <div class="val">直立觸控大螢幕</div>
+        </div>
+        <div class="event-stat">
+          <div class="lab">Operator</div>
+          <div class="val">富喜現場業務</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section class="lx-value">
+  <div class="lx-head reveal">
+    <div class="tag">Sales value</div>
+    <h2>對塗料品牌的銷售意義</h2>
+    <p>這不只是「視覺工具」 —— 是把塗料銷售從「賭客戶想得出來」改成「保證客戶看得見」。</p>
+  </div>
+  <div class="value-grid">
+    <div class="value-card reveal">
+      <div class="value-num">01</div>
+      <h3>決策斷層被填平</h3>
+      <p>過去「色票 → 實際牆面」之間的想像落差，現在當場補滿 —— 客戶決策從「再考慮」變成「就這款」。</p>
+    </div>
+    <div class="value-card reveal reveal-d1">
+      <div class="value-num">02</div>
+      <h3>樣品成本下降</h3>
+      <p>不用寄試漆、不用大量印製色票本，業務帶一台筆電/iPad 就能談 — 物流跟印刷費可以省下來。</p>
+    </div>
+    <div class="value-card reveal reveal-d2">
+      <div class="value-num">03</div>
+      <h3>展場記憶點變強</h3>
+      <p>同業攤位都是色票與宣傳板 —— 你的攤位是會動、會回應、會即時換材的體驗，客戶記得住、會分享。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="lx-cta" id="contact">
+  <div class="lx-cta-inner">
+    <div>
+      <div class="tag">For brands</div>
+      <h2>你的建材品牌，<br>也想把銷售現場升級嗎？</h2>
+      <p>不論是塗料、磁磚、地板、壁紙、木皮、或任何需要「貼到空間裡才看得出價值」的建材，<br>我們都能為你打造一套類似的展場互動軟體。</p>
+    </div>
+    <div class="lx-cta-btns">
+      <a class="lx-cta-btn lx-cta-primary" href="mailto:wayto.metaverse@gmail.com">聊聊我的品牌 →</a>
+      <a class="lx-cta-btn lx-cta-ghost" href="#features">先看能做什麼</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+// Reveal on scroll
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+// Auto-play demo videos when in viewport
+(function(){
+  var vids = document.querySelectorAll('video[data-autoplay]');
+  if (!vids.length) return;
+  if (!('IntersectionObserver' in window)) {
+    vids.forEach(function(v){ v.play().catch(function(){}); });
+    return;
+  }
+  var vio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting) {
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function(){});
+      } else { v.pause(); }
+    });
+  }, { threshold: 0.25 });
+  vids.forEach(function(v){ vio.observe(v); });
+})();
+
+// Block drag-to-save on videos
+document.addEventListener('dragstart', function(e){
+  if (e.target && e.target.tagName === 'VIDEO') e.preventDefault();
+});
+</script>
+</body>
+</html>

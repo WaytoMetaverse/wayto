@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>磐石砌好厝 活動管理平台｜以活動為中心的會員制組織管理｜Wayto Metaverse</title>
+<meta name="description" content="磐石砌好厝 — 為以活動為中心的會員制組織打造的管理平台。整合活動報名、簽到、繳費、名片、菜單、講師預約。從七禾建築組的客製專案開始，發現產業組織的活動流程其實一樣，於是抽象成平台。">
+<meta name="keywords" content="活動管理平台,會員制組織,商會管理,產業協會,活動報名簽到,名片 OCR,LINE Bot 通知,扶輪社活動,業內聚會">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/herchu.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="磐石砌好厝 活動管理平台｜以活動為中心的會員制組織管理">
+<meta property="og:description" content="活動報名、簽到、繳費、名片、菜單、講師 — 把每場活動辦好需要的事，一個平台全包。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/herchu/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"磐石砌好厝","alternateName":"活動管理平台","description":"為會員制組織打造的活動管理平台，整合活動報名、簽到、繳費、名片、菜單與講師預約。","applicationCategory":"BusinessApplication","operatingSystem":"Web, iOS, Android","url":"https://wayto.com.tw/wayto1/herchu.html","image":"https://wayto.com.tw/wayto1/uploads/herchu/logo.jpg","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa;--amber:#d97706;--amber-dark:#b45309;--amber-soft:#fef3c7}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+img{max-width:100%;display:block}
+
+/* HERO */
+.he-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#fef3c7 0%,#fffbeb 50%,#fff 100%)}
+.he-hero-inner{max-width:1320px;margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
+.he-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:6px 16px 6px 8px;background:#fff;border:1px solid var(--border);border-radius:999px}
+.he-brand-row img{height:22px;width:auto;border-radius:4px}
+.he-brand-row span{font-size:13px;font-weight:600;color:var(--navy);letter-spacing:.5px}
+.he-brand-row b{font-size:11px;font-weight:600;color:var(--amber-dark);letter-spacing:1px;padding-left:10px;border-left:1px solid var(--border)}
+.he-hero h1{font-size:clamp(34px,4.2vw,54px);font-weight:900;color:#0f172a;line-height:1.25;letter-spacing:-0.6px;margin-bottom:24px}
+.he-hero h1 em{font-style:normal;color:var(--amber-dark)}
+.he-hero-desc{font-size:15px;color:#1e293b;line-height:2;margin-bottom:32px;max-width:540px}
+.he-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.he-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.he-btn-primary{background:var(--navy);color:#fff}
+.he-btn-primary:hover{background:var(--amber-dark);transform:translateY(-1px)}
+.he-btn-outline{background:transparent;color:var(--navy);border:1px solid rgba(26,43,94,.35)}
+.he-btn-outline:hover{border-color:var(--amber-dark);color:var(--amber-dark)}
+.he-hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:24px;border-top:1px solid #cbd5e1;padding-top:22px;max-width:620px}
+.he-hero-meta .lab{font-size:11px;font-weight:600;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.he-hero-meta .val{font-size:13.5px;font-weight:700;color:#0f172a}
+
+/* HERO MOCK UI */
+.he-hero-visual{position:relative;height:560px}
+.event-list{position:absolute;left:0;top:0;width:380px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 20px 50px rgba(15,23,42,.1);z-index:1}
+.el-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.el-head .ll{font-family:'Outfit',sans-serif;font-size:10px;color:var(--amber-dark);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.el-head .tt{font-size:14px;font-weight:800;color:#0f172a;margin-top:2px}
+.el-head .badge{background:var(--amber-soft);color:var(--amber-dark);font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px}
+.el-item{display:grid;grid-template-columns:48px 1fr auto;gap:12px;padding:11px 0;border-top:1px solid #f1f5f9;align-items:center}
+.el-item:first-of-type{border-top:none}
+.el-date{background:var(--amber-soft);border-radius:8px;text-align:center;padding:6px 0;color:var(--amber-dark)}
+.el-date .d{font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;line-height:1}
+.el-date .m{font-size:9px;font-weight:600;letter-spacing:.5px;margin-top:2px;text-transform:uppercase}
+.el-info .n{font-size:12.5px;font-weight:700;color:#0f172a;line-height:1.3}
+.el-info .s{font-size:10.5px;color:#94a3b8;margin-top:3px}
+.el-stat{font-family:'Outfit',sans-serif;font-size:11px;color:#10b981;font-weight:600}
+.el-stat .lab{display:block;font-size:9px;color:#94a3b8;text-align:right;text-transform:uppercase;letter-spacing:.5px}
+
+.checkin-phone{position:absolute;right:0;top:60px;width:270px;height:500px;background:#0f172a;border-radius:36px;padding:12px;box-shadow:0 30px 60px rgba(15,23,42,.28);z-index:2}
+.cp-screen{width:100%;height:100%;background:#fafaf9;border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+.cp-bar{height:24px;background:#0f172a;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;font-size:10px;font-family:'Outfit',sans-serif}
+.cp-head{padding:16px 18px 12px;background:#fff;border-bottom:1px solid #e2e8f0}
+.cp-tag{font-family:'Outfit',sans-serif;font-size:9px;color:var(--amber-dark);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.cp-title{font-size:14px;font-weight:800;color:#0f172a;line-height:1.3}
+.cp-sub{font-size:10.5px;color:#64748b;margin-top:4px;display:flex;align-items:center;gap:8px}
+.cp-status{background:#ecfdf5;color:#047857;font-size:9px;font-weight:700;padding:2px 8px;border-radius:99px}
+.cp-body{flex:1;padding:14px;overflow:hidden}
+.cp-row{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:6px;font-size:11px}
+.cp-row .nn{display:flex;align-items:center;gap:8px;color:#334155;font-weight:600}
+.cp-row .av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;font-family:'Outfit',sans-serif}
+.cp-row .ss{font-family:'Outfit',sans-serif;font-size:10px;color:#10b981;font-weight:700}
+.cp-row.pending .ss{color:#94a3b8}
+.cp-row.pending{opacity:.7}
+.cp-meal{margin-top:10px;padding:10px 11px;background:var(--amber-soft);border:1px solid #fde68a;border-radius:8px;font-size:10.5px;color:var(--amber-dark)}
+.cp-meal b{display:block;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700}
+.cp-meal-row{display:flex;justify-content:space-between;padding:2px 0;color:#92400e}
+
+.stats-card{position:absolute;left:80px;bottom:0;width:280px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:0 16px 40px rgba(15,23,42,.1);z-index:3}
+.sc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sc-head .ll{font-family:'Outfit',sans-serif;font-size:10px;color:var(--amber-dark);letter-spacing:1.5px;text-transform:uppercase}
+.sc-head .tt{font-size:13px;font-weight:800;color:#0f172a;margin-top:1px}
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sc-cell{text-align:center}
+.sc-cell .n{font-family:'Outfit',sans-serif;font-size:22px;font-weight:500;color:#0f172a;line-height:1}
+.sc-cell .l{font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:.5px}
+
+/* SECTION HEAD */
+.he-head{margin-bottom:48px;max-width:760px}
+.he-head .tag{font-size:12px;font-weight:700;color:var(--amber-dark);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.he-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.he-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* STORY */
+.he-story{padding:80px;max-width:1320px;margin:0 auto}
+.story-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start}
+.story-side{position:sticky;top:96px}
+.story-side .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--amber-dark);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.story-side h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.35}
+.story-blocks{display:flex;flex-direction:column;gap:32px}
+.story-block{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:flex-start}
+.story-num{font-family:'Outfit',sans-serif;font-size:42px;font-weight:200;color:#94a3b8;line-height:1;letter-spacing:-1px}
+.story-content h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.story-content p{font-size:14px;color:#334155;line-height:1.95}
+
+/* (legacy diff styles, unused) */
+.he-diff{background:var(--gray-bg);padding:80px}
+.he-diff-inner{max-width:1320px;margin:0 auto}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.diff-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px 30px 28px;transition:all .25s;display:flex;flex-direction:column;gap:14px}
+.diff-card .tag{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber-dark);align-self:flex-start;padding:4px 12px;background:var(--amber-soft);border-radius:99px}
+.diff-card.alt .tag{color:var(--navy);background:var(--sky)}
+.diff-card h3{font-size:18px;font-weight:800;color:var(--navy)}
+.diff-card p{font-size:13px;color:var(--muted);line-height:1.95}
+.diff-card .axis{font-family:'Outfit',sans-serif;font-size:10.5px;color:#94a3b8;letter-spacing:.5px;padding-top:10px;border-top:1px solid #f1f5f9;margin-top:auto}
+.diff-card .axis b{color:#0f172a;font-weight:700}
+
+/* CORE FEATURES */
+.he-core{padding:80px;max-width:1320px;margin:0 auto}
+.core-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.core-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:30px 28px 28px;transition:all .25s;display:flex;flex-direction:column;gap:14px}
+.core-card:hover{border-color:#fcd34d;box-shadow:0 12px 36px rgba(217,119,6,.1);transform:translateY(-4px)}
+.core-icon{width:44px;height:44px;border-radius:11px;background:var(--amber-soft);color:var(--amber-dark);display:flex;align-items:center;justify-content:center}
+.core-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.core-card h3{font-size:17px;font-weight:800;color:var(--navy)}
+.core-card p{font-size:13px;color:var(--muted);line-height:1.9}
+.core-card .feats{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.core-feat{font-size:11px;background:#f8fafc;color:#64748b;padding:4px 10px;border-radius:99px;border:1px solid #e2e8f0}
+
+/* LIFECYCLE */
+.he-flow{background:var(--gray-bg);padding:80px}
+.he-flow-inner{max-width:1320px;margin:0 auto}
+.flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative}
+.flow-step{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 20px;position:relative;transition:all .25s}
+.flow-step:hover{border-color:var(--amber-dark);box-shadow:0 10px 28px rgba(217,119,6,.1)}
+.flow-num{font-family:'Outfit',sans-serif;font-size:36px;font-weight:200;color:#94a3b8;line-height:1;margin-bottom:14px}
+.flow-step h3{font-size:14.5px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.flow-step p{font-size:12px;color:var(--muted);line-height:1.85}
+.flow-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--amber-dark);font-weight:300;background:var(--gray-bg);width:20px;height:20px;display:flex;align-items:center;justify-content:center;z-index:2}
+.flow-step:last-child::after{display:none}
+
+/* PERMISSIONS */
+.he-perm{padding:80px;max-width:1320px;margin:0 auto}
+.perm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.perm-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 26px 26px;display:flex;flex-direction:column;gap:12px;transition:all .25s}
+.perm-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(15,23,42,.06)}
+.perm-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;align-self:flex-start;padding:5px 10px;border-radius:99px}
+.perm-card.admin .perm-badge{color:var(--amber-dark);background:var(--amber-soft)}
+.perm-card.role .perm-badge{color:var(--navy);background:var(--sky)}
+.perm-card.user .perm-badge{color:#64748b;background:#f1f5f9}
+.perm-card h3{font-size:16px;font-weight:800;color:var(--navy)}
+.perm-card .who{font-size:13px;color:#334155;margin-bottom:4px}
+.perm-card ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.perm-card li{font-size:12.5px;color:#475569;line-height:1.7;padding-left:14px;position:relative}
+.perm-card li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--amber-dark)}
+.perm-card.role li::before{background:var(--navy)}
+.perm-card.user li::before{background:#94a3b8}
+
+/* INTEGRATIONS */
+.he-integ{background:var(--gray-bg);padding:80px}
+.he-integ-inner{max-width:1320px;margin:0 auto}
+.integ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.integ-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;transition:all .2s}
+.integ-card:hover{border-color:var(--amber-dark);transform:translateY(-2px)}
+.integ-card h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.integ-card p{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* AUDIENCE */
+.he-aud{padding:80px;max-width:1320px;margin:0 auto}
+.aud-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.aud-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:#334155;transition:all .2s}
+.aud-chip:hover{border-color:var(--amber-dark);color:var(--amber-dark);background:var(--amber-soft)}
+.aud-chip.primary{background:var(--amber-soft);border-color:#fde68a;color:#92400e}
+.aud-chip.primary:hover{background:#fcd34d}
+.aud-note{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.95}
+
+/* CTA */
+.he-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#451a03 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.he-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(217,119,6,.22),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(254,215,170,.14),transparent 60%);pointer-events:none}
+.he-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.he-cta .tag{font-size:12px;font-weight:600;color:#fbbf24;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.he-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.he-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.he-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.he-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.he-cta-primary{background:#fff;color:var(--navy)}
+.he-cta-primary:hover{background:var(--amber-soft)}
+.he-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.he-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .he-hero-inner{padding:64px 32px;grid-template-columns:1fr;gap:48px}
+  .he-hero-visual{height:auto;display:flex;flex-direction:column;gap:20px;max-width:560px;margin:0 auto;width:100%}
+  .event-list,.checkin-phone,.stats-card{position:static;width:100%}
+  .checkin-phone{height:500px;max-width:380px;margin:0 auto}
+  .stats-card{max-width:380px;margin:0 auto}
+  .he-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .he-story,.he-diff,.he-core,.he-flow,.he-perm,.he-integ,.he-aud,.he-cta{padding:64px 32px}
+  .story-grid{grid-template-columns:1fr;gap:36px}
+  .story-side{position:static}
+  .diff-grid{grid-template-columns:1fr;gap:18px}
+  .core-grid,.perm-grid{grid-template-columns:repeat(2,1fr)}
+  .flow-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .flow-step::after{display:none}
+  .integ-grid{grid-template-columns:repeat(2,1fr)}
+  .he-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .he-hero-inner{padding:48px 20px;gap:36px}
+  .he-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .he-hero h1 br{display:none}
+  .he-hero-desc{font-size:14px;line-height:1.95}
+  .he-hero-desc br{display:none}
+  .he-hero-btns .he-btn{flex:1;justify-content:center;min-width:0}
+  .he-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .event-list,.stats-card{padding:18px}
+  .checkin-phone{padding:10px;height:480px}
+  .he-story,.he-diff,.he-core,.he-flow,.he-perm,.he-integ,.he-aud{padding:56px 20px}
+  .he-cta{padding:64px 20px}
+  .he-head{margin-bottom:36px}
+  .he-head h2{font-size:24px}
+  .story-block{grid-template-columns:48px 1fr;gap:18px}
+  .story-num{font-size:34px}
+  .core-grid,.perm-grid,.flow-grid,.integ-grid{grid-template-columns:1fr;gap:14px}
+  .core-card,.perm-card{padding:26px 22px}
+  .flow-step{padding:22px}
+  .flow-num{font-size:34px;margin-bottom:12px}
+  .he-cta h2{font-size:22px}
+  .he-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .he-hero-inner{padding:40px 16px}
+  .he-hero h1{font-size:clamp(24px,8vw,32px)}
+  .he-hero-desc{font-size:13.5px}
+  .he-hero-meta{grid-template-columns:1fr;gap:12px}
+  .he-btn{padding:11px 22px;font-size:14px}
+  .event-list,.stats-card{padding:16px}
+  .checkin-phone{height:440px}
+  .he-story,.he-diff,.he-core,.he-flow,.he-perm,.he-integ,.he-aud,.he-cta{padding:48px 16px}
+  .story-side h2{font-size:22px}
+  .story-content h3{font-size:15.5px}
+  .story-content p{font-size:13px}
+  .he-head h2{font-size:22px;line-height:1.4}
+  .he-head p{font-size:13.5px}
+  .he-head p br{display:none}
+  .core-card h3,.perm-card h3,.flow-step h3,.diff-card h3{font-size:15.5px}
+  .core-card p,.perm-card p,.flow-step p,.diff-card p,.integ-card p{font-size:13px}
+  .aud-chip{font-size:12.5px;padding:9px 15px}
+  .he-cta h2{font-size:20px}
+  .he-cta h2 br,.he-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="solutions">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="he-hero">
+  <div class="he-hero-inner">
+    <div class="he-hero-left">
+      <div class="he-brand-row reveal">
+        <img src="uploads/herchu/logo.jpg" alt="磐石砌好厝">
+        <span>Case Study</span>
+        <b>磐石砌好厝 · 活動管理平台</b>
+      </div>
+      <h1 class="reveal reveal-d1">把每一場<em>活動</em>，<br>從<em>頭到尾</em>串成一條線</h1>
+      <p class="he-hero-desc reveal reveal-d2">
+        為「磐石砌好厝」社團打造的活動管理平台 ——<br>
+        報名、繳費、簽到、餐點、講師、名片，<br>
+        過去靠紙本與 LINE 群拼出來的工作，<br>
+        全部變成系統內可累積、可追蹤的紀錄。
+      </p>
+      <div class="he-hero-btns reveal reveal-d2">
+        <a class="he-btn he-btn-primary" href="#contact">為我的組織導入 →</a>
+        <a class="he-btn he-btn-outline" href="#story">看為什麼存在</a>
+      </div>
+      <div class="he-hero-meta reveal reveal-d3">
+        <div><div class="lab">Client</div><div class="val">磐石砌好厝社團</div></div>
+        <div><div class="lab">Service</div><div class="val">活動管理平台</div></div>
+        <div><div class="lab">Core</div><div class="val">活動全生命週期</div></div>
+        <div><div class="lab">Integration</div><div class="val">LINE / Push 通知</div></div>
+      </div>
+    </div>
+
+    <div class="he-hero-visual reveal reveal-d1">
+      <!-- Event list mock -->
+      <div class="event-list">
+        <div class="el-head">
+          <div>
+            <div class="ll">Hall · 活動大廳</div>
+            <div class="tt">本月活動</div>
+          </div>
+          <div class="badge">5 場</div>
+        </div>
+        <div class="el-item">
+          <div class="el-date"><div class="d">12</div><div class="m">Mar</div></div>
+          <div class="el-info"><div class="n">3 月份例會 · 主題講座</div><div class="s">19:00 · 台中亞緻 · 講師：林建築師</div></div>
+          <div class="el-stat">32/38<span class="lab">已報名</span></div>
+        </div>
+        <div class="el-item">
+          <div class="el-date"><div class="d">19</div><div class="m">Mar</div></div>
+          <div class="el-info"><div class="n">產業參訪 · 綠建築工地</div><div class="s">14:00 · 集合於高鐵站</div></div>
+          <div class="el-stat">18/25<span class="lab">已報名</span></div>
+        </div>
+        <div class="el-item">
+          <div class="el-date"><div class="d">26</div><div class="m">Mar</div></div>
+          <div class="el-info"><div class="n">董事會議</div><div class="s">19:30 · 線上會議</div></div>
+          <div class="el-stat">9/9<span class="lab">已報名</span></div>
+        </div>
+        <div class="el-item">
+          <div class="el-date"><div class="d">28</div><div class="m">Mar</div></div>
+          <div class="el-info"><div class="n">月底聚餐</div><div class="s">19:00 · 鼎泰豐 · 葷素皆有</div></div>
+          <div class="el-stat">26/30<span class="lab">已報名</span></div>
+        </div>
+      </div>
+
+      <!-- Check-in phone mock -->
+      <div class="checkin-phone">
+        <div class="cp-screen">
+          <div class="cp-bar"><span>9:41</span><span>•••</span></div>
+          <div class="cp-head">
+            <div class="cp-tag">Check-in · 簽到</div>
+            <div class="cp-title">3 月份例會</div>
+            <div class="cp-sub"><span>3/12 · 19:00</span><span class="cp-status">進行中</span></div>
+          </div>
+          <div class="cp-body">
+            <div class="cp-row"><div class="nn"><div class="av">陳</div><span>陳威廷</span></div><span class="ss">✓ 已簽到</span></div>
+            <div class="cp-row"><div class="nn"><div class="av">林</div><span>林家瑜</span></div><span class="ss">✓ 已簽到</span></div>
+            <div class="cp-row"><div class="nn"><div class="av">王</div><span>王俊宏</span></div><span class="ss">✓ 已簽到</span></div>
+            <div class="cp-row pending"><div class="nn"><div class="av">蘇</div><span>蘇怡君</span></div><span class="ss">未到</span></div>
+            <div class="cp-meal">
+              <b>餐點需求</b>
+              <div class="cp-meal-row"><span>葷食</span><span>18</span></div>
+              <div class="cp-meal-row"><span>素食</span><span>7</span></div>
+              <div class="cp-meal-row"><span>不用餐</span><span>3</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats card mock -->
+      <div class="stats-card">
+        <div class="sc-head">
+          <div>
+            <div class="ll">2025–26 Overview</div>
+            <div class="tt">年度活動概況</div>
+          </div>
+        </div>
+        <div class="sc-grid">
+          <div class="sc-cell"><div class="n">42</div><div class="l">場活動</div></div>
+          <div class="sc-cell"><div class="n">38</div><div class="l">名成員</div></div>
+          <div class="sc-cell"><div class="n">89%</div><div class="l">出席率</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THIS CASE -->
+<section class="he-story" id="story">
+  <div class="story-grid">
+    <div class="story-side reveal">
+      <div class="pre">About this case</div>
+      <h2>磐石砌好厝<br>是怎樣的社團？</h2>
+    </div>
+    <div class="story-blocks">
+      <div class="story-block reveal">
+        <div class="story-num">01</div>
+        <div class="story-content">
+          <h3>建築業內的會員社團</h3>
+          <p>磐石砌好厝是一個以建築相關產業為核心的會員制社團 ——<br>成員包含建築師、室內設計師、營造業者、建材廠商等業內人士。</p>
+        </div>
+      </div>
+      <div class="story-block reveal reveal-d1">
+        <div class="story-num">02</div>
+        <div class="story-content">
+          <h3>每月活動頻繁</h3>
+          <p>例會、產業參訪、業內聚餐、董事會議、軟性聯誼 ——<br>每個月固定有 4–5 場各種型態的活動。</p>
+        </div>
+      </div>
+      <div class="story-block reveal reveal-d2">
+        <div class="story-num">03</div>
+        <div class="story-content">
+          <h3>活動瑣事拖慢節奏</h3>
+          <p>報名要追、餐點要分、繳費要對、講師要聯繫、會後資料要整理 ——<br>主辦同仁每月花在「對帳跟追蹤」的時間，比辦活動本身還多。</p>
+        </div>
+      </div>
+      <div class="story-block reveal reveal-d3">
+        <div class="story-num">04</div>
+        <div class="story-content">
+          <h3>我們做了什麼</h3>
+          <p>把所有跟「辦活動」相關的事情整合到一個系統裡 ——<br>從建立活動、開放報名、現場簽到、餐點分配、財務記錄到名片庫，<br>每一步都有對應的系統流程承接。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE FEATURES -->
+<section class="he-core" id="core">
+  <div class="he-head reveal">
+    <div class="tag">Core features</div>
+    <h2>把一場活動辦好<br>需要的事，都做進系統裡</h2>
+    <p>不是把功能堆滿，<br>而是把活動主辦過去靠人工 + LINE 群湊起來的環節，一件一件變成系統流程。</p>
+  </div>
+  <div class="core-grid">
+    <div class="core-card reveal">
+      <div class="core-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+      <h3>活動全生命週期</h3>
+      <p>建立、開放報名、繳費追蹤、現場簽到、餐點統計、會後相簿 —— 整套流程一個介面完成。</p>
+      <div class="feats"><span class="core-feat">7 種活動類型</span><span class="core-feat">會員/賓客報名</span></div>
+    </div>
+    <div class="core-card reveal reveal-d1">
+      <div class="core-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+      <h3>簽到 + 出席統計</h3>
+      <p>QR 掃碼或手動勾選，即時計算出席率，年度報表自動產出。</p>
+      <div class="feats"><span class="core-feat">QR 簽到</span><span class="core-feat">即時統計</span><span class="core-feat">年度報表</span></div>
+    </div>
+    <div class="core-card reveal reveal-d2">
+      <div class="core-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="8" cy="15" r="1.5"/></svg></div>
+      <h3>單次 + 固定成員制</h3>
+      <p>單次成員按次繳費，固定成員按月計算（當月活動次數 × 單價）—— 兩種計費模式自動切換。</p>
+      <div class="feats"><span class="core-feat">單次 $220</span><span class="core-feat">月費 $180 × N</span></div>
+    </div>
+    <div class="core-card reveal">
+      <div class="core-icon"><svg viewBox="0 0 24 24"><path d="M5 11h14l-1.5 9h-11z"/><path d="M9 11V7a3 3 0 0 1 6 0v4"/></svg></div>
+      <h3>菜單與餐點分配</h3>
+      <p>每月菜單預先規劃，活動報名時自動帶入餐點選項，會前一鍵匯出餐廳清單。</p>
+      <div class="feats"><span class="core-feat">月份菜單</span><span class="core-feat">特殊飲食</span><span class="core-feat">一鍵匯出</span></div>
+    </div>
+    <div class="core-card reveal reveal-d1">
+      <div class="core-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M7 10h4M7 14h7"/><circle cx="17" cy="12" r="2"/></svg></div>
+      <h3>名片庫 + OCR 掃描</h3>
+      <p>手機拍名片，自動辨識文字入庫、分類管理。會員之間可以掃名片建立人脈網。</p>
+      <div class="feats"><span class="core-feat">OCR 識別</span><span class="core-feat">分類管理</span><span class="core-feat">名片掃描</span></div>
+    </div>
+    <div class="core-card reveal reveal-d2">
+      <div class="core-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 10h18"/><path d="M7 14h4M15 14h2"/></svg></div>
+      <h3>財務記錄與繳費</h3>
+      <p>收入支出記錄、成員繳費狀態、收據與訊息生成 —— 司庫一鍵匯出，年度結算不再加班。</p>
+      <div class="feats"><span class="core-feat">繳費追蹤</span><span class="core-feat">財務報表</span><span class="core-feat">資料匯出</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFECYCLE -->
+<section class="he-flow">
+  <div class="he-flow-inner">
+    <div class="he-head reveal">
+      <div class="tag">Event lifecycle</div>
+      <h2>一場活動，從建立到結算<br>五個動作就完成</h2>
+      <p>對活動主辦來說，從活動發起到事後對帳，<br>過去要切換 5 個工具，現在只需要在系統內點幾下。</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <h3>建立活動</h3>
+        <p>填好時間、地點、費用、餐點選項、講師資訊。</p>
+      </div>
+      <div class="flow-step reveal reveal-d1">
+        <div class="flow-num">02</div>
+        <h3>開放報名</h3>
+        <p>成員與賓客一個連結搞定，LINE 自動通知會員。</p>
+      </div>
+      <div class="flow-step reveal reveal-d2">
+        <div class="flow-num">03</div>
+        <h3>會前準備</h3>
+        <p>餐點數、特殊需求、出席人數即時更新，餐廳清單一鍵匯出。</p>
+      </div>
+      <div class="flow-step reveal reveal-d3">
+        <div class="flow-num">04</div>
+        <h3>現場簽到</h3>
+        <p>QR 掃碼或名單勾選，即時知道誰來了、誰沒來。</p>
+      </div>
+      <div class="flow-step reveal reveal-d3">
+        <div class="flow-num">05</div>
+        <h3>結算與紀錄</h3>
+        <p>實際收支自動入帳，會後相簿可上傳，年度報表累積。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERMISSIONS -->
+<section class="he-perm">
+  <div class="he-head reveal">
+    <div class="tag">Roles & permissions</div>
+    <h2>5 種角色權限，<br>讓對的人做對的事</h2>
+    <p>不是「全部開放」或「全部限制」 ——<br>系統把角色拆得細，每個人只看到跟做得到自己負責的事。</p>
+  </div>
+  <div class="perm-grid">
+    <div class="perm-card admin reveal">
+      <span class="perm-badge">● Admin · 管理者</span>
+      <h3>掌握平台全貌的人</h3>
+      <div class="who">秘書長、會長</div>
+      <ul>
+        <li>分配所有角色權限</li>
+        <li>查看與管理所有模組</li>
+        <li>邀請新成員、調整權限</li>
+      </ul>
+    </div>
+    <div class="perm-card role reveal reveal-d1">
+      <span class="perm-badge">● Manager · 功能管理</span>
+      <h3>各自負責一個面向</h3>
+      <div class="who">活動 / 財務 / 菜單 / 簽到管理員</div>
+      <ul>
+        <li>活動管理：建立活動、簽到、講師預約</li>
+        <li>財務管理：收支、繳費、交易紀錄</li>
+        <li>菜單管理：月份菜單、餐點選項</li>
+        <li>簽到管理：現場簽到、報名管理</li>
+      </ul>
+    </div>
+    <div class="perm-card user reveal reveal-d2">
+      <span class="perm-badge">● Member · 一般成員</span>
+      <h3>參與活動、查資料的人</h3>
+      <div class="who">所有會員</div>
+      <ul>
+        <li>查看活動大廳、活動詳情</li>
+        <li>報名、選擇餐點、確認繳費狀態</li>
+        <li>個人名片管理、名片庫瀏覽</li>
+        <li>查看自己的繳費紀錄</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="he-integ">
+  <div class="he-integ-inner">
+    <div class="he-head reveal">
+      <div class="tag">Built in</div>
+      <h2>內建必要整合</h2>
+      <p>不是另外的選配模組，<br>而是預設就連好的功能。</p>
+    </div>
+    <div class="integ-grid">
+      <div class="integ-card reveal">
+        <h4>LINE Bot 通知</h4>
+        <p>活動提醒、報名確認、繳費催收，直接走 LINE。</p>
+      </div>
+      <div class="integ-card reveal reveal-d1">
+        <h4>Push 通知</h4>
+        <p>瀏覽器與行動裝置推播，重要訊息不會漏掉。</p>
+      </div>
+      <div class="integ-card reveal reveal-d2">
+        <h4>名片 OCR</h4>
+        <p>手機拍名片就自動辨識文字入庫。</p>
+      </div>
+      <div class="integ-card reveal reveal-d3">
+        <h4>邀請碼系統</h4>
+        <p>新成員憑邀請碼註冊，可追蹤誰邀請誰。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="he-aud">
+  <div class="he-head reveal">
+    <div class="tag">Who it&apos;s for</div>
+    <h2>哪些組織最適合？</h2>
+    <p>主軸是「會員制 + 定期活動 + 餐點 / 簽到」的組織。</p>
+  </div>
+  <div class="aud-chips reveal">
+    <span class="aud-chip primary">建築業組</span>
+    <span class="aud-chip primary">產業協會</span>
+    <span class="aud-chip primary">商會</span>
+    <span class="aud-chip">建築師公會</span>
+    <span class="aud-chip">扶輪內輪會</span>
+    <span class="aud-chip">獅子會 / 青商會</span>
+    <span class="aud-chip">同業公會</span>
+    <span class="aud-chip">產學交流會</span>
+    <span class="aud-chip">學會 / 學術社團</span>
+    <span class="aud-chip">企業內部聚會</span>
+    <span class="aud-chip">校友會例會</span>
+    <span class="aud-chip">讀書會</span>
+  </div>
+  <p class="aud-note reveal reveal-d1">
+    系統可以針對不同組織客製活動類型、權限名稱、繳費規則 ——<br>
+    成為你組織的「活動主辦助手」，而不是另一套需要適應的工具。
+  </p>
+</section>
+
+<!-- CTA -->
+<section class="he-cta" id="contact">
+  <div class="he-cta-inner">
+    <div>
+      <div class="tag">Bring it to your group</div>
+      <h2>把活動主辦從<br>Excel + LINE 群裡解放出來</h2>
+      <p>歡迎聊聊你的組織活動形態 —— 每月幾場、有沒有餐點、需要哪些權限分工。<br>我們會根據規模與會務節奏，提供導入方式與時程。</p>
+    </div>
+    <div class="he-cta-btns">
+      <a class="he-cta-btn he-cta-primary" href="mailto:wayto.metaverse@gmail.com">為我的組織導入 →</a>
+      <a class="he-cta-btn he-cta-ghost" href="#story">先看為什麼存在</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>品牌互動體驗案例｜換裝合照互動裝置｜Wayto Metaverse</title>
+<meta name="description" content="與某玩具設計品牌合作打造的互動式換裝合照體驗 — 走近大螢幕，把自己身上的服裝套到品牌IP身上，再跟換裝後的IP合照下載。讓品牌世界從架上跳出來，變成現場顧客的記憶點。">
+<meta name="keywords" content="品牌互動體驗,玩具品牌活動,IP 互動裝置,品牌快閃,合照裝置,品牌行銷工具,客製互動體驗">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/brand-experience.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="品牌互動體驗案例｜換裝合照互動裝置">
+<meta property="og:description" content="把品牌做成顧客現場能參與的互動 — 走近、拍照、換裝、合照下載一氣呵成。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/brand-experience/Hero.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"品牌互動體驗案例 — 換裝合照互動裝置","description":"為玩具設計品牌打造的互動式換裝合照大螢幕體驗。","author":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd."},"publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"},"url":"https://wayto.com.tw/wayto1/brand-experience.html"}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa;--coral:#ec4899;--coral-soft:#fce7f3}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+img{max-width:100%;display:block}
+
+/* HERO */
+.bx-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fdf2f8 0%,#fff 45%,#fef3c7 100%);min-height:calc(100vh - 64px);display:flex;align-items:center}
+.bx-hero-bg{position:absolute;top:0;bottom:0;right:0;left:0;z-index:0;display:flex;justify-content:flex-end;align-items:center}
+.bx-hero-bg img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.05) 8%,rgba(0,0,0,.4) 20%,#000 36%,#000 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.05) 8%,rgba(0,0,0,.4) 20%,#000 36%,#000 100%)}
+.bx-hero-inner{position:relative;max-width:1320px;margin:0 auto;padding:88px 80px;display:block;align-items:center;z-index:1;width:100%}
+.bx-hero-left{max-width:620px}
+.bx-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;padding:6px 16px;background:#fff;border:1px solid var(--border);border-radius:999px;box-shadow:0 4px 16px rgba(15,23,42,.04)}
+.bx-brand-row span{font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;color:var(--navy);letter-spacing:1.5px;text-transform:uppercase}
+.bx-brand-row b{font-size:11px;font-weight:600;color:var(--coral);letter-spacing:.5px;padding-left:10px;border-left:1px solid var(--border)}
+.bx-hero h1{font-size:clamp(34px,4.4vw,58px);font-weight:900;color:#0f172a;line-height:1.2;letter-spacing:-0.6px;margin-bottom:24px}
+.bx-hero h1 em{font-style:normal;color:var(--coral);position:relative;white-space:nowrap}
+.bx-hero h1 em::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:6px;background:rgba(236,72,153,.18);z-index:-1;border-radius:99px}
+.bx-hero-desc{font-size:15px;color:#1e293b;line-height:2;margin-bottom:32px;max-width:560px}
+.bx-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.bx-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.bx-btn-primary{background:var(--navy);color:#fff}
+.bx-btn-primary:hover{background:var(--coral);transform:translateY(-1px)}
+.bx-btn-outline{background:transparent;color:var(--navy);border:1px solid rgba(26,43,94,.35)}
+.bx-btn-outline:hover{border-color:var(--coral);color:var(--coral)}
+.bx-hero-meta{display:grid;grid-template-columns:repeat(2,auto);gap:20px 36px;border-top:1px solid #cbd5e1;padding-top:22px;max-width:560px}
+.bx-hero-meta .lab{font-size:11px;font-weight:600;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.bx-hero-meta .val{font-size:13.5px;font-weight:700;color:#0f172a}
+
+/* HERO (deprecated visual frame styles kept for legacy) */
+.bx-hero-visual{display:none}
+
+/* GALLERY MARQUEE */
+.bx-gallery{background:linear-gradient(180deg,#fdf2f8 0%,#fff8e7 100%);padding:72px 0;overflow:hidden;position:relative}
+.bx-gallery-head{max-width:1320px;margin:0 auto 40px;padding:0 80px}
+.bx-gallery-head .tag{font-size:12px;font-weight:700;color:var(--coral);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.bx-gallery-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px;max-width:720px}
+.bx-gallery-head p{font-size:14.5px;color:var(--muted);line-height:1.95;max-width:720px}
+.cat-carousel{position:relative;width:100%;overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.cat-carousel.dragging{cursor:grabbing}
+.cat-track{display:flex;gap:24px;width:max-content;will-change:transform}
+.cat-item{flex-shrink:0;width:200px;height:280px;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.cat-item img{max-width:100%;max-height:100%;object-fit:contain;display:block;filter:drop-shadow(0 8px 24px rgba(15,23,42,.12));pointer-events:none;-webkit-user-drag:none}
+
+/* EVENT RESULTS */
+.bx-results{position:relative;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;padding:96px 80px;overflow:hidden}
+.bx-results::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 20%,rgba(236,72,153,.22),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(251,146,60,.14),transparent 60%);pointer-events:none}
+.bx-results-inner{position:relative;max-width:1320px;margin:0 auto}
+.results-head{margin-bottom:56px;max-width:760px}
+.results-head .tag{font-size:12px;font-weight:700;color:var(--coral);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.results-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:900;color:#fff;letter-spacing:-0.3px;line-height:1.35;margin-bottom:16px}
+.results-head h2 em{font-style:normal;color:var(--coral)}
+.results-head p{font-size:14.5px;color:rgba(255,255,255,.75);line-height:1.95}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+.stat-cell .num{font-family:'Outfit',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:200;letter-spacing:-3px;line-height:1;color:#fff}
+.stat-cell .num .unit{font-size:.32em;font-weight:500;color:var(--coral);margin-left:8px;letter-spacing:0}
+.stat-cell .lab{font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:14px;font-weight:500}
+.stat-cell .sub{font-size:14px;color:rgba(255,255,255,.7);margin-top:8px;line-height:1.7}
+.event-photos{display:flex;flex-wrap:nowrap;gap:12px;align-items:stretch}
+.event-photo{flex:1 1 0;min-width:0;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);position:relative}
+.event-photo img,.event-photo video{width:100%;height:100%;object-fit:cover;display:block}
+.event-photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.25);font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:0 12px}
+
+/* SECTION HEAD */
+.bx-head{margin-bottom:48px;max-width:780px}
+.bx-head .tag{font-size:12px;font-weight:700;color:var(--coral);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.bx-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.bx-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* ABOUT */
+.bx-about{padding:80px;max-width:1320px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:flex-start}
+.about-left .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--coral);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.about-left h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.35}
+.about-right p{font-size:14.5px;color:#334155;line-height:2;margin-bottom:18px}
+.about-right p:last-child{margin-bottom:0}
+.about-right strong{color:#0f172a;font-weight:700}
+
+/* FLOW STEPS */
+.bx-flow{background:var(--gray-bg);padding:80px}
+.bx-flow-inner{max-width:1320px;margin:0 auto}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+.flow-step{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
+.flow-step:hover{border-color:var(--coral);box-shadow:0 12px 36px rgba(236,72,153,.1);transform:translateY(-4px)}
+.flow-step-media{background:linear-gradient(135deg,#fce7f3 0%,#fef3c7 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.flow-step-media img{width:100%;height:auto;display:block}
+.flow-step-media video{width:100%;height:100%;object-fit:cover;display:block}
+.flow-step-media .ph{font-family:'Outfit',sans-serif;font-size:11px;color:rgba(15,23,42,.3);letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:0 16px}
+.flow-step-info{padding:24px 22px 22px;flex:1;display:flex;flex-direction:column;gap:10px}
+.flow-num{font-family:'Outfit',sans-serif;font-size:36px;font-weight:200;color:var(--coral);line-height:1;letter-spacing:-1px}
+.flow-step-info h3{font-size:16px;font-weight:800;color:var(--navy)}
+.flow-step-info p{font-size:13px;color:var(--muted);line-height:1.85}
+
+/* WHY IT WORKS */
+.bx-why{padding:80px;max-width:1320px;margin:0 auto}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.why-card{border:1px solid var(--border);border-radius:16px;padding:32px 30px 30px;background:#fff;transition:all .25s;position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;top:0;left:0;width:60px;height:60px;background:radial-gradient(circle at 0% 0%,rgba(236,72,153,.18) 0%,transparent 70%)}
+.why-card:hover{border-color:var(--coral);box-shadow:0 12px 36px rgba(236,72,153,.1);transform:translateY(-3px)}
+.why-icon{font-family:'Outfit',sans-serif;font-size:11px;color:var(--coral);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;position:relative;z-index:1}
+.why-card h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:12px;position:relative;z-index:1}
+.why-card p{font-size:13.5px;color:var(--muted);line-height:1.95;position:relative;z-index:1}
+
+/* BEHIND */
+.bx-behind{background:var(--gray-bg);padding:80px}
+.bx-behind-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.behind-img{border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#fce7f3 0%,#eef2ff 100%);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+.behind-img img,.behind-img video{width:100%;height:100%;object-fit:cover;display:block}
+.behind-img .ph{font-family:'Outfit',sans-serif;font-size:11px;color:rgba(15,23,42,.3);letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:0 16px}
+.behind-text h2{font-size:clamp(24px,2.8vw,32px);font-weight:900;color:#0f172a;line-height:1.4;margin-bottom:16px}
+.behind-text p{font-size:14px;color:#334155;line-height:2;margin-bottom:14px}
+.behind-text .tag{font-size:12px;font-weight:700;color:var(--coral);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+
+/* USE CASES */
+.bx-cases{background:var(--gray-bg);padding:80px}
+.bx-cases-inner{max-width:1320px;margin:0 auto}
+.case-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.case-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:#334155;transition:all .2s}
+.case-chip:hover{border-color:var(--coral);color:var(--coral);background:var(--coral-soft)}
+.case-note{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.95}
+
+/* CTA */
+.bx-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.bx-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(236,72,153,.22),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(96,165,250,.12),transparent 60%);pointer-events:none}
+.bx-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.bx-cta .tag{font-size:12px;font-weight:600;color:var(--coral);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.bx-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.bx-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.bx-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.bx-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.bx-cta-primary{background:#fff;color:var(--navy)}
+.bx-cta-primary:hover{background:var(--coral);color:#fff}
+.bx-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.bx-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .bx-hero-inner{padding:64px 32px}
+  .bx-hero-bg{right:0}
+  .bx-gallery-head{padding:0 32px}
+  .cat-item{width:170px;height:240px}
+  .cat-track{gap:20px}
+  .bx-results{padding:72px 32px}
+  .stats-row{grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px;padding-bottom:36px}
+  .event-photos{flex-wrap:wrap;gap:10px}
+  .event-photo{flex:1 1 calc(33.333% - 7px);max-width:calc(33.333% - 7px)}
+  .bx-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .bx-about,.bx-flow,.bx-why,.bx-behind,.bx-cases,.bx-cta{padding:64px 32px}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .flow-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .bx-behind-inner{grid-template-columns:1fr;gap:32px}
+  .bx-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .bx-hero{min-height:auto}
+  .bx-hero-inner{padding:60px 20px 60vw}
+  .bx-hero-bg{top:auto;bottom:0;left:0;right:0;height:auto;display:block}
+  .bx-hero-bg img{width:100%;height:auto;max-height:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.05) 6%,rgba(0,0,0,.4) 18%,#000 30%,#000 100%);mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.05) 6%,rgba(0,0,0,.4) 18%,#000 30%,#000 100%)}
+  .bx-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .bx-hero h1 br{display:none}
+  .bx-hero-desc{font-size:14px;line-height:1.95}
+  .bx-hero-desc br{display:none}
+  .bx-hero-btns .bx-btn{flex:1;justify-content:center;min-width:0}
+  .bx-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .bx-hero-visual{height:280px}
+  .bx-gallery{padding:56px 0}
+  .bx-gallery-head{padding:0 20px;margin-bottom:32px}
+  .cat-item{width:130px;height:180px}
+  .cat-track{gap:14px}
+  .bx-results{padding:56px 20px}
+  .results-head{margin-bottom:36px}
+  .stats-row{grid-template-columns:1fr;gap:28px;margin-bottom:32px;padding-bottom:28px}
+  .stat-cell{text-align:center}
+  .event-photos{flex-wrap:wrap;gap:8px}
+  .event-photo{flex:1 1 calc(50% - 4px);max-width:calc(50% - 4px)}
+  .bx-about,.bx-flow,.bx-why,.bx-behind,.bx-cases{padding:56px 20px}
+  .bx-cta{padding:64px 20px}
+  .bx-head{margin-bottom:36px}
+  .bx-head h2{font-size:24px}
+  .about-left h2{font-size:22px}
+  .about-right p{font-size:14px}
+  .flow-grid,.why-grid{grid-template-columns:1fr;gap:14px}
+  .flow-step-info{padding:20px 22px 22px}
+  .why-card{padding:26px 24px 24px}
+  .behind-text h2{font-size:22px}
+  .bx-cta h2{font-size:22px}
+  .bx-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .bx-hero-inner{padding:40px 16px}
+  .bx-hero h1{font-size:clamp(24px,8vw,32px)}
+  .bx-hero-desc{font-size:13.5px}
+  .bx-hero-meta{grid-template-columns:1fr;gap:12px}
+  .bx-btn{padding:11px 22px;font-size:14px}
+  .bx-hero-visual{height:220px}
+  .bx-gallery{padding:48px 0}
+  .bx-gallery-head{padding:0 16px}
+  .cat-item{width:110px;height:150px}
+  .cat-track{gap:12px}
+  .bx-results{padding:48px 16px}
+  .event-photos{gap:6px}
+  .event-photo{flex:1 1 calc(50% - 3px);max-width:calc(50% - 3px);aspect-ratio:4/5}
+  .bx-about,.bx-flow,.bx-why,.bx-behind,.bx-cases,.bx-cta{padding:48px 16px}
+  .bx-head h2{font-size:22px;line-height:1.4}
+  .bx-head p{font-size:13.5px}
+  .bx-head p br{display:none}
+  .flow-step-info h3,.why-card h3{font-size:15.5px}
+  .flow-step-info p,.why-card p,.case-note{font-size:13px}
+  .flow-num{font-size:32px}
+  .case-chip{font-size:12.5px;padding:9px 15px}
+  .behind-text h2{font-size:20px;line-height:1.45}
+  .behind-text h2 br,.behind-text p br{display:none}
+  .bx-cta h2{font-size:20px}
+  .bx-cta h2 br,.bx-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="cases">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="bx-hero">
+  <div class="bx-hero-bg" aria-hidden="true">
+    <img src="uploads/brand-experience/Hero.jpg" alt="">
+  </div>
+  <div class="bx-hero-inner">
+    <div class="bx-hero-left">
+      <div class="bx-brand-row reveal">
+        <span>Case Study</span>
+        <b>品牌互動體驗</b>
+      </div>
+      <h1 class="reveal reveal-d1">把品牌，<br>變成顧客能<em>親身參與</em>的故事</h1>
+      <p class="bx-hero-desc reveal reveal-d2">
+        為某玩具設計品牌打造的互動式體驗 ——<br>
+        顧客走近大螢幕，把自己身上的服裝套到品牌IP身上，<br>
+        再跟換裝後的IP合照下載帶回家。<br>
+        架上的角色，從靜態商品變成現場的記憶點。
+      </p>
+      <div class="bx-hero-btns reveal reveal-d2">
+        <a class="bx-btn bx-btn-primary" href="#contact">為我的品牌打造 →</a>
+        <a class="bx-btn bx-btn-outline" href="#flow">看體驗流程</a>
+      </div>
+      <div class="bx-hero-meta reveal reveal-d3">
+        <div><div class="lab">Client</div><div class="val">某玩具設計品牌</div></div>
+        <div><div class="lab">Format</div><div class="val">大螢幕互動裝置</div></div>
+        <div><div class="lab">Experience</div><div class="val">換裝 + 合照下載</div></div>
+        <div><div class="lab">Built for</div><div class="val">門市 / 快閃 / 展覽</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY: cat carousel -->
+<section class="bx-gallery">
+  <div class="bx-gallery-head reveal">
+    <div class="tag">Real outputs</div>
+    <h2>每一隻貓，都是顧客當下穿的衣服</h2>
+    <p>真實的換裝結果 — 不是預設模板，而是顧客即時穿著、即時生成的合照角色。</p>
+  </div>
+  <div class="cat-carousel" aria-label="顧客生成的換裝IP成果">
+    <div class="cat-track">
+      <!-- copy 1 -->
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776753939774-i9s670u3yqp.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776761242646-fn26jrzw875.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776761784387-jvsfeqv1cbk.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776761923109-n755f0h34cb.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776762120433-ppxcdkv6tgd.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776765892379-27i8joul915.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776766579829-dqjcmh66d7s.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776766612861-8lyyyitq99w.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776823174049-ndn9sfo83.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776831567724-x6jt59gocx.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776831668261-vt82884bx8q.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776838317676-qf2ledblsng.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909046672-rgxx2oak8yo.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909110023-p2sf4w3pmj.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909181876-5y6rr7wrmt4.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909250226-7a36mws7gz3.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777102137305-s1muc7195fg.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777123155565-zazaifttbv.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777289408203-ixdgeuxx54.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777366971561-1p5qauq1hwo.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777367137251-hrwt1fe15mr.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777435515661-vgp3pynupis.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777437481554-adgpj8n2bem.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777437565136-cwt46nlnfng.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777622697952-zf7ebq4v7go.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777622770618-sgl1thh851d.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777622837401-0auahjvogphh.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864216421-0o7ssu3km7kd.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864295698-5qqe9h93b03.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864700676-q18qie16s6p.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864946985-3x1vvz4ap8s.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777865041835-icmwanekil.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777865165526-vi75dvek8bo.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777865588449-mtx2lfny1mh.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777866272766-b9htnyrc8v5.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777866746490-abykng3zyy.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778414991426-skdfy4bizh.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778727438553-a0iaqw28abh.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778727581000-b7dblmkxmn5.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778834260097-kfzq744np8.png" alt="" loading="lazy"></div>
+      <div class="cat-item"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778834313252-8x454bpcsah.png" alt="" loading="lazy"></div>
+      <!-- copy 2 (for seamless loop) -->
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776753939774-i9s670u3yqp.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776761242646-fn26jrzw875.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776761784387-jvsfeqv1cbk.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776761923109-n755f0h34cb.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776762120433-ppxcdkv6tgd.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776765892379-27i8joul915.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776766579829-dqjcmh66d7s.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776766612861-8lyyyitq99w.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776823174049-ndn9sfo83.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776831567724-x6jt59gocx.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776831668261-vt82884bx8q.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776838317676-qf2ledblsng.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909046672-rgxx2oak8yo.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909110023-p2sf4w3pmj.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909181876-5y6rr7wrmt4.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1776909250226-7a36mws7gz3.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777102137305-s1muc7195fg.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777123155565-zazaifttbv.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777289408203-ixdgeuxx54.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777366971561-1p5qauq1hwo.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777367137251-hrwt1fe15mr.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777435515661-vgp3pynupis.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777437481554-adgpj8n2bem.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777437565136-cwt46nlnfng.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777622697952-zf7ebq4v7go.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777622770618-sgl1thh851d.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777622837401-0auahjvogphh.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864216421-0o7ssu3km7kd.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864295698-5qqe9h93b03.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864700676-q18qie16s6p.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777864946985-3x1vvz4ap8s.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777865041835-icmwanekil.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777865165526-vi75dvek8bo.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777865588449-mtx2lfny1mh.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777866272766-b9htnyrc8v5.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1777866746490-abykng3zyy.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778414991426-skdfy4bizh.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778727438553-a0iaqw28abh.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778727581000-b7dblmkxmn5.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778834260097-kfzq744np8.png" alt="" loading="lazy"></div>
+      <div class="cat-item" aria-hidden="true"><img src="uploads/brand-experience/cat/cat-photo-kiosk-1778834313252-8x454bpcsah.png" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THIS CASE -->
+<section class="bx-about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <div class="pre">About this case</div>
+      <h2>讓品牌角色，<br>從架上走出來</h2>
+    </div>
+    <div class="about-right reveal reveal-d1">
+      <p>對玩具品牌來說，<strong>「讓人愛上一個角色」</strong>是行銷的核心 —— 但角色擺在貨架上、印在 DM 上，跟顧客之間永遠隔著一層玻璃。</p>
+      <p>我們為這個玩具設計品牌打造了一套大螢幕互動裝置：顧客走近、被掃到全身服裝、按下確認後，品牌IP當場「穿上」顧客身上的衣服。最後顧客跟換裝完的IP合照、列印或下載。</p>
+      <p>不是看著角色，而是<strong>跟角色發生了一件事</strong>。這個瞬間，顧客記得的不只是IP長什麼樣，而是「我跟它一起出現在同一張照片裡」。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="bx-flow" id="flow">
+  <div class="bx-flow-inner">
+    <div class="bx-head reveal">
+      <div class="tag">How it works</div>
+      <h2>從一開始單純的好奇，<br>到帶著與 IP 的合照分享到社群</h2>
+      <p>看到那邊在排隊，好奇看看那是什麼？<br>竟然是可以生成與自己相同服裝的貓咪，於是就排了起來。<br>拿到合照後，忍不住想分享自己的貓咪，又忍不住想看朋友的貓咪，又拉了朋友再玩一次 —— 一切都是這麼自然。</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step reveal">
+        <div class="flow-step-media">
+          <img src="uploads/brand-experience/走近大螢幕.png" alt="走近大螢幕，自動引導站位">
+        </div>
+        <div class="flow-step-info">
+          <div class="flow-num">01</div>
+          <h3>走近大螢幕</h3>
+          <p>系統偵測到人，自動切換到歡迎畫面 + 站位引導 — 不需要點開始，靠近就啟動。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal reveal-d1">
+        <div class="flow-step-media">
+          <img src="uploads/brand-experience/拍下你的服裝.png" alt="3-2-1 倒數拍下使用者服裝">
+        </div>
+        <div class="flow-step-info">
+          <div class="flow-num">02</div>
+          <h3>拍下你的服裝</h3>
+          <p>3-2-1 倒數後拍一張你身上的服裝照 — 大螢幕同步顯示，知道有沒有對到位。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal reveal-d2">
+        <div class="flow-step-media">
+          <img src="uploads/brand-experience/IP當場換裝.png" alt="IP 當場換上使用者服裝">
+        </div>
+        <div class="flow-step-info">
+          <div class="flow-num">03</div>
+          <h3>IP 當場換裝</h3>
+          <p>幾秒內，品牌 IP 出現在右側，穿著跟你一樣的衣服 — 你笑出來那一瞬間就是體驗成立了。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal reveal-d3">
+        <div class="flow-step-media">
+          <img src="uploads/brand-experience/合照帶回家.png" alt="跟換裝後的 IP 合照下載">
+        </div>
+        <div class="flow-step-info">
+          <div class="flow-num">04</div>
+          <h3>合照帶回家</h3>
+          <p>跟換裝完的 IP 合照，掃 QR Code 下載 — 或現場列印。照片上印品牌 logo，自然成為一張會被分享的內容。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT WORKS -->
+<section class="bx-why">
+  <div class="bx-head reveal">
+    <div class="tag">Why it works</div>
+    <h2>為什麼這個體驗有效？</h2>
+    <p>不是「酷炫科技」 ——<br>是把品牌與顧客的關係，從觀看變成參與。</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">01 · 簡單就能體驗</div>
+      <h3>體驗最怕的就是麻煩，<br>我們讓顧客自己就能玩</h3>
+      <p>任何人只要站到螢幕前，不需要操作 —— 體驗會自動開始到自動完成，也就 60 秒。</p>
+    </div>
+    <div class="why-card reveal reveal-d1">
+      <div class="why-icon">02 · 獨一無二</div>
+      <h3>每一張合照<br>都是顧客自己的</h3>
+      <p>因為服裝來自顧客當下身上的衣服 — 每張照片都是獨一無二的紀念，自然會被分享。</p>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <div class="why-icon">03 · 跨年齡</div>
+      <h3>大人小孩<br>都同樣會笑出來</h3>
+      <p>不需要懂科技，看到結果的瞬間反應都一樣 — 適合家庭客群、親子場景與一般觀光人潮。</p>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="bx-cases">
+  <div class="bx-cases-inner">
+    <div class="bx-head reveal">
+      <div class="tag">Where it fits</div>
+      <h2>適合放在哪些地方？</h2>
+      <p>只要你的品牌有「角色 / IP / 吉祥物」，這個體驗就能成立。</p>
+    </div>
+    <div class="case-chips reveal">
+      <span class="case-chip">玩具品牌旗艦店</span>
+      <span class="case-chip">百貨快閃</span>
+      <span class="case-chip">IP 角色展覽</span>
+      <span class="case-chip">親子主題館</span>
+      <span class="case-chip">球團 / 賽事體驗區</span>
+      <span class="case-chip">遊樂園</span>
+      <span class="case-chip">電競賽事</span>
+      <span class="case-chip">品牌週年慶活動</span>
+      <span class="case-chip">機場 / 高鐵車站</span>
+      <span class="case-chip">新品發表會</span>
+      <span class="case-chip">餐廳吉祥物互動</span>
+      <span class="case-chip">觀光景點打卡</span>
+    </div>
+    <p class="case-note reveal reveal-d1">
+      一台主機 + 一面螢幕 + 一個攝影機就能跑 ——<br>
+      可以做成永久裝置，也可以做成可移動的快閃版本。內容（角色、服裝風格、合照版型）都能依品牌客製。
+    </p>
+  </div>
+</section>
+
+<!-- EVENT RESULTS -->
+<section class="bx-results">
+  <div class="bx-results-inner">
+    <div class="results-head reveal">
+      <div class="tag">Event results</div>
+      <h2>10 天，<em>5,000 人次</em>的笑容</h2>
+      <p>整檔活動結束時，這套裝置不只是被體驗過的設備 ——<br>而是被分享出去、被同事帶來再排一次的記憶點。</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-cell reveal">
+        <div class="num">10<span class="unit">天</span></div>
+        <div class="lab">Days</div>
+        <div class="sub">活動展期</div>
+      </div>
+      <div class="stat-cell reveal reveal-d1">
+        <div class="num">5,000<span class="unit">+</span></div>
+        <div class="lab">Participants</div>
+        <div class="sub">總參與人次</div>
+      </div>
+      <div class="stat-cell reveal reveal-d2">
+        <div class="num">~60<span class="unit">秒</span></div>
+        <div class="lab">Per session</div>
+        <div class="sub">平均體驗長度</div>
+      </div>
+    </div>
+    <div class="event-photos">
+      <div class="event-photo reveal">
+        <img src="uploads/brand-experience/event-1.jpg" alt="活動現場照片 1" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+      <div class="event-photo reveal reveal-d1">
+        <img src="uploads/brand-experience/event-2.jpg" alt="活動現場照片 2" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+      <div class="event-photo reveal reveal-d2">
+        <img src="uploads/brand-experience/event-3.jpg" alt="活動現場照片 3" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+      <div class="event-photo reveal reveal-d3">
+        <img src="uploads/brand-experience/event-4.jpg" alt="活動現場照片 4" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+      <div class="event-photo reveal">
+        <img src="uploads/brand-experience/event-5.jpg" alt="活動現場照片 5" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+      <div class="event-photo reveal reveal-d1">
+        <img src="uploads/brand-experience/event-6.jpg" alt="活動現場照片 6" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+      <div class="event-photo reveal reveal-d2">
+        <img src="uploads/brand-experience/event-7.jpg" alt="活動現場照片 7" onerror="this.closest('.event-photo').style.display='none'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bx-cta" id="contact">
+  <div class="bx-cta-inner">
+    <div>
+      <div class="tag">Bring it to your brand</div>
+      <h2>你的品牌角色，<br>也能跟顧客一起入鏡</h2>
+      <p>不論是玩具、IP、賽事、球團、餐飲吉祥物還是觀光景點 ——<br>只要你有一個值得被記住的角色，我們就能幫你把它變成顧客現場的體驗。</p>
+    </div>
+    <div class="bx-cta-btns">
+      <a class="bx-cta-btn bx-cta-primary" href="mailto:wayto.metaverse@gmail.com">聊聊我的品牌 →</a>
+      <a class="bx-cta-btn bx-cta-ghost" href="#flow">先看體驗流程</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+// Reveal on scroll
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+// Auto-play step videos when in viewport, pause when out
+(function(){
+  var vids = document.querySelectorAll('video[data-autoplay]');
+  if (!vids.length) return;
+  if (!('IntersectionObserver' in window)) {
+    vids.forEach(function(v){ v.play().catch(function(){}); });
+    return;
+  }
+  var vio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting) {
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+  vids.forEach(function(v){ vio.observe(v); });
+})();
+
+// Block drag-to-save on videos and carousel images
+document.addEventListener('dragstart', function(e){
+  if (e.target && (e.target.tagName === 'VIDEO' || e.target.closest('.cat-track'))) e.preventDefault();
+});
+
+// Cat carousel: auto-rotate (left→right) + mouse/touch drag, no hover pause
+(function(){
+  var carousel = document.querySelector('.cat-carousel');
+  var track = document.querySelector('.cat-track');
+  if (!carousel || !track) return;
+
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SPEED = 60; // px per second; positive = images shift right (left→right marquee)
+  var offset = 0;
+  var dragging = false;
+  var startX = 0;
+  var startOffset = 0;
+  var lastT = 0;
+
+  function getHalf(){ return track.scrollWidth / 2 || 0; }
+
+  function step(t){
+    if (lastT && !dragging && !reducedMotion){
+      var dt = Math.min((t - lastT) / 1000, 0.1);
+      offset += SPEED * dt;
+    }
+    lastT = t;
+    var halfW = getHalf();
+    if (halfW > 0){
+      while (offset >= 0) offset -= halfW;
+      while (offset < -halfW) offset += halfW;
+    }
+    track.style.transform = 'translate3d(' + offset + 'px, 0, 0)';
+    requestAnimationFrame(step);
+  }
+
+  function getX(e){ return e.touches ? e.touches[0].clientX : e.clientX; }
+
+  function onDown(e){
+    dragging = true;
+    startX = getX(e);
+    startOffset = offset;
+    carousel.classList.add('dragging');
+  }
+  function onMove(e){
+    if (!dragging) return;
+    offset = startOffset + (getX(e) - startX);
+  }
+  function onUp(){
+    if (!dragging) return;
+    dragging = false;
+    carousel.classList.remove('dragging');
+  }
+
+  carousel.addEventListener('mousedown', function(e){ onDown(e); e.preventDefault(); });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+
+  carousel.addEventListener('touchstart', onDown, { passive: true });
+  window.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('touchend', onUp);
+  window.addEventListener('touchcancel', onUp);
+
+  requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>

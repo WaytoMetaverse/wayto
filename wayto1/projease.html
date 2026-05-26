@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProjEase 工程專案管理系統｜手機就能跑完報價、出工、成本與請款｜Wayto Metaverse</title>
+<meta name="description" content="ProjEase 把工程團隊的報價、案件、出工、成本與請款整合在同一套系統。手機完成日常作業，主管即時掌握案件財務健康狀態。為裝修、營造、設備工程團隊打造的一站式管理工具。">
+<meta name="keywords" content="工程專案管理系統,工程報價系統,出工管理,工地成本,請款管理,工程管理 App,裝修管理系統,營造系統,案件管理">
+<link rel="canonical" href="https://wayto.com.tw/wayto1/projease.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ProjEase 工程專案管理系統｜手機就能完成日常作業">
+<meta property="og:description" content="報價、出工、成本、請款全部整合 — 業主一台手機把工程現場跟辦公室串成一條線。">
+<meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/projease/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/layout.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ProjEase","alternateName":"工程專案管理系統","description":"整合報價、案件、出工、成本與請款的工程專案管理 SaaS。","applicationCategory":"BusinessApplication","operatingSystem":"Web, iOS, Android","url":"https://wayto.com.tw/wayto1/projease.html","image":"https://wayto.com.tw/wayto1/uploads/projease/logo.png","offers":{"@type":"Offer","price":"3600","priceCurrency":"TWD","priceSpecification":{"@type":"UnitPriceSpecification","price":"3600","priceCurrency":"TWD","billingDuration":"P1M"}},"publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa;--brand:#0ea5e9;--brand-soft:#e0f2fe;--brand-dark:#0284c7}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-height:1.7;font-weight:400}
+img{max-width:100%;display:block}
+
+/* HERO */
+.pe-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#f0f9ff 0%,#fff 100%)}
+.pe-hero-inner{max-width:1320px;margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
+.pe-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:6px 16px 6px 8px;background:#fff;border:1px solid var(--border);border-radius:999px}
+.pe-brand-row img{height:22px;width:auto}
+.pe-brand-row span{font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;color:var(--navy);letter-spacing:1px}
+.pe-brand-row b{font-size:11px;font-weight:600;color:var(--brand-dark);letter-spacing:1px;padding-left:10px;border-left:1px solid var(--border)}
+.pe-hero h1{font-size:clamp(34px,4.2vw,54px);font-weight:900;color:#0f172a;line-height:1.25;letter-spacing:-0.6px;margin-bottom:24px}
+.pe-hero h1 em{font-style:normal;color:var(--brand-dark)}
+.pe-hero-desc{font-size:15px;color:#1e293b;line-height:2;margin-bottom:32px;max-width:540px}
+.pe-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.pe-btn{padding:13px 26px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;transition:all .2s}
+.pe-btn-primary{background:var(--navy);color:#fff}
+.pe-btn-primary:hover{background:var(--brand-dark);transform:translateY(-1px)}
+.pe-btn-outline{background:transparent;color:var(--navy);border:1px solid rgba(26,43,94,.35)}
+.pe-btn-outline:hover{border-color:var(--brand-dark);color:var(--brand-dark)}
+.pe-hero-meta{display:grid;grid-template-columns:repeat(4,auto);gap:24px;border-top:1px solid #cbd5e1;padding-top:22px;max-width:620px}
+.pe-hero-meta .lab{font-size:11px;font-weight:600;color:#64748b;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.pe-hero-meta .val{font-size:13.5px;font-weight:700;color:#0f172a}
+
+/* HERO MOCK: phone + dashboard */
+.pe-hero-visual{position:relative;height:560px}
+.quote-phone{position:absolute;left:0;top:20px;width:270px;height:520px;background:#0f172a;border-radius:36px;padding:12px;box-shadow:0 30px 60px rgba(15,23,42,.28);z-index:2}
+.qp-screen{width:100%;height:100%;background:#fafaf9;border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+.qp-bar{height:24px;background:#0f172a;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;font-size:10px;font-family:'Outfit',sans-serif}
+.qp-head{padding:16px 18px 12px;border-bottom:1px solid #e2e8f0;background:#fff}
+.qp-tag{font-family:'Outfit',sans-serif;font-size:9px;color:var(--brand-dark);letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.qp-title{font-size:14px;font-weight:800;color:#0f172a}
+.qp-sub{font-size:11px;color:#64748b;margin-top:3px}
+.qp-body{flex:1;padding:14px;overflow:hidden}
+.qp-row{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:9px 11px;margin-bottom:6px;font-size:11px}
+.qp-row .n{color:#334155;font-weight:600;flex:1}
+.qp-row .a{font-family:'Outfit',sans-serif;color:var(--navy);font-weight:600;font-size:11px}
+.qp-row.subtle{background:#f8fafc;color:#94a3b8}
+.qp-row.subtle .n,.qp-row.subtle .a{color:#94a3b8}
+.qp-total{display:flex;align-items:center;justify-content:space-between;background:var(--brand-soft);border:1px solid #bae6fd;border-radius:10px;padding:12px 14px;margin-top:8px}
+.qp-total .l{font-size:10px;color:var(--brand-dark);letter-spacing:1px;font-weight:600;text-transform:uppercase}
+.qp-total .v{font-family:'Outfit',sans-serif;font-size:18px;font-weight:600;color:#0f172a}
+.qp-cta{margin:auto 14px 14px;padding:11px 16px;background:var(--navy);color:#fff;font-size:11px;font-weight:600;text-align:center;border-radius:8px}
+
+.health-card{position:absolute;right:0;top:80px;width:420px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 20px 50px rgba(15,23,42,.1);z-index:1}
+.hc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hc-head .ll{font-family:'Outfit',sans-serif;font-size:10px;color:var(--brand-dark);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.hc-head .tt{font-size:14px;font-weight:800;color:#0f172a;margin-top:2px}
+.hc-head .dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+.hc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.hc-stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:11px}
+.hc-stat .l{font-size:9.5px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.hc-stat .v{font-family:'Outfit',sans-serif;font-size:22px;font-weight:500;color:#0f172a;line-height:1}
+.hc-stat.h{background:#ecfdf5;border-color:#a7f3d0}
+.hc-stat.h .v{color:#047857}
+.hc-stat.w{background:#fffbeb;border-color:#fde68a}
+.hc-stat.w .v{color:#b45309}
+.hc-stat.a{background:#fef2f2;border-color:#fecaca}
+.hc-stat.a .v{color:#b91c1c}
+.hc-row{display:grid;grid-template-columns:1.6fr 0.7fr 0.7fr;align-items:center;border-top:1px solid #f1f5f9;padding:9px 0;font-size:11.5px}
+.hc-row:first-of-type{border-top:none}
+.hc-row .nn{color:#334155;font-weight:600}
+.hc-row .ss{font-family:'Outfit',sans-serif;font-size:9.5px;color:#94a3b8;letter-spacing:1px;text-transform:uppercase}
+.hc-row .pp{font-family:'Outfit',sans-serif;font-weight:700;text-align:right;font-size:12px}
+.hc-row.h .pp{color:#10b981}
+.hc-row.w .pp{color:#f59e0b}
+.hc-row.a .pp{color:#ef4444}
+
+/* SECTION HEAD */
+.pe-head{margin-bottom:48px;max-width:760px}
+.pe-head .tag{font-size:12px;font-weight:700;color:var(--brand-dark);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.pe-head h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.4;margin-bottom:16px}
+.pe-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
+
+/* PAIN POINTS */
+.pe-pain{padding:80px;max-width:1320px;margin:0 auto}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;transition:all .25s;position:relative;overflow:hidden}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand-dark),var(--brand));opacity:0;transition:opacity .25s}
+.pain-card:hover{border-color:#bae6fd;box-shadow:0 12px 36px rgba(14,165,233,.1);transform:translateY(-4px)}
+.pain-card:hover::before{opacity:1}
+.pain-num{font-family:'Outfit',sans-serif;font-size:14px;font-weight:500;color:var(--brand-dark);letter-spacing:2px;margin-bottom:16px}
+.pain-card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.pain-card p{font-size:13.5px;color:var(--muted);line-height:1.95}
+
+/* FEATURES */
+.pe-features{background:var(--gray-bg);padding:80px}
+.pe-features-inner{max-width:1320px;margin:0 auto}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 26px 26px;transition:all .25s;display:flex;flex-direction:column;gap:12px}
+.feat-card:hover{border-color:#bae6fd;box-shadow:0 8px 28px rgba(14,165,233,.08);transform:translateY(-3px)}
+.feat-icon{width:42px;height:42px;border-radius:10px;background:var(--brand-soft);color:var(--brand-dark);display:flex;align-items:center;justify-content:center}
+.feat-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feat-card h3{font-size:16px;font-weight:800;color:var(--navy)}
+.feat-card p{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* HEALTH SECTION */
+.pe-health{padding:80px;max-width:1320px;margin:0 auto}
+.health-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center}
+.health-left .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--brand-dark);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.health-left h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.35;margin-bottom:18px}
+.health-left p{font-size:14px;color:#334155;line-height:2;margin-bottom:14px}
+.health-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.h-item{display:flex;gap:12px;padding:14px 16px;border-radius:10px;border:1px solid var(--border);background:#fff}
+.h-item .ic{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;flex-shrink:0;margin-top:1px}
+.h-item.h .ic{background:#10b981}
+.h-item.w .ic{background:#f59e0b}
+.h-item.a .ic{background:#ef4444}
+.h-item.s .ic{background:var(--brand-dark)}
+.h-item p{font-size:13px;color:#334155;line-height:1.85;margin:0}
+
+/* WORKFLOW */
+.pe-flow{background:var(--gray-bg);padding:80px}
+.pe-flow-inner{max-width:1320px;margin:0 auto}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+.flow-step{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 24px 26px;position:relative;transition:all .25s}
+.flow-step:hover{border-color:var(--brand-dark);box-shadow:0 10px 28px rgba(14,165,233,.1)}
+.flow-num{font-family:'Outfit',sans-serif;font-size:48px;font-weight:200;color:#94a3b8;line-height:1;margin-bottom:16px;letter-spacing:-1px}
+.flow-step h3{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.flow-step p{font-size:13px;color:var(--muted);line-height:1.85}
+.flow-step::after{content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--brand-dark);font-weight:300;background:var(--gray-bg);width:24px;height:24px;display:flex;align-items:center;justify-content:center;z-index:2}
+.flow-step:last-child::after{display:none}
+
+/* PRICING */
+.pe-pricing{padding:80px;max-width:1320px;margin:0 auto}
+.price-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
+.price-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:36px 36px 32px;box-shadow:0 16px 40px rgba(15,23,42,.06);position:relative;overflow:hidden}
+.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand-dark),var(--brand))}
+.price-card .pl{font-family:'Outfit',sans-serif;font-size:11px;color:var(--brand-dark);letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.price-card h3{font-size:20px;font-weight:800;color:#0f172a;margin-bottom:8px}
+.price-card .pd{font-size:13.5px;color:var(--muted);line-height:1.85;margin-bottom:24px;max-width:380px}
+.price-amt{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.price-amt .cur{font-size:13px;color:#64748b}
+.price-amt .num{font-family:'Outfit',sans-serif;font-size:56px;font-weight:300;color:#0f172a;line-height:1;letter-spacing:-2px}
+.price-amt .per{font-size:13px;color:#64748b}
+.price-card .pn{font-size:12.5px;color:#94a3b8;margin-bottom:24px}
+.price-feats{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding-top:24px;border-top:1px solid #f1f5f9}
+.price-feats li{display:flex;gap:10px;font-size:13px;color:#334155;line-height:1.6;list-style:none}
+.price-feats li::before{content:'✓';color:var(--brand-dark);font-weight:700;flex-shrink:0;margin-top:1px}
+.price-card .pa{display:flex;flex-direction:column;gap:10px}
+.price-card .pa a{padding:13px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;text-align:center;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.price-card .pa a:first-child{background:var(--navy);color:#fff}
+.price-card .pa a:first-child:hover{background:var(--brand-dark)}
+.price-card .pa a:last-child{background:transparent;border:1px solid var(--border);color:var(--navy)}
+.price-card .pa a:last-child:hover{border-color:var(--brand-dark);color:var(--brand-dark)}
+
+/* AUDIENCE */
+.pe-aud{background:var(--gray-bg);padding:80px}
+.pe-aud-inner{max-width:1320px;margin:0 auto}
+.aud-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.aud-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:#334155;transition:all .2s}
+.aud-chip:hover{border-color:var(--brand-dark);color:var(--brand-dark);background:var(--brand-soft)}
+
+/* CTA */
+.pe-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#0c4a6e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.pe-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(14,165,233,.22),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(186,230,253,.14),transparent 60%);pointer-events:none}
+.pe-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.pe-cta .tag{font-size:12px;font-weight:600;color:#7dd3fc;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.pe-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
+.pe-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
+.pe-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.pe-cta-btn{padding:14px 28px;border-radius:8px;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.pe-cta-primary{background:#fff;color:var(--navy)}
+.pe-cta-primary:hover{background:var(--brand-soft)}
+.pe-cta-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.pe-cta-ghost:hover{background:rgba(255,255,255,.18)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* RWD: Tablet */
+@media (max-width:1100px){
+  .pe-hero-inner{padding:64px 32px;grid-template-columns:1fr;gap:48px}
+  .pe-hero-visual{height:auto;display:flex;flex-direction:column;gap:20px;max-width:560px;margin:0 auto;width:100%}
+  .quote-phone,.health-card{position:static;width:100%;max-width:380px;margin:0 auto}
+  .quote-phone{height:520px}
+  .pe-hero-meta{grid-template-columns:1fr 1fr;gap:18px 28px}
+  .pe-pain,.pe-features,.pe-health,.pe-flow,.pe-pricing,.pe-aud,.pe-cta{padding:64px 32px}
+  .pain-grid,.feat-grid{grid-template-columns:repeat(2,1fr)}
+  .flow-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+  .flow-step::after{display:none}
+  .health-grid,.price-grid{grid-template-columns:1fr;gap:32px}
+  .pe-cta-inner{flex-direction:column;align-items:flex-start}
+}
+
+/* RWD: Phone */
+@media (max-width:720px){
+  .pe-hero-inner{padding:48px 20px;gap:36px}
+  .pe-hero h1{font-size:clamp(28px,7vw,40px);line-height:1.3}
+  .pe-hero h1 br{display:none}
+  .pe-hero-desc{font-size:14px;line-height:1.95}
+  .pe-hero-desc br{display:none}
+  .pe-hero-btns .pe-btn{flex:1;justify-content:center;min-width:0}
+  .pe-hero-meta{grid-template-columns:1fr 1fr;gap:16px}
+  .pe-pain,.pe-features,.pe-health,.pe-flow,.pe-pricing,.pe-aud{padding:56px 20px}
+  .pe-cta{padding:64px 20px}
+  .pe-head{margin-bottom:36px}
+  .pe-head h2{font-size:24px}
+  .pain-grid,.feat-grid,.flow-grid{grid-template-columns:1fr;gap:14px}
+  .pain-card,.feat-card{padding:26px 22px}
+  .flow-step{padding:24px 22px 22px}
+  .flow-num{font-size:42px;margin-bottom:14px}
+  .price-card{padding:28px 26px 26px}
+  .price-amt .num{font-size:48px}
+  .pe-cta h2{font-size:22px}
+  .pe-cta-btn{width:100%;justify-content:center;max-width:320px}
+}
+
+/* RWD: Small phone */
+@media (max-width:480px){
+  .pe-hero-inner{padding:40px 16px}
+  .pe-hero h1{font-size:clamp(24px,8vw,32px)}
+  .pe-hero-desc{font-size:13.5px}
+  .pe-hero-meta{grid-template-columns:1fr;gap:12px}
+  .pe-btn{padding:11px 22px;font-size:14px}
+  .quote-phone{width:240px;height:480px}
+  .health-card{padding:16px}
+  .pe-pain,.pe-features,.pe-health,.pe-flow,.pe-pricing,.pe-aud,.pe-cta{padding:48px 16px}
+  .pe-head h2{font-size:22px;line-height:1.4}
+  .pe-head p{font-size:13.5px}
+  .pe-head p br{display:none}
+  .pain-card h3,.feat-card h3,.flow-step h3{font-size:15.5px}
+  .pain-card p,.feat-card p,.flow-step p{font-size:13px}
+  .aud-chip{font-size:12.5px;padding:9px 15px}
+  .pe-cta h2{font-size:20px}
+  .pe-cta h2 br,.pe-cta p br{display:none}
+}
+</style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="solutions">
+
+<div id="shared-nav"></div>
+
+<!-- HERO -->
+<section class="pe-hero">
+  <div class="pe-hero-inner">
+    <div class="pe-hero-left">
+      <div class="pe-brand-row reveal">
+        <img src="uploads/projease/logo.png" alt="ProjEase 工程專案管理系統">
+        <span>ProjEase</span>
+        <b>工程專案管理系統</b>
+      </div>
+      <h1 class="reveal reveal-d1">把<em>工程現場</em>跟<em>辦公室</em>，<br>串成同一條線</h1>
+      <p class="pe-hero-desc reveal reveal-d2">
+        報價、案件、出工、成本、請款 —— 過去散落在 LINE 群、紙本、Excel 的工程管理事項，<br>
+        ProjEase 把它整合到同一套系統。<br>
+        手機完成日常作業，主管即時看到案件財務狀態。
+      </p>
+      <div class="pe-hero-btns reveal reveal-d2">
+        <a class="pe-btn pe-btn-primary" href="#pricing">立即申請開通 →</a>
+        <a class="pe-btn pe-btn-outline" href="#features">看完整功能</a>
+      </div>
+      <div class="pe-hero-meta reveal reveal-d3">
+        <div><div class="lab">Built for</div><div class="val">工程團隊管理</div></div>
+        <div><div class="lab">Use</div><div class="val">手機 / 平板 / 桌機</div></div>
+        <div><div class="lab">Modules</div><div class="val">6 大核心模組</div></div>
+        <div><div class="lab">Price</div><div class="val">NT$ 3,600 / 月</div></div>
+      </div>
+    </div>
+
+    <div class="pe-hero-visual reveal reveal-d1">
+      <!-- Health dashboard mock -->
+      <div class="health-card">
+        <div class="hc-head">
+          <div>
+            <div class="ll">Brand Dashboard</div>
+            <div class="tt">本月案件健康總覽</div>
+          </div>
+          <div class="dot" title="即時"></div>
+        </div>
+        <div class="hc-stats">
+          <div class="hc-stat h"><div class="l">健康</div><div class="v">4</div></div>
+          <div class="hc-stat w"><div class="l">注意</div><div class="v">2</div></div>
+          <div class="hc-stat a"><div class="l">警示</div><div class="v">1</div></div>
+        </div>
+        <div class="hc-row h"><span class="nn">辦公室整修工程</span><span class="ss">健康</span><span class="pp">+32.8%</span></div>
+        <div class="hc-row w"><span class="nn">廠房設備更新</span><span class="ss">注意</span><span class="pp">+12.1%</span></div>
+        <div class="hc-row h"><span class="nn">停車場修繕工程</span><span class="ss">健康</span><span class="pp">+28.4%</span></div>
+        <div class="hc-row a"><span class="nn">冷氣主機更換</span><span class="ss">警示</span><span class="pp">−3.2%</span></div>
+        <div class="hc-row h"><span class="nn">管線更新工程</span><span class="ss">健康</span><span class="pp">+24.7%</span></div>
+      </div>
+
+      <!-- Mobile quote mock -->
+      <div class="quote-phone">
+        <div class="qp-screen">
+          <div class="qp-bar"><span>9:41</span><span>•••</span></div>
+          <div class="qp-head">
+            <div class="qp-tag">Quote · 報價單</div>
+            <div class="qp-title">浴室翻修工程</div>
+            <div class="qp-sub">王先生 · 信義區</div>
+          </div>
+          <div class="qp-body">
+            <div class="qp-row"><span class="n">拆除工程</span><span class="a">$ 18,000</span></div>
+            <div class="qp-row"><span class="n">水電配管</span><span class="a">$ 24,000</span></div>
+            <div class="qp-row"><span class="n">防水處理</span><span class="a">$ 12,000</span></div>
+            <div class="qp-row"><span class="n">磁磚施作</span><span class="a">$ 22,400</span></div>
+            <div class="qp-row subtle"><span class="n">含估價、施工到清潔</span><span class="a">10 工項</span></div>
+            <div class="qp-total">
+              <div class="l">含稅總計</div>
+              <div class="v">NT$ 86,400</div>
+            </div>
+          </div>
+          <div class="qp-cta">傳給客戶 →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pe-pain">
+  <div class="pe-head reveal">
+    <div class="tag">The challenge</div>
+    <h2>工程管理的困難，<br>常常不是執行力，是資訊散</h2>
+    <p>報價、出工、請款散落在不同工具，導致對帳難、成本算不準、決策慢半拍 ——<br>不是工班的問題，是系統沒接起來。</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal">
+      <div class="pain-num">01</div>
+      <h3>客戶詢價時當下沒回，<br>單就溜走</h3>
+      <p>業主在現場、辦公室在打字，<br>等回到電腦才開報價單，<br>客戶這時已經問了第二家。</p>
+    </div>
+    <div class="pain-card reveal reveal-d1">
+      <div class="pain-num">02</div>
+      <h3>出工資料散在 LINE，<br>成本算不準</h3>
+      <p>師傅工時靠 LINE 群湊資料、<br>代墊金靠記憶、月底對帳半個下午 ——<br>人工成本永遠對不上案件實際支出。</p>
+    </div>
+    <div class="pain-card reveal reveal-d2">
+      <div class="pain-num">03</div>
+      <h3>請款跟尾款，<br>全靠主管的記憶力</h3>
+      <p>這案請款了嗎？尾款收了沒？<br>幾期沒收？要不要去催？ ——<br>沒有系統紀錄，就只能靠人盯。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="pe-features" id="features">
+  <div class="pe-features-inner">
+    <div class="pe-head reveal">
+      <div class="tag">Core features</div>
+      <h2>六大模組，<br>覆蓋工程團隊的日常</h2>
+      <p>從業務報價、案件進度、現場出工到財務請款 —— 每一段過去靠人工的環節，<br>都有對應的系統工具承接。</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <h3>手機快速報價</h3>
+        <p>套用工項範本、輸入金額、即時傳給客戶。完整版本紀錄保留，客戶詢問當下就能回。</p>
+      </div>
+      <div class="feat-card reveal reveal-d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h4"/></svg></div>
+        <h3>案件集中管理</h3>
+        <p>進度、分工、重要文件、請款節點整合在同一個頁面，現場跟辦公室同步更順。</p>
+      </div>
+      <div class="feat-card reveal reveal-d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M15 11a3 3 0 1 0 0-6"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 20a5 5 0 0 1 5-5"/></svg></div>
+        <h3>出工紀錄整合</h3>
+        <p>正式員工、臨時工、工時、成本一次記錄。不用再靠 LINE 群湊資料，師傅也說不了「記錯了」。</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/></svg></div>
+        <h3>案件健康程度</h3>
+        <p>每個案件的收入、支出、利潤自動累積成健康指標 —— 知道哪案要盯進度、哪案要控成本。</p>
+      </div>
+      <div class="feat-card reveal reveal-d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg></div>
+        <h3>請款收款追蹤</h3>
+        <p>這案請款了嗎？尾款收了沒？所有收款節點集中管理，不用翻 LINE、不靠記憶力。</p>
+      </div>
+      <div class="feat-card reveal reveal-d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>審核與派工</h3>
+        <p>出工記錄與代墊金先審核再入帳。主管一鍵確認，現場資料直接進入成本計算。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH DEEP DIVE -->
+<section class="pe-health">
+  <div class="health-grid">
+    <div class="health-left reveal">
+      <div class="pre">Project health</div>
+      <h2>每個案件，<br>都有一張即時的「健康狀態表」</h2>
+      <p>成本管理的目的，不是事後算帳，而是<strong>即時知道哪案在出血</strong>。</p>
+      <p>ProjEase 把案件的收入、支出、利潤自動彙整成健康狀態，<br>主管不用問現場，打開儀表板就看見。</p>
+    </div>
+    <div class="health-list reveal reveal-d1">
+      <div class="h-item h"><div class="ic">✓</div><p><strong>狀態正常的案件：</strong>利潤率符合預期，出工成本在預算內，請款按進度走 —— 系統不打擾，主管也不用擔心。</p></div>
+      <div class="h-item w"><div class="ic">!</div><p><strong>需要關注的案件：</strong>利潤率偏低、應收款項延遲、出工工時異常 —— 系統會主動標示，提早出手而不是事後補救。</p></div>
+      <div class="h-item a"><div class="ic">⚠</div><p><strong>已亮紅燈的案件：</strong>成本超標、尾款逾期 —— 直接列出在儀表板最上方，主管第一眼就看到。</p></div>
+      <div class="h-item s"><div class="ic">$</div><p><strong>請款收款進度：</strong>每個節點都有紀錄 —— 減少人工追蹤的負擔，也降低遺漏的風險。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="pe-flow">
+  <div class="pe-flow-inner">
+    <div class="pe-head reveal">
+      <div class="tag">How it works</div>
+      <h2>從報價到收款，<br>四步全程在系統內完成</h2>
+      <p>每個環節都有對應工具承接，主管審核後資料自動進入成本計算 —— 不用再額外整合。</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step reveal">
+        <div class="flow-num">01</div>
+        <h3>建立報價單</h3>
+        <p>手機套用工項範本、輸入金額、傳給客戶。系統保留完整版本，事後查閱、比對都方便。</p>
+      </div>
+      <div class="flow-step reveal reveal-d1">
+        <div class="flow-num">02</div>
+        <h3>案件集中管理</h3>
+        <p>報價成立後轉成案件，進度、分工、文件、請款節點一頁呈現，現場跟辦公室資訊同步。</p>
+      </div>
+      <div class="flow-step reveal reveal-d2">
+        <div class="flow-num">03</div>
+        <h3>出工紀錄審核</h3>
+        <p>工班記錄出工時間，主管審核後人工成本自動歸屬到案件 —— 無需重新整合 Excel。</p>
+      </div>
+      <div class="flow-step reveal reveal-d3">
+        <div class="flow-num">04</div>
+        <h3>成本彙整與報表</h3>
+        <p>各案件收入、支出、利潤自動累積成財務報表 —— 接案決策、人力調度有具體依據。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="pe-aud">
+  <div class="pe-aud-inner">
+    <div class="pe-head reveal">
+      <div class="tag">Who it&apos;s for</div>
+      <h2>誰最適合用 ProjEase？</h2>
+      <p>只要你的業務是「以案件為單位 + 有出工與成本」的工程模式，ProjEase 都能套用。</p>
+    </div>
+    <div class="aud-chips reveal">
+      <span class="aud-chip">室內裝修</span>
+      <span class="aud-chip">營造工程</span>
+      <span class="aud-chip">水電工程</span>
+      <span class="aud-chip">設備工程</span>
+      <span class="aud-chip">招牌廣告工程</span>
+      <span class="aud-chip">系統櫃 / 木工</span>
+      <span class="aud-chip">弱電 / 監控工程</span>
+      <span class="aud-chip">機電工程</span>
+      <span class="aud-chip">園藝景觀</span>
+      <span class="aud-chip">清潔修繕</span>
+      <span class="aud-chip">建材安裝</span>
+      <span class="aud-chip">空調工程</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pe-pricing" id="pricing">
+  <div class="price-grid">
+    <div class="pe-head reveal" style="margin-bottom:0">
+      <div class="tag">Pricing</div>
+      <h2>固定月費，<br>功能全部開放</h2>
+      <p>沒有功能分級、沒有人數加價。<br>適合需要系統化管理報價、案件、出工、成本的工程團隊。</p>
+    </div>
+    <div class="price-card reveal reveal-d1">
+      <div class="pl">Standard 標準方案</div>
+      <h3>單一公司帳號，完整功能</h3>
+      <p class="pd">適合 3–30 人的工程團隊，從業務、現場到後台會計都能用同一套系統。</p>
+      <div class="price-amt">
+        <span class="cur">NT$</span>
+        <span class="num">3,600</span>
+        <span class="per">/ 月</span>
+      </div>
+      <p class="pn">完整 6 大核心模組 · 無功能分級</p>
+      <ul class="price-feats">
+        <li>手機快速報價，現場就能即時回覆客戶</li>
+        <li>案件、出工、成本、請款整合管理</li>
+        <li>案件健康程度追蹤，知道每案有沒有在賺</li>
+        <li>出工審核流程，師傅工時記錯有憑有據</li>
+        <li>PDF 報價單輸出、公司設定與帳號管理</li>
+        <li>持續迭代，無額外升級費</li>
+      </ul>
+      <div class="pa">
+        <a href="mailto:wayto.metaverse@gmail.com">立即申請開通 →</a>
+        <a href="#features">先看完整功能</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pe-cta" id="contact">
+  <div class="pe-cta-inner">
+    <div>
+      <div class="tag">Get started</div>
+      <h2>讓系統整合資訊，<br>讓你專注決策</h2>
+      <p>報價、出工、成本、請款 —— 每一段都有系統紀錄，<br>主管可以把時間從「對帳跟追蹤」搬回到真正重要的業務決策上。</p>
+    </div>
+    <div class="pe-cta-btns">
+      <a class="pe-cta-btn pe-cta-primary" href="mailto:wayto.metaverse@gmail.com">申請開通帳號 →</a>
+      <a class="pe-cta-btn pe-cta-ghost" href="#features">先看完整功能</a>
+    </div>
+  </div>
+</section>
+
+<div id="shared-footer"></div>
+
+<script src="shared/layout.js"></script>
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
