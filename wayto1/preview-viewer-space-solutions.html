@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIEWER SPACE — 設計提案 3D 視覺化（預覽稿）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/layout.css">
+  <style>
+    :root {
+      --gold: #c4a35a;
+      --gold-dark: #a88b4a;
+      --ink: #1a1a1a;
+      --muted: #5c5c5c;
+      --line: #e8e8e8;
+      --bg-soft: #f7f7f6;
+      --white: #fff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    .btn-gold {
+      background: var(--gold); color: #fff; font-weight: 600; font-size: 14px;
+      padding: 10px 22px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit;
+      transition: .2s; white-space: nowrap;
+    }
+    .btn-gold:hover { background: var(--gold-dark); }
+    .btn-dark {
+      background: var(--ink); color: #fff; font-weight: 600; font-size: 14px;
+      padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer; font-family: inherit;
+      transition: .2s;
+    }
+    .btn-dark:hover { background: #333; }
+    .btn-outline-gold {
+      background: #fff; color: var(--ink); font-weight: 600; font-size: 14px;
+      padding: 12px 24px; border-radius: 6px; border: 2px solid var(--gold); cursor: pointer; font-family: inherit;
+      transition: .2s;
+    }
+    .btn-outline-gold:hover { background: #fffdf8; }
+    .btn-outline-light {
+      background: transparent; color: #fff; font-weight: 600; font-size: 14px;
+      padding: 12px 24px; border-radius: 6px; border: 2px solid rgba(255,255,255,.45); cursor: pointer; font-family: inherit;
+    }
+    .btn-outline-light:hover { border-color: #fff; }
+
+    /* ----- Hero：全寬區塊 + 固定 min-height 540px；拼貼圖較窄用 contain 完整入鏡 ----- */
+    .about-hero#hero {
+      margin-top: 0;
+      min-height: 540px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: #f5f7fa;
+    }
+    .about-hero-img {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #f5f7fa;
+    }
+    .about-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: right center;
+      display: block;
+    }
+    .about-hero-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      /* 左側護字 + 中段拉長過渡，再接到右側圖 */
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.95) 12%,
+        rgba(255, 255, 255, 0.88) 22%,
+        rgba(255, 255, 255, 0.72) 34%,
+        rgba(255, 255, 255, 0.48) 46%,
+        rgba(255, 255, 255, 0.26) 54%,
+        rgba(255, 255, 255, 0.12) 62%,
+        rgba(245, 247, 250, 0.04) 72%,
+        rgba(245, 247, 250, 0) 82%
+      );
+    }
+    .about-hero-left {
+      position: relative;
+      z-index: 2;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 100px 80px;
+      width: 100%;
+    }
+    .about-hero-inner { max-width: 560px; }
+    .about-hero-tag {
+      font-size: 13px; font-weight: 600; color: #2563eb;
+      letter-spacing: 1.5px; margin-bottom: 28px;
+    }
+    .about-hero h1 {
+      font-size: clamp(34px, 4vw, 52px); font-weight: 900;
+      color: #0f172a; line-height: 1.35; letter-spacing: -0.5px;
+      margin-bottom: 32px;
+    }
+    .about-hero-desc {
+      font-size: 15px; color: #1e293b; line-height: 2;
+      font-weight: 400; margin-bottom: 36px;
+    }
+    .about-hero .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 900px) {
+      .about-hero-left {
+        padding: 56px 24px 72px;
+      }
+    }
+    @media (max-width: 600px) {
+      .about-hero-left {
+        padding: 48px 20px 64px;
+      }
+    }
+
+    /* ----- Section common ----- */
+    section { padding: 88px 0; }
+    .section-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+    .section-head h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; margin-bottom: 14px; }
+    .section-head p { color: var(--muted); font-size: 15px; }
+
+    /* ----- Pain points（對照設計：左上金色編號 + 圓角圖 + 標題說明）----- */
+    .pain { background: #f7f7f5; }
+    .cards-4 {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 24px;
+    }
+    @media (max-width: 900px) { .cards-4 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .cards-4 { grid-template-columns: 1fr; } }
+    .num-card {
+      position: relative;
+      border: 1px solid #e8e8e6; border-radius: 14px; padding: 22px 20px 26px;
+      background: #fff; transition: .2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    }
+    .num-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,.07); border-color: #ddd; }
+    .num-card .num {
+      position: absolute; top: 16px; left: 18px; z-index: 2;
+      font-family: Georgia, 'Times New Roman', 'Noto Serif TC', serif;
+      font-size: 26px; font-weight: 400; color: var(--gold); line-height: 1;
+      letter-spacing: 0;
+    }
+    .num-card-visual {
+      height: 160px; border-radius: 10px; overflow: hidden;
+      margin: 40px 0 18px; background: #eceae6;
+    }
+    .num-card-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .num-card-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px; height: 100%;
+    }
+    .num-card-split > div { min-height: 0; overflow: hidden; }
+    .num-card-split img { width: 100%; height: 100%; object-fit: cover; }
+    .num-card-files {
+      display: flex; flex-direction: column; justify-content: center; gap: 6px;
+      padding: 12px 14px; font-size: 11px; font-family: ui-monospace, monospace; color: #555;
+      background: linear-gradient(180deg, #fafafa, #f0f0ee);
+    }
+    .num-card-files span {
+      padding: 6px 10px; border-radius: 6px; background: #fff; border: 1px solid #e0e0e0;
+    }
+    .num-card-files span.is-final { border-color: var(--gold); color: var(--ink); font-weight: 600; background: #fffdf6; }
+    .num-card-chat {
+      padding: 12px; display: flex; flex-direction: column; gap: 6px; height: 100%;
+      background: linear-gradient(165deg, #eef4ff, #f5f7fb);
+    }
+    .num-card-chat .bubble {
+      max-width: 88%; padding: 7px 10px; border-radius: 10px; font-size: 10px; line-height: 1.45; color: #333;
+      background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    }
+    .num-card-chat .bubble.alt { align-self: flex-end; background: #e8f0fe; border-color: #c7d7f0; }
+    .num-card h3 { font-size: 16px; margin-bottom: 10px; font-weight: 700; color: var(--ink); }
+    .num-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    /* ----- Process（左：標題與流程；右：三點說明）----- */
+    .process { background: #fff; padding: 72px 0 80px; }
+    .process-split {
+      display: flex; align-items: stretch; gap: 0 48px; max-width: 1160px; margin: 0 auto;
+    }
+    .process-left {
+      flex: 1.22; min-width: 0; padding-right: 12px;
+    }
+    .process-left h2 {
+      font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; color: var(--ink);
+      line-height: 1.35; margin-bottom: 12px; letter-spacing: -.02em;
+    }
+    .process-left .process-sub {
+      font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 26px; max-width: 520px;
+    }
+    .process-track {
+      border: 1px solid #dcdcdc; border-radius: 12px; background: #fafafa;
+      padding: 18px 10px 20px; display: flex; align-items: stretch;
+      justify-content: space-between; flex-wrap: nowrap; gap: 2px 4px;
+      overflow: hidden;
+    }
+    .p-step {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 8px;
+      flex: 1 1 0; min-width: 0; padding: 0 2px;
+    }
+    .p-step .p-ico {
+      width: clamp(32px, 5vw, 44px); height: clamp(32px, 5vw, 44px); flex-shrink: 0; color: var(--ink);
+    }
+    .p-step span {
+      font-size: clamp(10px, 1.65vw, 12px); font-weight: 500; color: var(--ink);
+      line-height: 1.3; white-space: normal; word-break: keep-all;
+    }
+    .p-arrow {
+      flex: 0 0 auto; align-self: center; color: #b0b0b0; font-size: 12px; font-weight: 300;
+      padding: 0 1px; user-select: none; line-height: 1; flex-shrink: 0;
+    }
+    .process-right {
+      flex: 1; min-width: 0; display: flex;
+    }
+    .feat-col {
+      flex: 1; padding: 0 18px 8px; text-align: center;
+      border-right: 1px solid #e5e5e5; display: flex; flex-direction: column; align-items: center;
+    }
+    .feat-col:last-child { border-right: 0; }
+    .feat-col .ico-svg {
+      width: 52px; height: 52px; margin-bottom: 16px; color: var(--ink);
+    }
+    .feat-col h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--ink); line-height: 1.45; }
+    .feat-col p { font-size: 13px; color: var(--muted); line-height: 1.75; text-align: center; }
+    @media (max-width: 900px) {
+      .process-split { flex-direction: column; gap: 36px; }
+      .process-right {
+        flex-direction: column;
+        padding-top: 28px;
+      }
+      .feat-col { border-right: 0; border-bottom: 1px solid #eee; padding: 20px 12px; }
+      .feat-col:last-child { border-bottom: 0; }
+      .p-arrow { transform: rotate(90deg); padding: 2px 0; }
+      .process-track {
+        flex-direction: column; flex-wrap: nowrap; align-items: center; gap: 2px 0;
+        padding: 20px 16px;
+      }
+    }
+
+    /* ----- Service types ----- */
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px 22px;
+    }
+    @media (max-width: 900px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px) { .svc-grid { grid-template-columns: 1fr; } }
+    .svc-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+    .svc-card .ph { aspect-ratio: 4/3; background: #ddd; }
+    .svc-card .ph img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-card .body { padding: 20px 18px 22px; }
+    .svc-card h3 { font-size: 16px; margin-bottom: 8px; }
+    .svc-card p { font-size: 13px; color: var(--muted); }
+
+    /* ----- Estimator（快速專案試算）----- */
+    .estimator { background: #f0f0ed; border-top: 1px solid #e0e0dc; padding: 80px 0 100px; }
+    .estimator .container {
+      max-width: min(100%, 1440px);
+      padding-left: max(32px, env(safe-area-inset-left, 0px));
+      padding-right: max(32px, env(safe-area-inset-right, 0px));
+    }
+    .estimator-head { text-align: center; margin-bottom: 44px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .estimator-head h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.02em; }
+    .estimator-head p { font-size: 15px; color: var(--muted); line-height: 1.65; }
+    .est-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, min(400px, 32vw));
+      gap: 32px 40px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) { .est-layout { grid-template-columns: 1fr; gap: 28px; } }
+    .est-summary-sticky {
+      min-width: 0;
+    }
+    .est-white-panel {
+      background: #fff; border: 1px solid #e4e4e0; border-radius: 20px;
+      padding: 0; box-shadow: 0 4px 24px rgba(0,0,0,.06);
+      min-width: 0; overflow: hidden;
+    }
+    .est-inputs {
+      display: grid;
+      grid-template-columns: minmax(168px, 0.78fr) minmax(300px, 1.7fr) minmax(240px, 1fr);
+      gap: 0; align-items: stretch;
+    }
+    @media (min-width: 1400px) {
+      .est-inputs { grid-template-columns: 200px minmax(440px, 1fr) 288px; }
+    }
+    @media (max-width: 1180px) {
+      .est-inputs { grid-template-columns: 1fr; }
+    }
+    .est-col { padding: 28px 28px 32px; min-width: 0; }
+    @media (min-width: 1181px) {
+      .est-col + .est-col { border-left: 1px solid #ecece8; }
+    }
+    @media (max-width: 1180px) {
+      .est-col + .est-col { border-top: 1px solid #ecece8; }
+    }
+    .est-step-label {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+    }
+    .est-step-num {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid var(--gold); background: #fffdf8; color: var(--ink);
+      font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .est-step-title { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .space-type-stack { display: flex; flex-direction: column; gap: 10px; }
+    .space-type-stack button {
+      width: 100%; padding: 14px 14px; border-radius: 10px; border: 1px solid #d5d5d2;
+      background: #fafaf8; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink);
+      cursor: pointer; transition: .15s; text-align: center;
+    }
+    .space-type-stack button:hover { border-color: #b8b8b4; background: #fff; }
+    .space-type-stack button.active {
+      background: var(--ink); color: #fff; border-color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    .est-legend {
+      display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 16px;
+      padding: 12px 14px; background: #f6f6f3; border-radius: 10px; border: 1px solid #eaeae6;
+      font-size: 12px; color: #454545;
+    }
+    .est-legend i {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; vertical-align: middle;
+    }
+    .est-legend .dot-open { background: #8b6914; }
+    .est-legend .dot-private { background: #c4a574; }
+    .room-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 14px;
+    }
+    @media (max-width: 520px) { .room-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
+    .room-cell {
+      border: 1px solid #e2e2de; border-radius: 10px; padding: 12px 14px;
+      background: #fcfcfa; transition: border-color .15s, background .15s, box-shadow .15s; cursor: pointer;
+      display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 2px; align-items: center;
+      min-height: 0;
+    }
+    .room-cell input[type="checkbox"] {
+      grid-row: 1 / span 2; align-self: center;
+      width: 18px; height: 18px; accent-color: #7a5c1e; cursor: pointer; margin: 0;
+    }
+    .room-cell .rn { grid-column: 2; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+    .room-cell .rt { grid-column: 2; font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .room-cell:has(input:checked) {
+      border-color: #c4a574; background: #fffdf6;
+      box-shadow: inset 0 0 0 1px rgba(196,163,90,.2);
+    }
+    .room-cell:hover:not(:has(input:checked)) { border-color: #d0d0cc; background: #fafaf8; }
+    .est-step3 .counter-group { margin-bottom: 16px; }
+    .est-step3 .counter-group:last-of-type { margin-bottom: 0; }
+    .counter-lbl-above {
+      font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .est-step3 .counter-block {
+      border: 1px solid #e4e4e0; border-radius: 12px; padding: 14px 18px; margin-bottom: 0; background: #fafaf8;
+    }
+    .counter-row-est {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; flex-wrap: nowrap;
+    }
+    .counter-row-est .subp { font-size: 14px; font-weight: 700; color: var(--gold-dark); white-space: nowrap; }
+    .counter-row-est .counter-ctrl { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .counter-ctrl button {
+      width: 40px; height: 40px; border-radius: 10px; border: 1px solid #d0d0cc; background: #fff;
+      cursor: pointer; font-size: 18px; line-height: 1; color: var(--ink); font-family: inherit;
+      transition: background .15s, border-color .15s;
+    }
+    .counter-ctrl button:hover { background: #f3f3f1; border-color: #bbb; }
+    .counter-ctrl .cv { min-width: 28px; text-align: center; font-weight: 700; font-size: 16px; color: var(--ink); }
+    .est-notes {
+      margin-top: 14px; padding: 14px 16px; background: #f5f5f2; border-radius: 10px; border: 1px solid #e8e8e4;
+      font-size: 12px; color: #5a5a5a; line-height: 1.7;
+    }
+    .est-notes ul { margin: 0; padding-left: 1.1em; }
+    .est-notes li { margin-bottom: 5px; }
+    .est-notes li:last-child { margin-bottom: 0; }
+    .est-summary {
+      position: static;
+      width: 100%;
+      background: linear-gradient(165deg, #2d2d2d 0%, #181818 100%); color: #fff;
+      border-radius: 20px; padding: 26px 24px 28px; border: 1px solid #3a3a3a;
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+    }
+    .est-summary .sum-h { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.85); margin-bottom: 14px; }
+    .est-summary-lines { font-size: 14px; line-height: 1.65; opacity: .9; margin-bottom: 4px; }
+    .est-summary-lines .line { display: flex; justify-content: space-between; gap: 12px 20px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 0; }
+    .est-summary-lines .line:last-child { border-bottom: none; }
+    .est-summary-lines .line span:first-child { opacity: .88; }
+    .est-summary-lines .line span:last-child { font-weight: 600; white-space: nowrap; }
+    .est-summary-div { height: 1px; background: rgba(255,255,255,.2); margin: 16px 0 18px; }
+    .est-summary-total-row {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px;
+    }
+    .est-summary-total-row .tl { font-size: 15px; font-weight: 600; }
+    .est-summary-total-row .tv { font-size: 34px; font-weight: 700; color: #e8c96b; letter-spacing: -0.02em; line-height: 1; }
+    .est-summary .btn-est-cta {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 20px; border: none; border-radius: 12px; cursor: pointer; font-family: inherit;
+      font-size: 15px; font-weight: 600; color: #fff;
+      background: linear-gradient(180deg, #c9a86a 0%, #a88b4a 100%);
+      box-shadow: 0 4px 14px rgba(0,0,0,.28);
+      transition: filter .2s, transform .2s;
+    }
+    .est-summary .btn-est-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .est-summary .btn-est-cta svg { flex-shrink: 0; opacity: .95; }
+
+    /* ----- FAQ ----- */
+    .faq { background: var(--bg-soft); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; }
+    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+    details.faq-item {
+      background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 0 16px;
+    }
+    details.faq-item summary {
+      list-style: none; cursor: pointer; padding: 16px 0; font-weight: 600; font-size: 14px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after { content: '+'; font-size: 18px; color: var(--gold); font-weight: 400; }
+    details.faq-item[open] summary::after { content: '−'; }
+    details.faq-item .ans { padding: 0 0 16px; font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* ----- Footer CTA：底圖／留白／上緣壓暗 取兩版中間值 ----- */
+    .foot-cta {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      color: #fff;
+      padding: 30px 0 50px;
+      text-align: left;
+      background-color: #141414;
+    }
+    .foot-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url('uploads/preview-contact-cta-bg.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center 72%;
+    }
+    .foot-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(10, 9, 8, 0.42) 0%,
+          rgba(10, 9, 8, 0.12) 30%,
+          transparent 52%
+        ),
+        linear-gradient(
+          to right,
+          rgba(12, 10, 8, 0.94) 0%,
+          rgba(12, 10, 8, 0.78) 28%,
+          rgba(12, 10, 8, 0.45) 52%,
+          rgba(12, 10, 8, 0.18) 72%,
+          rgba(12, 10, 8, 0) 100%
+        );
+    }
+    .foot-cta .container {
+      position: relative;
+      z-index: 2;
+    }
+    .foot-cta-inner {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 20px 42px;
+    }
+    .foot-cta-copy {
+      flex: 1 1 260px; min-width: 0; max-width: 640px;
+    }
+    .foot-cta h2 {
+      font-size: clamp(22px, 3.2vw, 32px); margin: 0 0 14px; font-weight: 700;
+      line-height: 1.35; letter-spacing: -0.02em;
+    }
+    .foot-cta .foot-cta-lead {
+      margin: 0; font-size: clamp(15px, 1.8vw, 17px);
+      line-height: 1.75; color: rgba(255,255,255,.82);
+    }
+    .foot-cta .row {
+      flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 12px 16px;
+      justify-content: flex-end; align-items: center;
+    }
+    @media (max-width: 720px) {
+      .foot-cta-inner {
+        flex-direction: column; align-items: stretch;
+      }
+      .foot-cta .row {
+        justify-content: flex-start;
+      }
+    }
+
+    .preview-banner {
+      background: #fff8e6; border-bottom: 1px solid #f0e0b8; color: #6b5420;
+      text-align: center; padding: 12px 20px; font-size: 13px; line-height: 1.55;
+    }
+    @media (max-width: 640px) {
+      .container { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body class="wayto-has-shared-nav" data-nav-current="solutions">
+
+  <div class="preview-banner">
+    此為<strong>設計提案預覽頁</strong>，未連結至正式導覽。本機預覽請開啟：
+    <code>wayto1/preview-viewer-space-solutions.html</code>
+  </div>
+
+  <div id="shared-nav"></div>
+
+  <main id="hero" class="about-hero">
+    <div class="about-hero-img">
+      <img src="uploads/preview-hero-design-collage.png" alt="平面圖、空間渲染、材質與 360 環景等設計提案示意" width="1600" height="900" loading="eager" fetchpriority="high">
+    </div>
+    <div class="about-hero-left">
+      <div class="about-hero-inner">
+        <div class="about-hero-tag">設計提案</div>
+        <h1>設計師穩定可靠的<br>3D 合作夥伴</h1>
+        <div class="about-hero-desc">
+          熟悉設計流程與現場施作邏輯，協助你把時間留在創意與客戶溝通，而不是無止境的改圖往返。
+        </div>
+        <div class="hero-actions">
+          <button type="button" class="btn-dark">查看合作流程</button>
+          <button type="button" class="btn-outline-gold" onclick="document.getElementById('estimate')?.scrollIntoView({behavior:'smooth'})">開始專案試算</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="pain" class="pain">
+    <div class="container">
+      <div class="section-head">
+        <h2>好的提案，不該浪費在反覆溝通</h2>
+        <p>我們整理設計師在 3D 外包最常遇到的情境，讓你一眼對照現況。</p>
+      </div>
+      <div class="cards-4">
+        <article class="num-card">
+          <div class="num">01</div>
+          <div class="num-card-visual" aria-hidden="true">
+            <div class="num-card-chat">
+              <div class="bubble">這邊牆面想改成淺灰可以嗎？</div>
+              <div class="bubble alt">好的，我試試看</div>
+              <div class="bubble">那上次那版可以再調亮一點嗎</div>
+            </div>
+          </div>
+          <h3>溝通成本高</h3>
+          <p>與工讀生或兼職配合，容易出現理解落差與反覆修改。</p>
+        </article>
+        <article class="num-card">
+          <div class="num">02</div>
+          <div class="num-card-visual" aria-hidden="true">
+            <div class="num-card-split">
+              <div><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=80" alt=""></div>
+              <div><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80" alt=""></div>
+            </div>
+          </div>
+          <h3>圖面與現場落差</h3>
+          <p>過度美化容易造成客戶期待落差，影響後續施工與信任。</p>
+        </article>
+        <article class="num-card">
+          <div class="num">03</div>
+          <div class="num-card-visual" aria-hidden="true">
+            <div class="num-card-files">
+              <span>客廳_v1.jpg</span>
+              <span>客廳_v2.jpg</span>
+              <span>客廳_v3.jpg</span>
+              <span class="is-final">客廳_final.jpg</span>
+            </div>
+          </div>
+          <h3>時間被修改吃掉</h3>
+          <p>反覆調整視角與材質，讓提案效率下降。</p>
+        </article>
+        <article class="num-card">
+          <div class="num">04</div>
+          <div class="num-card-visual" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea87474?w=500&q=80" alt="">
+          </div>
+          <h3>缺少穩定合作夥伴</h3>
+          <p>好的設計團隊，也需要穩定可靠的 3D 工班。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="container">
+      <div class="process-split">
+        <div class="process-left">
+          <h2>我的更像設計師的延伸團隊</h2>
+          <p class="process-sub">從平面圖到成果交付，我們理解設計師的每個環節</p>
+          <div class="process-track" role="list" aria-label="合作流程">
+            <div class="p-step" role="listitem">
+              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+                <rect x="11" y="13" width="22" height="22" rx="2"/>
+                <path d="M15 20h10M15 24h8M15 28h12" stroke-linecap="round"/>
+                <path d="M26 31l3 3 7-8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>平面圖提供</span>
+            </div>
+            <span class="p-arrow" aria-hidden="true">→</span>
+            <div class="p-step" role="listitem">
+              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+                <path d="M24 11l14 8v12l-14 8-14-8V19l14-8z"/>
+                <path d="M24 11v16M10 19l14 8 14-8M24 27v10"/>
+              </svg>
+              <span>空間建模</span>
+            </div>
+            <span class="p-arrow" aria-hidden="true">→</span>
+            <div class="p-step" role="listitem">
+              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+                <rect x="11" y="14" width="18" height="18" rx="1.5"/>
+                <circle cx="30" cy="28" r="7"/>
+                <path d="M35 33l4 4" stroke-linecap="round"/>
+                <path d="M14 19h6M14 23h10" stroke-linecap="round"/>
+              </svg>
+              <span>材質確認</span>
+            </div>
+            <span class="p-arrow" aria-hidden="true">→</span>
+            <div class="p-step" role="listitem">
+              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+                <rect x="14" y="17" width="20" height="16" rx="2"/>
+                <circle cx="24" cy="25" r="5"/>
+                <path d="M18 13h12" stroke-linecap="round"/>
+              </svg>
+              <span>視角調整</span>
+            </div>
+            <span class="p-arrow" aria-hidden="true">→</span>
+            <div class="p-step" role="listitem">
+              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+                <rect x="15" y="12" width="18" height="22" rx="1.5"/>
+                <path d="M18 18h12M18 22h10M18 26h8" stroke-linecap="round"/>
+                <path d="M28 30l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>成果交付</span>
+            </div>
+          </div>
+        </div>
+        <div class="process-right">
+          <div class="feat-col">
+            <svg class="ico-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+              <path d="M12 22l12-8 12 8v16H12V22z"/>
+              <rect x="18" y="26" width="12" height="10" rx="0.5"/>
+              <path d="M18 29h12M21 32h6" stroke-linecap="round"/>
+            </svg>
+            <h3>一比一空間還原</h3>
+            <p>依平面圖建模，忠實呈現空間比例與材質細節。</p>
+          </div>
+          <div class="feat-col">
+            <svg class="ico-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+              <path d="M14 16l10-5 10 5v10l-10 5-10-5V16z"/>
+              <path d="M14 16l10 5 10-5M24 21v10"/>
+              <path d="M30 28c2 1 4 3 5 6" stroke-linecap="round"/>
+              <ellipse cx="27" cy="26" rx="2" ry="2.5"/>
+            </svg>
+            <h3>熟悉工班流程</h3>
+            <p>理解施工與材料邏輯，避免圖面與現場落差，讓提案更有說服力。</p>
+          </div>
+          <div class="feat-col">
+            <svg class="ico-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+              <path d="M24 9l11 5v9c0 7-4 13-11 16-7-3-11-9-11-16V14l11-5z"/>
+              <circle cx="24" cy="22" r="4"/>
+              <path d="M17 31c2-2 4-3 7-3s5 1 7 3" stroke-linecap="round"/>
+            </svg>
+            <h3>穩定且高效率配合</h3>
+            <p>提供穩定交付與溝通，降低提案修改成本，提升設計溝通效率。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="pain">
+    <div class="container">
+      <div class="section-head">
+        <h2>提供多種空間展示方式</h2>
+        <p>依專案階段與客戶類型，選擇最合適的呈現媒介。</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc-card">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt=""></div>
+          <div class="body">
+            <h3>靜態渲染</h3>
+            <p>材質與設計定案階段，精準輸出高解析靜態圖。</p>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt=""></div>
+          <div class="body">
+            <h3>360 環景</h3>
+            <p>沉浸式導覽，適合與客戶現場討論動線與視角。</p>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1600573472558-18c9d14c9c50?w=600&q=80" alt=""></div>
+          <div class="body">
+            <h3>動態展示</h3>
+            <p>鏡頭語言強化重點，讓提案簡報更有記憶點。</p>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt=""></div>
+          <div class="body">
+            <h3>虛擬展間</h3>
+            <p>3D 剖視與多視角體驗，整體空間感一次到位。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="estimate" class="estimator">
+    <div class="container">
+      <div class="estimator-head">
+        <h2>快速專案試算</h2>
+        <p>選擇空間與需求，立即估算專案預算</p>
+      </div>
+      <div class="est-layout">
+        <div class="est-white-panel">
+          <div class="est-inputs">
+            <div class="est-col est-step1">
+              <div class="est-step-label"><span class="est-step-num" aria-hidden="true">1</span><span class="est-step-title">選擇空間類型</span></div>
+              <div class="space-type-stack" id="spaceToggles" role="group" aria-label="空間類型">
+                <button type="button" class="active" data-preset="2b">2房1廳</button>
+                <button type="button" data-preset="31">3房1廳</button>
+                <button type="button" data-preset="custom">自訂空間</button>
+              </div>
+            </div>
+            <div class="est-col est-step2">
+              <div class="est-step-label"><span class="est-step-num" aria-hidden="true">2</span><span class="est-step-title">選擇空間項目</span></div>
+              <div class="est-legend">
+                <span><i class="dot-open" aria-hidden="true"></i>開放空間 $4,000/空間</span>
+                <span><i class="dot-private" aria-hidden="true"></i>私領域空間 $3,000/空間</span>
+              </div>
+              <div class="room-grid" id="roomGrid">
+                <label class="room-cell"><input type="checkbox" data-id="lr" data-open="1" checked><span class="rn">客廳</span><span class="rt">開放空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="dr" data-open="1" checked><span class="rn">餐廳</span><span class="rt">開放空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="kt" data-open="1"><span class="rn">廚房</span><span class="rt">開放空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="mb" checked><span class="rn">主臥</span><span class="rt">私領域空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="bd2"><span class="rn">次臥</span><span class="rt">私領域空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="st"><span class="rn">書房</span><span class="rt">私領域空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="mbath"><span class="rn">主浴</span><span class="rt">私領域空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="sbath"><span class="rn">次浴</span><span class="rt">私領域空間</span></label>
+                <label class="room-cell"><input type="checkbox" data-id="wic"><span class="rn">更衣室</span><span class="rt">私領域空間</span></label>
+              </div>
+            </div>
+            <div class="est-col est-step3">
+              <div class="est-step-label"><span class="est-step-num" aria-hidden="true">3</span><span class="est-step-title">其他需求</span></div>
+              <div class="counter-group">
+                <div class="counter-lbl-above">每個空間多一個視角</div>
+                <div class="counter-block">
+                  <div class="counter-row-est">
+                    <div class="counter-ctrl">
+                      <button type="button" data-d="extraSpaces" aria-label="減少">−</button>
+                      <span class="cv" id="c_extraSpaces">0</span>
+                      <button type="button" data-i="extraSpaces" aria-label="增加">+</button>
+                    </div>
+                    <span class="subp" id="subExtraViews">$0</span>
+                  </div>
+                </div>
+              </div>
+              <div class="counter-group">
+                <div class="counter-lbl-above">環景圖（每點位）</div>
+                <div class="counter-block">
+                  <div class="counter-row-est">
+                    <div class="counter-ctrl">
+                      <button type="button" data-d="panos" aria-label="減少">−</button>
+                      <span class="cv" id="c_panos">2</span>
+                      <button type="button" data-i="panos" aria-label="增加">+</button>
+                    </div>
+                    <span class="subp" id="subPanos">$2,000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="est-notes">
+                <ul>
+                  <li>初稿含 2 次小幅修改；第 3 次起每次酌收 $500。</li>
+                  <li>製作期依檔期約 3–5 個工作天起算（不含例假日）。</li>
+                  <li>本表為估價試算，正式報價以報價單為準。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="est-summary-sticky">
+          <aside class="est-summary" aria-live="polite">
+            <div class="sum-h">試算明細</div>
+            <div class="est-summary-lines" id="summaryLines"></div>
+            <div class="est-summary-div" aria-hidden="true"></div>
+            <div class="est-summary-total-row">
+              <span class="tl">預估總價</span>
+              <span class="tv" id="totalDisplay">$13,000</span>
+            </div>
+            <button type="button" class="btn-est-cta">
+              開始專案討論
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>常見問題</h2>
+        <p>合作前設計師最常問的重點，先幫你整理好。</p>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item"><summary>需要提供哪些資料才能報價？</summary>
+          <div class="ans">平立面圖（CAD）、風格參考、材質表或示意照片；若有現場照片更佳。缺少項目我們會列在估價單備註。</div>
+        </details>
+        <details class="faq-item"><summary>製作週期大概多久？</summary>
+          <div class="ans">依坪數、視角數與細緻度而定，一般住宅案約 3～5 個工作天可安排初稿；檔期以合約載明為準。</div>
+        </details>
+        <details class="faq-item"><summary>修改次數如何計算？</summary>
+          <div class="ans">初稿後通常包含約定次數內的合理調整（角度、材質、光源）；超出範圍另計，預覽頁不具契約效力。</div>
+        </details>
+        <details class="faq-item"><summary>可以開立發票嗎？</summary>
+          <div class="ans">可配合公司戶或設計工作室抬頭開立統一發票。</div>
+        </details>
+        <details class="faq-item"><summary>檔案交付格式？</summary>
+          <div class="ans">靜態圖為 JPG；動畫與 360 環景圖依需求提供 MP4、線上連結或展示平台格式。</div>
+        </details>
+        <details class="faq-item"><summary>能配合現場丈量嗎？</summary>
+          <div class="ans">大台中地區有配合團隊可現場支援；其他縣市以配合師傅檔期為主。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" style="padding:40px 0;background:#fff;border-top:1px solid var(--line)">
+    <div class="container" style="text-align:center;color:var(--muted);font-size:14px">
+      <strong style="color:var(--ink)">案例作品</strong> —
+    </div>
+  </section>
+  <section id="contact" class="foot-cta">
+    <div class="container">
+      <div class="foot-cta-inner">
+        <div class="foot-cta-copy">
+          <h2>找一位真正能長期配合的 3D 團隊</h2>
+          <p class="foot-cta-lead">讓我們成為你公司最可靠的夥伴，一起創造更好的設計提案與空間體驗。</p>
+        </div>
+        <div class="row">
+          <button type="button" class="btn-gold">開始專案討論</button>
+          <button type="button" class="btn-outline-light">取得正式報價</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"></div>
+
+  <script src="shared/layout.js"></script>
+  <script>
+    (function () {
+      const OPEN_UNIT = 4000;
+      const PRIV_UNIT = 3000;
+      const EXTRA_VIEW_PER_SPACE = 500;
+      const PANO_PER_POINT = 1000;
+
+      const presets = {
+        '2b': ['lr', 'dr', 'mb'],
+        '31': ['lr', 'dr', 'mb', 'bd2'],
+        custom: null
+      };
+
+      const presetCounters = {
+        '2b': { extraSpaces: 0, panos: 2 },
+        '31': { extraSpaces: 0, panos: 3 }
+      };
+
+      const grid = document.getElementById('roomGrid');
+      const toggles = document.querySelectorAll('#spaceToggles button');
+      const summaryLines = document.getElementById('summaryLines');
+      const totalEl = document.getElementById('totalDisplay');
+      const subExtraEl = document.getElementById('subExtraViews');
+      const subPanoEl = document.getElementById('subPanos');
+
+      const state = { extraSpaces: 0, panos: 2 };
+
+      function money(n) {
+        return '$' + n.toLocaleString('en-US');
+      }
+
+      function applyPreset(key) {
+        if (key === 'custom') return;
+        const ids = presets[key];
+        if (ids) {
+          grid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.checked = ids.includes(cb.dataset.id);
+          });
+        }
+        const pc = presetCounters[key];
+        if (pc) {
+          if (typeof pc.panos === 'number') {
+            state.panos = pc.panos;
+            document.getElementById('c_panos').textContent = state.panos;
+          }
+          if (typeof pc.extraSpaces === 'number') {
+            state.extraSpaces = pc.extraSpaces;
+            document.getElementById('c_extraSpaces').textContent = state.extraSpaces;
+          }
+        }
+      }
+
+      toggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggles.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const key = btn.dataset.preset;
+          if (key === 'custom') {
+            grid.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
+          } else {
+            applyPreset(key);
+          }
+          recalc();
+        });
+      });
+
+      grid.addEventListener('change', recalc);
+
+      document.querySelectorAll('.counter-ctrl button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const inc = btn.dataset.i;
+          const dec = btn.dataset.d;
+          const key = inc || dec;
+          if (!key) return;
+          if (inc) state[key] = Math.min(30, state[key] + 1);
+          else state[key] = Math.max(0, state[key] - 1);
+          document.getElementById('c_' + key).textContent = state[key];
+          recalc();
+        });
+      });
+
+      function recalc() {
+        let nOpen = 0, nPriv = 0;
+        let openSub = 0, privSub = 0;
+        grid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          if (!cb.checked) return;
+          if (cb.dataset.open === '1') {
+            nOpen++;
+            openSub += OPEN_UNIT;
+          } else {
+            nPriv++;
+            privSub += PRIV_UNIT;
+          }
+        });
+
+        const extraSub = state.extraSpaces * EXTRA_VIEW_PER_SPACE;
+        const panoSub = state.panos * PANO_PER_POINT;
+        const total = openSub + privSub + extraSub + panoSub;
+
+        subExtraEl.textContent = money(extraSub);
+        subPanoEl.textContent = money(panoSub);
+
+        const lines = [
+          `<div class="line"><span>開放空間（${nOpen}個）</span><span>${money(openSub)}</span></div>`,
+          `<div class="line"><span>私領域空間（${nPriv}個）</span><span>${money(privSub)}</span></div>`
+        ];
+        if (state.extraSpaces > 0) {
+          lines.push(`<div class="line"><span>每個空間多一個視角（${state.extraSpaces}個空間）</span><span>${money(extraSub)}</span></div>`);
+        }
+        lines.push(`<div class="line"><span>環景圖（${state.panos}點位）</span><span>${money(panoSub)}</span></div>`);
+        summaryLines.innerHTML = lines.join('');
+
+        totalEl.textContent = money(total);
+      }
+
+      recalc();
+    })();
+  </script>
+</body>
+</html>
