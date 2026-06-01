@@ -101,13 +101,18 @@ section { padding: 80px 24px; }
 .problem-card:not(:first-child) { border-left: none; }
 .problem-card:hover { border-color: #bfdbfe; box-shadow: 0 6px 28px rgba(37,99,235,0.08); }
 .problem-icon {
-  width: 120px; height: 120px; margin: 0 auto 16px;
-  background: transparent;
-  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #fff;
 }
 .problem-icon img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 168px;
+  max-height: 168px;
   object-fit: contain;
   display: block;
 }
@@ -115,7 +120,16 @@ section { padding: 80px 24px; }
 .problem-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
 
 /* TWO SOLUTIONS */
-.two-solutions { background: var(--gray-bg); }
+.two-solutions { background: #fff; }
+.section-title--multiline { font-size: clamp(22px, 3.1vw, 30px); line-height: 1.35; max-width: 960px; margin-left: auto; margin-right: auto; }
+.two-solutions-intro {
+  text-align: center; color: var(--muted); font-size: clamp(12px, 1.45vw, 16px);
+  line-height: 1.85; margin: 12px auto 0; padding: 0 16px 6px;
+  white-space: nowrap;
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
 .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 44px; }
 .sol-card {
   border-radius: 18px; overflow: hidden;
@@ -158,14 +172,15 @@ section { padding: 80px 24px; }
 .four-card {
   border: 1px solid var(--border); border-radius: 0; padding: 32px 24px 28px;
   text-align: center; transition: all .25s;
+  background: #fff;
 }
 .four-card:first-child { border-radius: 12px 0 0 12px; }
 .four-card:last-child { border-radius: 0 12px 12px 0; }
 .four-card:not(:first-child) { border-left: none; }
 .four-card:hover { border-color: #bfdbfe; box-shadow: 0 6px 28px rgba(37,99,235,0.08); }
 .four-icon {
-  width: 80px; height: 80px; margin: 0 auto 20px;
-  background: transparent;
+  width: 100px; height: 100px; margin: 0 auto 20px;
+  background: #fff;
   display: flex; align-items: center; justify-content: center;
 }
 .four-icon img { width: 100%; height: 100%; object-fit: contain; }
@@ -237,19 +252,17 @@ section { padding: 80px 24px; }
 /* TEAM */
 .team { background: #fff; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 32px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.stat-item { text-align: left; padding: 36px 24px; display: flex; align-items: center; justify-content: center; gap: 18px; border-right: 1px solid var(--border); }
-.stat-item:last-child { border-right: none; }
-.stat-icon {
-  width: 64px; flex-shrink: 0;
-  background: transparent;
-  display: flex; align-items: center; justify-content: center;
+.stat-item {
+  text-align: center; padding: 40px 20px 44px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
+  border-right: 1px solid var(--border);
 }
-.stat-icon img { width: 64px; height: 64px; object-fit: contain; }
-.stat-text { display: flex; flex-direction: column; }
-.stat-num { font-size: 36px; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 4px; letter-spacing: -1px; }
-.stat-num sup { font-size: 18px; vertical-align: super; }
-.stat-label { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
-.stat-desc { font-size: 12px; color: var(--muted); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: clamp(40px, 4.5vw, 52px); font-weight: 900; color: var(--navy); line-height: 1.05; margin-bottom: 10px; letter-spacing: -0.02em; }
+.stat-num sup { font-size: 0.45em; vertical-align: super; font-weight: 800; }
+.stat-num--word { font-size: clamp(32px, 3.6vw, 44px); letter-spacing: -0.03em; }
+.stat-kicker { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.stat-desc { font-size: 13px; color: var(--muted); line-height: 1.55; max-width: 200px; }
 
 /* TIMELINE */
 .timeline-section { background: var(--gray-bg); }
@@ -468,12 +481,12 @@ section { padding: 80px 24px; }
     border-right: none !important;
     border-bottom: 1px solid var(--border) !important;
     padding: 24px 20px;
-    justify-content: flex-start;
+    justify-content: center;
   }
   .stat-item:last-child { border-bottom: none !important; }
-  .stat-icon img { width: 56px; height: 56px; }
-  .stat-num { font-size: 30px; }
-  .stat-label { font-size: 16px; }
+  .stat-num { font-size: 34px; }
+  .stat-num--word { font-size: 28px; }
+  .stat-kicker { font-size: 14px; }
 
   .sol-card { aspect-ratio: 4/5; }
   .sol-content { padding: 22px 22px; }
@@ -583,25 +596,33 @@ section { padding: 80px 24px; }
     <div class="problems-grid">
 
       <div class="problem-card reveal reveal-delay-1">
-        <div class="problem-icon problem-icon-1"><img src="uploads/icon1.png" alt="icon1"></div>
+        <div class="problem-icon" aria-hidden="true">
+          <img src="uploads/problem-icon-selling.png" alt="" decoding="async">
+        </div>
         <h3>建案不好賣</h3>
         <p>銷售工具單一，無法有效<br>打動客戶，成交困難。</p>
       </div>
 
       <div class="problem-card reveal reveal-delay-2">
-        <div class="problem-icon problem-icon-2"><img src="uploads/icon2.png" alt="icon2"></div>
+        <div class="problem-icon" aria-hidden="true">
+          <img src="uploads/problem-icon-proposal.png" alt="" decoding="async">
+        </div>
         <h3>提案難溝通</h3>
         <p>設計概念難以具象化，<br>客戶難以理解與想像。</p>
       </div>
 
       <div class="problem-card reveal reveal-delay-3">
-        <div class="problem-icon problem-icon-3"><img src="uploads/icon3.png" alt="icon3"></div>
+        <div class="problem-icon" aria-hidden="true">
+          <img src="uploads/problem-icon-display.png" alt="" decoding="async">
+        </div>
         <h3>展示缺乏吸引力</h3>
         <p>傳統展示方式缺乏互動，<br>難以吸引目標客群。</p>
       </div>
 
       <div class="problem-card reveal reveal-delay-4">
-        <div class="problem-icon problem-icon-4"><img src="uploads/icon4.png" alt="icon4"></div>
+        <div class="problem-icon" aria-hidden="true">
+          <img src="uploads/problem-icon-process.png" alt="" decoding="async">
+        </div>
         <h3>流程管理混亂</h3>
         <p>資料分散、流程繁瑣，<br>影響效率與決策。</p>
       </div>
@@ -613,7 +634,8 @@ section { padding: 80px 24px; }
 <!-- TWO SOLUTIONS -->
 <section class="two-solutions" id="solutions">
   <div class="container">
-    <h2 class="section-title reveal">我們提供兩種解決方式</h2>
+    <h2 class="section-title reveal section-title--multiline">讓看不見的想像，被看見；讓複雜的流程，被管理</h2>
+    <p class="two-solutions-intro reveal">透過 3D 視覺化，讓空間提案、建案銷售與展覽展示更有說服力；透過客製化系統，讓企業流程、資料管理與內部作業更有效率。</p>
     <div class="solutions-grid">
 
       <div class="sol-card reveal reveal-delay-1">
@@ -663,34 +685,34 @@ section { padding: 80px 24px; }
 <!-- FOUR SOLUTIONS -->
 <section class="four-solutions">
   <div class="container">
-    <h2 class="section-title reveal">四大解決方案</h2>
+    <h2 class="section-title reveal section-title--multiline">從展示到管理，找到適合你的解決方案</h2>
     <div class="four-grid">
 
       <div class="four-card reveal reveal-delay-1">
-        <div class="four-icon"><img src="uploads/four_icon1.png" alt="建案銷售"></div>
+        <div class="four-icon"><img src="uploads/four-solution-property.png" alt="建案銷售"></div>
         <h3>建案銷售</h3>
-        <p>3D 銷售工具、互動展示，<br>提升客戶信任與成交率。</p>
+        <p>讓尚未完工的空間提前被看見，協助銷售團隊更清楚說明產品價值。</p>
         <a class="learn-more" href="#">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-2">
-        <div class="four-icon"><img src="uploads/four_icon2.png" alt="設計提案"></div>
+        <div class="four-icon"><img src="uploads/four-solution-design.png" alt="設計提案"></div>
         <h3>設計提案</h3>
-        <p>快速呈現設計概念，<br>讓提案更具說服力。</p>
+        <p>將設計想法轉化為客戶看得懂的畫面，降低溝通落差與反覆修改成本。</p>
         <a class="learn-more" href="#">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-3">
-        <div class="four-icon"><img src="uploads/four_icon3.png" alt="展覽互動"></div>
+        <div class="four-icon"><img src="uploads/four-solution-exhibit.png" alt="展覽互動"></div>
         <h3>展覽互動</h3>
-        <p>打造沉浸式互動體驗，<br>吸引目光、創造記憶點。</p>
+        <p>透過互動展示與沉浸式體驗，讓品牌在現場留下更深刻的記憶點。</p>
         <a class="learn-more" href="#">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-4">
-        <div class="four-icon"><img src="uploads/four_icon4.png" alt="系統數位化"></div>
+        <div class="four-icon"><img src="uploads/four-solution-system.png" alt="系統數位化"></div>
         <h3>系統數位化</h3>
-        <p>客製化系統整合流程，<br>提升管理效率與競爭力。</p>
+        <p>將分散的資料、流程與管理作業整理成可追蹤、可管理的數位系統。</p>
         <a class="learn-more" href="#">了解更多 →</a>
       </div>
 
@@ -740,39 +762,27 @@ section { padding: 80px 24px; }
     <div class="stats-grid">
 
       <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-icon"><img src="uploads/1.png" alt="年業績驗"></div>
-        <div class="stat-text">
-          <div class="stat-num">8<sup>+</sup></div>
-          <div class="stat-label">年產業經驗</div>
-          <div class="stat-desc">豐富年資積累</div>
-        </div>
+        <div class="stat-num">8<sup>+</sup></div>
+        <div class="stat-kicker">年產業經驗</div>
+        <div class="stat-desc">深耕視覺與系統整合</div>
       </div>
 
       <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-icon"><img src="uploads/2.png" alt="專案執行"></div>
-        <div class="stat-text">
-          <div class="stat-num">100<sup>+</sup></div>
-          <div class="stat-label">專案執行</div>
-          <div class="stat-desc">成功實施項目</div>
-        </div>
+        <div class="stat-num">100<sup>+</sup></div>
+        <div class="stat-kicker">專案完成</div>
+        <div class="stat-desc">建案、商空與數位化</div>
       </div>
 
       <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-icon"><img src="uploads/3.png" alt="多產業"></div>
-        <div class="stat-text">
-          <div class="stat-num" style="font-size:26px;">多產業</div>
-          <div class="stat-label">合作經驗</div>
-          <div class="stat-desc">跨行業服務能力</div>
-        </div>
+        <div class="stat-num stat-num--word">多領域</div>
+        <div class="stat-kicker">合作經驗</div>
+        <div class="stat-desc">跨產業實務累積</div>
       </div>
 
       <div class="stat-item reveal reveal-delay-4">
-        <div class="stat-icon"><img src="uploads/4.png" alt="長期合作"></div>
-        <div class="stat-text">
-          <div class="stat-num" style="font-size:26px;">長期合作</div>
-          <div class="stat-label">穩定夥伴</div>
-          <div class="stat-desc">建立長久合作關係</div>
-        </div>
+        <div class="stat-num stat-num--word">長期</div>
+        <div class="stat-kicker">客戶夥伴</div>
+        <div class="stat-desc">陪伴企業持續迭代</div>
       </div>
 
     </div>
@@ -789,42 +799,56 @@ section { padding: 80px 24px; }
           <svg viewBox="0 0 20 20"><path d="M3 17V8l7-5 7 5v9H3z"/><path d="M8 17v-5h4v5"/></svg>
         </div>
         <div class="tl-year">2015</div>
-        <p>開始空間視覺化<br>與建築相關合作</p>
+        <p>公司成立，專注於建築<br>與空間視覺化</p>
       </div>
       <div class="tl-item">
         <div class="tl-icon">
           <svg viewBox="0 0 20 20"><rect x="3" y="6" width="14" height="11" rx="1.5"/><path d="M3 9h14"/><circle cx="6.5" cy="12.5" r="1"/></svg>
         </div>
-        <div class="tl-year">2016</div>
-        <p>累積建築師事務所<br>與室內設計經驗</p>
+        <div class="tl-year">2017</div>
+        <p>擴大室內設計與商業<br>空間視覺服務</p>
       </div>
-      <div class="tl-item active">
+      <div class="tl-item">
+        <div class="tl-icon">
+          <svg viewBox="0 0 20 20"><path d="M3 14 7 11 11 12 17 6"/></svg>
+        </div>
+        <div class="tl-year">2019</div>
+        <p>導入即時渲染技術，<br>提升提案效率</p>
+      </div>
+      <div class="tl-item">
         <div class="tl-icon">
           <svg viewBox="0 0 20 20"><polyline points="10,3 16,7 16,13 10,17 4,13 4,7 10,3"/><line x1="10" y1="3" x2="10" y2="17"/></svg>
         </div>
         <div class="tl-year">2021</div>
-        <p>大量投入建案、商空<br>與品牌展示</p>
+        <p>開始發展互動展示<br>與虛擬展場</p>
       </div>
       <div class="tl-item">
         <div class="tl-icon">
           <svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="1.5"/><path d="M7 18h6"/><line x1="10" y1="15" x2="10" y2="18"/></svg>
         </div>
         <div class="tl-year">2022</div>
-        <p>延伸互動展示<br>與虛擬展場應用</p>
+        <p>跨足展覽互動與<br>數位體驗應用</p>
       </div>
       <div class="tl-item">
         <div class="tl-icon">
           <svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="12" rx="1.5"/><circle cx="10" cy="10" r="3"/></svg>
         </div>
         <div class="tl-year">2023</div>
-        <p>開始 AI 與展覽<br>互動整合</p>
+        <p>AI 技術導入，打造<br>智慧互動體驗</p>
       </div>
       <div class="tl-item">
         <div class="tl-icon">
           <svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="1.5"/><line x1="3" y1="9" x2="17" y2="9"/><circle cx="7" cy="12" r="0.8"/><circle cx="10" cy="12" r="0.8"/><circle cx="13" cy="12" r="0.8"/></svg>
         </div>
         <div class="tl-year">2024</div>
-        <p>投入客製化系統<br>與流程數位化開發</p>
+        <p>成立系統開發團隊，<br>推出數位管理工具</p>
+      </div>
+      <div class="tl-item active">
+        <div class="tl-icon">
+          <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/><path d="M10 4v2M10 14v2M4 10h2M14 10h2"/></svg>
+        </div>
+        <div class="tl-year">Now</div>
+        <p>持續整合空間、互動<br>與系統，創造更多可能</p>
       </div>
     </div>
   </div>

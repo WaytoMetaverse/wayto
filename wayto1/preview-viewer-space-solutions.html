@@ -215,8 +215,12 @@
       text-align: center; gap: 8px;
       flex: 1 1 0; min-width: 0; padding: 0 2px;
     }
-    .p-step .p-ico {
-      width: clamp(32px, 5vw, 44px); height: clamp(32px, 5vw, 44px); flex-shrink: 0; color: var(--ink);
+    .p-step .p-ico-img {
+      width: clamp(40px, 6vw, 52px);
+      height: clamp(40px, 6vw, 52px);
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
     }
     .p-step span {
       font-size: clamp(10px, 1.65vw, 12px); font-weight: 500; color: var(--ink);
@@ -234,8 +238,12 @@
       border-right: 1px solid #e5e5e5; display: flex; flex-direction: column; align-items: center;
     }
     .feat-col:last-child { border-right: 0; }
-    .feat-col .ico-svg {
-      width: 52px; height: 52px; margin-bottom: 16px; color: var(--ink);
+    .feat-col .feat-ico-img {
+      width: clamp(52px, 9vw, 80px);
+      height: clamp(52px, 9vw, 80px);
+      object-fit: contain;
+      margin-bottom: 16px;
+      display: block;
     }
     .feat-col h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--ink); line-height: 1.45; }
     .feat-col p { font-size: 13px; color: var(--muted); line-height: 1.75; text-align: center; }
@@ -605,81 +613,48 @@
     <div class="container">
       <div class="process-split">
         <div class="process-left">
-          <h2>我的更像設計師的延伸團隊</h2>
+          <h2>我們更像設計師的延伸團隊</h2>
           <p class="process-sub">從平面圖到成果交付，我們理解設計師的每個環節</p>
           <div class="process-track" role="list" aria-label="合作流程">
             <div class="p-step" role="listitem">
-              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-                <rect x="11" y="13" width="22" height="22" rx="2"/>
-                <path d="M15 20h10M15 24h8M15 28h12" stroke-linecap="round"/>
-                <path d="M26 31l3 3 7-8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img class="p-ico-img" src="uploads/preview-process-01-floorplan.png" alt="" width="120" height="120" loading="lazy" decoding="async">
               <span>平面圖提供</span>
             </div>
             <span class="p-arrow" aria-hidden="true">→</span>
             <div class="p-step" role="listitem">
-              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-                <path d="M24 11l14 8v12l-14 8-14-8V19l14-8z"/>
-                <path d="M24 11v16M10 19l14 8 14-8M24 27v10"/>
-              </svg>
+              <img class="p-ico-img" src="uploads/preview-process-02-space.png" alt="" width="120" height="120" loading="lazy" decoding="async">
               <span>空間建模</span>
             </div>
             <span class="p-arrow" aria-hidden="true">→</span>
             <div class="p-step" role="listitem">
-              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-                <rect x="11" y="14" width="18" height="18" rx="1.5"/>
-                <circle cx="30" cy="28" r="7"/>
-                <path d="M35 33l4 4" stroke-linecap="round"/>
-                <path d="M14 19h6M14 23h10" stroke-linecap="round"/>
-              </svg>
+              <img class="p-ico-img" src="uploads/preview-process-03-materials.png" alt="" width="120" height="120" loading="lazy" decoding="async">
               <span>材質確認</span>
             </div>
             <span class="p-arrow" aria-hidden="true">→</span>
             <div class="p-step" role="listitem">
-              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-                <rect x="14" y="17" width="20" height="16" rx="2"/>
-                <circle cx="24" cy="25" r="5"/>
-                <path d="M18 13h12" stroke-linecap="round"/>
-              </svg>
+              <img class="p-ico-img" src="uploads/preview-process-04-view.png" alt="" width="120" height="120" loading="lazy" decoding="async">
               <span>視角調整</span>
             </div>
             <span class="p-arrow" aria-hidden="true">→</span>
             <div class="p-step" role="listitem">
-              <svg class="p-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-                <rect x="15" y="12" width="18" height="22" rx="1.5"/>
-                <path d="M18 18h12M18 22h10M18 26h8" stroke-linecap="round"/>
-                <path d="M28 30l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img class="p-ico-img" src="uploads/preview-process-05-delivery.png" alt="" width="120" height="120" loading="lazy" decoding="async">
               <span>成果交付</span>
             </div>
           </div>
         </div>
         <div class="process-right">
           <div class="feat-col">
-            <svg class="ico-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-              <path d="M12 22l12-8 12 8v16H12V22z"/>
-              <rect x="18" y="26" width="12" height="10" rx="0.5"/>
-              <path d="M18 29h12M21 32h6" stroke-linecap="round"/>
-            </svg>
+            <img class="feat-ico-img" src="uploads/preview-process-feat-01-plan3d.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             <h3>一比一空間還原</h3>
             <p>依平面圖建模，忠實呈現空間比例與材質細節。</p>
           </div>
           <div class="feat-col">
-            <svg class="ico-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-              <path d="M14 16l10-5 10 5v10l-10 5-10-5V16z"/>
-              <path d="M14 16l10 5 10-5M24 21v10"/>
-              <path d="M30 28c2 1 4 3 5 6" stroke-linecap="round"/>
-              <ellipse cx="27" cy="26" rx="2" ry="2.5"/>
-            </svg>
+            <img class="feat-ico-img" src="uploads/preview-process-feat-02-workflow.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             <h3>熟悉工班流程</h3>
             <p>理解施工與材料邏輯，避免圖面與現場落差，讓提案更有說服力。</p>
           </div>
           <div class="feat-col">
-            <svg class="ico-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-              <path d="M24 9l11 5v9c0 7-4 13-11 16-7-3-11-9-11-16V14l11-5z"/>
-              <circle cx="24" cy="22" r="4"/>
-              <path d="M17 31c2-2 4-3 7-3s5 1 7 3" stroke-linecap="round"/>
-            </svg>
+            <img class="feat-ico-img" src="uploads/preview-process-feat-03-team.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             <h3>穩定且高效率配合</h3>
             <p>提供穩定交付與溝通，降低提案修改成本，提升設計溝通效率。</p>
           </div>
