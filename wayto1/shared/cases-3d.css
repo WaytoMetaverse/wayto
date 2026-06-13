@@ -1,0 +1,545 @@
+/**
+ * 3D 效果圖案例頁（cases-3d.html）
+ * 須搭配 layout.css + solutions.css；body：sol-page cases-3d-page
+ */
+
+/* 字型、字級、行高與解決方案線 .sol-page 一致 */
+.cases-3d-page {
+  font-family: "Noto Sans TC", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.cases-3d-page .cases3d-breadcrumb {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.cases-3d-page .cases3d-breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.cases-3d-page .cases3d-breadcrumb a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.cases-3d-page .cases3d-bc-sep {
+  margin: 0 8px;
+  color: var(--line);
+}
+
+/* 分類導覽（非 section，避免繼承 .sol-page section 大 padding） */
+.cases-3d-page .cases3d-tabs {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e6;
+  padding: 20px 0 22px;
+}
+
+.cases-3d-page .cases3d-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  align-items: center;
+}
+
+.cases-3d-page .cases3d-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #334155;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cases-3d-page .cases3d-tab:hover {
+  border-color: #cbd5e1;
+  background: #e8eef5;
+}
+
+.cases-3d-page .cases3d-tab.is-active {
+  background: #1a2b4b;
+  border-color: #1a2b4b;
+  color: #fff;
+}
+
+.cases-3d-page .cases3d-tab:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.cases-3d-page .cases3d-tab-ico {
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0.92;
+}
+
+/* 分類內容：單一區塊切換 */
+.cases-3d-page .cases3d-switch {
+  padding-top: 72px;
+  padding-bottom: 72px;
+  background: #fafaf8;
+}
+
+.cases-3d-page .cases3d-panels {
+  position: relative;
+}
+
+.cases-3d-page .cases3d-panel[hidden] {
+  display: none !important;
+}
+
+.cases-3d-page .cases3d-panel.is-active {
+  display: block;
+}
+
+.cases-3d-page .cases3d-sec-head {
+  margin-bottom: 28px;
+}
+
+.cases-3d-page .cases3d-sec-head > div {
+  max-width: 42rem;
+}
+
+.cases-3d-page .cases3d-sec-head h2 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.cases-3d-page .cases3d-sec-lead {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #64748b;
+}
+
+.cases-3d-page .cases3d-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 1024px) {
+  .cases-3d-page .cases3d-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .cases-3d-page .cases3d-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cases-3d-page .cases3d-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: #0f172a;
+  font: inherit;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.25s, transform 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cases-3d-page .cases3d-tile:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.cases-3d-page .cases3d-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.18);
+}
+
+.cases-3d-page .cases3d-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.25) 48%, transparent 100%);
+}
+
+.cases-3d-page .cases3d-tile-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cases-3d-page .cases3d-tile-media img,
+.cases-3d-page .cases3d-tile-media video.cases3d-tile-vid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cases-3d-page .cases3d-tile-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 12px 14px 14px;
+}
+
+.cases-3d-page .cases3d-tile-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.cases-3d-page .cases3d-tile-title {
+  margin: 0;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+.cases-3d-page .cases3d-tile-more {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+}
+
+.cases-3d-page .cases3d-tile-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #1e293b 0%, #334155 50%, #0f172a 100%);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.cases-3d-page .cases3d-tile-fallback--vr {
+  background: linear-gradient(145deg, #0f172a 0%, #1e3a5f 45%, #172554 100%);
+}
+
+.cases-3d-page .cases3d-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px dashed #e2e8f0;
+}
+
+/* 底部 CTA：滿版底圖（img 層 + 暖色底填 PNG 透明／圓角），讀字用 scrim */
+.cases-3d-page .cases3d-soft-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-top: 1px solid rgba(196, 163, 90, 0.2);
+  /* 與解決方案內頁 .foot-cta 上下留白一致 */
+  padding: 30px 0 50px;
+  /* 與底圖右側實心區接近，避免圖層未蓋滿時露白 */
+  background-color: #e8e4dc;
+}
+
+.cases-3d-page .cases3d-soft-cta-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #e8e4dc;
+}
+
+.cases-3d-page .cases3d-soft-cta-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.cases-3d-page .cases3d-soft-cta-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 28%,
+    rgba(250, 248, 244, 0.22) 42%,
+    rgba(247, 244, 237, 0.72) 56%,
+    rgba(244, 241, 235, 0.94) 74%,
+    rgba(244, 241, 235, 0.98) 100%
+  );
+}
+
+.cases-3d-page .cases3d-soft-cta .container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.cases-3d-page .cases3d-soft-cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* 底圖右側為留白區：文案與按鈕靠右，與圖面構圖一致 */
+  justify-content: flex-end;
+  gap: 20px 42px;
+}
+
+.cases-3d-page .cases3d-soft-copy {
+  flex: 1 1 260px;
+  min-width: 0;
+  max-width: 640px;
+}
+
+.cases-3d-page .cases3d-soft-copy h2 {
+  margin: 0 0 14px;
+  font-size: clamp(22px, 3.2vw, 32px);
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.cases-3d-page .cases3d-soft-copy .cases3d-soft-lead {
+  margin: 0;
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.75;
+  color: #475569;
+}
+
+.cases-3d-page .cases3d-soft-act {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .cases-3d-page .cases3d-soft-cta-inner {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .cases-3d-page .cases3d-soft-act {
+    justify-content: flex-start;
+  }
+}
+
+/* 大圖燈箱 */
+.cases-3d-page .cases3d-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 32px);
+  box-sizing: border-box;
+}
+
+.cases-3d-page .cases3d-lightbox[hidden] {
+  display: none !important;
+}
+
+.cases-3d-page .cases3d-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.78);
+  cursor: pointer;
+}
+
+.cases-3d-page .cases3d-lightbox-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 96vw);
+  max-height: min(92vh, 900px);
+  padding: 20px 20px 16px;
+  box-sizing: border-box;
+  background: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  overflow: auto;
+}
+
+.cases-3d-page .cases3d-lightbox-x {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.cases-3d-page .cases3d-lightbox-x:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.cases-3d-page .cases3d-lightbox-carousel {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 2vw, 14px);
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.cases-3d-page .cases3d-lightbox-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.cases-3d-page .cases3d-lightbox-arrow:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.cases-3d-page .cases3d-lightbox-arrow:active {
+  transform: scale(0.96);
+}
+
+.cases-3d-page .cases3d-lightbox-arrow[hidden] {
+  display: none !important;
+}
+
+.cases-3d-page .cases3d-lightbox-stage {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  max-height: calc(92vh - 140px);
+}
+
+.cases-3d-page .cases3d-lightbox-img-el {
+  max-width: 100%;
+  max-height: calc(92vh - 160px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+.cases-3d-page .cases3d-lightbox-video-el {
+  max-width: 100%;
+  max-height: calc(92vh - 160px);
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.cases-3d-page .cases3d-lightbox-frame-el {
+  width: min(960px, 92vw);
+  height: min(70vh, 640px);
+  max-height: calc(92vh - 160px);
+  border: 0;
+  border-radius: 8px;
+  background: #000;
+}
+
+.cases-3d-page .cases3d-lightbox-empty {
+  margin: 0;
+  padding: 16px 12px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(248, 250, 252, 0.88);
+  text-align: center;
+}
+
+.cases-3d-page .cases3d-lightbox-caption {
+  margin: 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.cases-3d-page .cases3d-lightbox-caption[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+  Wayto — 新「解決方案」頁母版
+  使用方式：複製本檔在 wayto1/ 目錄（與 index.html 同層），改名例如 viewer-foo.html，
+  再替換標題、Hero、各 section 文案與圖。
+
+  必備：
+  - body：class="wayto-has-shared-nav sol-page"，並設 data-nav-current="solutions"（與 shared/nav.html 的 data-nav-page 一致）
+  - CSS：先 layout.css，再 solutions.css；頁內 <style> 只放覆寫（例如底欄 CTA ::before、預覽用 banner）
+  - 底欄 CTA 背景圖：`#區塊id.foot-cta::before { background-image: url('uploads/your-bg.png'); }`（勿只設 :root 變數，相對路徑會錯）
+  - 僅供本機／預覽的黃色提示列：勿上正式站，或維持 preview-*.html 命名。
+-->
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方案名稱 | Wayto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/layout.css">
+  <link rel="stylesheet" href="shared/solutions.css">
+  <style>
+    /* 底欄 CTA 底圖：請用 #contact.foot-cta::before { background-image: url('uploads/…'); }，勿只設 :root 的 --sol-foot-cta-bg-image */
+    /* #contact.foot-cta::before { background-image: url('uploads/your-cta-bg.png'); } */
+    .sol-template-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
+
+  <div id="shared-nav"></div>
+
+  <main id="hero" class="about-hero">
+    <div class="about-hero-img">
+      <img src="uploads/about_hero.png" alt="" width="1600" height="900" loading="eager" fetchpriority="high">
+    </div>
+    <div class="about-hero-left">
+      <div class="about-hero-inner">
+        <div class="about-hero-tag">方案標籤</div>
+        <h1>主標題<br>第二行</h1>
+        <div class="about-hero-desc">簡短說明文字。</div>
+        <div class="hero-actions">
+          <button type="button" class="btn-dark">主要動作</button>
+          <button type="button" class="btn-outline-gold">次要動作</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="pain">
+    <div class="container">
+      <div class="section-head">
+        <h2>區塊標題</h2>
+        <p>副標說明。</p>
+      </div>
+      <p class="sol-template-note">在此放入卡片、流程或自訂區塊；可參考 solutions-design-proposal.html。</p>
+    </div>
+  </section>
+
+  <section id="contact" class="foot-cta">
+    <div class="container">
+      <div class="foot-cta-inner">
+        <div class="foot-cta-copy">
+          <h2>底欄 CTA 標題</h2>
+          <p class="foot-cta-lead">說明文字。</p>
+        </div>
+        <div class="row">
+          <button type="button" class="btn-gold">行動按鈕</button>
+          <button type="button" class="btn-outline-light">次按鈕</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"></div>
+
+  <script src="shared/layout.js"></script>
+</body>
+</html>

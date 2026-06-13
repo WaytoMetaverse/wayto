@@ -26,7 +26,7 @@ function initSharedNav() {
   const cta = nav.querySelector(".nav-cta");
   if (cta) {
     cta.addEventListener("click", () => {
-      window.location.href = "/process.html#contact";
+      window.location.href = "/wayto1/contact.html#contact-form";
     });
   }
 
@@ -79,7 +79,7 @@ function initSharedNav() {
       const lastRect = lastChild.getBoundingClientRect();
       // Detect click below the last <li> (i.e. on the ::after CTA area)
       if (e.target === navList && e.clientY > lastRect.bottom) {
-        window.location.href = "/process.html#contact";
+        window.location.href = "/wayto1/contact.html#contact-form";
       }
     });
   }

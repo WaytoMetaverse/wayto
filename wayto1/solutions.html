@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="不同產業、不同階段，卡住的地方不一樣。我們從空間視覺、互動展示到系統開發，協助你找到最適合的解決方式。">
+  <title>解決方案 | 維次元宇宙科技 Wayto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/layout.css">
+  <link rel="stylesheet" href="shared/solutions.css">
+  <style>
+    :root {
+      --hub-blue: #2b5aed;
+      --hub-green: #1f7a54;
+      --hub-orange: #e07020;
+      --hub-purple: #6c5ce7;
+      --hub-muted: #64748b;
+      --hub-line: #e2e8f0;
+    }
+
+    .sol-hub-hero {
+      position: relative;
+      margin-top: 0;
+      min-height: clamp(520px, 72vh, 760px);
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: #0b1220;
+    }
+    .sol-hub-hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .sol-hub-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 28% center;
+      display: block;
+    }
+    .sol-hub-hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(8, 11, 22, 0.9) 0%,
+          rgba(8, 11, 22, 0.52) 38%,
+          rgba(8, 11, 22, 0.18) 62%,
+          transparent 82%
+        ),
+        linear-gradient(
+          to top,
+          rgba(8, 11, 22, 0.65) 0%,
+          rgba(8, 11, 22, 0.15) 42%,
+          transparent 68%
+        );
+    }
+    .sol-hub-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--layout-max, 1320px);
+      margin: 0 auto;
+      padding: 96px 32px 88px;
+      width: 100%;
+      text-align: left;
+    }
+    .sol-hub-hero-copy {
+      max-width: 36rem;
+    }
+    .sol-hub-hero h1 {
+      font-size: clamp(32px, 4.8vw, 52px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px;
+      text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    .sol-hub-hero p {
+      margin: 0;
+      font-size: clamp(15px, 1.65vw, 18px);
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 32rem;
+      text-shadow: 0 1px 16px rgba(0, 0, 0, 0.45);
+    }
+    @media (max-width: 720px) {
+      .sol-hub-hero {
+        min-height: clamp(440px, 68vh, 620px);
+      }
+      .sol-hub-hero-bg img {
+        object-position: 50% center;
+      }
+      .sol-hub-hero-inner {
+        padding: 80px 20px 72px;
+      }
+    }
+
+    .sol-hub-sec {
+      padding: 88px 0;
+      background: #fff;
+    }
+    .sol-hub-sec--soft {
+      background: #f7f7f5;
+    }
+    .sol-hub-sec-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+    .sol-hub-sec-head h2 {
+      font-size: clamp(22px, 2.8vw, 30px);
+      font-weight: 800;
+      color: var(--ink, #0f172a);
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+    .sol-hub-sec-head .sub {
+      margin: 0;
+      font-size: 15px;
+      color: var(--hub-muted);
+      line-height: 1.7;
+    }
+
+    .sol-hub-pain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+    .sol-hub-pain-card {
+      border: 1px solid var(--hub-line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .sol-hub-pain-ph {
+      position: relative;
+      width: 100%;
+      flex-shrink: 0;
+      height: 0;
+      padding-bottom: 62.5%;
+      background: #e8eaee;
+      overflow: hidden;
+    }
+    .sol-hub-pain-ph img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sol-hub-pain-body {
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 12px;
+    }
+    .sol-hub-pain-ico {
+      width: auto;
+      height: auto;
+      margin: 0;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+    }
+    .sol-hub-pain-ico img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
+    .sol-hub-pain-body h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink, #0f172a);
+      line-height: 1.45;
+      text-align: center;
+    }
+    .sol-hub-pain-block {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--hub-muted);
+    }
+    .sol-hub-pain-block strong {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--hub-blue);
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+    }
+    .sol-hub-pain-more {
+      margin-top: auto;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .sol-hub-pain-more a {
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.15s;
+    }
+    .sol-hub-pain-more a:hover { gap: 8px; }
+    .sol-hub-pain-card--b1 .sol-hub-pain-more a { color: var(--hub-blue); }
+    .sol-hub-pain-card--b2 .sol-hub-pain-more a { color: var(--hub-green); }
+    .sol-hub-pain-card--b3 .sol-hub-pain-more a { color: var(--hub-orange); }
+    .sol-hub-pain-card--b4 .sol-hub-pain-more a { color: var(--hub-purple); }
+
+    .sol-hub-decide {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr minmax(220px, 0.95fr);
+      gap: 12px 16px;
+      align-items: stretch;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .sol-hub-step {
+      background: #fff;
+      border: 1px solid #e8e8e6;
+      border-radius: 14px;
+      padding: 58px 18px 22px;
+      position: relative;
+      text-align: center;
+    }
+    .sol-hub-step:nth-child(1)::after,
+    .sol-hub-step:nth-child(2)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      width: 12px;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(196, 163, 90, 0.45) 0 5px,
+        transparent 5px 9px
+      );
+      transform: translateY(-50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .sol-hub-step-num {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 0;
+      margin: 0;
+      width: auto;
+      height: auto;
+      border: none;
+      background: transparent;
+      display: block;
+      text-align: center;
+    }
+    .sol-hub-step h3 {
+      margin: 12px 0 0;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink, #0f172a);
+      line-height: 1.45;
+    }
+    .sol-hub-step h3 + p {
+      margin-top: 10px;
+    }
+    .sol-hub-step p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--hub-muted);
+      line-height: 1.65;
+    }
+    .sol-hub-decide-cta {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e8e8e6;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+    }
+    .sol-hub-decide-cta p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink, #0f172a);
+      line-height: 1.5;
+    }
+    .sol-hub-decide-cta a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 22px;
+      border-radius: 8px;
+      background: var(--hub-blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .sol-hub-decide-cta a:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .sol-hub-quick {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .sol-hub-qcard {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--hub-line);
+      border-radius: 14px;
+      padding: 20px 18px 18px;
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 100%;
+    }
+    .sol-hub-qcard:hover {
+      border-color: #bfdbfe;
+      box-shadow: 0 8px 28px rgba(37, 99, 235, 0.08);
+    }
+    .sol-hub-qcard-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+    }
+    .sol-hub-qcard-main {
+      flex: 1;
+      width: 100%;
+      min-width: 0;
+      text-align: center;
+    }
+    .sol-hub-qcard-main h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink, #0f172a);
+      line-height: 1.3;
+    }
+    .sol-hub-qcard-ico {
+      flex: 0 0 auto;
+      width: 196px;
+      height: 196px;
+      border-radius: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sol-hub-qcard-ico img {
+      width: 152px;
+      height: 152px;
+      object-fit: contain;
+    }
+    .sol-hub-qcard .desc {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--hub-muted);
+    }
+    .sol-hub-qcard-arrow {
+      margin-top: auto;
+      align-self: flex-end;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--hub-line);
+    }
+    .sol-hub-qcard--blue .sol-hub-qcard-arrow { background: rgba(43, 90, 237, 0.1); color: var(--hub-blue); }
+    .sol-hub-qcard--green .sol-hub-qcard-arrow { background: rgba(31, 122, 84, 0.1); color: var(--hub-green); }
+    .sol-hub-qcard--orange .sol-hub-qcard-arrow { background: rgba(224, 112, 32, 0.12); color: var(--hub-orange); }
+    .sol-hub-qcard--purple .sol-hub-qcard-arrow { background: rgba(108, 92, 231, 0.12); color: var(--hub-purple); }
+    .sol-hub-qcard-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* 四欄桌機：icon 再放大（與 .sol-hub-quick 1100px 斷點一致） */
+    @media (min-width: 1101px) {
+      .sol-hub-qcard-ico {
+        width: 232px;
+        height: 232px;
+      }
+      .sol-hub-qcard-ico img {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .sol-hub-pain-grid,
+      .sol-hub-quick {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sol-hub-decide {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sol-hub-step::after {
+        display: none;
+      }
+    }
+    @media (max-width: 640px) {
+      .sol-hub-hero-inner {
+        padding: 80px 20px 72px;
+      }
+      .sol-hub-pain-grid,
+      .sol-hub-quick,
+      .sol-hub-decide {
+        grid-template-columns: 1fr;
+      }
+      .sol-hub-sec {
+        padding: 64px 0;
+      }
+    }
+
+    #contact.foot-cta::before {
+      background-image: url('uploads/solutions-property-foot-cta.png');
+      background-position: center 42%;
+    }
+    #contact.foot-cta::after {
+      background: linear-gradient(
+        90deg,
+        rgba(6, 7, 10, 0.78) 0%,
+        rgba(6, 7, 10, 0.42) 18%,
+        rgba(6, 7, 10, 0.14) 34%,
+        transparent 52%
+      );
+    }
+    #contact.foot-cta .btn-gold {
+      background: var(--gold);
+    }
+    #contact.foot-cta .btn-gold:hover {
+      background: var(--gold-dark);
+    }
+  </style>
+</head>
+<body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
+
+  <div id="shared-nav"></div>
+
+  <main id="top" class="sol-hub-hero">
+    <div class="sol-hub-hero-bg" aria-hidden="true">
+      <img src="uploads/solutions-exhibition-hero-display.png" alt="" width="1920" height="1080" loading="eager" fetchpriority="high">
+    </div>
+    <div class="sol-hub-hero-inner">
+      <div class="sol-hub-hero-copy">
+        <h1>你現在遇到的<br>是哪一種問題？</h1>
+        <p>不同產業、不同階段，卡住的地方不一樣。<br>我們從空間視覺、互動展示到系統開發<br>協助你找到最適合的解決方式。</p>
+      </div>
+    </div>
+  </main>
+
+  <section id="problems" class="sol-hub-sec" aria-labelledby="hub-problems-title">
+    <div class="container">
+      <div class="sol-hub-sec-head">
+        <h2 id="hub-problems-title">常遇到的問題</h2>
+        <p class="sub">找到最符合你狀況的問題，直奔最適合的解決方案</p>
+      </div>
+      <div class="sol-hub-pain-grid">
+        <article class="sol-hub-pain-card sol-hub-pain-card--b1">
+          <div class="sol-hub-pain-ph">
+            <img src="uploads/solutions-hub-pain-01-material-samples.png" alt="" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+          <div class="sol-hub-pain-body">
+            <h3>客戶看不懂、想像不出來</h3>
+            <div class="sol-hub-pain-block">
+              <strong>適合對象</strong>
+              建材品牌、展示中心、<br>門市、展覽櫃位
+            </div>
+            <div class="sol-hub-pain-block">
+              <strong>常見狀況</strong>
+              色票、樣品、照片都給了，<br>客戶還是不知道放在自己家會怎樣。
+            </div>
+            <div class="sol-hub-pain-more">
+              <div class="sol-hub-pain-ico"><img src="uploads/four-solution-exhibit.png" alt=""></div>
+              <a href="/wayto1/solutions-exhibition.html">展覽互動 →</a>
+            </div>
+          </div>
+        </article>
+        <article class="sol-hub-pain-card sol-hub-pain-card--b2">
+          <div class="sol-hub-pain-ph">
+            <img src="uploads/solutions-property-hero.png" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+          </div>
+          <div class="sol-hub-pain-body">
+            <h3>建案還沒蓋好，很難讓人有感</h3>
+            <div class="sol-hub-pain-block">
+              <strong>適合對象</strong>
+              建商、代銷、銷售中心
+            </div>
+            <div class="sol-hub-pain-block">
+              <strong>常見狀況</strong>
+              只有平面圖、模型、動畫，<br>客戶還是無法代入未來生活。
+            </div>
+            <div class="sol-hub-pain-more">
+              <div class="sol-hub-pain-ico"><img src="uploads/four-solution-property.png" alt=""></div>
+              <a href="/wayto1/solutions-property-sales.html">建案銷售 →</a>
+            </div>
+          </div>
+        </article>
+        <article class="sol-hub-pain-card sol-hub-pain-card--b3">
+          <div class="sol-hub-pain-ph">
+            <img src="uploads/preview-hero-design-collage.png" alt="" width="1600" height="900" loading="lazy" decoding="async">
+          </div>
+          <div class="sol-hub-pain-body">
+            <h3>提案一直改，溝通成本太高</h3>
+            <div class="sol-hub-pain-block">
+              <strong>適合對象</strong>
+              室內設計師、設計公司、<br>建築師
+            </div>
+            <div class="sol-hub-pain-block">
+              <strong>常見狀況</strong>
+              客戶看不懂設計、渲染溝通反覆、<br>交付不穩定。
+            </div>
+            <div class="sol-hub-pain-more">
+              <div class="sol-hub-pain-ico"><img src="uploads/four-solution-design.png" alt=""></div>
+              <a href="/wayto1/solutions-design-proposal.html">設計提案 →</a>
+            </div>
+          </div>
+        </article>
+        <article class="sol-hub-pain-card sol-hub-pain-card--b4">
+          <div class="sol-hub-pain-ph">
+            <img src="uploads/solutions-enterprise-hero.png" alt="" width="1920" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="sol-hub-pain-body">
+            <h3>LINE、Excel人工流程太混亂</h3>
+            <div class="sol-hub-pain-block">
+              <strong>適合對象</strong>
+              企業主、工程公司、<br>活動單位、組織管理者
+            </div>
+            <div class="sol-hub-pain-block">
+              <strong>常見狀況</strong>
+              資料分散、流程靠人記、<br>系統買了卻不好用。
+            </div>
+            <div class="sol-hub-pain-more">
+              <div class="sol-hub-pain-ico"><img src="uploads/four-solution-system.png" alt=""></div>
+              <a href="/wayto1/solutions-enterprise-digital.html">系統數位化 →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="decide" class="sol-hub-sec sol-hub-sec--soft" aria-labelledby="hub-decide-title">
+    <div class="container">
+      <div class="sol-hub-sec-head">
+        <h2 id="hub-decide-title">不確定怎麼選？先回答三個問題</h2>
+        <p class="sub">幫助你更快找到適合的方向</p>
+      </div>
+      <div class="sol-hub-decide">
+        <div class="sol-hub-step">
+          <div class="sol-hub-step-num">01</div>
+          <h3>你的客戶現在卡在「看不懂」<br>還是「流程混亂」？</h3>
+          <p>先釐清問題核心，<br>才能對症下藥。</p>
+        </div>
+        <div class="sol-hub-step">
+          <div class="sol-hub-step-num">02</div>
+          <h3>你需要的是展示、提案、銷售<br>還是內部管理？</h3>
+          <p>不同目標，<br>需要不同的解決方式。</p>
+        </div>
+        <div class="sol-hub-step">
+          <div class="sol-hub-step-num">03</div>
+          <h3>你希望解決的是成交、溝通<br>體驗、還是效率？</h3>
+          <p>鎖定最在意的結果，<br>資源才不會浪費。</p>
+        </div>
+        <div class="sol-hub-decide-cta">
+          <p>讓我們協助您<br>選擇適合方案</p>
+          <a href="/wayto1/contact.html#contact-form">預約諮詢 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quick" class="sol-hub-sec" aria-labelledby="hub-quick-title">
+    <div class="container">
+      <div class="sol-hub-sec-head">
+        <h2 id="hub-quick-title">快速前往解決方案</h2>
+        <p class="sub">直接進入你感興趣的方案，了解更多細節與案例</p>
+      </div>
+      <div class="sol-hub-quick">
+        <a id="sol-property" class="sol-hub-qcard sol-hub-qcard--blue" href="/wayto1/solutions-property-sales.html">
+          <div class="sol-hub-qcard-row">
+            <div class="sol-hub-qcard-ico"><img src="uploads/four-solution-property.png" alt=""></div>
+            <div class="sol-hub-qcard-main">
+              <h3>建案銷售</h3>
+              <p class="desc">讓客戶走進未來的家，<br>加速理解與決策。</p>
+            </div>
+          </div>
+          <span class="sol-hub-qcard-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </a>
+        <a id="sol-design" class="sol-hub-qcard sol-hub-qcard--green" href="/wayto1/solutions-design-proposal.html">
+          <div class="sol-hub-qcard-row">
+            <div class="sol-hub-qcard-ico"><img src="uploads/four-solution-design.png" alt=""></div>
+            <div class="sol-hub-qcard-main">
+              <h3>設計提案</h3>
+              <p class="desc">設計師穩定可靠的<br>3D 合作夥伴。</p>
+            </div>
+          </div>
+          <span class="sol-hub-qcard-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </a>
+        <a id="sol-exhibition" class="sol-hub-qcard sol-hub-qcard--orange" href="/wayto1/solutions-exhibition.html">
+          <div class="sol-hub-qcard-row">
+            <div class="sol-hub-qcard-ico"><img src="uploads/four-solution-exhibit.png" alt=""></div>
+            <div class="sol-hub-qcard-main">
+              <h3>展覽互動</h3>
+              <p class="desc">讓客戶不用想像，<br>直接看見產品效果。</p>
+            </div>
+          </div>
+          <span class="sol-hub-qcard-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </a>
+        <a id="sol-enterprise" class="sol-hub-qcard sol-hub-qcard--purple" href="/wayto1/solutions-enterprise-digital.html">
+          <div class="sol-hub-qcard-row">
+            <div class="sol-hub-qcard-ico"><img src="uploads/four-solution-system.png" alt=""></div>
+            <div class="sol-hub-qcard-main">
+              <h3>系統數位化</h3>
+              <p class="desc">讓系統不只是被開發，<br>而是真正被使用。</p>
+            </div>
+          </div>
+          <span class="sol-hub-qcard-arrow" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="sol-faq-hub" aria-labelledby="hub-faq-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="hub-faq-title">常見問題</h2>
+        <p>依方案查看詳細問答；若找不到你要的內容，歡迎聯絡我們。</p>
+      </div>
+      <ul class="sol-faq-hub-links">
+        <li><a href="/wayto1/solutions-property-sales.html#faq">建案銷售<span aria-hidden="true"> →</span></a></li>
+        <li><a href="/wayto1/solutions-design-proposal.html#faq">設計提案(3D渲染)<span aria-hidden="true"> →</span></a></li>
+        <li><a href="/wayto1/solutions-exhibition.html#faq">展覽互動<span aria-hidden="true"> →</span></a></li>
+        <li><a href="/wayto1/solutions-enterprise-digital.html#faq">系統數位化<span aria-hidden="true"> →</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="foot-cta">
+    <div class="container">
+      <div class="foot-cta-inner">
+        <div class="foot-cta-copy">
+          <h2>不確定該從哪開始？</h2>
+          <p class="foot-cta-lead">聊聊你的產業、現況與目標，我們一起找出最適合你的解決方案。</p>
+        </div>
+        <div class="row">
+          <a class="btn-gold" href="/wayto1/contact.html#contact-form" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">預約諮詢 →</a>
+          <a class="btn-outline-light" href="/wayto1/cases.html" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">查看案例作品</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"></div>
+  <script src="shared/layout.js"></script>
+</body>
+</html>

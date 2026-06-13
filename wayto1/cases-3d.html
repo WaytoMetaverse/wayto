@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wayto 3D 效果圖作品：室內設計、商業空間、建案與建材虛擬展場。依分類瀏覽完整作品列表、720° 環景與動態展示。">
+  <title>3D效果圖 | 案例作品 | 維次元宇宙科技 Wayto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/layout.css">
+  <link rel="stylesheet" href="shared/solutions.css">
+  <link rel="stylesheet" href="shared/cases-3d.css">
+</head>
+<body class="wayto-has-shared-nav sol-page cases-3d-page" data-nav-current="cases">
+
+  <div id="shared-nav"></div>
+
+  <div class="container sol-breadcrumb-bar">
+    <nav class="sol-breadcrumb cases3d-breadcrumb" aria-label="麵包屑">
+      <a href="/wayto1/index.html">首頁</a>
+      <span class="cases3d-bc-sep" aria-hidden="true">/</span>
+      <a href="/wayto1/cases.html">案例作品</a>
+      <span class="cases3d-bc-sep" aria-hidden="true">/</span>
+      <span>3D效果圖</span>
+    </nav>
+  </div>
+
+  <main id="hero" class="about-hero about-hero--accent-exh">
+    <div class="about-hero-img">
+      <img src="uploads/preview-hero-design-collage.png" alt="建案外觀、室內空間、互動展場等 3D 視覺拼貼" width="1600" height="900" loading="eager" fetchpriority="high">
+    </div>
+    <div class="about-hero-left">
+      <div class="about-hero-inner">
+        <div class="about-hero-tag">3D 視覺</div>
+        <h1>3D效果圖</h1>
+        <div class="about-hero-desc">
+          從住宅樣品屋、商業空間到建案外觀與建材展場，我們用精準光影與比例，讓平面圖轉成可感受的畫面，協助你在提案、銷售與展覽現場更快對齊共識。
+        </div>
+        <div class="hero-actions">
+          <a class="btn-gold" href="/wayto1/contact.html#contact-form" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">與我們聊聊你的專案 →</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="cases3d-tabs">
+    <div class="container">
+      <div class="cases3d-tablist" role="tablist" aria-label="作品分類切換">
+        <button type="button" class="cases3d-tab is-active" role="tab" id="cases3d-tab-interior" aria-selected="true" aria-controls="cases3d-panel-interior" data-cat="interior">
+          <span class="cases3d-tab-ico" aria-hidden="true">◇</span>室內設計 3D
+        </button>
+        <button type="button" class="cases3d-tab" role="tab" id="cases3d-tab-commercial" aria-selected="false" aria-controls="cases3d-panel-commercial" data-cat="commercial" tabindex="-1">
+          <span class="cases3d-tab-ico" aria-hidden="true">◇</span>商業空間
+        </button>
+        <button type="button" class="cases3d-tab" role="tab" id="cases3d-tab-construction" aria-selected="false" aria-controls="cases3d-panel-construction" data-cat="construction" tabindex="-1">
+          <span class="cases3d-tab-ico" aria-hidden="true">◇</span>建案
+        </button>
+        <button type="button" class="cases3d-tab" role="tab" id="cases3d-tab-material" aria-selected="false" aria-controls="cases3d-panel-material" data-cat="material" tabindex="-1">
+          <span class="cases3d-tab-ico" aria-hidden="true">◇</span>建材 / 虛擬展場
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section class="cases3d-switch" aria-label="3D 作品分類內容">
+    <div class="container cases3d-panels">
+      <div id="cases3d-panel-interior" class="cases3d-panel is-active" role="tabpanel" aria-labelledby="cases3d-tab-interior">
+        <div class="cases3d-sec-head">
+          <div>
+            <h2 id="cases3d-title-interior">室內設計 3D 作品</h2>
+            <p class="cases3d-sec-lead">住宅與樣品屋的空間氛圍與尺度，讓客戶在看平面圖之外，先用眼睛感受生活動線與材質層次。</p>
+          </div>
+        </div>
+        <div class="cases3d-grid" data-fill-cat="interior"></div>
+      </div>
+
+      <div id="cases3d-panel-commercial" class="cases3d-panel" role="tabpanel" aria-labelledby="cases3d-tab-commercial" hidden>
+        <div class="cases3d-sec-head">
+          <div>
+            <h2 id="cases3d-title-commercial">商業空間 作品</h2>
+            <p class="cases3d-sec-lead">辦公、餐飲與接待場域的氛圍與品牌識別，用畫面對齊你想傳達的體驗與第一印象。</p>
+          </div>
+        </div>
+        <div class="cases3d-grid" data-fill-cat="commercial"></div>
+      </div>
+
+      <div id="cases3d-panel-construction" class="cases3d-panel" role="tabpanel" aria-labelledby="cases3d-tab-construction" hidden>
+        <div class="cases3d-sec-head">
+          <div>
+            <h2 id="cases3d-title-construction">建案 作品</h2>
+            <p class="cases3d-sec-lead">建築外觀、公設與景觀視角，支援銷講簡報、媒體露出與現場看屋前的期待管理。</p>
+          </div>
+        </div>
+        <div class="cases3d-grid" data-fill-cat="construction"></div>
+      </div>
+
+      <div id="cases3d-panel-material" class="cases3d-panel" role="tabpanel" aria-labelledby="cases3d-tab-material" hidden>
+        <div class="cases3d-sec-head">
+          <div>
+            <h2 id="cases3d-title-material">建材 / 虛擬展場 作品</h2>
+            <p class="cases3d-sec-lead">材質選搭、展場情境與虛擬展間，協助從色票走到「像現場」的說服力，拉近與決策者的距離。</p>
+          </div>
+        </div>
+        <div class="cases3d-grid" data-fill-cat="material"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cases3d-soft-cta" aria-labelledby="cases3d-soft-title">
+    <div class="cases3d-soft-cta-media" aria-hidden="true">
+      <img src="uploads/cases-3d-soft-cta-bg.png" alt="" width="3200" height="900" decoding="async" fetchpriority="low">
+    </div>
+    <div class="cases3d-soft-cta-scrim" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cases3d-soft-cta-inner">
+        <div class="cases3d-soft-copy">
+          <h2 id="cases3d-soft-title">每一張圖，都在幫助決策</h2>
+          <p class="cases3d-soft-lead">不論是設計提案、建案銷售或展場體驗，我們把複雜的空間資訊轉成看得懂、說得清的畫面。若你正在規劃下一個專案，歡迎與我們聊聊檔期與合作方式。</p>
+        </div>
+        <div class="cases3d-soft-act">
+          <a class="btn-dark" href="/wayto1/contact.html#contact-form" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;">預約諮詢 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="cases3d-lightbox" class="cases3d-lightbox" hidden>
+    <div class="cases3d-lightbox-backdrop" data-lb-close tabindex="-1" aria-hidden="true"></div>
+    <div class="cases3d-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="cases3d-lb-caption">
+      <button type="button" class="cases3d-lightbox-x" data-lb-close aria-label="關閉">×</button>
+      <div class="cases3d-lightbox-carousel">
+        <button type="button" class="cases3d-lightbox-arrow cases3d-lightbox-arrow--prev" id="cases3d-lb-prev" aria-label="上一個作品">‹</button>
+        <div class="cases3d-lightbox-stage" id="cases3d-lb-stage"></div>
+        <button type="button" class="cases3d-lightbox-arrow cases3d-lightbox-arrow--next" id="cases3d-lb-next" aria-label="下一個作品">›</button>
+      </div>
+      <p class="cases3d-lightbox-caption" id="cases3d-lb-caption"></p>
+    </div>
+  </div>
+
+  <div id="shared-footer"></div>
+  <script src="shared/layout.js"></script>
+  <script>
+    (function () {
+      var MEDIA_BASE = 'https://wayto.com.tw/';
+      var PORTFOLIO_PAGE = 'https://wayto.com.tw/portfolio.html#works';
+
+      function escAttr(s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+      }
+      function escText(s) {
+        return String(s == null ? '' : s).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function youtubeThumbFromUrl(u) {
+        if (!u || typeof u !== 'string') return '';
+        u = u.trim();
+        var id = '';
+        if (u.indexOf('youtube.com/embed/') !== -1) {
+          id = (u.split('embed/')[1] || '').split(/[?&#]/)[0];
+        } else if (u.indexOf('youtu.be/') !== -1) {
+          id = (u.split('youtu.be/')[1] || '').split(/[?&#]/)[0];
+        }
+        return id ? ('https://img.youtube.com/vi/' + id + '/hqdefault.jpg') : '';
+      }
+
+      function mediaMarkup(item, nameEsc) {
+        if (item.images && item.images[0]) {
+          var src = MEDIA_BASE + String(item.images[0]).replace(/^\//, '');
+          return '<img src="' + escAttr(src) + '" alt="' + nameEsc + '" width="640" height="400" loading="lazy" decoding="async">';
+        }
+        if (item.youtubeUrls && item.youtubeUrls[0]) {
+          var thumb = youtubeThumbFromUrl(item.youtubeUrls[0]);
+          if (thumb) {
+            return '<img src="' + escAttr(thumb) + '" alt="" width="640" height="360" loading="lazy" decoding="async">';
+          }
+        }
+        if (item.videos && item.videos[0]) {
+          var vsrc = MEDIA_BASE + String(item.videos[0]).replace(/^\//, '');
+          return '<video class="cases3d-tile-vid" muted playsinline preload="metadata"><source src="' + escAttr(vsrc) + '" type="video/mp4"></video>';
+        }
+        if (item.embedUrl && String(item.embedUrl).trim()) {
+          return '<div class="cases3d-tile-fallback cases3d-tile-fallback--vr" aria-hidden="true"><span>720° 環景</span></div>';
+        }
+        return '<div class="cases3d-tile-fallback" aria-hidden="true"><span>3D 作品</span></div>';
+      }
+
+      /** 燈箱用：同一作品可有多張圖／多段影片等，依序展開為幻燈片 */
+      function slidesForItem(item) {
+        var name = item.name || '未命名';
+        var emb = String(item.embedUrl || '').trim();
+        var slides = [];
+
+        function pushPart(part, total) {
+          return total > 1 ? { part: part, total: total } : { part: 0, total: 0 };
+        }
+
+        if (item.images && item.images.length) {
+          var imgs = item.images.filter(Boolean);
+          var n = imgs.length;
+          imgs.forEach(function (im, i) {
+            var p = pushPart(i + 1, n);
+            slides.push({
+              type: 'image',
+              src: MEDIA_BASE + String(im).replace(/^\//, ''),
+              embed: '',
+              title: name,
+              part: p.part,
+              total: p.total
+            });
+          });
+          return slides;
+        }
+        if (item.youtubeUrls && item.youtubeUrls.length) {
+          var yts = item.youtubeUrls.filter(Boolean);
+          var ny = yts.length;
+          yts.forEach(function (u, i) {
+            var thumb = youtubeThumbFromUrl(u);
+            if (thumb) {
+              var p = pushPart(i + 1, ny);
+              slides.push({ type: 'image', src: thumb, embed: '', title: name, part: p.part, total: p.total });
+            }
+          });
+          if (slides.length) return slides;
+        }
+        if (item.videos && item.videos.length) {
+          var vids = item.videos.filter(Boolean);
+          var nv = vids.length;
+          vids.forEach(function (v, i) {
+            var p = pushPart(i + 1, nv);
+            slides.push({
+              type: 'video',
+              src: MEDIA_BASE + String(v).replace(/^\//, ''),
+              embed: '',
+              title: name,
+              part: p.part,
+              total: p.total
+            });
+          });
+          if (slides.length) return slides;
+        }
+        if (emb) {
+          slides.push({ type: 'embed', src: '', embed: emb, title: name, part: 0, total: 0 });
+          return slides;
+        }
+        slides.push({ type: 'none', src: '', embed: '', title: name, part: 0, total: 0 });
+        return slides;
+      }
+
+      function tileHtml(item) {
+        var name = item.name || '未命名';
+        var nameEsc = escAttr(name);
+        var nameText = escText(name);
+        var slidesJson = escAttr(JSON.stringify(slidesForItem(item)));
+        return (
+          '<button type="button" class="cases3d-tile" data-lb-slides="' + slidesJson + '" aria-haspopup="dialog" aria-label="' + escAttr('查看大圖：' + name) + '">' +
+          '<div class="cases3d-tile-media">' + mediaMarkup(item, nameEsc) + '</div>' +
+          '<div class="cases3d-tile-bar">' +
+          '<div class="cases3d-tile-meta">' +
+          '<p class="cases3d-tile-title">' + nameText + '</p>' +
+          '</div>' +
+          '<span class="cases3d-tile-more">查看作品 →</span>' +
+          '</div></button>'
+        );
+      }
+
+      function renderCatGrid(el, catId, data) {
+        if (!el) return;
+        var items = (data.items || []).filter(function (it) { return it.category === catId; });
+        if (!items.length) {
+          el.innerHTML = '<p class="cases3d-empty">此分類尚無作品，可前往<a href="' + escAttr(PORTFOLIO_PAGE) + '" target="_blank" rel="noopener noreferrer">完整作品集</a>瀏覽。</p>';
+          return;
+        }
+        el.innerHTML = items.map(function (it) { return tileHtml(it); }).join('');
+      }
+
+      var lbState = { flatSlides: [], flatIndex: 0 };
+
+      function parseTileSlides(tile) {
+        var raw = tile.getAttribute('data-lb-slides') || '[]';
+        try {
+          var a = JSON.parse(raw);
+          return Array.isArray(a) ? a : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function closeLightbox() {
+        var root = document.getElementById('cases3d-lightbox');
+        var stage = document.getElementById('cases3d-lb-stage');
+        if (!root) return;
+        root.hidden = true;
+        document.body.style.overflow = '';
+        lbState.flatSlides = [];
+        lbState.flatIndex = 0;
+        if (stage) {
+          var v = stage.querySelector('video');
+          if (v) v.pause();
+          stage.innerHTML = '';
+        }
+      }
+
+      function syncLbArrows() {
+        var n = lbState.flatSlides.length;
+        var show = n > 1;
+        var prev = document.getElementById('cases3d-lb-prev');
+        var next = document.getElementById('cases3d-lb-next');
+        if (prev) prev.hidden = !show;
+        if (next) next.hidden = !show;
+      }
+
+      function renderLbContent() {
+        var slide = lbState.flatSlides[lbState.flatIndex];
+        var root = document.getElementById('cases3d-lightbox');
+        var stage = document.getElementById('cases3d-lb-stage');
+        var cap = document.getElementById('cases3d-lb-caption');
+        if (!root || !stage || !cap) return;
+        if (!slide) {
+          var v0 = stage.querySelector('video');
+          if (v0) v0.pause();
+          stage.innerHTML = '<p class="cases3d-lightbox-empty">無法顯示此作品。</p>';
+          cap.textContent = '';
+          cap.hidden = true;
+          return;
+        }
+        var type = slide.type || 'none';
+        var src = slide.src || '';
+        var embed = slide.embed || '';
+        var title = slide.title || '';
+        var vOld = stage.querySelector('video');
+        if (vOld) vOld.pause();
+        stage.innerHTML = '';
+        if (type === 'image' && src) {
+          stage.innerHTML = '<img class="cases3d-lightbox-img-el" src="' + escAttr(src) + '" alt="' + escAttr(title) + '">';
+        } else if (type === 'video' && src) {
+          stage.innerHTML = '<video class="cases3d-lightbox-video-el" controls playsinline preload="metadata"><source src="' + escAttr(src) + '" type="video/mp4"></video>';
+        } else if (type === 'embed' && embed) {
+          stage.innerHTML = '<iframe class="cases3d-lightbox-frame-el" src="' + escAttr(embed) + '" title="' + escAttr(title || '720° 環景') + '" allowfullscreen loading="lazy"></iframe>';
+        } else {
+          stage.innerHTML = '<p class="cases3d-lightbox-empty">此作品暫無可放大的預覽圖。</p>';
+        }
+        var capText = String(title).trim();
+        if (slide.part && slide.total) capText += '（' + slide.part + '／' + slide.total + '）';
+        cap.textContent = capText;
+        cap.hidden = !capText;
+      }
+
+      function lbGo(delta) {
+        var n = lbState.flatSlides.length;
+        if (n <= 1) return;
+        lbState.flatIndex = (lbState.flatIndex + delta + n) % n;
+        renderLbContent();
+      }
+
+      function openLightbox(btn) {
+        var grid = btn.closest('.cases3d-grid');
+        var tiles = grid ? Array.prototype.slice.call(grid.querySelectorAll('.cases3d-tile')) : [btn];
+        var tileSlides = tiles.map(parseTileSlides);
+        var flatSlides = [];
+        tileSlides.forEach(function (arr) {
+          arr.forEach(function (s) {
+            flatSlides.push(s);
+          });
+        });
+        var openedIdx = tiles.indexOf(btn);
+        var start = 0;
+        for (var i = 0; i < openedIdx; i++) start += tileSlides[i].length;
+        lbState.flatSlides = flatSlides;
+        lbState.flatIndex = start;
+        var root = document.getElementById('cases3d-lightbox');
+        if (!root) return;
+        syncLbArrows();
+        renderLbContent();
+        root.hidden = false;
+        document.body.style.overflow = 'hidden';
+        var xbtn = root.querySelector('.cases3d-lightbox-x');
+        if (xbtn) xbtn.focus();
+      }
+
+      document.getElementById('cases3d-lb-prev') && document.getElementById('cases3d-lb-prev').addEventListener('click', function (e) {
+        e.stopPropagation();
+        lbGo(-1);
+      });
+      document.getElementById('cases3d-lb-next') && document.getElementById('cases3d-lb-next').addEventListener('click', function (e) {
+        e.stopPropagation();
+        lbGo(1);
+      });
+
+      document.querySelector('.cases3d-switch') && document.querySelector('.cases3d-switch').addEventListener('click', function (e) {
+        var btn = e.target.closest('.cases3d-tile');
+        if (!btn) return;
+        e.preventDefault();
+        openLightbox(btn);
+      });
+
+      document.getElementById('cases3d-lightbox') && document.getElementById('cases3d-lightbox').addEventListener('click', function (e) {
+        if (e.target.closest('[data-lb-close]') || e.target.closest('.cases3d-lightbox-x')) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        var root = document.getElementById('cases3d-lightbox');
+        if (!root || root.hidden) return;
+        if (e.key === 'Escape') {
+          closeLightbox();
+          return;
+        }
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          lbGo(-1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          lbGo(1);
+        }
+      });
+
+      var CAT_IDS = ['interior', 'commercial', 'construction', 'material'];
+
+      function hashToCat() {
+        var h = (window.location.hash || '').replace(/^#/, '').toLowerCase();
+        if (h.indexOf('cat-') === 0) h = h.slice(4);
+        if (CAT_IDS.indexOf(h) !== -1) return h;
+        return 'interior';
+      }
+
+      function showCategory(catId) {
+        var id = CAT_IDS.indexOf(catId) !== -1 ? catId : 'interior';
+        document.querySelectorAll('.cases3d-panel').forEach(function (panel) {
+          var pid = panel.id.replace('cases3d-panel-', '');
+          var on = pid === id;
+          panel.classList.toggle('is-active', on);
+          if (on) panel.removeAttribute('hidden');
+          else panel.setAttribute('hidden', '');
+        });
+        document.querySelectorAll('.cases3d-tab').forEach(function (tab) {
+          var tid = tab.getAttribute('data-cat');
+          var on = tid === id;
+          tab.classList.toggle('is-active', on);
+          tab.setAttribute('aria-selected', on ? 'true' : 'false');
+          tab.setAttribute('tabindex', on ? '0' : '-1');
+        });
+        try {
+          if (window.history && window.history.replaceState) {
+            var base = window.location.pathname + window.location.search;
+            window.history.replaceState(null, '', id === 'interior' ? base : base + '#' + id);
+          }
+        } catch (e) { /* ignore */ }
+      }
+
+      document.querySelectorAll('.cases3d-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          showCategory(tab.getAttribute('data-cat'));
+        });
+      });
+
+      (function tablistKeys() {
+        var list = document.querySelector('.cases3d-tablist');
+        if (!list) return;
+        var tabs = function () { return Array.prototype.slice.call(list.querySelectorAll('.cases3d-tab')); };
+        list.addEventListener('keydown', function (e) {
+          var arr = tabs();
+          var i = arr.indexOf(document.activeElement);
+          if (i < 0) return;
+          var next = -1;
+          if (e.key === 'ArrowRight') next = (i + 1) % arr.length;
+          else if (e.key === 'ArrowLeft') next = (i - 1 + arr.length) % arr.length;
+          else if (e.key === 'Home') next = 0;
+          else if (e.key === 'End') next = arr.length - 1;
+          if (next >= 0) {
+            e.preventDefault();
+            arr[next].focus();
+            showCategory(arr[next].getAttribute('data-cat'));
+          }
+        });
+      })();
+
+      window.addEventListener('hashchange', function () {
+        showCategory(hashToCat());
+      });
+      showCategory(hashToCat());
+
+      fetch('data/portfolio.json')
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('fetch')); })
+        .then(function (data) {
+          document.querySelectorAll('[data-fill-cat]').forEach(function (el) {
+            renderCatGrid(el, el.getAttribute('data-fill-cat'), data);
+          });
+        })
+        .catch(function () {
+          document.querySelectorAll('[data-fill-cat]').forEach(function (el) {
+            el.innerHTML = '<p class="cases3d-empty">無法載入作品資料，請稍後再試或前往<a href="' + escAttr(PORTFOLIO_PAGE) + '" target="_blank" rel="noopener noreferrer">完整作品集</a>。</p>';
+          });
+        });
+    })();
+  </script>
+</body>
+</html>

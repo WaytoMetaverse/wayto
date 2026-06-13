@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RotaractClub 社團管理系統｜為扶輪打造的一站式社務平台｜Wayto Metaverse</title>
-<meta name="description" content="RotaractClub 社團管理系統 — 從一個扶輪社的客製專案開始，發現同性質社團的活動、攜伴、簽到、餐點、財務流程其實一樣，於是把它變成一站式社團管理系統。主鎖扶輪，也適用其他定期聚會社團。">
-<meta name="keywords" content="扶輪社管理系統,社團管理平台,活動報名系統,攜伴報名,簽到管理,社費管理,數位名片,扶輪青年服務團,Rotaract">
+<title>RotaractClub 社團管理系統｜為扶青打造的一站式社務平台｜Wayto Metaverse</title>
+<meta name="description" content="RotaractClub 社團管理系統 — 從一個扶青社的客製專案開始，發現同性質社團的活動、攜伴、簽到、餐點、財務流程其實一樣，於是把它變成一站式社團管理系統。源於扶青，也適用其他定期聚會社團。">
+<meta name="keywords" content="扶青社管理系統,社團管理平台,活動報名系統,攜伴報名,簽到管理,社費管理,數位名片,扶青社,Rotaract">
 <link rel="canonical" href="https://wayto.com.tw/wayto1/rotaract.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="RotaractClub 社團管理系統｜為扶輪打造的一站式社務平台">
+<meta property="og:title" content="RotaractClub 社團管理系統｜為扶青打造的一站式社務平台">
 <meta property="og:description" content="活動、攜伴、簽到、餐點、財務、名片 — 同性質社團的流程，一套系統全包。">
 <meta property="og:image" content="https://wayto.com.tw/wayto1/uploads/rotaract/og-image.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/layout.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RotaractClub","alternateName":"社團管理系統","description":"為扶輪青年服務團打造、適用各類定期聚會社團的一站式管理平台。整合活動報名、攜伴、簽到、餐點、財務、數位名片與 LINE 通知。","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://wayto.com.tw/wayto1/rotaract.html","image":"https://wayto.com.tw/wayto1/uploads/rotaract/og-image.jpg","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RotaractClub","alternateName":"社團管理系統","description":"為扶青社打造、適用各類定期聚會社團的一站式管理平台。整合活動報名、攜伴、簽到、餐點、財務、數位名片與 LINE 通知。","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://wayto.com.tw/wayto1/rotaract.html","image":"https://wayto.com.tw/wayto1/uploads/rotaract/og-image.jpg","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#1a2b5e;--navy-dark:#111e45;--blue:#2563eb;--sky:#e8f0fe;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--gray-bg:#f5f7fa;--gold:#cc9b4d}
@@ -22,7 +22,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 
 /* HERO */
 .rc-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#f5f7fa 0%,#fff 100%)}
-.rc-hero-inner{max-width:1320px;margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
+.rc-hero-inner{max-width:var(--layout-max);margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
 .rc-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:6px 16px 6px 8px;background:#fff;border:1px solid var(--border);border-radius:999px}
 .rc-brand-row img{height:22px;width:auto}
 .rc-brand-row span{font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;color:var(--navy);letter-spacing:1px}
@@ -95,7 +95,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 .rc-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
 
 /* STORY (起源) */
-.rc-story{padding:80px;max-width:1320px;margin:0 auto}
+.rc-story{padding:80px;max-width:var(--layout-max);margin:0 auto}
 .story-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start}
 .story-side{position:sticky;top:96px}
 .story-side .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
@@ -108,7 +108,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 
 /* CORE FEATURES */
 .rc-core{background:var(--gray-bg);padding:80px}
-.rc-core-inner{max-width:1320px;margin:0 auto}
+.rc-core-inner{max-width:var(--layout-max);margin:0 auto}
 .core-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .core-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:30px 28px 28px;transition:all .25s;display:flex;flex-direction:column;gap:14px}
 .core-card:hover{border-color:#bfdbfe;box-shadow:0 12px 36px rgba(37,99,235,.1);transform:translateY(-4px)}
@@ -120,7 +120,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 .core-feat{font-size:11px;background:#f8fafc;color:#64748b;padding:4px 10px;border-radius:99px;border:1px solid #e2e8f0}
 
 /* LIFECYCLE */
-.rc-flow{padding:80px;max-width:1320px;margin:0 auto}
+.rc-flow{padding:80px;max-width:var(--layout-max);margin:0 auto}
 .flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative}
 .flow-step{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 20px;position:relative;transition:all .25s}
 .flow-step:hover{border-color:var(--blue);box-shadow:0 10px 28px rgba(37,99,235,.1)}
@@ -132,7 +132,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 
 /* ROLES */
 .rc-roles{background:var(--gray-bg);padding:80px}
-.rc-roles-inner{max-width:1320px;margin:0 auto}
+.rc-roles-inner{max-width:var(--layout-max);margin:0 auto}
 .role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .role-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;gap:14px;transition:all .25s}
 .role-card:hover{border-color:var(--blue);box-shadow:0 12px 36px rgba(37,99,235,.08);transform:translateY(-3px)}
@@ -149,7 +149,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 .role-card.guest .role-list li::before{background:#94a3b8}
 
 /* INTEGRATIONS */
-.rc-integ{padding:80px;max-width:1320px;margin:0 auto}
+.rc-integ{padding:80px;max-width:var(--layout-max);margin:0 auto}
 .integ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .integ-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;transition:all .2s}
 .integ-card:hover{border-color:var(--blue);transform:translateY(-2px)}
@@ -158,7 +158,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 
 /* AUDIENCE */
 .rc-aud{background:var(--gray-bg);padding:80px}
-.rc-aud-inner{max-width:1320px;margin:0 auto}
+.rc-aud-inner{max-width:var(--layout-max);margin:0 auto}
 .aud-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 .aud-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:#334155;transition:all .2s}
 .aud-chip:hover{border-color:var(--blue);color:var(--blue);background:#fff}
@@ -169,7 +169,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 /* CTA */
 .rc-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
 .rc-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(204,155,77,.18),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(96,165,250,.12),transparent 60%);pointer-events:none}
-.rc-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.rc-cta-inner{position:relative;max-width:var(--layout-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .rc-cta .tag{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
 .rc-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
 .rc-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}
@@ -265,9 +265,9 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
         <span>RotaractClub</span>
         <b>社團管理系統</b>
       </div>
-      <h1 class="reveal reveal-d1">把社團的<em>每一件事</em>，<br>變成一個帳號就<em>搞定</em></h1>
+      <h1 class="reveal reveal-d1">把社團的<em>每一件事</em>，<br>變成一個APP就<em>搞定</em></h1>
       <p class="rc-hero-desc reveal reveal-d2">
-        從一個扶輪社的客製專案開始，<br>
+        從一個扶青社的客製專案開始，<br>
         我們發現同性質社團的活動、報名、攜伴、簽到、餐點、社費 ——<br>
         流程其實幾乎一樣。<br>
         於是我們把它做成了一站式社團管理系統。
@@ -277,7 +277,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
         <a class="rc-btn rc-btn-outline" href="#story">為什麼存在</a>
       </div>
       <div class="rc-hero-meta reveal reveal-d3">
-        <div><div class="lab">Built for</div><div class="val">扶輪 / 定期聚會社團</div></div>
+        <div><div class="lab">Built for</div><div class="val">扶青 / 定期聚會社團</div></div>
         <div><div class="lab">Core</div><div class="val">活動全生命週期</div></div>
         <div><div class="lab">Member</div><div class="val">數位名片 / 通訊</div></div>
         <div><div class="lab">Finance</div><div class="val">社費 / 收支 / 報表</div></div>
@@ -290,7 +290,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
         <div class="ev-head">
           <div>
             <div class="ev-tag">Event · 例會</div>
-            <div class="ev-title">3 月份例會 · 主題講座與聯誼晚宴</div>
+            <div class="ev-title">3 月份例會 · 主題講座與社務晚宴</div>
           </div>
           <div class="ev-status">報名中</div>
         </div>
@@ -322,8 +322,8 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
           <div class="nc-pic">陳</div>
           <div>
             <div class="nc-name">陳威廷 Wei-Ting Chen</div>
-            <div class="nc-club">台中北區扶輪青年服務團</div>
-            <div class="nc-role">會長 / President</div>
+            <div class="nc-club">台中北區扶青社</div>
+            <div class="nc-role">社長 / President</div>
           </div>
         </div>
         <div class="nc-divider"></div>
@@ -363,15 +363,15 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
       <div class="story-block reveal">
         <div class="story-num">01</div>
         <div class="story-content">
-          <h3>從一個扶輪社的客製專案開始</h3>
-          <p>我們最初是為單一扶輪青年服務團設計一套活動報名與社費管理工具 ——<br>解決他們在 LINE 群、Excel、紙本之間反覆對帳的痛點。</p>
+          <h3>從一個扶青社的客製專案開始</h3>
+          <p>我們最初是為單一扶青社設計一套活動報名與社費管理工具 ——<br>解決他們在 LINE 群、Excel、紙本之間反覆對帳的痛點。</p>
         </div>
       </div>
       <div class="story-block reveal reveal-d1">
         <div class="story-num">02</div>
         <div class="story-content">
           <h3>我們發現一件事</h3>
-          <p>不同的扶輪社、姊妹會、青商會、扶青團 ——<br>每個社團有自己的會風、自己的文化，<br>但「活動 → 報名 → 攜伴 → 簽到 → 餐點 → 結算 → 通知」這條流程，<br>幾乎一模一樣。</p>
+          <p>不同的扶青社、姊妹會、青商會、扶青團 ——<br>每個社團有自己的會風、自己的文化，<br>但「活動 → 報名 → 攜伴 → 簽到 → 餐點 → 結算 → 通知」這條流程，<br>幾乎一模一樣。</p>
         </div>
       </div>
       <div class="story-block reveal reveal-d2">
@@ -384,8 +384,8 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
       <div class="story-block reveal reveal-d3">
         <div class="story-num">04</div>
         <div class="story-content">
-          <h3>主鎖扶輪，但不止於扶輪</h3>
-          <p>系統的設計以扶輪的會務流程為主軸（地區、職位、姊妹社、合辦活動等），<br>但任何「定期聚會 + 會員制 + 收費」的社團，<br>都能找到對應的位置。</p>
+          <h3>源於扶青，但不止於扶青</h3>
+          <p>系統的設計以扶青的會務流程為主軸（地區、職位、姊妹社、合辦活動等），<br>但任何「定期聚會 + 會員制 + 收費」的社團，<br>都能找到對應的位置。</p>
         </div>
       </div>
     </div>
@@ -436,7 +436,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
       <div class="core-card reveal reveal-d1">
         <div class="core-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/><circle cx="8" cy="15" r="1.5"/></svg></div>
         <h3>數位名片</h3>
-        <p>每位社員都有一張可分享的數位名片 + QR — 跨社聯誼、跨地區交流，直接掃直接收。</p>
+        <p>每位社員都有一張可分享的數位名片 + QR — 跨社交流、跨地區互動，直接掃直接收。</p>
         <div class="feats">
           <span class="core-feat">QR 交換</span><span class="core-feat">名片收藏</span><span class="core-feat">人才庫</span>
         </div>
@@ -444,7 +444,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
       <div class="core-card reveal reveal-d2">
         <div class="core-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 10h18"/><path d="M7 14h4M15 14h2"/></svg></div>
         <h3>社費與財務</h3>
-        <p>社費繳交、活動收支、收據列印、年度財報 — 司庫一鍵匯出，會計師看得懂、理事長簽得安心。</p>
+        <p>社費繳交、活動收支、收據列印、年度財報 — 財務一鍵匯出，會計師看得懂、社長簽得安心。</p>
         <div class="feats">
           <span class="core-feat">社費催繳</span><span class="core-feat">收據</span><span class="core-feat">年度財報</span>
         </div>
@@ -457,7 +457,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 <section class="rc-flow">
   <div class="rc-head reveal">
     <div class="tag">Event lifecycle</div>
-    <h2>一個例會的完整流程，<br>從建立到結算只在一個系統裡</h2>
+    <h2>一場活動/例會的完整流程，<br>從建立到結算只在一個系統裡</h2>
     <p>對社團幹部來說，從活動發起到事後對帳，<br>過去要切換 5 個工具，現在只需要點幾下。</p>
   </div>
   <div class="flow-grid">
@@ -500,7 +500,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
     <div class="role-grid">
       <div class="role-card officer reveal">
         <div class="role-badge">● Officer · 社團幹部</div>
-        <h3>會長、秘書、司庫、聯誼</h3>
+        <h3>社長、秘書、財務、社務</h3>
         <p>掌握社團大小事的人，需要的是「一次看見全貌」的後台。</p>
         <ul class="role-list">
           <li>建立與管理活動、開放報名</li>
@@ -528,7 +528,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
           <li>外部報名連結（不用註冊）</li>
           <li>合辦活動跨社團報名與識別</li>
           <li>賓客名片自動收進主辦社人才庫</li>
-          <li>會後可選擇加入社員池</li>
+          <li>會後可選擇加入社上</li>
         </ul>
       </div>
     </div>
@@ -552,8 +552,8 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
       <p>免註冊密碼，Google 帳號直接登入。</p>
     </div>
     <div class="integ-card reveal reveal-d2">
-      <h4>PWA 離線</h4>
-      <p>加到主畫面就像 App，現場簽到不卡網路。</p>
+      <h4>PWA 技術</h4>
+      <p>加到主畫面就像 App，一手掌握社團大小事。</p>
     </div>
     <div class="integ-card reveal reveal-d3">
       <h4>QR Code 通用</h4>
@@ -567,12 +567,12 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
   <div class="rc-aud-inner">
     <div class="rc-head reveal">
       <div class="tag">Who it&apos;s for</div>
-      <h2>主鎖扶輪，<br>也適用所有定期聚會社團</h2>
+      <h2>源於扶青，<br>也適用所有定期聚會社團</h2>
       <p>只要你的社團有「會員 + 定期活動 + 攜伴 + 收費」這四個元素，<br>RotaractClub 都能套用。</p>
     </div>
     <div class="aud-chips reveal">
-      <span class="aud-chip primary">扶輪青年服務團</span>
-      <span class="aud-chip primary">扶輪社</span>
+      <span class="aud-chip primary">扶青社</span>
+      <span class="aud-chip primary">友社與姊妹社</span>
       <span class="aud-chip primary">姊妹會</span>
       <span class="aud-chip">青商會</span>
       <span class="aud-chip">獅子會</span>
@@ -585,7 +585,7 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
       <span class="aud-chip">宗親會</span>
     </div>
     <p class="aud-note reveal reveal-d1">
-      系統內建扶輪會務的常見用語與流程（地區、職位、姊妹社、合辦），<br>
+      系統內建扶青會務的常見用語與流程（地區、職位、姊妹社、合辦），<br>
       其他社團可以自訂欄位、自訂職位、自訂活動類型 —— 把系統「翻譯」成你社團的語言。
     </p>
   </div>

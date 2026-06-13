@@ -23,7 +23,7 @@ img{max-width:100%;display:block}
 
 /* HERO */
 .pe-hero{margin-top:64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#f0f9ff 0%,#fff 100%)}
-.pe-hero-inner{max-width:1320px;margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
+.pe-hero-inner{max-width:var(--layout-max);margin:0 auto;padding:80px;display:grid;grid-template-columns:0.95fr 1.05fr;gap:60px;align-items:center}
 .pe-brand-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;padding:6px 16px 6px 8px;background:#fff;border:1px solid var(--border);border-radius:999px}
 .pe-brand-row img{height:22px;width:auto}
 .pe-brand-row span{font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;color:var(--navy);letter-spacing:1px}
@@ -92,7 +92,7 @@ img{max-width:100%;display:block}
 .pe-head p{font-size:14.5px;color:var(--muted);line-height:1.95}
 
 /* PAIN POINTS */
-.pe-pain{padding:80px;max-width:1320px;margin:0 auto}
+.pe-pain{padding:80px;max-width:var(--layout-max);margin:0 auto}
 .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .pain-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:32px 28px 30px;transition:all .25s;position:relative;overflow:hidden}
 .pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--brand-dark),var(--brand));opacity:0;transition:opacity .25s}
@@ -104,7 +104,7 @@ img{max-width:100%;display:block}
 
 /* FEATURES */
 .pe-features{background:var(--gray-bg);padding:80px}
-.pe-features-inner{max-width:1320px;margin:0 auto}
+.pe-features-inner{max-width:var(--layout-max);margin:0 auto}
 .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .feat-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 26px 26px;transition:all .25s;display:flex;flex-direction:column;gap:12px}
 .feat-card:hover{border-color:#bae6fd;box-shadow:0 8px 28px rgba(14,165,233,.08);transform:translateY(-3px)}
@@ -114,7 +114,7 @@ img{max-width:100%;display:block}
 .feat-card p{font-size:13px;color:var(--muted);line-height:1.9}
 
 /* HEALTH SECTION */
-.pe-health{padding:80px;max-width:1320px;margin:0 auto}
+.pe-health{padding:80px;max-width:var(--layout-max);margin:0 auto}
 .health-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center}
 .health-left .pre{font-family:'Outfit',sans-serif;font-size:11px;color:var(--brand-dark);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
 .health-left h2{font-size:clamp(26px,3vw,34px);font-weight:900;color:#0f172a;letter-spacing:-0.3px;line-height:1.35;margin-bottom:18px}
@@ -130,7 +130,7 @@ img{max-width:100%;display:block}
 
 /* WORKFLOW */
 .pe-flow{background:var(--gray-bg);padding:80px}
-.pe-flow-inner{max-width:1320px;margin:0 auto}
+.pe-flow-inner{max-width:var(--layout-max);margin:0 auto}
 .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
 .flow-step{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px 24px 26px;position:relative;transition:all .25s}
 .flow-step:hover{border-color:var(--brand-dark);box-shadow:0 10px 28px rgba(14,165,233,.1)}
@@ -141,7 +141,7 @@ img{max-width:100%;display:block}
 .flow-step:last-child::after{display:none}
 
 /* PRICING */
-.pe-pricing{padding:80px;max-width:1320px;margin:0 auto}
+.pe-pricing{padding:80px;max-width:var(--layout-max);margin:0 auto}
 .price-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
 .price-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:36px 36px 32px;box-shadow:0 16px 40px rgba(15,23,42,.06);position:relative;overflow:hidden}
 .price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand-dark),var(--brand))}
@@ -165,7 +165,7 @@ img{max-width:100%;display:block}
 
 /* AUDIENCE */
 .pe-aud{background:var(--gray-bg);padding:80px}
-.pe-aud-inner{max-width:1320px;margin:0 auto}
+.pe-aud-inner{max-width:var(--layout-max);margin:0 auto}
 .aud-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 .aud-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;color:#334155;transition:all .2s}
 .aud-chip:hover{border-color:var(--brand-dark);color:var(--brand-dark);background:var(--brand-soft)}
@@ -173,7 +173,7 @@ img{max-width:100%;display:block}
 /* CTA */
 .pe-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#0c4a6e 60%,#0a1224 100%);color:#fff;overflow:hidden}
 .pe-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(14,165,233,.22),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(186,230,253,.14),transparent 60%);pointer-events:none}
-.pe-cta-inner{position:relative;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.pe-cta-inner{position:relative;max-width:var(--layout-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .pe-cta .tag{font-size:12px;font-weight:600;color:#7dd3fc;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
 .pe-cta h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-0.3px;line-height:1.35;margin-bottom:14px;max-width:620px}
 .pe-cta p{font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.95;max-width:620px}

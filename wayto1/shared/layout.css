@@ -6,6 +6,8 @@
   --sky: #e8f0fe;
   --text: #1e293b;
   --border: #e2e8f0;
+  /* Main content + nav/footer alignment */
+  --layout-max: 1320px;
 }
 
 body.wayto-has-shared-nav {
@@ -43,7 +45,7 @@ body.wayto-has-shared-nav {
 }
 
 .nav-inner {
-  max-width: 1200px;
+  max-width: var(--layout-max);
   margin: 0 auto;
   padding: 0 24px;
   width: 100%;
@@ -259,7 +261,7 @@ footer::after {
 }
 
 .footer-inner {
-  max-width: 1200px;
+  max-width: var(--layout-max);
   margin: 0 auto;
   position: relative;
   z-index: 2;

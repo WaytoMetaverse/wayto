@@ -37,7 +37,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 }
 .about-hero-left {
   position: relative; z-index: 2;
-  max-width: 1320px; margin: 0 auto; padding: 100px 80px;
+  max-width: var(--layout-max); margin: 0 auto; padding: 100px 80px;
   width: 100%;
 }
 .about-hero-inner { max-width: 560px; }
@@ -57,7 +57,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 
 /* ── STORY BLOCKS ── */
 .story-wrap {
-  padding: 60px 80px 60px; max-width: 1320px; margin: 0 auto; position: relative;
+  padding: 60px 80px 60px; max-width: var(--layout-max); margin: 0 auto; position: relative;
   --timeline-x: 276px;     /* 垂直線位置（與藍點對齊），略偏右 */
   --wrap-pad: 80px;        /* must match padding-left above */
 }
@@ -118,7 +118,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
   align-self: stretch;
   margin-top: -56px;
   margin-bottom: -56px;
-  margin-right: min(-80px, calc(-1 * ((100vw - 1320px) / 2 + 80px)));
+  margin-right: min(-80px, calc(-1 * ((100vw - var(--layout-max)) / 2 + 80px)));
 }
 .story-img::before {
   content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
@@ -134,7 +134,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 
 /* ── DEV TIMELINE (bottom chart) ── */
 .dev-timeline {
-  padding: 80px 80px 100px; max-width: 1320px; margin: 0 auto;
+  padding: 80px 80px 100px; max-width: var(--layout-max); margin: 0 auto;
 }
 .dev-head { margin-bottom: 48px; }
 .dev-head h2 { font-size: 28px; font-weight: 900; color: #0f172a; margin-bottom: 8px; letter-spacing: -0.3px; }
@@ -449,7 +449,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
     而是讓空間更容易被理解，讓體驗更容易被參與，<br>
     讓流程真正能夠被使用。</p>
   </div>
-  <a class="believe-cta-btn" href="index.html#contact">
+  <a class="believe-cta-btn" href="/wayto1/contact.html#contact-form">
     與我們聊聊你的專案
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

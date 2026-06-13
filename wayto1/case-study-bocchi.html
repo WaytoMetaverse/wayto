@@ -60,7 +60,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 }
 .case-hero-left {
   position: relative; z-index: 2;
-  max-width: 1320px; margin: 0 auto; padding: 100px 80px;
+  max-width: var(--layout-max); margin: 0 auto; padding: 100px 80px;
   width: 100%;
 }
 .case-hero-inner { max-width: 620px; }
@@ -97,7 +97,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 
 /* ── STORY BLOCKS (case study narrative) ── */
 .story-wrap {
-  padding: 60px 80px 60px; max-width: 1320px; margin: 0 auto; position: relative;
+  padding: 60px 80px 60px; max-width: var(--layout-max); margin: 0 auto; position: relative;
   --timeline-x: 240px;
   --wrap-pad: 80px;
 }
@@ -166,7 +166,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
   align-self: stretch;
   margin-top: -56px;
   margin-bottom: -56px;
-  margin-right: min(-80px, calc(-1 * ((100vw - 1320px) / 2 + 80px)));
+  margin-right: min(-80px, calc(-1 * ((100vw - var(--layout-max)) / 2 + 80px)));
   background: #f1f5f9;
 }
 .story-img::before {
@@ -180,7 +180,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
   background: var(--gray-bg);
   padding: 80px 80px;
 }
-.metrics-inner { max-width: 1320px; margin: 0 auto; }
+.metrics-inner { max-width: var(--layout-max); margin: 0 auto; }
 .metrics-head { margin-bottom: 48px; max-width: 720px; }
 .metrics-head .tag {
   font-size: 12px; font-weight: 700; color: #2563eb;
@@ -220,7 +220,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 /* ── DUAL VIEW GALLERY ── */
 .dual-view {
   padding: 80px 80px;
-  max-width: 1320px; margin: 0 auto;
+  max-width: var(--layout-max); margin: 0 auto;
 }
 .dual-view-head { margin-bottom: 40px; max-width: 720px; }
 .dual-view-head .tag {
@@ -272,7 +272,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 }
 
 /* ── WHY FAST/EASY ── */
-.why-fast { padding: 80px 80px; max-width: 1320px; margin: 0 auto; }
+.why-fast { padding: 80px 80px; max-width: var(--layout-max); margin: 0 auto; }
 .why-fast-head { margin-bottom: 48px; max-width: 720px; }
 .why-fast-head .tag {
   font-size: 12px; font-weight: 700; color: #2563eb;
@@ -672,7 +672,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
     <h2>你的品牌，也有重複的 3D 提案流程嗎？</h2>
     <p>連鎖加盟、建商代銷、製造業產品配置、室內設計提案 ——<br>只要 3D 提案是你業務的重複動作，<br>就有機會把它變成一套客製編輯器，讓品牌資產真正累積起來。</p>
   </div>
-  <a class="believe-cta-btn" href="index.html#contact">
+  <a class="believe-cta-btn" href="/wayto1/contact.html#contact-form">
     與我們聊聊你的需求
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

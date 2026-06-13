@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="聯絡 Wayto 維次元宇宙科技：建案展示、室內效果圖、展覽互動與系統開發。留下需求或來電、Email，我們將盡快與您聯繫。">
+  <title>聯絡我們 | 維次元宇宙科技 Wayto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/layout.css">
+  <link rel="stylesheet" href="shared/contact.css">
+</head>
+<body class="wayto-has-shared-nav contact-page" data-nav-current="contact">
+
+  <div id="shared-nav"></div>
+
+  <header class="contact-hero">
+    <div class="contact-hero-bg" aria-hidden="true">
+      <img src="uploads/contact-page-hero.png" alt="" width="1920" height="1080" decoding="async" fetchpriority="high">
+    </div>
+    <div class="contact-hero-shade" aria-hidden="true"></div>
+    <div class="container">
+      <div class="contact-hero-copy">
+        <h1>準備開始你的專案？</h1>
+        <p>不論是建案展示、室內效果圖、展覽互動或系統開發，歡迎與我們聊聊你的需求。我們會根據你的目標，提供合適的建議與合作方式。</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="contact-topics" aria-labelledby="contact-topics-title">
+    <div class="container">
+      <div class="contact-topics-head">
+        <h2 id="contact-topics-title">你想聊什麼？</h2>
+        <p class="contact-topics-lead">選擇你的需求類型，我們將提供更精準的建議與服務。</p>
+      </div>
+      <div class="contact-topic-grid" role="group" aria-label="諮詢主題">
+        <button type="button" class="contact-topic-card is-selected" data-topic="建案展示" aria-pressed="true">
+          <span class="contact-topic-card-check" aria-hidden="true">✓</span>
+          <div class="contact-topic-icon" aria-hidden="true">
+            <img src="uploads/four-solution-property.png" width="280" height="280" alt="建案展示">
+          </div>
+          <h3>建案展示</h3>
+          <p class="contact-topic-lines">3D 外觀、環境模擬 / 銷售展示</p>
+        </button>
+        <button type="button" class="contact-topic-card" data-topic="室內效果圖" aria-pressed="false">
+          <span class="contact-topic-card-check" aria-hidden="true">✓</span>
+          <div class="contact-topic-icon" aria-hidden="true">
+            <img src="uploads/four-solution-design.png" width="280" height="280" alt="室內效果圖">
+          </div>
+          <h3>室內效果圖</h3>
+          <p class="contact-topic-lines">室內設計、空間規劃 / 視覺呈現</p>
+        </button>
+        <button type="button" class="contact-topic-card" data-topic="展覽互動" aria-pressed="false">
+          <span class="contact-topic-card-check" aria-hidden="true">✓</span>
+          <div class="contact-topic-icon" aria-hidden="true">
+            <img src="uploads/four-solution-exhibit.png" width="280" height="280" alt="展覽互動">
+          </div>
+          <h3>展覽互動</h3>
+          <p class="contact-topic-lines">互動體驗、數位展示 / 多媒體應用</p>
+        </button>
+        <button type="button" class="contact-topic-card" data-topic="系統開發" aria-pressed="false">
+          <span class="contact-topic-card-check" aria-hidden="true">✓</span>
+          <div class="contact-topic-icon" aria-hidden="true">
+            <img src="uploads/four-solution-system.png" width="280" height="280" alt="系統開發">
+          </div>
+          <h3>系統開發</h3>
+          <p class="contact-topic-lines">客製系統、流程整合 / 管理平台</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-split" id="contact-form" aria-labelledby="contact-form-title">
+    <div class="container">
+      <div class="contact-split-grid">
+        <div class="contact-form-card">
+          <h2 id="contact-form-title">留下聯絡資訊</h2>
+          <p class="contact-form-lead">請填寫以下資訊，我們會盡快與您聯繫。</p>
+          <form id="contact-inquiry-form" novalidate>
+            <input type="hidden" name="topic" id="contact-topic-field" value="建案展示">
+            <div class="contact-field-row">
+              <div class="contact-field">
+                <label for="co-name">公司名稱 <span style="color:#dc2626">*</span></label>
+                <input id="co-name" name="company" type="text" autocomplete="organization" placeholder="選填">
+              </div>
+              <div class="contact-field">
+                <label for="person-name">聯絡人 <span style="color:#dc2626">*</span></label>
+                <input id="person-name" name="name" type="text" autocomplete="name" required placeholder="姓名">
+              </div>
+              <div class="contact-field">
+                <label for="phone">電話 <span style="color:#dc2626">*</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="市話或手機">
+              </div>
+              <div class="contact-field">
+                <label for="email">Email <span style="color:#dc2626">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@company.com">
+              </div>
+            </div>
+            <div class="contact-field contact-field--full" style="margin-top:16px">
+              <label for="project-name">建案名稱 / 專案名稱</label>
+              <input id="project-name" name="project" type="text" placeholder="選填，方便我們對應檔案">
+            </div>
+            <div class="contact-field contact-field--full" style="margin-top:16px">
+              <label for="message">需求說明 <span style="color:#dc2626">*</span></label>
+              <textarea id="message" name="message" placeholder="簡述需求、時程或想了解的服務"></textarea>
+            </div>
+            <div class="contact-form-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>我們重視您的隱私，您的資料僅用於專案聯繫與服務，不會提供第三方使用。</span>
+            </div>
+            <div class="contact-form-actions">
+              <button type="submit" class="contact-btn-submit">送出需求 →</button>
+            </div>
+            <p class="contact-form-done" id="contact-form-done" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <aside class="contact-aside" aria-labelledby="contact-aside-title">
+          <h2 id="contact-aside-title">我們能為你做什麼</h2>
+          <ul class="contact-aside-list">
+            <li class="contact-aside-item">
+              <div class="contact-aside-ico" aria-hidden="true">
+                <img src="uploads/solutions-solve-step-01.png" alt="" width="120" height="120" loading="lazy" decoding="async">
+              </div>
+              <div>
+                <h3>專業 3D 視覺化</h3>
+                <p>高品質效果圖與動畫，精準傳達設計理念</p>
+              </div>
+            </li>
+            <li class="contact-aside-item">
+              <div class="contact-aside-ico" aria-hidden="true">
+                <img src="uploads/solutions-solve-step-02.png" alt="" width="120" height="120" loading="lazy" decoding="async">
+              </div>
+              <div>
+                <h3>客製化解決方案</h3>
+                <p>依需求量身規劃，打造最適合的解決方案</p>
+              </div>
+            </li>
+            <li class="contact-aside-item">
+              <div class="contact-aside-ico" aria-hidden="true">
+                <img src="uploads/solutions-solve-step-03.png" alt="" width="120" height="120" loading="lazy" decoding="async">
+              </div>
+              <div>
+                <h3>跨領域整合能力</h3>
+                <p>結合 3D 視覺與系統開發，提供完整服務</p>
+              </div>
+            </li>
+            <li class="contact-aside-item">
+              <div class="contact-aside-ico" aria-hidden="true">
+                <img src="uploads/solutions-solve-step-04.png" alt="" width="120" height="120" loading="lazy" decoding="async">
+              </div>
+              <div>
+                <h3>完善專案管理</h3>
+                <p>專業流程與進度控管，確保專案如期完成</p>
+              </div>
+            </li>
+            <li class="contact-aside-item">
+              <div class="contact-aside-ico" aria-hidden="true">
+                <img src="uploads/solutions-solve-step-05.png" alt="" width="120" height="120" loading="lazy" decoding="async">
+              </div>
+              <div>
+                <h3>後續維護支援</h3>
+                <p>提供長期技術支援與系統維護服務</p>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-page-team team" aria-labelledby="contact-team-stats-title">
+    <div class="container">
+      <h2 id="contact-team-stats-title" class="section-title">值得信賴的專業團隊</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">8<sup>+</sup></div>
+          <div class="stat-kicker">年產業經驗</div>
+          <div class="stat-desc">深耕視覺與系統整合</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<sup>+</sup></div>
+          <div class="stat-kicker">專案完成</div>
+          <div class="stat-desc">建案、商空與數位化</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num stat-num--word">多領域</div>
+          <div class="stat-kicker">合作經驗</div>
+          <div class="stat-desc">跨產業實務累積</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num stat-num--word">長期</div>
+          <div class="stat-kicker">客戶夥伴</div>
+          <div class="stat-desc">陪伴企業持續迭代</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-map-block" aria-labelledby="contact-map-title">
+    <div class="container">
+      <div class="contact-map-grid">
+        <div class="contact-map-info">
+          <h2 id="contact-map-title">聯絡我們</h2>
+          <ul class="contact-map-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>404 台中市北區三民路三段 313 號 4F-1</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.9.37 1.78.72 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.29a2 2 0 0 1 2.11-.45c.82.35 1.7.59 2.6.72A2 2 0 0 1 22 16.92z"/></svg>
+              <span><a href="tel:0423720718">04-23720718</a></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              <span><a href="mailto:wayto.metaverse@gmail.com">wayto.metaverse@gmail.com</a></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              <span>週一至週五 09:00 – 18:00</span>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-map-frame">
+          <iframe
+            title="Wayto 公司位置（Google 地圖）"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29124.951737741718!2d120.69109759999999!3d24.150015999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d60a121d5a3%3A0xddfaa45f7faaffc9!2zNDA06Ie65Lit5biC5YyX5Y2A6YeR6b6N6YeM5LiJ5rCR6Lev5LiJ5q61MzEz6Jmf!5e0!3m2!1szh-TW!2stw!4v1781269650344!5m2!1szh-TW!2stw"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-page-cta" aria-labelledby="contact-page-cta-title">
+    <div class="container contact-page-cta-inner">
+      <div class="contact-page-cta-copy">
+        <h2 id="contact-page-cta-title">好的技術，讓價值發生</h2>
+        <p>讓看不見的想像被看見，讓複雜的流程被管理。</p>
+        <p>期待與你聊聊下一個專案。</p>
+      </div>
+      <a class="contact-cta-btn" href="#contact-form">預約諮詢 →</a>
+    </div>
+  </section>
+
+  <div id="shared-footer"></div>
+  <script src="shared/layout.js"></script>
+  <script>
+    (function () {
+      var field = document.getElementById("contact-topic-field");
+      var cards = document.querySelectorAll(".contact-topic-card");
+      cards.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          cards.forEach(function (b) {
+            b.classList.remove("is-selected");
+            b.setAttribute("aria-pressed", "false");
+          });
+          btn.classList.add("is-selected");
+          btn.setAttribute("aria-pressed", "true");
+          if (field) field.value = btn.getAttribute("data-topic") || "";
+        });
+      });
+
+      var form = document.getElementById("contact-inquiry-form");
+      var done = document.getElementById("contact-form-done");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+
+          var fd = new FormData(form);
+          var topic = (fd.get("topic") || "").toString().trim();
+          var name = (fd.get("name") || "").toString().trim();
+          var email = (fd.get("email") || "").toString().trim();
+          var company = (fd.get("company") || "").toString().trim();
+          var phone = (fd.get("phone") || "").toString().trim();
+          var project = (fd.get("project") || "").toString().trim();
+          var message = (fd.get("message") || "").toString().trim();
+
+          var lines = [
+            "【諮詢主題】" + topic,
+            "【聯絡人】" + name,
+            "【Email】" + email,
+            "【公司】" + (company || "—"),
+            "【電話】" + (phone || "—"),
+            "【專案名稱】" + (project || "—"),
+            "",
+            "【需求說明】",
+            message || "—"
+          ];
+          var body = encodeURIComponent(lines.join("\n"));
+          var subject = encodeURIComponent("Wayto 官網諮詢：" + topic);
+          var mail = "mailto:wayto.metaverse@gmail.com?subject=" + subject + "&body=" + body;
+          window.location.href = mail;
+
+          if (done) {
+            done.textContent = "已開啟郵件程式。若沒有反應，請手動寄信至 wayto.metaverse@gmail.com。";
+            done.classList.add("is-visible");
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

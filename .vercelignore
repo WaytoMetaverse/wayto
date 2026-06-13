@@ -18,5 +18,8 @@ Thumbs.db
 *.tmp
 *.temp
 
+# 展覽互動頁本地備份（僅本機保留，勿部署上線）
+wayto1/solutions-exhibition.LOCAL-BACKUP.html
+
 
 

@@ -1,0 +1,307 @@
+/**
+ * 系統開發案例頁（cases-system.html）
+ * Hero 與 3D 案例頁共用 solutions.css 的 .about-hero#hero、.about-hero--accent-exh
+ */
+
+/* 字型、字級、行高與解決方案線 .sol-page 一致（shared/solutions.css） */
+.cases-system-page {
+  font-family: "Noto Sans TC", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.cases-system-page .cases-sys-breadcrumb {
+  margin: 0 0 18px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.cases-system-page .cases-sys-breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.cases-system-page .cases-sys-breadcrumb a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.cases-system-page .cases-sys-bc-sep {
+  margin: 0 8px;
+  color: var(--line);
+}
+
+/* 案例列表 */
+.cases-system-page .cases-sys-list-wrap {
+  background: #fff;
+}
+
+.cases-system-page .cases-sys-list-inner {
+  padding-bottom: 72px;
+}
+
+.cases-system-page .cases-sys-row {
+  display: grid;
+  grid-template-columns: minmax(280px, min(440px, 42vw)) minmax(0, 1fr);
+  gap: 32px 56px;
+  align-items: start;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+}
+
+.cases-system-page .cases-sys-row:last-of-type {
+  border-bottom: none;
+}
+
+.cases-system-page .cases-sys-row:hover {
+  background: linear-gradient(90deg, rgba(248, 250, 252, 0.9) 0%, transparent 55%);
+}
+
+.cases-system-page .cases-sys-row:focus-visible {
+  outline: 2px solid #a68257;
+  outline-offset: 4px;
+}
+
+.cases-system-page .cases-sys-row-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cases-system-page .cases-sys-num {
+  /* 與 solutions-design-proposal.html 的 .num-card .num 一致 */
+  font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--gold);
+}
+
+.cases-system-page .cases-sys-ph {
+  width: 100%;
+  /* 高度維持固定；寬度隨左欄加寬（略高於先前 210px） */
+  height: 248px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-soft);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
+}
+
+.cases-system-page .cases-sys-ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cases-system-page .cases-sys-ph--contain img {
+  object-fit: contain;
+  padding: 12px;
+}
+
+.cases-system-page .cases-sys-body {
+  position: relative;
+  padding-top: 4px;
+}
+
+.cases-system-page .cases-sys-headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-bottom: 14px;
+}
+
+.cases-system-page .cases-sys-body h2 {
+  margin: 0;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  flex: 1 1 12rem;
+}
+
+.cases-system-page .cases-sys-tag {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+
+.cases-system-page .cases-sys-desc {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.cases-system-page .cases-sys-feat {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+  max-width: 28rem;
+}
+
+.cases-system-page .cases-sys-feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.cases-system-page .cases-sys-feat-item svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: #2563eb;
+  margin-top: 1px;
+}
+
+@media (max-width: 900px) {
+  .cases-system-page .cases-sys-list-inner {
+    padding-bottom: 56px;
+  }
+
+  .cases-system-page .cases-sys-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 40px 0;
+  }
+
+  .cases-system-page .cases-sys-row-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .cases-system-page .cases-sys-ph {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+    width: auto;
+    height: 248px;
+  }
+
+  .cases-system-page .cases-sys-num {
+    font-size: 26px;
+  }
+}
+
+/* 底部 CTA：滿版底圖（與 3D 頁 cases3d-soft-cta 同結構；圖右側留白擺字） */
+.cases-system-page .cases-sys-soft-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-top: 1px solid rgba(196, 163, 90, 0.2);
+  padding: 30px 0 50px;
+  background-color: #f8fafc;
+}
+
+.cases-system-page .cases-sys-soft-cta-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #f8fafc;
+}
+
+.cases-system-page .cases-sys-soft-cta-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.cases-system-page .cases-sys-soft-cta-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 26%,
+    rgba(248, 250, 252, 0.45) 42%,
+    rgba(241, 245, 249, 0.78) 58%,
+    rgba(248, 250, 252, 0.95) 76%,
+    rgba(255, 255, 255, 0.98) 100%
+  );
+}
+
+.cases-system-page .cases-sys-soft-cta .container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.cases-system-page .cases-sys-soft-cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px 42px;
+}
+
+.cases-system-page .cases-sys-soft-copy {
+  flex: 1 1 260px;
+  min-width: 0;
+  max-width: 640px;
+}
+
+.cases-system-page .cases-sys-soft-copy h2 {
+  margin: 0 0 14px;
+  font-size: clamp(22px, 3.2vw, 32px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.cases-system-page .cases-sys-soft-copy .cases-sys-soft-lead {
+  margin: 0;
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.cases-system-page .cases-sys-soft-act {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .cases-system-page .cases-sys-soft-cta-inner {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .cases-system-page .cases-sys-soft-act {
+    justify-content: flex-start;
+  }
+}

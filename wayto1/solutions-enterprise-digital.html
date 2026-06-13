@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="系統數位化：客製管理後台、流程與表單、多系統串接與資料儀表板，協助團隊把散落資訊變成可追蹤、可決策的數位流程。維次元宇宙科技 Wayto。">
+  <title>系統數位化 方案 | 維次元宇宙科技 Wayto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/layout.css">
+  <link rel="stylesheet" href="shared/solutions.css">
+  <style>
+    /* Hero：與其他方案頁相同版面（solutions.css）；僅換底圖與對齊，不動區塊尺寸與字級 */
+    .about-hero.about-hero--enterprise {
+      background: #f5f7fa;
+    }
+    .about-hero.about-hero--enterprise .about-hero-img img {
+      object-fit: contain;
+      object-position: right center;
+    }
+
+    /* 「我們怎麼解決」：與建案銷售頁 #solve 相同（圖示無金圈襯底） */
+    #solve .process-track {
+      padding: 34px 22px 38px;
+      gap: 8px 14px;
+      align-items: stretch;
+    }
+    #solve .p-step {
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 10px 4px 12px;
+    }
+    #solve .p-step > span {
+      font-size: clamp(13px, 1.85vw, 16px);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.38;
+      letter-spacing: -0.02em;
+      margin-top: 4px;
+    }
+    #solve .p-step .p-step-desc {
+      margin: 0;
+      margin-top: 6px;
+      font-size: clamp(12px, 1.55vw, 14px);
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.6;
+      text-align: center;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      word-break: keep-all;
+    }
+    #solve .p-arrow {
+      align-self: center;
+      font-size: 14px;
+      padding: 0 2px;
+      opacity: 0.55;
+    }
+    @media (max-width: 900px) {
+      #solve .process-track {
+        padding: 28px 22px 32px;
+        gap: 20px 0;
+      }
+      #solve .p-step {
+        max-width: 26rem;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 18px 16px 20px;
+      }
+      #solve .p-step .p-step-desc {
+        max-width: 24rem;
+      }
+      #solve .p-arrow {
+        display: none;
+      }
+    }
+    #solve .section-head h2 {
+      font-size: clamp(24px, 3.1vw, 32px);
+    }
+    #solve .section-head p {
+      font-size: 16px;
+      line-height: 1.75;
+      max-width: 36em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 問題領域 */
+    .sol-ent-domains .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .sol-ent-domain {
+      background: #fff;
+      border: 1px solid #e8e8e6;
+      border-radius: 12px;
+      padding: 18px 14px 20px;
+      min-height: 100%;
+    }
+    .sol-ent-domain-ico {
+      height: var(--sol-ico-size);
+      margin: 0 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sol-ent-domain-ico img {
+      max-height: var(--sol-ico-size);
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .sol-ent-domain h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink);
+      margin: 0 0 10px;
+    }
+    .sol-ent-domain ul {
+      margin: 0;
+      padding: 0 0 0 1.1em;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    @media (max-width: 960px) {
+      .sol-ent-domains .domain-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 520px) {
+      .sol-ent-domains .domain-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 延伸產品：三欄（左說明＋雙產品卡，對齊 VIEWER 式稿） */
+    .sol-ent-extends.sol-ent-extends--banner {
+      background: #fff;
+    }
+
+    /* 常見問題：區塊底改白（覆寫共用 .faq 的 --bg-soft） */
+    #faq.faq {
+      background: #fff;
+    }
+    .sol-ent-extends-layout {
+      display: grid;
+      grid-template-columns: minmax(200px, 0.95fr) 1fr 1fr;
+      gap: 22px 20px;
+      align-items: stretch;
+    }
+    .sol-ent-extends-intro {
+      padding: 8px 8px 0 0;
+      max-width: 320px;
+    }
+    .sol-ent-extends-title {
+      font-size: clamp(22px, 2.4vw, 28px);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.3;
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+    .sol-ent-extends-intro .sol-ent-extends-lead {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0 0 20px;
+    }
+    .sol-ent-extends-intro .btn-outline-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .sol-ent-prod {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #fff;
+      min-height: 0;
+    }
+    a.sol-ent-prod {
+      display: block;
+    }
+    a.sol-ent-prod:focus-visible {
+      outline: 2px solid #a68257;
+      outline-offset: 3px;
+    }
+    .sol-ent-prod-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0;
+      min-height: 280px;
+    }
+    .sol-ent-prod-copy {
+      flex: 1 1 42%;
+      min-width: 0;
+      padding: 22px 18px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .sol-ent-prod-mock {
+      flex: 1 1 58%;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 14px 12px 8px;
+    }
+    .sol-ent-prod-mock img {
+      width: 100%;
+      height: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      display: block;
+    }
+    .sol-ent-prod--blue {
+      background: linear-gradient(165deg, #eef6fb 0%, #f7fbfd 40%, #fff 100%);
+    }
+    .sol-ent-prod--blue .sol-ent-prod-mock {
+      background: linear-gradient(180deg, rgba(224, 242, 254, 0.35) 0%, transparent 55%);
+    }
+    /* SpaceEase：標題、副標、條列各維持單行不斷字換行 */
+    .sol-ent-prod--blue .sol-ent-prod-copy h3,
+    .sol-ent-prod--blue .sol-ent-prod-tagline,
+    .sol-ent-prod--blue .sol-ent-prod-list li {
+      white-space: nowrap;
+    }
+    .sol-ent-prod--blue .sol-ent-prod-copy {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sol-ent-prod--green {
+      background: linear-gradient(165deg, #eefaf4 0%, #f6fdf9 40%, #fff 100%);
+    }
+    .sol-ent-prod--green .sol-ent-prod-mock {
+      background: linear-gradient(180deg, rgba(209, 250, 229, 0.4) 0%, transparent 55%);
+    }
+    /* ProjEase：標題、副標、條列各維持單行不斷字換行 */
+    .sol-ent-prod--green .sol-ent-prod-copy h3,
+    .sol-ent-prod--green .sol-ent-prod-tagline,
+    .sol-ent-prod--green .sol-ent-prod-list li {
+      white-space: nowrap;
+    }
+    .sol-ent-prod--green .sol-ent-prod-copy {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sol-ent-prod-copy h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .sol-ent-prod--blue .sol-ent-prod-copy h3 {
+      color: #1e3a5f;
+    }
+    .sol-ent-prod--green .sol-ent-prod-copy h3 {
+      color: #14532d;
+    }
+    .sol-ent-prod-tagline {
+      margin: 0 0 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #a68257;
+      letter-spacing: 0.02em;
+    }
+    .sol-ent-prod-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .sol-ent-prod-list li {
+      position: relative;
+      padding-left: 1.35em;
+      margin-bottom: 0.4em;
+    }
+    .sol-ent-prod-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.05em;
+      color: #a68257;
+      font-weight: 800;
+      font-size: 0.82em;
+    }
+
+    @media (max-width: 1100px) {
+      .sol-ent-extends-layout {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sol-ent-extends-intro {
+        grid-column: 1 / -1;
+        max-width: none;
+        padding-right: 0;
+      }
+    }
+    @media (max-width: 820px) {
+      .sol-ent-extends-layout {
+        grid-template-columns: 1fr;
+      }
+      .sol-ent-prod-inner {
+        flex-direction: column;
+        min-height: 0;
+      }
+      .sol-ent-prod-mock {
+        padding: 8px 16px 20px;
+        min-height: 200px;
+      }
+      .sol-ent-prod-mock img {
+        max-height: 220px;
+      }
+    }
+
+    .sol-ent-cases .svc-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: stretch;
+    }
+    .sol-ent-cases .svc-card .ph {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 5 / 3;
+      overflow: hidden;
+      background: #e8eaee;
+      flex-shrink: 0;
+    }
+    .sol-ent-cases .svc-card .ph img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .sol-ent-cases .svc-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+    }
+    .sol-ent-cases .svc-card .body {
+      flex: 1;
+    }
+    .sol-ent-cases .case-loc {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .sol-ent-cases .case-loc--mfg {
+      color: #2563eb;
+    }
+    .sol-ent-cases .case-loc--assoc {
+      color: #15803d;
+    }
+    .sol-ent-cases .case-loc--svc {
+      color: #7c3aed;
+    }
+    .sol-ent-cases .case-loc--build {
+      color: #1e3a5f;
+    }
+    .sol-ent-cases .case-kpi {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .sol-ent-cases .case-kpi strong {
+      font-weight: 800;
+    }
+    .sol-ent-cases .case-kpi--mfg {
+      color: #2563eb;
+    }
+    .sol-ent-cases .case-kpi--assoc {
+      color: #15803d;
+    }
+    .sol-ent-cases .case-kpi--svc {
+      color: #7c3aed;
+    }
+    .sol-ent-cases .case-kpi--build {
+      color: #1e3a5f;
+    }
+
+    @media (max-width: 900px) {
+      .sol-ent-cases .svc-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sol-ent-cases .svc-card {
+        min-height: 0;
+      }
+    }
+    @media (max-width: 520px) {
+      .sol-ent-cases .svc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 底欄 CTA：背景圖須寫在 #contact-cta.foot-cta::before（相對本 HTML） */
+    #contact-cta.foot-cta {
+      padding: 20px 0 28px;
+    }
+    #contact-cta.foot-cta::before {
+      background-image: url('uploads/sol_right.png');
+      background-size: 132% auto;
+      background-position: center 28%;
+    }
+    #contact-cta.foot-cta::after {
+      background: linear-gradient(
+        90deg,
+        rgba(6, 7, 10, 0.78) 0%,
+        rgba(6, 7, 10, 0.42) 18%,
+        rgba(6, 7, 10, 0.14) 34%,
+        transparent 52%
+      );
+    }
+    #contact-cta.foot-cta h2,
+    #contact-cta.foot-cta .foot-cta-lead {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 24px rgba(0, 0, 0, 0.35);
+    }
+    #contact-cta.foot-cta .foot-cta-lead {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    #contact-cta.foot-cta .btn-gold {
+      background: #a68257;
+    }
+    #contact-cta.foot-cta .btn-gold:hover {
+      background: #8f6f47;
+    }
+
+    /* 底欄 CTA：兩按鈕固定橫排（覆寫共用 .foot-cta .row 的 flex-wrap: wrap） */
+    #contact-cta.foot-cta .foot-cta-inner {
+      min-width: 0;
+    }
+    #contact-cta.foot-cta .row {
+      flex-wrap: nowrap;
+      flex-direction: row;
+      align-items: stretch;
+      min-width: 0;
+    }
+    /* 底欄 CTA：與稿面相同的雙行按鈕＋右側圖示（僅本頁 #contact-cta） */
+    #contact-cta .btn-cta-dual {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px 12px 18px;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: none;
+      text-decoration: none;
+      white-space: normal;
+      text-align: left;
+      line-height: 1.25;
+      box-sizing: border-box;
+    }
+    #contact-cta .btn-cta-dual-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+    #contact-cta .btn-cta-dual-main {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    #contact-cta .btn-cta-dual-sub {
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.92;
+      line-height: 1.35;
+    }
+    #contact-cta .btn-outline-light .btn-cta-dual-sub {
+      opacity: 0.88;
+    }
+    #contact-cta .btn-cta-dual-ico {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      color: inherit;
+      opacity: 0.95;
+    }
+    #contact-cta .btn-cta-dual-ico svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+    }
+
+  </style>
+</head>
+<body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
+
+  <div id="shared-nav"></div>
+
+  <div class="container sol-breadcrumb-bar">
+    <nav class="sol-breadcrumb" aria-label="麵包屑">
+      <a href="/wayto1/solutions.html">解決方案</a>
+      <span class="sol-bc-sep" aria-hidden="true">/</span>
+      <span>系統數位化</span>
+    </nav>
+  </div>
+
+  <main id="hero" class="about-hero about-hero--enterprise about-hero--accent-exh">
+    <div class="about-hero-img">
+      <img src="uploads/solutions-enterprise-hero.png" alt="系統數位化主視覺：流程梳理、客製開發、導入使用與持續優化" width="1920" height="720" loading="eager" fetchpriority="high">
+    </div>
+    <div class="about-hero-left">
+      <div class="about-hero-inner">
+        <div class="about-hero-tag">系統數位化</div>
+        <h1>讓系統不只是被開發，<br>而是真正被使用</h1>
+        <div class="about-hero-desc">
+          流程盤點、表單與簽核、權限與串接一次到位；上線後持續優化，讓同仁願意用、主管看得見決策依據。
+        </div>
+        <div class="hero-actions">
+          <button type="button" class="btn-gold" onclick="document.getElementById('solve')?.scrollIntoView({behavior:'smooth'})">了解解決方案</button>
+          <button type="button" class="btn-outline-gold" onclick="document.getElementById('extends')?.scrollIntoView({behavior:'smooth'})">觀看介紹 DEMO</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="pain" class="pain sol-ent-pain">
+    <div class="container">
+      <div class="section-head">
+        <h2>客戶正在遇到的問題</h2>
+        <p>多數卡關不在寫程式，而在資料與流程沒有單一真相來源，以及上線後缺少演進節奏。</p>
+      </div>
+      <div class="cards-4">
+        <article class="num-card">
+          <div class="num">01</div>
+          <div class="num-card-visual">
+            <img src="uploads/sol-ent-pain-01-line.png" alt="手持手機顯示 LINE 聊天列表，象徵工作資訊散在通訊軟體與各處紀錄" width="800" height="500" loading="lazy" decoding="async">
+          </div>
+          <h3>LINE 與 Excel 資料四散</h3>
+          <p>對話紀錄、表單與試算表版本不一，權限與稽核難以統一，報表永遠對不齊。</p>
+        </article>
+        <article class="num-card">
+          <div class="num">02</div>
+          <div class="num-card-visual">
+            <img src="uploads/sol-ent-pain-02-notebook.png" alt="辦公桌上以紙本與筆記書寫，象徵人工謄寫與重複整理" width="800" height="500" loading="lazy" decoding="async">
+          </div>
+          <h3>人工重複作業</h3>
+          <p>同一份資料在多處謄打、匯出再匯入，耗時且容易出錯，難以 scale。</p>
+        </article>
+        <article class="num-card">
+          <div class="num">03</div>
+          <div class="num-card-visual">
+            <img src="uploads/sol-ent-pain-03-kanban.png" alt="筆電顯示看板介面與實體便條並存，象徵流程尚未有單一真相來源" width="800" height="500" loading="lazy" decoding="async">
+          </div>
+          <h3>流程依賴個人</h3>
+          <p>靠資深同仁記憶與口頭交接，請假或異動就斷層，品質與速度難以複製。</p>
+        </article>
+        <article class="num-card">
+          <div class="num">04</div>
+          <div class="num-card-visual">
+            <img src="uploads/sol-ent-pain-04-stress.png" alt="辦公桌前扶額的同仁，象徵系統與流程卡關造成的負擔" width="800" height="500" loading="lazy" decoding="async">
+          </div>
+          <h3>系統買了卻沒人用</h3>
+          <p>介面與現場習慣脫節、沒有維運窗口，久而久之又回到紙本與人工。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="solve" class="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>我們怎麼解決</h2>
+        <p>從理解流程到持續優化，讓系統與組織一起演進。</p>
+      </div>
+      <div class="process-track" role="list" aria-label="系統數位化五步">
+        <div class="p-step" role="listitem">
+          <img class="p-ico-img" src="uploads/sol-ent-solve-01.png" alt="理解流程：流程圖與訪談釐清關鍵問題" width="120" height="120" loading="lazy" decoding="async">
+          <span>理解流程</span>
+          <p class="p-step-desc">訪談關鍵角色，釐清表單、簽核與例外情境。</p>
+        </div>
+        <span class="p-arrow" aria-hidden="true">→</span>
+        <div class="p-step" role="listitem">
+          <img class="p-ico-img" src="uploads/sol-ent-solve-02.png" alt="梳理需求：清單與分支整理欄位與規則" width="120" height="120" loading="lazy" decoding="async">
+          <span>梳理需求</span>
+          <p class="p-step-desc">欄位、權限、報表欄位與稽核軌跡一次定義。</p>
+        </div>
+        <span class="p-arrow" aria-hidden="true">→</span>
+        <div class="p-step" role="listitem">
+          <img class="p-ico-img" src="uploads/sol-ent-solve-03.png" alt="設計系統：畫面版型與資訊架構示意" width="120" height="120" loading="lazy" decoding="async">
+          <span>設計系統</span>
+          <p class="p-step-desc">資訊架構、後台版型與行動端操作動線。</p>
+        </div>
+        <span class="p-arrow" aria-hidden="true">→</span>
+        <div class="p-step" role="listitem">
+          <img class="p-ico-img" src="uploads/sol-ent-solve-04.png" alt="導入實作：導入系統與團隊上手" width="120" height="120" loading="lazy" decoding="async">
+          <span>導入實作</span>
+          <p class="p-step-desc">開發、串接、測試與教育訓練、上線演練。</p>
+        </div>
+        <span class="p-arrow" aria-hidden="true">→</span>
+        <div class="p-step" role="listitem">
+          <img class="p-ico-img" src="uploads/sol-ent-solve-05.png" alt="持續優化：數據與迭代循環" width="120" height="120" loading="lazy" decoding="async">
+          <span>持續優化</span>
+          <p class="p-step-desc">版本節奏、維運窗口與數據回饋迭代。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="domains" class="pain sol-ent-domains">
+    <div class="container">
+      <div class="section-head">
+        <h2>我們解決哪些問題</h2>
+        <p>跨產業的共通管理課題，可依現況模組化或客製整合。</p>
+      </div>
+      <div class="domain-grid">
+        <div class="sol-ent-domain">
+          <div class="sol-ent-domain-ico">
+            <img src="uploads/sol-ent-domain-01.png" alt="工程管理：工地與專案進度整合示意" width="120" height="120" loading="lazy" decoding="async">
+          </div>
+          <h3>工程管理</h3>
+          <ul>
+            <li>報價與案件進度</li>
+            <li>出工與成本歸屬</li>
+            <li>請款與尾款追蹤</li>
+          </ul>
+        </div>
+        <div class="sol-ent-domain">
+          <div class="sol-ent-domain-ico">
+            <img src="uploads/sol-ent-domain-02.png" alt="空間預約：檔期與場域管理示意" width="120" height="120" loading="lazy" decoding="async">
+          </div>
+          <h3>空間預約</h3>
+          <ul>
+            <li>場地／會議室時段</li>
+            <li>資源衝突檢查</li>
+            <li>通知與報表匯出</li>
+          </ul>
+        </div>
+        <div class="sol-ent-domain">
+          <div class="sol-ent-domain-ico">
+            <img src="uploads/sol-ent-domain-03.png" alt="活動與報名：名額與行銷整合示意" width="120" height="120" loading="lazy" decoding="async">
+          </div>
+          <h3>活動／報名</h3>
+          <ul>
+            <li>線上報名與名額</li>
+            <li>簽到與問卷</li>
+            <li>多場次排程</li>
+          </ul>
+        </div>
+        <div class="sol-ent-domain">
+          <div class="sol-ent-domain-ico">
+            <img src="uploads/sol-ent-domain-04.png" alt="會員營運：名單與權益管理示意" width="120" height="120" loading="lazy" decoding="async">
+          </div>
+          <h3>會員營運</h3>
+          <ul>
+            <li>等級與點數規則</li>
+            <li>權益兌換</li>
+            <li>分眾溝通欄位</li>
+          </ul>
+        </div>
+        <div class="sol-ent-domain">
+          <div class="sol-ent-domain-ico">
+            <img src="uploads/sol-ent-domain-05.png" alt="企業流程：表單簽核與整合示意" width="120" height="120" loading="lazy" decoding="async">
+          </div>
+          <h3>企業流程</h3>
+          <ul>
+            <li>表單與簽核</li>
+            <li>多系統串接</li>
+            <li>儀表板與稽核</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="extends" class="pain sol-ent-extends sol-ent-extends--banner">
+    <div class="container sol-ent-extends-layout">
+      <div class="sol-ent-extends-intro">
+        <h2 class="sol-ent-extends-title">延伸產品</h2>
+        <p class="sol-ent-extends-lead">我們開發自有產品，滿足常見需求，快速導入，也可依需求擴充。</p>
+        <a class="btn-outline-gold" href="/wayto1/contact.html#contact-form">了解更多產品 →</a>
+      </div>
+      <article class="sol-ent-prod sol-ent-prod--blue">
+        <div class="sol-ent-prod-inner">
+          <div class="sol-ent-prod-copy">
+            <h3>SpaceEase</h3>
+            <p class="sol-ent-prod-tagline">空間租借與預約管理系統</p>
+            <ul class="sol-ent-prod-list">
+              <li>場地與時段線上管理</li>
+              <li>線上預約與付款</li>
+              <li>設備與資源管理</li>
+              <li>營運數據報表</li>
+            </ul>
+          </div>
+          <div class="sol-ent-prod-mock">
+            <img src="uploads/sol-ent-extends-spaceease.png" alt="SpaceEase 管理後台於筆電與手機的介面示意" width="1200" height="750" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </article>
+      <a href="/wayto1/projease.html" class="sol-ent-prod sol-ent-prod--green" style="text-decoration:none;color:inherit;">
+        <div class="sol-ent-prod-inner">
+          <div class="sol-ent-prod-copy">
+            <h3>ProjEase</h3>
+            <p class="sol-ent-prod-tagline">工程專案管理系統</p>
+            <ul class="sol-ent-prod-list">
+              <li>專案進度與任務管理</li>
+              <li>報價與成本控管</li>
+              <li>文件與圖檔管理</li>
+              <li>工班與出工管理</li>
+            </ul>
+          </div>
+          <div class="sol-ent-prod-mock">
+            <img src="uploads/sol-ent-extends-projease.png" alt="ProjEase 工程專案管理儀表板於筆電與手機的介面示意" width="1200" height="750" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="cases" class="pain sol-ent-cases">
+    <div class="container">
+      <div class="section-head">
+        <h2>客製化案例</h2>
+        <p>實際導入後的效益與節奏，依產業與範疇有所不同。</p>
+      </div>
+      <div class="svc-grid">
+        <article class="svc-card">
+          <div class="ph"><img src="uploads/sol-ent-case-01.png" alt="製造業：會議中檢視報表與導入節奏討論" width="800" height="500" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <div class="case-loc case-loc--mfg">製造業</div>
+            <h3>業績管理系統</h3>
+            <p>自動計算業績與獎金，減少人工錯誤與計算時間。</p>
+            <div class="case-kpi case-kpi--mfg">計算時間減少 <strong>80%</strong></div>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="ph"><img src="uploads/sol-ent-case-02.png" alt="社團管理：團隊協作與會議情境" width="800" height="500" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <div class="case-loc case-loc--assoc">社團管理</div>
+            <h3>社團管理系統</h3>
+            <p>會員資料、活動報名、繳費與通知一站式管理。</p>
+            <div class="case-kpi case-kpi--assoc">行政時間減少 <strong>60%</strong></div>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="ph"><img src="uploads/sol-ent-case-03.png" alt="服務業：行動支付與會員服務情境" width="800" height="500" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <div class="case-loc case-loc--svc">服務業</div>
+            <h3>會員管理系統</h3>
+            <p>會員資料整合、權限管理，提升會員體驗與服務品質。</p>
+            <div class="case-kpi case-kpi--svc">會員活躍度提升 <strong>35%</strong></div>
+          </div>
+        </article>
+        <article class="svc-card">
+          <div class="ph"><img src="uploads/sol-ent-case-04.png" alt="建築業：圖表與專案儀表板檢視" width="800" height="500" loading="lazy" decoding="async"></div>
+          <div class="body">
+            <div class="case-loc case-loc--build">建築業</div>
+            <h3>流程管理系統</h3>
+            <p>圖檔版本與審核流程數位化，專案協作更順暢。</p>
+            <div class="case-kpi case-kpi--build">文件錯誤率降低 <strong>60%</strong></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>常見問題</h2>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item"><summary>客製系統如何報價？</summary>
+          <div class="ans">依流程複雜度、串接數量、權限與報表範圍及是否含行動端等評估工時與風險；訪談後提供項目清單與報價，後續變更以變更單或追加報價載明。</div>
+        </details>
+        <details class="faq-item"><summary>是否可以串接第三方服務？</summary>
+          <div class="ans">可以。常見為 REST／Webhook、排程同步、檔案交換或單一登入；依對方 API 與認證方式設計錯誤重試與稽核紀錄。</div>
+        </details>
+        <details class="faq-item"><summary>開發時間需要多久？</summary>
+          <div class="ans">視需求規模與環境；標準模組可縮短檔期，含多系統整合與 UAT 須預留測試期。時程於規格確認後以里程碑載明。</div>
+        </details>
+        <details class="faq-item"><summary>後續如何維護與升級？</summary>
+          <div class="ans">可依合約約定維運窗口、版本節奏與緊急修復；例行更新與功能迭代另以工單或年度維護方案執行。</div>
+        </details>
+        <details class="faq-item"><summary>如何整理需求？</summary>
+          <div class="ans">由專案經理／顧問協助訪談關鍵角色，產出流程圖、欄位表、角色權限與驗收條件；必要時先做現況盤點與介面對齊。</div>
+        </details>
+        <details class="faq-item"><summary>系統導入後有教育訓練嗎？</summary>
+          <div class="ans">有。含管理後台操作、表單與簽核演練及常見問題說明；依上線規模安排場次或分段教材。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-cta" class="foot-cta">
+    <div class="container">
+      <div class="foot-cta-inner">
+        <div class="foot-cta-copy">
+          <h2>把時間留給決策，把瑣事交給系統。</h2>
+          <p class="foot-cta-lead">讓系統成為團隊的最佳夥伴，提升效率，創造更多價值。</p>
+        </div>
+        <div class="row">
+          <a class="btn-gold btn-cta-dual" href="/wayto1/contact.html#contact-form">
+            <span class="btn-cta-dual-text">
+              <span class="btn-cta-dual-main">預約諮詢 →</span>
+              <span class="btn-cta-dual-sub">免費評估您的需求</span>
+            </span>
+            <span class="btn-cta-dual-ico" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </span>
+          </a>
+          <a class="btn-outline-light btn-cta-dual" href="/wayto1/projease.html">
+            <span class="btn-cta-dual-text">
+              <span class="btn-cta-dual-main">預約系統展示</span>
+              <span class="btn-cta-dual-sub">了解系統如何運作</span>
+            </span>
+            <span class="btn-cta-dual-ico" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"></div>
+
+  <script src="shared/layout.js"></script>
+</body>
+</html>

@@ -51,7 +51,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: 
 .ui-dot { width: 10px; height: 10px; border-radius: 50%; }
 .hero-content {
   position: relative; z-index: 3;
-  max-width: 1200px; margin: 0 auto; padding: 80px 24px;
+  max-width: var(--layout-max, 1320px); margin: 0 auto; padding: 80px 24px;
   width: 100%;
 }
 .hero-tag {
@@ -85,7 +85,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: 
 
 /* SECTION */
 section { padding: 80px 24px; }
-.container { max-width: 1200px; margin: 0 auto; }
+.container { max-width: var(--layout-max, 1320px); margin: 0 auto; }
 .section-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .section-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
 
@@ -168,6 +168,7 @@ section { padding: 80px 24px; }
 
 /* FOUR SOLUTIONS */
 .four-solutions { background: #fff; }
+.four-solutions .section-title { white-space: nowrap; font-size: clamp(15px, 3.8vw, 28px); }
 .four-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; }
 .four-card {
   border: 1px solid var(--border); border-radius: 0; padding: 32px 24px 28px;
@@ -229,7 +230,7 @@ section { padding: 80px 24px; }
 .ai-photo::after { display: none; }
 .ai-content {
   position: relative; z-index: 2;
-  max-width: 1200px; width: 100%; margin: 0 auto;
+  max-width: var(--layout-max, 1320px); width: 100%; margin: 0 auto;
   padding: 80px 24px; display: flex; justify-content: flex-end;
 }
 .ai-text { max-width: 420px; }
@@ -324,7 +325,7 @@ section { padding: 80px 24px; }
 .cta-banner-inner {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: var(--layout-max, 1320px);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -578,7 +579,7 @@ section { padding: 80px 24px; }
     <p class="hero-subtitle">讓展示與系統真正發揮價值</p>
     <p class="hero-desc">整合 3D 視覺與客製化系統，<br>協助建案開發，設計能讓企業流程數位化。</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="#solutions">了解全展示 →</a>
+      <a class="btn-primary" href="/wayto1/solutions.html">了解全展示 →</a>
       <a class="btn-outline" href="#ai" style="opacity: 100">了解數位 →</a>
     </div>
     <div class="hero-dots">
@@ -685,35 +686,35 @@ section { padding: 80px 24px; }
 <!-- FOUR SOLUTIONS -->
 <section class="four-solutions">
   <div class="container">
-    <h2 class="section-title reveal section-title--multiline">從展示到管理，找到適合你的解決方案</h2>
+    <h2 class="section-title reveal">從展示到管理，找到適合你的解決方案</h2>
     <div class="four-grid">
 
       <div class="four-card reveal reveal-delay-1">
         <div class="four-icon"><img src="uploads/four-solution-property.png" alt="建案銷售"></div>
         <h3>建案銷售</h3>
         <p>讓尚未完工的空間提前被看見，協助銷售團隊更清楚說明產品價值。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-property-sales.html">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-2">
         <div class="four-icon"><img src="uploads/four-solution-design.png" alt="設計提案"></div>
         <h3>設計提案</h3>
         <p>將設計想法轉化為客戶看得懂的畫面，降低溝通落差與反覆修改成本。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-design-proposal.html">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-3">
         <div class="four-icon"><img src="uploads/four-solution-exhibit.png" alt="展覽互動"></div>
         <h3>展覽互動</h3>
         <p>透過互動展示與沉浸式體驗，讓品牌在現場留下更深刻的記憶點。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-exhibition.html">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-4">
         <div class="four-icon"><img src="uploads/four-solution-system.png" alt="系統數位化"></div>
         <h3>系統數位化</h3>
         <p>將分散的資料、流程與管理作業整理成可追蹤、可管理的數位系統。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-enterprise-digital.html">了解更多 →</a>
       </div>
 
     </div>
@@ -725,7 +726,7 @@ section { padding: 80px 24px; }
   <div class="container">
     <div class="cases-header reveal">
       <h2 class="section-title" style="margin-bottom:0">精選案例</h2>
-      <a class="view-all" href="#">查看所有有案例 →</a>
+      <a class="view-all" href="/wayto1/cases.html">查看全部案例 →</a>
     </div>
     <div class="carousel-wrap">
       <button class="carousel-btn prev" onclick="prevSlide()">
@@ -865,8 +866,8 @@ section { padding: 80px 24px; }
     </div>
     <div class="cta-banner-right">
       <div class="cta-btns">
-        <a class="btn-primary" href="/process.html#contact">聯繫我們</a>
-        <a class="btn-outline cta-btn-light" href="/portfolio.html">查看案例</a>
+        <a class="btn-primary" href="/wayto1/contact.html#contact-form">聯繫我們</a>
+        <a class="btn-outline cta-btn-light" href="/wayto1/cases.html">查看案例</a>
       </div>
     </div>
   </div>
