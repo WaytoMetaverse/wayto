@@ -35,13 +35,13 @@
     <div class="cases-container">
       <div class="cases-sec-head">
         <h2 id="cases-latest-title">3D效果圖</h2>
-        <a class="cases-link-more" href="https://wayto.com.tw/portfolio.html#works" target="_blank" rel="noopener noreferrer">查看完整作品集 <span aria-hidden="true">→</span></a>
+        <a class="cases-link-more" href="/wayto1/cases-3d.html">查看完整作品集 <span aria-hidden="true">→</span></a>
       </div>
       <p class="cases-latest-intro">精選空間視覺案例；點選可預覽 720° 環景、影片或前往完整作品列表。</p>
       <div class="cases-latest-grid--pf-mixed" id="pf-grid-portfolio"></div>
 
       <div class="cases-more-wrap">
-        <a class="cases-btn-more" href="https://wayto.com.tw/portfolio.html#works" target="_blank" rel="noopener noreferrer">瀏覽更多作品 <span aria-hidden="true">→</span></a>
+        <a class="cases-btn-more" href="/wayto1/cases-3d.html">瀏覽更多作品 <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -98,6 +98,17 @@
             <a class="cases-fcard-link" href="/wayto1/rotaract.html">查看案例 →</a>
           </div>
         </article>
+        <article class="cases-fcard">
+          <div class="cases-fcard-ph">
+            <img src="uploads/sol-ent-extends-spaceease.png" alt="SpaceEase 空間自營系統預約與後台介面" width="1200" height="750" loading="lazy" decoding="async">
+          </div>
+          <div class="cases-fcard-body">
+            <h3>SpaceEase 空間自營系統</h3>
+            <span class="cases-fcard-tag cases-fcard-tag--system">系統開發</span>
+            <p>預約、付款、簽到、結帳與超時計費自動化，協助共享空間、攝影棚與教室降低營運人力。</p>
+            <a class="cases-fcard-link" href="/wayto1/spaceease.html">查看案例 →</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -121,8 +132,8 @@
   <script src="shared/layout.js"></script>
   <script>
     (function () {
-      var MEDIA_BASE = 'https://wayto.com.tw/';
-      var PORTFOLIO_PAGE = 'https://wayto.com.tw/portfolio.html#works';
+      var MEDIA_BASE = '/';
+      var PORTFOLIO_PAGE = '/wayto1/cases-3d.html';
       var GRID_ID = 'pf-grid-portfolio';
 
       function escAttr(s) {
@@ -144,9 +155,25 @@
         return id ? ('https://img.youtube.com/vi/' + id + '/hqdefault.jpg') : '';
       }
 
+      function normalizeMediaUrl(src) {
+        src = String(src || '').trim();
+        if (!src) return '';
+        if (/^(https?:)?\/\//i.test(src) || /^data:/i.test(src)) return src;
+        return MEDIA_BASE + src.replace(/^\//, '');
+      }
+
+      function itemThumbnailUrl(item) {
+        return normalizeMediaUrl(item.thumbnailUrl || item.thumbnail || item.thumb || '');
+      }
+
       function mediaMarkup(item, nameEsc) {
+        var emb = item.embedUrl && String(item.embedUrl).trim();
+        var embedThumb = emb ? itemThumbnailUrl(item) : '';
+        if (embedThumb) {
+          return '<img class="cases-tile-thumb cases-tile-thumb--vr" src="' + escAttr(embedThumb) + '" alt="' + nameEsc + '" width="640" height="400" loading="lazy" decoding="async"><span class="cases-tile-vr-badge">720°</span>';
+        }
         if (item.images && item.images[0]) {
-          var src = MEDIA_BASE + String(item.images[0]).replace(/^\//, '');
+          var src = normalizeMediaUrl(item.images[0]);
           return '<img src="' + escAttr(src) + '" alt="' + nameEsc + '" width="640" height="400" loading="lazy" decoding="async">';
         }
         if (item.youtubeUrls && item.youtubeUrls[0]) {
@@ -180,15 +207,19 @@
         return base + ' cases-tile--pf-row2';
       }
 
+      function categoryHref(cat) {
+        return PORTFOLIO_PAGE + (cat ? ('#cat-' + encodeURIComponent(cat)) : '');
+      }
+
       function cardHtml(item, tagLabel, index) {
         var name = item.name || '未命名';
         var nameEsc = escAttr(name);
         var nameText = escText(name);
         var emb = (item.embedUrl || '').trim();
-        var href = emb || PORTFOLIO_PAGE;
-        var target = '_blank';
-        var rel = ' rel="noopener noreferrer"';
         var cat = item.category ? String(item.category) : '';
+        var href = emb || categoryHref(cat);
+        var target = emb ? '_blank' : '_self';
+        var rel = emb ? ' rel="noopener noreferrer"' : '';
         return (
           '<a class="' + escAttr(tileClass(index)) + ' cases-tile--pf" href="' + escAttr(href) + '" target="' + target + '"' + rel + '>' +
           '<div class="cases-tile-media">' + mediaMarkup(item, nameEsc) + '</div>' +
@@ -210,13 +241,13 @@
         el.innerHTML = items.map(function (i, idx) { return cardHtml(i, categoryLabel(i, data), idx); }).join('');
       }
 
-      fetch('data/portfolio.json')
+      fetch('data/portfolio.json?v=vrthumb-20260613', { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('fetch')); })
         .then(render)
         .catch(function () {
           var el = document.getElementById(GRID_ID);
           if (el) {
-            el.innerHTML = '<p class="cases-pf-empty">無法載入作品集，請稍後再試或前往 <a href="' + escAttr(PORTFOLIO_PAGE) + '" target="_blank" rel="noopener noreferrer">完整作品集</a>。</p>';
+            el.innerHTML = '<p class="cases-pf-empty">無法載入作品集，請稍後再試或前往 <a href="' + escAttr(PORTFOLIO_PAGE) + '">完整作品集</a>。</p>';
           }
         });
     })();

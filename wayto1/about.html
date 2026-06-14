@@ -192,6 +192,21 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
   flex-shrink: 0;
 }
 .believe-cta-btn:hover { background: rgba(255,255,255,0.18); }
+.believe-cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.believe-cta-btn--primary {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+.believe-cta-btn--primary:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
 
 /* ── REVEAL ── */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
@@ -221,6 +236,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
   .dev-grid { grid-template-columns: 1fr; gap: 36px; }
 
   .believe-cta { padding: 60px 32px; flex-direction: column; align-items: flex-start; gap: 28px; }
+  .believe-cta-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
 }
 
 /* Large phone / small tablet */
@@ -256,6 +272,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
   .dev-year-row { grid-template-columns: 56px 1fr; font-size: 13px; }
 
   .believe-cta { padding: 48px 24px; gap: 24px; }
+  .believe-cta-actions { width: 100%; flex-direction: column; align-items: flex-start; }
   .believe-text h2 { font-size: 22px; }
   .believe-cta-btn { width: 100%; max-width: 320px; justify-content: center; }
 }
@@ -449,12 +466,26 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
     而是讓空間更容易被理解，讓體驗更容易被參與，<br>
     讓流程真正能夠被使用。</p>
   </div>
-  <a class="believe-cta-btn" href="/wayto1/contact.html#contact-form">
-    與我們聊聊你的專案
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
+  <div class="believe-cta-actions">
+    <a class="believe-cta-btn believe-cta-btn--primary" href="/wayto1/solutions.html">
+      查看解決方案
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="believe-cta-btn" href="/wayto1/cases.html">
+      查看案例作品
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="believe-cta-btn" href="/wayto1/contact.html#contact-form">
+      與我們聊聊你的專案
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
 </section>
 
 <!-- FOOTER -->

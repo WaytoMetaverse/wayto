@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css">
-  <link rel="stylesheet" href="shared/solutions.css">
+  <link rel="stylesheet" href="shared/solutions.css?v=hero-cover-20260613">
   <style>
     /* Hero：與其他方案頁相同版面（solutions.css）；僅換底圖與對齊，不動區塊尺寸與字級 */
     .about-hero.about-hero--enterprise {
@@ -347,6 +347,8 @@
       display: flex;
       flex-direction: column;
       min-height: 400px;
+      color: inherit;
+      text-decoration: none;
     }
     .sol-ent-cases .svc-card .body {
       flex: 1;
@@ -499,14 +501,6 @@
 <body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
 
   <div id="shared-nav"></div>
-
-  <div class="container sol-breadcrumb-bar">
-    <nav class="sol-breadcrumb" aria-label="麵包屑">
-      <a href="/wayto1/solutions.html">解決方案</a>
-      <span class="sol-bc-sep" aria-hidden="true">/</span>
-      <span>系統數位化</span>
-    </nav>
-  </div>
 
   <main id="hero" class="about-hero about-hero--enterprise about-hero--accent-exh">
     <div class="about-hero-img">
@@ -683,7 +677,7 @@
         <p class="sol-ent-extends-lead">我們開發自有產品，滿足常見需求，快速導入，也可依需求擴充。</p>
         <a class="btn-outline-gold" href="/wayto1/contact.html#contact-form">了解更多產品 →</a>
       </div>
-      <article class="sol-ent-prod sol-ent-prod--blue">
+      <a href="/wayto1/spaceease.html" class="sol-ent-prod sol-ent-prod--blue" style="text-decoration:none;color:inherit;">
         <div class="sol-ent-prod-inner">
           <div class="sol-ent-prod-copy">
             <h3>SpaceEase</h3>
@@ -699,7 +693,7 @@
             <img src="uploads/sol-ent-extends-spaceease.png" alt="SpaceEase 管理後台於筆電與手機的介面示意" width="1200" height="750" loading="lazy" decoding="async">
           </div>
         </div>
-      </article>
+      </a>
       <a href="/wayto1/projease.html" class="sol-ent-prod sol-ent-prod--green" style="text-decoration:none;color:inherit;">
         <div class="sol-ent-prod-inner">
           <div class="sol-ent-prod-copy">
@@ -727,42 +721,42 @@
         <p>實際導入後的效益與節奏，依產業與範疇有所不同。</p>
       </div>
       <div class="svc-grid">
-        <article class="svc-card">
-          <div class="ph"><img src="uploads/sol-ent-case-01.png" alt="製造業：會議中檢視報表與導入節奏討論" width="800" height="500" loading="lazy" decoding="async"></div>
+        <a class="svc-card" href="/wayto1/case-study-bocchi.html">
+          <div class="ph"><img src="uploads/bocchi/preview-interior.png" alt="PokéPoké 波奇波奇擴店系統 3D 提案介面" width="640" height="400" loading="lazy" decoding="async"></div>
           <div class="body">
-            <div class="case-loc case-loc--mfg">製造業</div>
-            <h3>業績管理系統</h3>
-            <p>自動計算業績與獎金，減少人工錯誤與計算時間。</p>
-            <div class="case-kpi case-kpi--mfg">計算時間減少 <strong>80%</strong></div>
+            <div class="case-loc case-loc--mfg">連鎖加盟</div>
+            <h3>PokéPoké 波奇波奇擴店系統</h3>
+            <p>即時 3D 展店提案、設備拖曳擺放與施工圖切換，讓加盟展店討論集中在同一套畫面。</p>
+            <div class="case-kpi case-kpi--mfg">完整案例 <strong>查看展店流程</strong></div>
           </div>
-        </article>
-        <article class="svc-card">
-          <div class="ph"><img src="uploads/sol-ent-case-02.png" alt="社團管理：團隊協作與會議情境" width="800" height="500" loading="lazy" decoding="async"></div>
+        </a>
+        <a class="svc-card" href="/wayto1/rotaract.html">
+          <div class="ph"><img src="uploads/rotaract/case-card-dashboard.png" alt="扶青社團管理系統活動大廳與報名介面" width="640" height="400" loading="lazy" decoding="async"></div>
           <div class="body">
             <div class="case-loc case-loc--assoc">社團管理</div>
-            <h3>社團管理系統</h3>
-            <p>會員資料、活動報名、繳費與通知一站式管理。</p>
-            <div class="case-kpi case-kpi--assoc">行政時間減少 <strong>60%</strong></div>
+            <h3>扶青社團管理系統</h3>
+            <p>活動、攜伴、簽到、餐點、財務與數位名片整合，讓定期聚會型社團有單一管理入口。</p>
+            <div class="case-kpi case-kpi--assoc">完整案例 <strong>查看社務流程</strong></div>
           </div>
-        </article>
-        <article class="svc-card">
-          <div class="ph"><img src="uploads/sol-ent-case-03.png" alt="服務業：行動支付與會員服務情境" width="800" height="500" loading="lazy" decoding="async"></div>
+        </a>
+        <a class="svc-card" href="/wayto1/herchu.html">
+          <div class="ph"><img src="uploads/herchu/logo.jpg" alt="磐石砌好厝活動管理平台識別" width="800" height="600" loading="lazy" decoding="async"></div>
           <div class="body">
-            <div class="case-loc case-loc--svc">服務業</div>
-            <h3>會員管理系統</h3>
-            <p>會員資料整合、權限管理，提升會員體驗與服務品質。</p>
-            <div class="case-kpi case-kpi--svc">會員活躍度提升 <strong>35%</strong></div>
+            <div class="case-loc case-loc--svc">活動管理</div>
+            <h3>磐石砌好厝活動管理系統</h3>
+            <p>從建築小組組聚流程出發，整合活動報名、簽到、餐點、繳費、名片與講師預約。</p>
+            <div class="case-kpi case-kpi--svc">完整案例 <strong>查看活動流程</strong></div>
           </div>
-        </article>
-        <article class="svc-card">
-          <div class="ph"><img src="uploads/sol-ent-case-04.png" alt="建築業：圖表與專案儀表板檢視" width="800" height="500" loading="lazy" decoding="async"></div>
+        </a>
+        <a class="svc-card" href="/wayto1/spaceease.html">
+          <div class="ph"><img src="uploads/sol-ent-extends-spaceease.png" alt="SpaceEase 空間自營系統預約與後台介面" width="1200" height="750" loading="lazy" decoding="async"></div>
           <div class="body">
-            <div class="case-loc case-loc--build">建築業</div>
-            <h3>流程管理系統</h3>
-            <p>圖檔版本與審核流程數位化，專案協作更順暢。</p>
-            <div class="case-kpi case-kpi--build">文件錯誤率降低 <strong>60%</strong></div>
+            <div class="case-loc case-loc--build">空間營運</div>
+            <h3>SpaceEase 空間自營系統</h3>
+            <p>把預約、付款、簽到、結帳與超時計費串成自動化閉環，適合按時段收費的共享空間。</p>
+            <div class="case-kpi case-kpi--build">完整案例 <strong>查看營運流程</strong></div>
           </div>
-        </article>
+        </a>
       </div>
     </div>
   </section>

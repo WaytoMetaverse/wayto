@@ -9,25 +9,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css">
-  <link rel="stylesheet" href="shared/solutions.css">
+  <link rel="stylesheet" href="shared/solutions.css?v=hero-cover-20260613">
   <style>
     /* 底圖須覆寫 #contact-cta.foot-cta::before：僅設 :root 變數時，url 會以 shared/solutions.css 為基準解析成 shared/uploads/ 而破圖 */
     #contact-cta.foot-cta::before {
       background-image: url('uploads/preview-contact-cta-bg.png');
+    }
+    #services .svc-card .ph video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
   </style>
 </head>
 <body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
 
   <div id="shared-nav"></div>
-
-  <div class="container sol-breadcrumb-bar">
-    <nav class="sol-breadcrumb" aria-label="麵包屑">
-      <a href="/wayto1/solutions.html">解決方案</a>
-      <span class="sol-bc-sep" aria-hidden="true">/</span>
-      <span>設計提案</span>
-    </nav>
-  </div>
 
   <main id="hero" class="about-hero about-hero--accent-exh">
     <div class="about-hero-img">
@@ -71,8 +69,8 @@
           <div class="num">02</div>
           <div class="num-card-visual" aria-hidden="true">
             <div class="num-card-split">
-              <div><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=400&q=80" alt="" loading="lazy" decoding="async"></div>
-              <div><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80" alt="" loading="lazy" decoding="async"></div>
+              <div><img src="/images/portfolio/items/item-1769670318054/1.jpg" alt="" loading="lazy" decoding="async"></div>
+              <div><img src="/images/portfolio/items/item-1769673880114/1.jpg" alt="" loading="lazy" decoding="async"></div>
             </div>
           </div>
           <h3>圖面與現場落差</h3>
@@ -165,32 +163,40 @@
       </div>
       <div class="svc-grid">
         <article class="svc-card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="" loading="lazy" decoding="async"></div>
-          <div class="body">
-            <h3>靜態渲染</h3>
-            <p>材質與設計定案階段，精準輸出高解析靜態圖。</p>
-          </div>
+          <a href="/wayto1/cases-3d.html#cat-interior" style="display:block;text-decoration:none;color:inherit;">
+            <div class="ph"><img src="/images/portfolio/items/item-1769670318054/1.jpg" alt="惠宇謙和室內設計 3D 靜態渲染作品" loading="lazy" decoding="async"></div>
+            <div class="body">
+              <h3>靜態渲染</h3>
+              <p>以惠宇謙和等室內作品呈現材質、光影與空間比例。</p>
+            </div>
+          </a>
         </article>
         <article class="svc-card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="" loading="lazy" decoding="async"></div>
-          <div class="body">
-            <h3>360 環景</h3>
-            <p>沉浸式導覽，適合與客戶現場討論動線與視角。</p>
-          </div>
+          <a href="https://vr.3d66.com/next/vr/view/7819367" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;">
+            <div class="ph"><img src="https://vrimg.3d66.com/vr/thumb/20260323193722/33310823/thumb.jpg" alt="漢陽街 720 度環景室內作品縮圖" loading="lazy" decoding="async"></div>
+            <div class="body">
+              <h3>360 環景</h3>
+              <p>以漢陽街環景作品示範沉浸式導覽與視角討論。</p>
+            </div>
+          </a>
         </article>
         <article class="svc-card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1600573472558-18c9d14c9c50?w=600&q=80" alt="" loading="lazy" decoding="async"></div>
-          <div class="body">
-            <h3>動態展示</h3>
-            <p>鏡頭語言強化重點，讓提案簡報更有記憶點。</p>
-          </div>
+          <a href="/wayto1/cases-3d.html#cat-construction" style="display:block;text-decoration:none;color:inherit;">
+            <div class="ph"><video muted playsinline autoplay loop preload="metadata"><source src="/images/portfolio/items/item-1769676951722/v1.mp4" type="video/mp4"></video></div>
+            <div class="body">
+              <h3>動態展示</h3>
+              <p>以實際電子展板影片素材呈現空間動線與重點視覺。</p>
+            </div>
+          </a>
         </article>
         <article class="svc-card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="" loading="lazy" decoding="async"></div>
-          <div class="body">
-            <h3>虛擬展間</h3>
-            <p>3D 剖視與多視角體驗，整體空間感一次到位。</p>
-          </div>
+          <a href="/wayto1/cases-3d.html#cat-commercial" style="display:block;text-decoration:none;color:inherit;">
+            <div class="ph"><img src="/images/portfolio/items/item-1769673880114/1.jpg" alt="共享商辦商業空間 3D 虛擬展間作品" loading="lazy" decoding="async"></div>
+            <div class="body">
+              <h3>虛擬展間</h3>
+              <p>以共享商辦作品呈現多區域商業空間與展間體驗。</p>
+            </div>
+          </a>
         </article>
       </div>
     </div>

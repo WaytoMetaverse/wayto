@@ -360,6 +360,11 @@ html {
 }
 
 @media (max-width: 900px) {
+  #hero.about-hero .about-hero-img img {
+    object-fit: cover;
+    object-position: 65% center;
+  }
+
   .about-hero-left {
     padding: 56px 24px 72px;
   }

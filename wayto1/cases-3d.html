@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css">
-  <link rel="stylesheet" href="shared/solutions.css">
+  <link rel="stylesheet" href="shared/solutions.css?v=hero-cover-20260613">
   <link rel="stylesheet" href="shared/cases-3d.css">
 </head>
 <body class="wayto-has-shared-nav sol-page cases-3d-page" data-nav-current="cases">
@@ -142,8 +142,8 @@
   <script src="shared/layout.js"></script>
   <script>
     (function () {
-      var MEDIA_BASE = 'https://wayto.com.tw/';
-      var PORTFOLIO_PAGE = 'https://wayto.com.tw/portfolio.html#works';
+      var MEDIA_BASE = '/';
+      var PORTFOLIO_PAGE = '/wayto1/cases.html';
 
       function escAttr(s) {
         return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
@@ -164,9 +164,25 @@
         return id ? ('https://img.youtube.com/vi/' + id + '/hqdefault.jpg') : '';
       }
 
+      function normalizeMediaUrl(src) {
+        src = String(src || '').trim();
+        if (!src) return '';
+        if (/^(https?:)?\/\//i.test(src) || /^data:/i.test(src)) return src;
+        return MEDIA_BASE + src.replace(/^\//, '');
+      }
+
+      function itemThumbnailUrl(item) {
+        return normalizeMediaUrl(item.thumbnailUrl || item.thumbnail || item.thumb || '');
+      }
+
       function mediaMarkup(item, nameEsc) {
+        var emb = item.embedUrl && String(item.embedUrl).trim();
+        var embedThumb = emb ? itemThumbnailUrl(item) : '';
+        if (embedThumb) {
+          return '<img class="cases3d-tile-thumb cases3d-tile-thumb--vr" src="' + escAttr(embedThumb) + '" alt="' + nameEsc + '" width="640" height="400" loading="lazy" decoding="async"><span class="cases3d-tile-vr-badge">720°</span>';
+        }
         if (item.images && item.images[0]) {
-          var src = MEDIA_BASE + String(item.images[0]).replace(/^\//, '');
+          var src = normalizeMediaUrl(item.images[0]);
           return '<img src="' + escAttr(src) + '" alt="' + nameEsc + '" width="640" height="400" loading="lazy" decoding="async">';
         }
         if (item.youtubeUrls && item.youtubeUrls[0]) {
@@ -195,6 +211,9 @@
           return total > 1 ? { part: part, total: total } : { part: 0, total: 0 };
         }
 
+        if (emb) {
+          slides.push({ type: 'embed', src: '', embed: emb, title: name, part: 0, total: 0 });
+        }
         if (item.images && item.images.length) {
           var imgs = item.images.filter(Boolean);
           var n = imgs.length;
@@ -202,14 +221,14 @@
             var p = pushPart(i + 1, n);
             slides.push({
               type: 'image',
-              src: MEDIA_BASE + String(im).replace(/^\//, ''),
+              src: normalizeMediaUrl(im),
               embed: '',
               title: name,
               part: p.part,
               total: p.total
             });
           });
-          return slides;
+          if (slides.length) return slides;
         }
         if (item.youtubeUrls && item.youtubeUrls.length) {
           var yts = item.youtubeUrls.filter(Boolean);
@@ -239,10 +258,7 @@
           });
           if (slides.length) return slides;
         }
-        if (emb) {
-          slides.push({ type: 'embed', src: '', embed: emb, title: name, part: 0, total: 0 });
-          return slides;
-        }
+        if (slides.length) return slides;
         slides.push({ type: 'none', src: '', embed: '', title: name, part: 0, total: 0 });
         return slides;
       }
@@ -268,7 +284,7 @@
         if (!el) return;
         var items = (data.items || []).filter(function (it) { return it.category === catId; });
         if (!items.length) {
-          el.innerHTML = '<p class="cases3d-empty">此分類尚無作品，可前往<a href="' + escAttr(PORTFOLIO_PAGE) + '" target="_blank" rel="noopener noreferrer">完整作品集</a>瀏覽。</p>';
+          el.innerHTML = '<p class="cases3d-empty">此分類尚無作品，可前往<a href="' + escAttr(PORTFOLIO_PAGE) + '">完整作品集</a>瀏覽。</p>';
           return;
         }
         el.innerHTML = items.map(function (it) { return tileHtml(it); }).join('');
@@ -481,7 +497,7 @@
       });
       showCategory(hashToCat());
 
-      fetch('data/portfolio.json')
+      fetch('data/portfolio.json?v=vrthumb-20260613', { cache: 'no-store' })
         .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('fetch')); })
         .then(function (data) {
           document.querySelectorAll('[data-fill-cat]').forEach(function (el) {
@@ -490,7 +506,7 @@
         })
         .catch(function () {
           document.querySelectorAll('[data-fill-cat]').forEach(function (el) {
-            el.innerHTML = '<p class="cases3d-empty">無法載入作品資料，請稍後再試或前往<a href="' + escAttr(PORTFOLIO_PAGE) + '" target="_blank" rel="noopener noreferrer">完整作品集</a>。</p>';
+            el.innerHTML = '<p class="cases3d-empty">無法載入作品資料，請稍後再試或前往<a href="' + escAttr(PORTFOLIO_PAGE) + '">完整作品集</a>。</p>';
           });
         });
     })();
