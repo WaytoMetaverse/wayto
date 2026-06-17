@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/wayto1/brand-experience.html",
+      "destination": "/wayto1/cases.html",
+      "permanent": false
+    },
+    {
       "source": "/:path*",
       "destination": "https://wayto.com.tw/:path*",
       "permanent": true,

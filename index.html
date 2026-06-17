@@ -51,7 +51,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: 
 .ui-dot { width: 10px; height: 10px; border-radius: 50%; }
 .hero-content {
   position: relative; z-index: 3;
-  max-width: 1200px; margin: 0 auto; padding: 80px 24px;
+  max-width: var(--layout-max, 1320px); margin: 0 auto; padding: 80px 24px;
   width: 100%;
 }
 .hero-tag {
@@ -85,7 +85,7 @@ body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: 
 
 /* SECTION */
 section { padding: 80px 24px; }
-.container { max-width: 1200px; margin: 0 auto; }
+.container { max-width: var(--layout-max, 1320px); margin: 0 auto; }
 .section-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .section-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
 
@@ -136,6 +136,9 @@ section { padding: 80px 24px; }
   position: relative;
   transition: transform .25s;
   aspect-ratio: 16/9;
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 .sol-card:first-child { background: #3460be; }
 .sol-card:last-child { background: #06112a; }
@@ -196,7 +199,7 @@ section { padding: 80px 24px; }
 .view-all { font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 600; }
 .carousel-wrap { position: relative; }
 .carousel-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.case-card { border-radius: 14px; overflow: hidden; background: #fff; cursor: pointer; transition: transform .25s; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.case-card { border-radius: 14px; overflow: hidden; background: #fff; cursor: pointer; transition: transform .25s; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: block; color: inherit; text-decoration: none; }
 .case-card:hover { transform: translateY(-5px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
 .case-img { height: 190px; overflow: hidden; }
 .case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
@@ -230,7 +233,7 @@ section { padding: 80px 24px; }
 .ai-photo::after { display: none; }
 .ai-content {
   position: relative; z-index: 2;
-  max-width: 1200px; width: 100%; margin: 0 auto;
+  max-width: var(--layout-max, 1320px); width: 100%; margin: 0 auto;
   padding: 80px 24px; display: flex; justify-content: flex-end;
 }
 .ai-text { max-width: 420px; }
@@ -325,7 +328,7 @@ section { padding: 80px 24px; }
 .cta-banner-inner {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: var(--layout-max, 1320px);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -400,6 +403,160 @@ section { padding: 80px 24px; }
   }
 }
 
+/* ─────────────── RWD ─────────────── */
+
+/* Tablet / small laptop */
+@media (max-width: 1100px) {
+  section { padding: 64px 24px; }
+  .container { padding: 0; }
+  .hero { min-height: calc(100vh - 64px); }
+  .hero-content { padding: 60px 24px; }
+  .hero-photo img { object-position: 30% center; }
+  .hero-overlay-ui { right: 4%; bottom: 6%; padding: 14px 18px; min-width: 180px; }
+
+  .problems-grid,
+  .four-grid,
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .problem-card:first-child,
+  .four-card:first-child { border-radius: 12px 0 0 0; }
+  .problem-card:nth-child(2),
+  .four-card:nth-child(2) { border-radius: 0 12px 0 0; border-left: 1px solid var(--border); }
+  .problem-card:nth-child(3),
+  .four-card:nth-child(3) { border-radius: 0 0 0 12px; border-top: none; }
+  .problem-card:last-child,
+  .four-card:last-child { border-radius: 0 0 12px 0; border-top: none; border-left: 1px solid var(--border); }
+
+  .stat-item { padding: 28px 20px; }
+  .stat-item:nth-child(2n) { border-right: none; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
+
+  .solutions-grid { grid-template-columns: 1fr; gap: 16px; }
+  .sol-card { aspect-ratio: 16/10; }
+
+  .carousel-track { grid-template-columns: repeat(2, 1fr); }
+  .carousel-btn.prev { left: -10px; }
+  .carousel-btn.next { right: -10px; }
+
+  .ai-content { padding: 60px 24px; justify-content: flex-start; }
+  .ai-photo img { object-position: 70% center; }
+
+  .about-timeline,
+  .timeline { flex-wrap: wrap; gap: 32px 0; }
+  .about-timeline::before,
+  .timeline::before { display: none; }
+  .tl-item,
+  .timeline-item { flex: 0 0 50%; }
+
+  .cta-banner { padding: 72px 24px; }
+}
+
+/* Large phone / small tablet */
+@media (max-width: 720px) {
+  section { padding: 56px 20px; }
+  .section-title { font-size: 24px; }
+  .section-sub { font-size: 14px; margin-bottom: 32px; }
+
+  .hero { min-height: 78vh; }
+  .hero-photo::before {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.72) 42%, rgba(255,255,255,0.34) 100%);
+  }
+  .hero-photo img { object-position: 60% center; }
+  .hero-content { padding: 50px 20px; }
+  .hero-title { font-size: clamp(30px, 8vw, 44px); }
+  .hero-subtitle { font-size: clamp(15px, 4vw, 18px); }
+  .hero-desc br { display: none; }
+  .hero-btns { gap: 10px; }
+  .btn-primary, .btn-outline { padding: 11px 22px; font-size: 14px; flex: 1; min-width: 0; justify-content: center; }
+  .hero-overlay-ui { display: none; }
+  .hero-dots { margin-top: 28px; }
+
+  .problems-grid,
+  .four-grid,
+  .stats-grid,
+  .carousel-track { grid-template-columns: 1fr; gap: 12px; }
+  .problem-card,
+  .four-card {
+    border-radius: 12px !important;
+    border: 1px solid var(--border) !important;
+    padding: 24px 20px;
+  }
+  .stat-item {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 24px 20px;
+    justify-content: center;
+  }
+  .stat-item:last-child { border-bottom: none !important; }
+  .stat-num { font-size: 34px; }
+  .stat-num--word { font-size: 28px; }
+  .stat-kicker { font-size: 14px; }
+
+  .sol-card { aspect-ratio: 4/5; }
+  .sol-content { padding: 22px 22px; }
+  .sol-card h2 { font-size: 22px; }
+  .sol-card p { font-size: 12.5px; }
+  .sol-list li { font-size: 12.5px; }
+
+  .case-img { height: 200px; }
+  .carousel-btn { display: none; }
+
+  .ai-section { min-height: auto; }
+  .ai-content { padding: 80px 20px; }
+  .ai-photo::after {
+    display: block !important;
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(5,15,45,0.4) 0%, rgba(5,15,45,0.85) 100%);
+  }
+  .ai-text { max-width: 100%; }
+  .ai-text h2 { font-size: 26px; }
+  .ai-text p { font-size: 13.5px; }
+
+  .tl-item,
+  .timeline-item { flex: 0 0 100%; padding-top: 0; }
+  .about-timeline,
+  .timeline { gap: 24px 0; flex-direction: column; }
+  .tl-icon,
+  .timeline-dot { position: relative; top: 0; left: 0; transform: none; margin: 0 auto 10px; }
+  .tl-item, .timeline-item { text-align: center; }
+
+  .cta-banner { padding: 56px 20px; }
+  .cta-banner h2 { font-size: 22px; }
+  .cta-banner-left p { font-size: 14px; }
+}
+
+/* Small phone */
+@media (max-width: 420px) {
+  section { padding: 48px 16px; }
+  .hero-content { padding: 40px 16px; }
+  .hero-title { font-size: clamp(26px, 9vw, 36px); }
+  .hero-desc { font-size: 14px; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-outline { width: 100%; }
+
+  .section-title { font-size: 22px; }
+  .problem-card h3,
+  .four-card h3 { font-size: 15px; }
+  .problem-card p,
+  .four-card p { font-size: 12.5px; }
+  .problem-card p br,
+  .four-card p br { display: none; }
+
+  .sol-content { padding: 20px 18px; }
+  .sol-tag { font-size: 10px; }
+  .sol-card h2 { font-size: 20px; }
+
+  .ai-content { padding: 60px 16px; }
+  .ai-text h2 { font-size: 22px; }
+  .btn-ai { padding: 11px 20px; font-size: 13px; }
+
+  .cta-banner { padding: 48px 16px; }
+  .cta-banner h2 { font-size: 20px; line-height: 1.45; }
+  .cta-banner-left p { font-size: 13px; }
+  .cta-banner .btn-primary,
+  .cta-btn-light { padding: 12px 22px; font-size: 14px; min-width: 0; }
+}
+
 /* REVEAL */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -425,7 +582,7 @@ section { padding: 80px 24px; }
     <p class="hero-subtitle">讓展示與系統真正發揮價值</p>
     <p class="hero-desc">整合 3D 視覺與客製化系統，<br>協助建案開發，設計能讓企業流程數位化。</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="#solutions">了解全展示 →</a>
+      <a class="btn-primary" href="/wayto1/solutions.html">了解全展示 →</a>
       <a class="btn-outline" href="#ai" style="opacity: 100">了解數位 →</a>
     </div>
     <div class="hero-dots">
@@ -485,7 +642,7 @@ section { padding: 80px 24px; }
     <p class="two-solutions-intro reveal">透過 3D 視覺化，讓空間提案、建案銷售與展覽展示更有說服力；透過客製化系統，讓企業流程、資料管理與內部作業更有效率。</p>
     <div class="solutions-grid">
 
-      <div class="sol-card reveal reveal-delay-1">
+      <a class="sol-card reveal reveal-delay-1" href="/wayto1/solutions-property-sales.html">
         <div class="sol-card-img">
           <img src="wayto1/uploads/sol_left.png" alt="3D 視覺空間展示">
         </div>
@@ -503,9 +660,9 @@ section { padding: 80px 24px; }
             <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </div>
         </div><!-- end sol-content -->
-      </div><!-- end sol-card 1 -->
+      </a><!-- end sol-card 1 -->
 
-      <div class="sol-card reveal reveal-delay-2">
+      <a class="sol-card reveal reveal-delay-2" href="/wayto1/solutions-enterprise-digital.html">
         <div class="sol-card-img">
           <img src="wayto1/uploads/sol_right.png" alt="客製化系統數位整合">
         </div>
@@ -523,7 +680,7 @@ section { padding: 80px 24px; }
             <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </div>
         </div><!-- end sol-content -->
-      </div><!-- end sol-card 2 -->
+      </a><!-- end sol-card 2 -->
 
     </div>
   </div>
@@ -539,28 +696,28 @@ section { padding: 80px 24px; }
         <div class="four-icon"><img src="wayto1/uploads/four-solution-property.png" alt="建案銷售"></div>
         <h3>建案銷售</h3>
         <p>讓尚未完工的空間提前被看見，協助銷售團隊更清楚說明產品價值。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-property-sales.html">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-2">
         <div class="four-icon"><img src="wayto1/uploads/four-solution-design.png" alt="設計提案"></div>
         <h3>設計提案</h3>
         <p>將設計想法轉化為客戶看得懂的畫面，降低溝通落差與反覆修改成本。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-design-proposal.html">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-3">
         <div class="four-icon"><img src="wayto1/uploads/four-solution-exhibit.png" alt="展覽互動"></div>
         <h3>展覽互動</h3>
         <p>透過互動展示與沉浸式體驗，讓品牌在現場留下更深刻的記憶點。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-exhibition.html">了解更多 →</a>
       </div>
 
       <div class="four-card reveal reveal-delay-4">
         <div class="four-icon"><img src="wayto1/uploads/four-solution-system.png" alt="系統數位化"></div>
         <h3>系統數位化</h3>
         <p>將分散的資料、流程與管理作業整理成可追蹤、可管理的數位系統。</p>
-        <a class="learn-more" href="#">了解更多 →</a>
+        <a class="learn-more" href="/wayto1/solutions-enterprise-digital.html">了解更多 →</a>
       </div>
 
     </div>
@@ -572,7 +729,7 @@ section { padding: 80px 24px; }
   <div class="container">
     <div class="cases-header reveal">
       <h2 class="section-title" style="margin-bottom:0">精選案例</h2>
-      <a class="view-all" href="#">查看所有有案例 →</a>
+      <a class="view-all" href="/wayto1/cases.html">查看全部案例 →</a>
     </div>
     <div class="carousel-wrap">
       <button class="carousel-btn prev" onclick="prevSlide()">
@@ -597,7 +754,7 @@ section { padding: 80px 24px; }
       <div class="ai-badge">最新功能亮點</div>
       <h2>AI <span>即時生成</span>體驗</h2>
       <p>結合 AI 與互動技術，讓每位觀看者都能親自體驗對話式互動展場。</p>
-      <a class="btn-ai" href="#">觀看案例影片 ▶</a>
+      <a class="btn-ai" href="/wayto1/solutions-exhibition.html">了解展覽互動 →</a>
     </div>
   </div>
 </section>
@@ -712,8 +869,8 @@ section { padding: 80px 24px; }
     </div>
     <div class="cta-banner-right">
       <div class="cta-btns">
-        <a class="btn-primary" href="/process.html#contact">聯繫我們</a>
-        <a class="btn-outline cta-btn-light" href="/portfolio.html">查看案例</a>
+        <a class="btn-primary" href="/wayto1/contact.html#contact-form">聯繫我們</a>
+        <a class="btn-outline cta-btn-light" href="/wayto1/cases.html">查看案例</a>
       </div>
     </div>
   </div>
@@ -724,14 +881,15 @@ section { padding: 80px 24px; }
 
 <script src="wayto1/shared/layout-root.js"></script>
 <script>
-// Cases data with Unsplash images
+// Featured real cases
 const allCases = [
-  { tag:'建案銷售', title:'建案銷售中心', desc:'互動智慧展示系統', img:'wayto1/uploads/case4.png' },
-  { tag:'設計提案', title:'室內設計提案', desc:'3D 模擬與渲染',   img:'wayto1/uploads/case3.png' },
-  { tag:'展覽互動', title:'AI 互動展覽',  desc:'AI 即時生成體驗',  img:'wayto1/uploads/case2.png' },
-  { tag:'系統數位化',title:'企業管理系統', desc:'客製化流程整合', img:'wayto1/uploads/case1.png' },
-  { tag:'建案銷售', title:'豪宅銷售展廳', desc:'高端豪宅 3D 互動展示體驗',  img:'wayto1/uploads/case4.png' },
-  { tag:'展覽互動', title:'科技博覽會',   desc:'大型互動科技展覽全案規劃',  img:'wayto1/uploads/case2.png' },
+  { tag:'建案銷售', title:'元境大喜', desc:'建案銷售 3D 即時導覽軟體', img:'wayto1/uploads/proptech/建築外觀視角1-夜景.jpg', href:'/wayto1/proptech.html' },
+  { tag:'建材展示', title:'RenderEase', desc:'AI 建材視覺化與空間即時預覽', img:'wayto1/uploads/renderease/after-hero.png', href:'/wayto1/renderease.html' },
+  { tag:'展覽互動', title:'LUXUS Paint Taiwan', desc:'藝術塗料展場互動展示軟體', img:'wayto1/uploads/LUXUS%20Paint%20Taiwan/exhibition.jpg', href:'/wayto1/luxus.html' },
+  { tag:'系統開發', title:'PokéPoké 波奇波奇', desc:'加盟展店 3D 提案與施工圖系統', img:'wayto1/uploads/bocchi/preview-interior.png', href:'/wayto1/case-study-bocchi.html' },
+  { tag:'社團系統', title:'扶青社團管理系統', desc:'活動、簽到、餐點與財務一站整合', img:'wayto1/uploads/rotaract/case-card-dashboard.png', href:'/wayto1/rotaract.html' },
+  { tag:'空間營運', title:'SpaceEase', desc:'無人化空間租賃與預約管理系統', img:'wayto1/uploads/sol-ent-extends-spaceease.png', href:'/wayto1/spaceease.html' },
+  { tag:'活動系統', title:'磐石砌好厝', desc:'會員制組織活動管理平台', img:'wayto1/uploads/herchu/logo.jpg', href:'/wayto1/herchu.html' },
 ];
 
 let carouselIdx = 0;
@@ -742,14 +900,14 @@ function renderCarousel() {
   const dots = document.getElementById('carouselDots');
   const visible = allCases.slice(carouselIdx, carouselIdx + PAGE);
   track.innerHTML = visible.map((c, i) => `
-    <div class="case-card" style="opacity:0;transform:translateY(20px);transition:opacity .4s ${i*0.07}s ease,transform .4s ${i*0.07}s ease">
+    <a class="case-card" href="${c.href || '/wayto1/cases.html'}" style="opacity:0;transform:translateY(20px);transition:opacity .4s ${i*0.07}s ease,transform .4s ${i*0.07}s ease">
       <div class="case-img"><img src="${c.img}" alt="${c.title}" loading="lazy"></div>
       <div class="case-info">
         <span class="case-tag">${c.tag}</span>
         <h3>${c.title}</h3>
         <p>${c.desc}</p>
       </div>
-    </div>
+    </a>
   `).join('');
   setTimeout(() => {
     track.querySelectorAll('.case-card').forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
