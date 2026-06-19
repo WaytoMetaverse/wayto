@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared/layout.css">
-  <link rel="stylesheet" href="shared/solutions.css?v=hero-cover-20260613">
+  <link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+  <link rel="stylesheet" href="shared/solutions.css?v=mobile-footer-20260618">
   <style>
     /* Hero：與其他方案頁相同版面（solutions.css）；僅換底圖與對齊，不動區塊尺寸與字級 */
     .about-hero.about-hero--enterprise {
@@ -135,7 +135,18 @@
     }
     @media (max-width: 520px) {
       .sol-ent-domains .domain-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .sol-ent-domain {
+        padding: 16px 10px 18px;
+      }
+      .sol-ent-domain h3 {
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .sol-ent-domain ul {
+        font-size: 12px;
       }
     }
 
@@ -308,7 +319,11 @@
     }
     @media (max-width: 820px) {
       .sol-ent-extends-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .sol-ent-extends-intro {
+        grid-column: 1 / -1;
       }
       .sol-ent-prod-inner {
         flex-direction: column;
@@ -401,7 +416,8 @@
     }
     @media (max-width: 520px) {
       .sol-ent-cases .svc-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
     }
 

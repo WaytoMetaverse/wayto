@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared/layout.css">
-  <link rel="stylesheet" href="shared/solutions.css?v=hero-cover-20260613">
+  <link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+  <link rel="stylesheet" href="shared/solutions.css?v=mobile-footer-20260618">
   <style>
     /* 底欄 CTA 圖：須寫在 #contact-cta.foot-cta::before（相對本 HTML）。若只設 :root 的 --sol-foot-cta-bg-image，url 會依 shared/solutions.css 路徑解析而 404 */
     #contact-cta.foot-cta::before {
@@ -252,10 +252,15 @@
     }
     @media (max-width: 520px) {
       .sol-asset-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      #assets .sol-asset-card {
+        padding: 18px 10px 20px;
       }
       #interact .svc-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
       #interact .svc-grid .sol-svc-vr {
         grid-column: auto;

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>維次元宇宙科技股份有限公司 | Wayto Metaverse Technology Co., Ltd.</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="wayto1/shared/layout.css">
+<link rel="stylesheet" href="wayto1/shared/layout.css?v=mobile-footer-20260618">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -431,8 +431,12 @@ section { padding: 80px 24px; }
   .stat-item:nth-child(3),
   .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
 
-  .solutions-grid { grid-template-columns: 1fr; gap: 16px; }
-  .sol-card { aspect-ratio: 16/10; }
+  .solutions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .sol-card { aspect-ratio: 4/5; }
+  .sol-content { padding: 22px 18px; }
+  .sol-card h2 { font-size: 20px; }
+  .sol-card p { font-size: 12.5px; }
+  .sol-list li { font-size: 12px; }
 
   .carousel-track { grid-template-columns: repeat(2, 1fr); }
   .carousel-btn.prev { left: -10px; }
@@ -474,20 +478,30 @@ section { padding: 80px 24px; }
   .problems-grid,
   .four-grid,
   .stats-grid,
-  .carousel-track { grid-template-columns: 1fr; gap: 12px; }
+  .carousel-track { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .problem-card,
   .four-card {
     border-radius: 12px !important;
     border: 1px solid var(--border) !important;
-    padding: 24px 20px;
+    padding: 18px 12px 16px;
+  }
+  .problem-icon,
+  .four-icon {
+    height: 80px;
+    margin-bottom: 12px;
+  }
+  .problem-icon img,
+  .four-icon img {
+    max-width: 72px;
+    max-height: 72px;
   }
   .stat-item {
-    border-right: none !important;
     border-bottom: 1px solid var(--border) !important;
-    padding: 24px 20px;
+    padding: 22px 12px;
     justify-content: center;
   }
-  .stat-item:last-child { border-bottom: none !important; }
+  .stat-item:nth-child(2n) { border-right: none !important; }
+  .stat-item:nth-last-child(-n + 2) { border-bottom: none !important; }
   .stat-num { font-size: 34px; }
   .stat-num--word { font-size: 28px; }
   .stat-kicker { font-size: 14px; }
@@ -498,7 +512,11 @@ section { padding: 80px 24px; }
   .sol-card p { font-size: 12.5px; }
   .sol-list li { font-size: 12.5px; }
 
-  .case-img { height: 200px; }
+  .case-img { height: 118px; }
+  .case-info { padding: 12px 10px 14px; }
+  .case-tag { font-size: 10px; padding: 3px 7px; }
+  .case-info h3 { font-size: 14px; line-height: 1.35; }
+  .case-info p { font-size: 12px; line-height: 1.55; }
   .carousel-btn { display: none; }
 
   .ai-section { min-height: auto; }
