@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
-  <link rel="stylesheet" href="shared/solutions.css?v=mobile-footer-20260618">
+  <link rel="stylesheet" href="shared/layout.css?v=card-overflow-20260619">
+  <link rel="stylesheet" href="shared/solutions.css?v=card-overflow-20260619">
   <style>
     :root {
       --hub-blue: #2b5aed;
@@ -380,6 +380,7 @@
       font-weight: 800;
       color: var(--ink, #0f172a);
       line-height: 1.3;
+      overflow-wrap: anywhere;
     }
     .sol-hub-qcard-ico {
       flex: 0 0 auto;
@@ -401,6 +402,7 @@
       font-size: 14px;
       line-height: 1.6;
       color: var(--hub-muted);
+      overflow-wrap: anywhere;
     }
     .sol-hub-qcard-arrow {
       margin-top: auto;
@@ -462,6 +464,50 @@
       }
       .sol-hub-sec {
         padding: 64px 0;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .sol-hub-pain-grid,
+      .sol-hub-quick,
+      .sol-hub-decide {
+        gap: 10px;
+      }
+      .sol-hub-qcard {
+        padding: 14px 10px 12px;
+      }
+      .sol-hub-qcard-row {
+        gap: 10px;
+      }
+      .sol-hub-qcard-ico {
+        width: 88px;
+        height: 88px;
+      }
+      .sol-hub-qcard-ico img {
+        width: 72px;
+        height: 72px;
+      }
+      .sol-hub-qcard-main h3 {
+        font-size: 14px;
+      }
+      .sol-hub-qcard .desc {
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .sol-hub-qcard-arrow {
+        width: 30px;
+        height: 30px;
+      }
+      .sol-hub-pain-body,
+      .sol-hub-step,
+      .sol-hub-decide-cta {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .sol-hub-pain-body h3,
+      .sol-hub-step h3,
+      .sol-hub-decide-cta p {
+        overflow-wrap: anywhere;
       }
     }
 

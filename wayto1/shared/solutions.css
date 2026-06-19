@@ -439,21 +439,28 @@ html {
     font-size: 14px;
     line-height: 1.35;
     margin-bottom: 6px;
+    overflow-wrap: anywhere;
   }
 
   .num-card p {
     font-size: 12px;
     line-height: 1.6;
+    overflow-wrap: anywhere;
   }
 
   .num-card-files {
     gap: 4px;
     padding: 8px;
     font-size: 9px;
+    min-width: 0;
   }
 
   .num-card-files span {
     padding: 4px 6px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.25;
   }
 
   .num-card-chat {
@@ -464,6 +471,7 @@ html {
   .num-card-chat .bubble {
     padding: 5px 7px;
     font-size: 9px;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -782,11 +790,54 @@ html {
     font-size: 14px;
     line-height: 1.35;
     margin-bottom: 6px;
+    overflow-wrap: anywhere;
   }
 
   .svc-card p {
     font-size: 12px;
     line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 360px) {
+  .num-card,
+  .svc-card,
+  .room-cell,
+  .faq-item {
+    min-width: 0;
+  }
+
+  .cards-4,
+  .svc-grid {
+    gap: 10px;
+  }
+
+  .num-card {
+    padding: 16px 10px 14px;
+  }
+
+  .num-card-visual {
+    height: 82px;
+  }
+
+  .num-card-files {
+    gap: 3px;
+    padding: 6px;
+    font-size: 8px;
+  }
+
+  .num-card-files span {
+    padding: 2px 4px;
+    line-height: 1.2;
+  }
+
+  .svc-card .body {
+    padding: 11px 9px 13px;
+  }
+
+  .svc-card .ph {
+    aspect-ratio: 1 / 0.72;
   }
 }
 

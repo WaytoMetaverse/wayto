@@ -217,6 +217,7 @@
   .cases-latest-grid--pf-mixed .cases-tile--pf-row2 .cases-tile-title {
     font-size: 14px;
     line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 
   .cases-latest-grid--pf-mixed .cases-tile-body .cases-tile-pill {
@@ -372,6 +373,7 @@
   .cases-tile-title {
     font-size: 14px;
     line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 
   .cases-tile-pill {
@@ -673,15 +675,60 @@
 
   .cases-fcard-body h3 {
     font-size: 14px;
+    overflow-wrap: anywhere;
   }
 
   .cases-fcard-body p {
     font-size: 12px;
     line-height: 1.55;
+    overflow-wrap: anywhere;
   }
 
   .cases-fcard-link {
     font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 360px) {
+  .cases-latest-grid--pf-mixed,
+  .cases-latest-grid:not(.cases-latest-grid--pf-mixed),
+  .cases-latest-grid--small,
+  .cases-featured-grid {
+    gap: 10px;
+  }
+
+  .cases-latest-grid--pf-mixed .cases-tile-body,
+  .cases-tile-body {
+    padding: 8px;
+  }
+
+  .cases-latest-grid--pf-mixed .cases-tile--pf-row1 .cases-tile-title,
+  .cases-latest-grid--pf-mixed .cases-tile--pf-row2 .cases-tile-title,
+  .cases-tile-title {
+    font-size: 12px;
+    line-height: 1.22;
+  }
+
+  .cases-tile-pill,
+  .cases-latest-grid--pf-mixed .cases-tile-body .cases-tile-pill {
+    max-width: 100%;
+    font-size: 9px;
+    overflow-wrap: anywhere;
+  }
+
+  .cases-fcard-body {
+    padding: 10px 8px 12px;
+  }
+
+  .cases-fcard-body h3 {
+    font-size: 12.5px;
+    line-height: 1.3;
+  }
+
+  .cases-fcard-body p,
+  .cases-fcard-link {
+    font-size: 11.5px;
   }
 }
 
