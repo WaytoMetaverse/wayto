@@ -1,9 +1,69 @@
 {
   "redirects": [
     {
-      "source": "/wayto1/brand-experience.html",
-      "destination": "/wayto1/cases.html",
+      "source": "/brand-experience.html",
+      "destination": "/cases.html",
       "permanent": false
+    },
+    {
+      "source": "/services.html",
+      "destination": "/solutions.html",
+      "permanent": true
+    },
+    {
+      "source": "/visual.html",
+      "destination": "/solutions-design-proposal.html",
+      "permanent": true
+    },
+    {
+      "source": "/tech.html",
+      "destination": "/solutions-enterprise-digital.html",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio.html",
+      "destination": "/cases-3d.html",
+      "permanent": true
+    },
+    {
+      "source": "/process.html",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/insights.html",
+      "destination": "/solutions.html",
+      "permanent": true
+    },
+    {
+      "source": "/service-3d-modeling-rendering.html",
+      "destination": "/solutions-design-proposal.html",
+      "permanent": true
+    },
+    {
+      "source": "/service-custom-website-development.html",
+      "destination": "/solutions-enterprise-digital.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-3d-rendering-cost-taiwan.html",
+      "destination": "/solutions-design-proposal.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-custom-website-development-cost.html",
+      "destination": "/solutions-enterprise-digital.html",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-enterprise-site-revamp.html",
+      "destination": "/cases-system.html",
+      "permanent": true
+    },
+    {
+      "source": "/wayto1/:path*",
+      "destination": "/:path*",
+      "permanent": true
     },
     {
       "source": "/:path*",

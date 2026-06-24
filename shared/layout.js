@@ -26,10 +26,11 @@ function initSharedNav() {
   const cta = nav.querySelector(".nav-cta");
   if (cta) {
     cta.addEventListener("click", () => {
-      window.location.href = "/wayto1/contact.html#contact-form";
+      window.location.href = "/contact.html#contact-form";
     });
   }
 
+  // Mobile menu toggle
   const hamburger = nav.querySelector(".nav-hamburger");
   const backdrop = nav.parentElement && nav.parentElement.querySelector(".nav-mobile-backdrop");
 
@@ -60,30 +61,37 @@ function initSharedNav() {
     backdrop.addEventListener("click", closeMenu);
   }
 
+  // Close when tapping any leaf link inside the drawer
   nav.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
       if (nav.classList.contains("menu-open")) closeMenu();
     });
   });
 
+  // Inline CTA inside drawer (::after pseudo isn't clickable as element,
+  // so we use event delegation on the .nav-links container)
   const navList = nav.querySelector(".nav-links");
   if (navList) {
     navList.addEventListener("click", (e) => {
+      const rect = navList.getBoundingClientRect();
       const lastChild = navList.lastElementChild;
       if (!lastChild) return;
       const lastRect = lastChild.getBoundingClientRect();
+      // Detect click below the last <li> (i.e. on the ::after CTA area)
       if (e.target === navList && e.clientY > lastRect.bottom) {
-        window.location.href = "/wayto1/contact.html#contact-form";
+        window.location.href = "/contact.html#contact-form";
       }
     });
   }
 
+  // Close menu if window grows past mobile breakpoint
   window.addEventListener("resize", () => {
     if (window.innerWidth > 900 && nav.classList.contains("menu-open")) {
       closeMenu();
     }
   });
 
+  // ESC to close
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav.classList.contains("menu-open")) {
       closeMenu();
@@ -93,8 +101,8 @@ function initSharedNav() {
 
 async function loadSharedLayout() {
   await Promise.all([
-    injectShared("#shared-nav", "/wayto1/shared/nav.html"),
-    injectShared("#shared-footer", "/wayto1/shared/footer.html")
+    injectShared("#shared-nav", "shared/nav.html"),
+    injectShared("#shared-footer", "shared/footer.html")
   ]);
   markCurrentNav();
   initSharedNav();
