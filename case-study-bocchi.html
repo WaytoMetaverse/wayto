@@ -14,7 +14,7 @@
 <meta property="og:locale" content="zh_TW">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+<link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
 
 <script type="application/ld+json">
 {
@@ -302,12 +302,13 @@ body { font-family: 'Noto Sans TC', sans-serif; color: #1e293b; background: #fff
 /* ── BELIEVE / CTA ── */
 .believe-cta {
   position: relative;
-  padding: 80px 80px;
+  padding: 30px 80px 50px;
   display: flex; align-items: center; justify-content: space-between; gap: 60px;
   overflow: hidden;
   isolation: isolate;
   background: #0a1224;
 }
+.believe-cta.believe-cta{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 tablet/mobile */
 .believe-cta::before {
   content: ''; position: absolute; inset: 0;
   background-image: url('uploads/believe_bg.png');

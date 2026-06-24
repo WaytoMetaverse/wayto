@@ -12,7 +12,7 @@
 <meta property="og:description" content="活動、攜伴、簽到、餐點、財務、名片 — 同性質社團的流程，一套系統全包。">
 <meta property="og:image" content="https://wayto.com.tw/uploads/rotaract/og-image.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+<link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RotaractClub","alternateName":"社團管理系統","description":"為扶青社打造、適用各類定期聚會社團的一站式管理平台。整合活動報名、攜伴、簽到、餐點、財務、數位名片與 LINE 通知。","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://wayto.com.tw/rotaract.html","image":"https://wayto.com.tw/uploads/rotaract/og-image.jpg","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -167,7 +167,8 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 .aud-note{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.95}
 
 /* CTA */
-.rc-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.rc-cta{position:relative;padding:30px 80px 50px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+section.rc-cta{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 tablet/mobile 的 64/48 */
 .rc-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(204,155,77,.18),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(96,165,250,.12),transparent 60%);pointer-events:none}
 .rc-cta-inner{position:relative;max-width:var(--layout-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .rc-cta .tag{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}

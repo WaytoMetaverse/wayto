@@ -12,7 +12,7 @@
 <meta property="og:description" content="活動報名、簽到、繳費、名片、菜單、講師 — 把每場活動辦好需要的事，一個平台全包。">
 <meta property="og:image" content="https://wayto.com.tw/uploads/herchu/logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+<link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"磐石砌好厝","alternateName":"活動管理平台","description":"為會員制組織打造的活動管理平台，整合活動報名、簽到、繳費、名片、菜單與講師預約。","applicationCategory":"BusinessApplication","operatingSystem":"Web, iOS, Android","url":"https://wayto.com.tw/herchu.html","image":"https://wayto.com.tw/uploads/herchu/logo.jpg","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -176,7 +176,8 @@ img{max-width:100%;display:block}
 .aud-note{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.95}
 
 /* CTA */
-.he-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#451a03 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.he-cta{position:relative;padding:30px 80px 50px;background:linear-gradient(135deg,#0a1224 0%,#451a03 60%,#0a1224 100%);color:#fff;overflow:hidden}
+section.he-cta{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 tablet/mobile 的 64/48 */
 .he-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(217,119,6,.22),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(254,215,170,.14),transparent 60%);pointer-events:none}
 .he-cta-inner{position:relative;max-width:var(--layout-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .he-cta .tag{font-size:12px;font-weight:600;color:#fbbf24;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}

@@ -12,7 +12,7 @@
 <meta property="og:description" content="預約、付款、簽到、結帳、超時計費 — 全程自動化。業者不開店也能跑營運。">
 <meta property="og:image" content="https://wayto.com.tw/uploads/spaceease/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+<link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SpaceEase","alternateName":"空間自營系統","description":"無人化空間租賃 SaaS — 預約、付款、簽到、結帳、超時計費全自動化。","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://wayto.com.tw/spaceease.html","image":"https://wayto.com.tw/uploads/spaceease/logo.png","publisher":{"@type":"Organization","name":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw"}}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -144,7 +144,8 @@ body{font-family:'Noto Sans TC',sans-serif;color:#1e293b;background:#fff;line-he
 .aud-note{font-size:13px;color:var(--muted);margin-top:24px;line-height:1.95}
 
 /* CTA */
-.se-cta{position:relative;padding:88px 80px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+.se-cta{position:relative;padding:30px 80px 50px;background:linear-gradient(135deg,#0a1224 0%,#1a2b5e 60%,#0a1224 100%);color:#fff;overflow:hidden}
+section.se-cta{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 tablet/mobile 的 64/48 */
 .se-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(900px 400px at 80% 30%,rgba(96,165,250,.2),transparent 60%),radial-gradient(700px 400px at 10% 80%,rgba(186,230,253,.12),transparent 60%);pointer-events:none}
 .se-cta-inner{position:relative;max-width:var(--layout-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
 .se-cta .tag{font-size:12px;font-weight:600;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}

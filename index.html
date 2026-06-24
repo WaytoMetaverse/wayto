@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://wayto.com.tw/uploads/hero_new.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://wayto.com.tw/#organization","name":"維次元宇宙科技股份有限公司","alternateName":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw/","logo":"https://wayto.com.tw/LOGO2.png","image":"https://wayto.com.tw/uploads/hero_new.png","description":"整合 3D 空間視覺與客製化系統，協助建案展示與企業流程數位化的空間科技公司。","taxID":"94051810","email":"wayto.metaverse@gmail.com","telephone":"+886-4-2372-0718","address":{"@type":"PostalAddress","streetAddress":"三民路三段313號4F-1","addressLocality":"北區","addressRegion":"台中市","postalCode":"404","addressCountry":"TW"},"contactPoint":{"@type":"ContactPoint","telephone":"+886-4-2372-0718","contactType":"customer service","email":"wayto.metaverse@gmail.com","areaServed":"TW","availableLanguage":["zh-TW","en"]},"sameAs":["https://www.facebook.com/profile.php?id=100054769899845","https://www.instagram.com/wayto.metaverse/","https://youtube.com/channel/UCSn7esEijioBqQBJ1SjacCg"]},{"@type":"WebSite","@id":"https://wayto.com.tw/#website","url":"https://wayto.com.tw/","name":"維次元宇宙科技 Wayto Metaverse","inLanguage":"zh-TW","publisher":{"@id":"https://wayto.com.tw/#organization"}}]}</script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/layout.css?v=mobile-footer-20260618">
+<link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -325,10 +325,11 @@ section { padding: 80px 24px; }
 /* CTA */
 .cta-banner {
   position: relative;
-  padding: 88px 24px;
+  padding: 30px 24px 50px;
   overflow: hidden;
   background: #0a1224;
 }
+.cta-banner.cta-banner{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 tablet/mobile */
 .cta-banner-bg {
   position: absolute;
   inset: 0;

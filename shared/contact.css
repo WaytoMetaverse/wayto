@@ -715,9 +715,10 @@
 }
 
 /* ── 底部 CTA ── */
+.contact-page-cta.contact-page-cta{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 mobile media */
 .contact-page-cta {
   position: relative;
-  padding: 52px 0 60px;
+  padding: 30px 0 50px;
   overflow: hidden;
   color: var(--navy, #1a2b5e);
   /* 底圖等高於區塊全高、靠左；右側由漸層補滿（圖過寬時由 overflow 裁切） */

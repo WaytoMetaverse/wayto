@@ -1383,7 +1383,7 @@ section.sol-portfolio-stub strong {
 }
 
 /* Footer CTA — 背景圖由 --sol-foot-cta-bg-image 提供 */
-.foot-cta {
+.sol-page .foot-cta {
   position: relative;
   overflow: hidden;
   isolation: isolate;
