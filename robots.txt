@@ -1,6 +1,31 @@
+# Public website discovery
 User-agent: *
 Allow: /
+
+# AI search and answer crawlers are allowed to discover public pages.
+# Keep private or draft content out of the public site instead of relying on robots.txt for security.
+User-agent: GPTBot
+Disallow:
+
+User-agent: OAI-SearchBot
+Disallow:
+
+User-agent: ChatGPT-User
+Disallow:
+
+User-agent: PerplexityBot
+Disallow:
+
+User-agent: ClaudeBot
+Disallow:
+
+User-agent: Claude-SearchBot
+Disallow:
+
+User-agent: Claude-User
+Disallow:
+
+User-agent: Google-Extended
+Disallow:
+
 Sitemap: https://wayto.com.tw/sitemap.xml
-
-
-
