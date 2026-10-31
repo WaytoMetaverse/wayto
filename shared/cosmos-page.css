@@ -146,6 +146,25 @@ body.cosmos-page :is(.foot-cta, .guide-cta, .geo-cta, .believe-cta, .contact-pag
 }
 
 /* ── 進場動畫（cosmos-bg.js 只會隱藏還沒進入畫面的元素） ── */
+/* 延伸閱讀：CTA 前一排連結（指南、案例、沉浸式展示）。導覽列與頁尾是 JS 載入的，
+   不跑 JS 的爬蟲看不到，這排寫在頁面裡才找得到相關頁；▶ 的是沉浸式展示 */
+.cx-related { position: relative; z-index: 1; width: min(1100px, 100% - 48px); margin: 0 auto; padding: 64px 0 12px; text-align: center; }
+.cx-related > p { margin: 0 0 16px; font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .22em; color: var(--ink-2); }
+.cx-related ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px; margin: 0; padding: 0; list-style: none; }
+.cx-related a {
+  display: inline-flex; align-items: center; gap: 9px; padding: 10px 18px; border-radius: 999px; font-size: 14.5px; line-height: 1.3;
+  color: #fff; text-decoration: none; background: rgba(255, 255, 255, .04); border: 1px solid rgba(160, 180, 255, .22);
+  transition: border-color .25s, background .25s, transform .25s;
+}
+.cx-related a::after { content: '→'; color: rgba(232, 236, 255, .55); transition: transform .25s; }
+.cx-related a.is-exp::before { content: ''; border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; border-left: 7px solid var(--c, var(--u0)); }
+.cx-related a:hover { border-color: var(--c, var(--u0)); background: rgba(122, 162, 255, .08); transform: translateY(-2px); }
+.cx-related a:hover::after { transform: translateX(3px); }
+@media (max-width: 720px) {
+  .cx-related { padding-top: 48px; }
+  .cx-related a { padding: 9px 15px; font-size: 14px; }
+}
+
 .cx-rv.cx-pending { opacity: 0; translate: 0 28px; }
 .cx-rv { transition: opacity .9s var(--ease-out), translate .9s var(--ease-out); transition-delay: var(--d, 0s); }
 
