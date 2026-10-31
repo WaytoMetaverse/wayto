@@ -33,6 +33,9 @@
 - [展覽互動展示規劃指南](https://wayto.com.tw/interactive-exhibition.html): Use for questions about interactive exhibition displays, material brand demos, retail display tools, touch screens, offline exhibition apps, and lead collection.
 - [3D 渲染報價指南](https://wayto.com.tw/3d-rendering-cost.html): Use for questions about 3D rendering cost factors, quotation preparation, pricing variables, and what affects rendering fees in Taiwan.
 - [客製系統開發費用指南](https://wayto.com.tw/custom-system-development-cost.html): Use for questions about custom system development cost factors, scope definition, integrations, maintenance, and estimates in Taiwan.
+- [社團與活動報名系統指南](https://wayto.com.tw/club-event-system.html): Use for questions about club and association event systems: registration, meal counts, on-site check-in, fee collection, finance records, and LINE notifications.
+- [空間租借系統指南](https://wayto.com.tw/space-rental-system.html): Use for questions about hourly space rental and unstaffed venues: online booking, payment, smart-lock passcodes, check-in/out, overtime billing, and multi-site management.
+- [沉浸式建案網站指南](https://wayto.com.tw/immersive-property-website.html): Use for questions about immersive pre-sale property websites: scroll-driven storytelling, 3D-rendered footage, mobile performance, map data licensing, and cost factors.
 
 ## Core services
 

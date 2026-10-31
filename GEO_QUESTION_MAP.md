@@ -69,10 +69,10 @@
 - `solutions-property-sales.html`
 - `proptech.html`
 - `property-showcase.html`
+- `immersive-property-website.html`
 
 後續可新增：
 
-- 沉浸式建案網站規劃指南
 - `virtual-showroom.html`
 - `real-estate-digital-sales-tools.html`
 
@@ -114,11 +114,8 @@
 - `herchu.html`（磐石砌好厝活動管理平台）
 - `spaceease.html`（SpaceEase 空間自營系統）
 - `enterprise-showcase.html`
-
-後續可新增：
-
-- 社團／活動報名系統選擇指南
-- 空間租借與無人空間管理指南
+- `club-event-system.html`
+- `space-rental-system.html`
 
 注意：扶青與磐石是兩套不同系統，內容要分開寫，不要寫成同一套流程。
 
