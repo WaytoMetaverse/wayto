@@ -17,9 +17,11 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://wayto.com.tw/3d-rendering-service.html#webpage","url":"https://wayto.com.tw/3d-rendering-service.html","name":"3D 繪圖與渲染服務指南","description":"整理 3D 繪圖與渲染服務的適用情境、流程、報價因素、準備資料與常見問題。","inLanguage":"zh-TW","isPartOf":{"@id":"https://wayto.com.tw/#website"},"about":{"@id":"https://wayto.com.tw/#organization"}},{"@type":"Service","name":"3D 繪圖與渲染服務","serviceType":"3D 視覺化","provider":{"@id":"https://wayto.com.tw/#organization"},"areaServed":"Taiwan","url":"https://wayto.com.tw/3d-rendering-service.html","description":"將平面圖、CAD、材質、風格參考與空間設定轉化為 3D 效果圖、360 環景或動畫展示。"},{"@type":"FAQPage","inLanguage":"zh-TW","mainEntity":[{"@type":"Question","name":"3D 繪圖和 3D 渲染有什麼差別？","acceptedAnswer":{"@type":"Answer","text":"3D 繪圖偏向建立空間、模型與構圖；3D 渲染則是把模型加入材質、燈光與視角後輸出成圖片或影片。多數專案會同時包含兩者。"}},{"@type":"Question","name":"沒有完整 CAD 可以做嗎？","acceptedAnswer":{"@type":"Answer","text":"可以先評估。若有 PDF、手繪尺寸、現場照片或既有模型，也可能製作；但資料不足會影響精準度、估價與時程。"}},{"@type":"Question","name":"可以做 360 環景或動畫嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。若專案需要線上導覽、銷售中心展示或業務簡報，可依需求規劃 360 環景、動畫、影片或互動展示。"}},{"@type":"Question","name":"修改次數怎麼算？","acceptedAnswer":{"@type":"Answer","text":"通常會在報價或合約中約定初稿後的合理修改範圍；重大設計變更、材質重做或新增視角會另行評估。"}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://wayto.com.tw/"},{"@type":"ListItem","position":2,"name":"3D 繪圖與渲染服務指南","item":"https://wayto.com.tw/3d-rendering-service.html"}]}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
-  <link rel="stylesheet" href="shared/geo-guides.css">
+  <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
+  <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/geo-guides.css?v=cosmos-20261031c">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1SWCVSH9F"></script>
   <script>
@@ -29,15 +31,16 @@
     gtag('config', 'G-F1SWCVSH9F');
   </script>
 </head>
-<body class="wayto-has-shared-nav guide-page" data-nav-current="solutions">
+<body class="wayto-has-shared-nav guide-page cosmos cosmos-page" data-universe="design" data-nav-current="solutions">
   <div id="shared-nav"></div>
 
   <main>
-    <section class="guide-hero" style="--guide-hero-image: url('uploads/preview-hero-design-collage.png');">
+    <section class="guide-hero" style="--guide-hero-image: url('/uploads/preview-hero-design-collage.png');">
       <div class="guide-container">
         <nav class="guide-breadcrumb" aria-label="麵包屑">
           <a href="/index.html">首頁</a><span>/</span><a href="/solutions.html">解決方案</a><span>/</span><span>3D 繪圖與渲染服務</span>
         </nav>
+        <span class="cx-badge">U-02 · DESIGNVERSE <b>設計宇宙</b></span>
         <p class="guide-eyebrow">3D RENDERING GUIDE</p>
         <h1>3D 繪圖與渲染服務怎麼選？</h1>
         <p class="guide-lead">給室內設計師、建案團隊、商業空間與建材品牌的 3D 視覺化指南：什麼時候需要 3D、要準備什麼、怎麼估價、如何降低溝通成本。</p>
@@ -163,5 +166,6 @@
 
   <div id="shared-footer"></div>
   <script src="shared/layout.js"></script>
+  <script src="shared/cosmos-bg.js?v=cosmos-20261031c" defer></script>
 </body>
 </html>

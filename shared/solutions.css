@@ -1,27 +1,36 @@
 /**
- * Wayto — 解決方案線（金色視覺）
+ * Wayto — 解決方案線（Cosmos 深色宇宙版）
  * 僅在「解決方案」類型頁面，以及「案例作品」3D／系統開發子頁引入；建議：
- *   <body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
- *   或 <body class="wayto-has-shared-nav sol-page cases-3d-page" …>、<body class="… cases-system-page" …>（案例子頁）
- * 須先引入 shared/layout.css（提供 --layout-max 等）。
+ *   <body class="wayto-has-shared-nav sol-page cosmos cosmos-page" data-universe="…" data-nav-current="solutions">
+ *   或 <body class="wayto-has-shared-nav sol-page cases-3d-page cosmos cosmos-page" …>、<body class="… cases-system-page …" …>（案例子頁）
+ * 載入順序：shared/layout.css → shared/cosmos.css → shared/cosmos-page.css → shared/solutions.css → 頁面自己的 CSS。
+ * 強調色一律用 var(--c)（由 body[data-universe] 決定，見 cosmos-page.css）；--gold / --gold-dark 保留為相容別名。
  * 底圖 CTA：在頁內以 `#底欄區塊id.foot-cta::before { background-image: url('uploads/…'); }` 覆寫（相對該 HTML）。
  * 勿僅設 :root 的 `--sol-foot-cta-bg-image: url('uploads/…')`：變數在 shared/solutions.css 內被引用時，相對路徑會錯解成 shared/uploads/ 而破圖。
  */
 
 :root {
-  --gold: #c4a35a;
-  --gold-dark: #a88b4a;
-  --ink: #1a1a1a;
-  --muted: #5c5c5c;
-  --line: #e8e8e8;
-  --bg-soft: #f7f7f6;
-  --white: #fff;
   /* 各方案頁可選：底欄 CTA 背景圖 */
   --sol-foot-cta-bg-image: none;
   /* 流程步驟、延伸圖示、問題領域等小圖統一尺寸（調整只改此一行） */
   --sol-ico-size: clamp(60px, 8.5vw, 92px);
   /* 方案內頁與案例作品子頁（3D、系統開發）共用 Hero 區最小高度 */
   --sol-about-hero-min-height: 540px;
+}
+
+/* 深色 token：掛在 body.sol-page（才能引用 cosmos-page.css 依宇宙決定的 --c）。
+   --ink / --line 與 cosmos.css 同值；舊版 :root 的淺色值已移除，避免蓋掉 cosmos token。 */
+.sol-page {
+  --ink: #e8ecff;
+  --muted: rgba(232, 236, 255, 0.7);
+  --line: rgba(160, 180, 255, 0.14);
+  --bg-soft: rgba(255, 255, 255, 0.018);
+  --white: transparent;
+  --gold: var(--c, #7aa2ff);
+  --gold-dark: color-mix(in srgb, var(--c, #7aa2ff) 72%, #fff);
+  --sol-glass: rgba(10, 14, 32, 0.62);
+  --sol-glass-line: rgba(255, 255, 255, 0.1);
+  --sol-btn-grad: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
 }
 
 /* 與原預覽頁相同：* 特異性低於 .nav-inner 等 layout 規則，不會壓掉導覽 padding */
@@ -69,23 +78,24 @@ html {
 
 .sol-breadcrumb {
   font-size: 13px;
-  color: var(--muted);
+  color: rgba(232, 236, 255, 0.44);
   line-height: 1.5;
 }
 
 .sol-breadcrumb a {
-  color: var(--muted);
+  color: rgba(232, 236, 255, 0.6);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .sol-breadcrumb a:hover {
-  color: var(--ink);
+  color: #fff;
   text-decoration: underline;
 }
 
 .sol-breadcrumb .sol-bc-sep {
   margin: 0 0.4em;
-  color: #a3a3a3;
+  color: rgba(232, 236, 255, 0.3);
   font-weight: 400;
 }
 
@@ -114,19 +124,32 @@ html {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 14px 18px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #fff;
-  color: var(--ink);
+  padding: 16px 20px;
+  border: 1px solid var(--sol-glass-line);
+  border-radius: 14px;
+  background: var(--sol-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
   font-weight: 600;
-  font-size: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 14.5px;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.sol-faq-hub-links a span {
+  color: var(--c);
+  font-family: var(--f-en);
+  transition: transform 0.3s;
 }
 
 .sol-faq-hub-links a:hover {
-  border-color: #bfdbfe;
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 12%, transparent), transparent 75%), var(--sol-glass);
+  box-shadow: 0 20px 60px -30px var(--c);
+}
+
+.sol-faq-hub-links a:hover span {
+  transform: translateX(4px);
 }
 
 @media (max-width: 560px) {
@@ -141,95 +164,97 @@ html {
   line-height: 1.75;
 }
 
-.sol-portfolio-stub-link {
+.sol-page .sol-portfolio-stub-link {
   margin-left: 0.35em;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
-  color: var(--ink);
+  color: var(--c);
+  transition: color 0.2s;
 }
 
-.sol-portfolio-stub-link:hover {
-  color: #2563eb;
+.sol-page .sol-portfolio-stub-link:hover {
+  color: #fff;
+}
+
+/* ── 按鈕（與首頁 .cx-btn / .cx-btn-ghost 一致：膠囊、主按鈕品牌漸層） ── */
+.btn-gold,
+.btn-dark,
+.btn-outline-gold,
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s, border-color 0.25s, color 0.25s;
 }
 
 .btn-gold {
-  background: var(--gold);
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 22px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  transition: 0.2s;
-  white-space: nowrap;
+  color: #050714;
+  font-weight: 700;
+  border: 0;
+  background: var(--sol-btn-grad);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
 }
 .btn-gold:hover {
-  background: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
 }
 
+/* 次要實心鈕：宇宙色淡底 */
 .btn-dark {
-  background: var(--ink);
   color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  transition: 0.2s;
+  border: 1px solid color-mix(in srgb, var(--c) 50%, transparent);
+  background: color-mix(in srgb, var(--c) 12%, rgba(3, 4, 11, 0.4));
+  box-shadow: inset 0 0 18px color-mix(in srgb, var(--c) 14%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .btn-dark:hover {
-  background: #333;
+  transform: translateY(-2px);
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 22%, rgba(3, 4, 11, 0.4));
+  box-shadow: inset 0 0 18px color-mix(in srgb, var(--c) 20%, transparent), 0 16px 44px -18px var(--c);
 }
 
-.btn-outline-gold {
-  background: #fff;
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: 2px solid var(--gold);
-  cursor: pointer;
-  font-family: inherit;
-  transition: 0.2s;
-}
-.btn-outline-gold:hover {
-  background: #fffdf8;
-}
-
+/* 幽靈鈕 */
+.btn-outline-gold,
 .btn-outline-light {
-  background: transparent;
   color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: 2px solid rgba(255, 255, 255, 0.45);
-  cursor: pointer;
-  font-family: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
+.btn-outline-gold:hover,
 .btn-outline-light:hover {
-  border-color: #fff;
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.09);
 }
 
 /* `<a class="btn-*">`：`.sol-page a { color: inherit }` 特異性 (0,1,1) 會蓋過單一 `.btn-*`，需補回字色 */
-.sol-page a.btn-gold,
-.sol-page a.btn-dark {
-  color: #fff;
+.sol-page a.btn-gold {
+  color: #050714;
 }
-.sol-page a.btn-outline-gold {
-  color: var(--ink);
-}
+.sol-page a.btn-dark,
+.sol-page a.btn-outline-gold,
 .sol-page a.btn-outline-light {
   color: #fff;
 }
 
-/* Hero：全寬 + min-height；拼貼圖用 contain */
+/* ── Hero：全寬 + min-height；照片鋪滿，左側深色遮罩 + 宇宙色光暈 ── */
 .about-hero#hero {
   margin-top: 0;
   min-height: var(--sol-about-hero-min-height);
@@ -237,7 +262,8 @@ html {
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: #f5f7fa;
+  background: transparent;
+  isolation: isolate;
 }
 
 /* 案例作品子頁 main#hero：與方案內頁同一 Hero 規格（見 .about-hero#hero） */
@@ -249,20 +275,20 @@ html {
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: #f5f7fa;
+  background: transparent;
 }
 
 .about-hero-img {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #f5f7fa;
+  background: transparent;
 }
 
 .about-hero-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: right center;
   display: block;
 }
@@ -273,20 +299,11 @@ html {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  /* 左側遮罩加強、延伸更寬，利於標題與內文在照片上閱讀 */
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.99) 8%,
-    rgba(255, 255, 255, 0.97) 16%,
-    rgba(255, 255, 255, 0.93) 26%,
-    rgba(255, 255, 255, 0.86) 38%,
-    rgba(255, 255, 255, 0.72) 50%,
-    rgba(255, 255, 255, 0.52) 62%,
-    rgba(255, 255, 255, 0.28) 74%,
-    rgba(255, 255, 255, 0.1) 86%,
-    rgba(245, 247, 250, 0) 100%
-  );
+  /* 左側深色讀字帶（取代舊版白色漸層）＋右上宇宙色光暈＋底部淡出到太空底色 */
+  background:
+    radial-gradient(ellipse 60% 70% at 85% 30%, color-mix(in srgb, var(--c) 20%, transparent), transparent 70%),
+    linear-gradient(90deg, rgba(3, 4, 11, 0.95) 0%, rgba(3, 4, 11, 0.86) 30%, rgba(3, 4, 11, 0.6) 52%, rgba(3, 4, 11, 0.25) 100%),
+    linear-gradient(180deg, rgba(3, 4, 11, 0.35) 0%, rgba(3, 4, 11, 0) 30%, rgba(3, 4, 11, 0) 64%, #03040b 100%);
 }
 
 .about-hero-left {
@@ -302,55 +319,45 @@ html {
   max-width: 560px;
 }
 
+.about-hero .cx-badge {
+  margin-bottom: 22px;
+}
+
 .about-hero-tag {
-  font-size: 13px;
-  font-weight: 600;
-  color: #2563eb;
-  letter-spacing: 1.5px;
-  margin-bottom: 28px;
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c);
+  letter-spacing: 0.2em;
+  margin-bottom: 18px;
 }
 
 .about-hero h1 {
-  font-size: clamp(34px, 4vw, 52px);
+  font-size: clamp(34px, 4vw, 54px);
   font-weight: 900;
-  color: #0f172a;
-  line-height: 1.35;
-  letter-spacing: -0.5px;
-  margin-bottom: 32px;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 28px;
+  text-shadow: 0 0 50px color-mix(in srgb, var(--c) 35%, transparent);
 }
 
 .about-hero-desc {
-  font-size: 15px;
-  color: #1e293b;
-  line-height: 2;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.95;
   font-weight: 400;
   margin-bottom: 36px;
 }
 
-/* Hero「展場金」：頂部標籤與兩顆按鈕與展覽互動頁同色（各方案子頁可加 .about-hero--accent-exh） */
+/* Hero 強調變體（舊「展場金」）：深色版一律沿用宇宙色與共用按鈕，保留 class 以相容既有頁面 */
 .about-hero.about-hero--accent-exh .about-hero-tag {
-  margin: 0 0 22px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  margin: 0 0 18px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   line-height: 1.5;
-  color: #a68257;
-}
-.about-hero.about-hero--accent-exh .hero-actions .btn-gold {
-  background: #a68257;
-}
-.about-hero.about-hero--accent-exh .hero-actions .btn-gold:hover {
-  background: #8f6f47;
-}
-.about-hero.about-hero--accent-exh .hero-actions .btn-outline-gold {
-  border-color: #a68257;
-  color: #0a0a0a;
-  background: #fff;
-}
-.about-hero.about-hero--accent-exh .hero-actions .btn-outline-gold:hover {
-  background: #fffdf8;
-  border-color: #8f6f47;
-  color: #0a0a0a;
+  color: var(--c);
 }
 
 .about-hero .hero-actions {
@@ -365,6 +372,14 @@ html {
     object-position: 65% center;
   }
 
+  /* 手機／平板：文字橫跨全寬，整張照片都需壓暗 */
+  .about-hero-img::before {
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 10%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
+      linear-gradient(90deg, rgba(3, 4, 11, 0.9) 0%, rgba(3, 4, 11, 0.72) 60%, rgba(3, 4, 11, 0.55) 100%),
+      linear-gradient(180deg, rgba(3, 4, 11, 0.4) 0%, rgba(3, 4, 11, 0.1) 35%, rgba(3, 4, 11, 0.5) 70%, #03040b 100%);
+  }
+
   .about-hero-left {
     padding: 56px 24px 72px;
   }
@@ -374,31 +389,68 @@ html {
   .about-hero-left {
     padding: 48px 20px 64px;
   }
+
+  .about-hero h1 {
+    font-size: clamp(28px, 8vw, 34px);
+  }
+
+  .about-hero-desc {
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .about-hero .hero-actions > * {
+    flex: 1 1 auto;
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
 }
 
-/* Section 共通 */
+/* ── Section 共通：透明底讓星空透出，相鄰區塊以細線分隔 ── */
 .sol-page section {
   padding: 88px 0;
 }
 
+.sol-page section ~ section:not(.foot-cta) {
+  border-top: 1px solid var(--line);
+}
+
 .section-head {
   text-align: center;
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto 56px;
 }
 .section-head h2 {
-  font-size: clamp(22px, 3vw, 30px);
-  font-weight: 700;
-  margin-bottom: 14px;
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+.section-head h2::before,
+.process-left h2::before,
+.estimator-head h2::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin: 0 auto 20px;
+  border-radius: 2px;
+  background: var(--c);
+  box-shadow: 0 0 12px var(--c);
 }
 .section-head p {
   color: var(--muted);
-  font-size: 15px;
+  font-size: 15.5px;
+  line-height: 1.85;
 }
 
-/* Pain：金色編號卡片 */
+/* Pain：玻璃編號卡片 */
 .pain {
-  background: #f7f7f5;
+  background: var(--bg-soft);
 }
 
 .cards-4 {
@@ -420,13 +472,14 @@ html {
 
   .num-card {
     padding: 18px 12px 16px;
-    border-radius: 12px;
+    border-radius: 14px;
   }
 
   .num-card .num {
     top: 12px;
     left: 12px;
-    font-size: 20px;
+    font-size: 10.5px;
+    padding: 3px 8px;
   }
 
   .num-card-visual {
@@ -477,16 +530,17 @@ html {
 
 .num-card {
   position: relative;
-  border: 1px solid #e8e8e6;
-  border-radius: 14px;
+  border: 1px solid var(--sol-glass-line);
+  border-radius: 18px;
   padding: 22px 20px 26px;
-  background: #fff;
-  transition: 0.2s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: var(--sol-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
 }
 .num-card:hover {
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
-  border-color: #ddd;
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: 0 24px 70px -30px var(--c);
 }
 
 .num-card .num {
@@ -494,20 +548,24 @@ html {
   top: 16px;
   left: 18px;
   z-index: 2;
-  font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: var(--gold);
-  line-height: 1;
-  letter-spacing: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--c) 75%, #fff);
+  line-height: 1.2;
+  letter-spacing: 0.16em;
 }
 
 .num-card-visual {
   height: 160px;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   margin: 40px 0 18px;
-  background: #eceae6;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .num-card-visual img {
@@ -537,23 +595,25 @@ html {
   flex-direction: column;
   justify-content: center;
   gap: 6px;
+  height: 100%;
   padding: 12px 14px;
   font-size: 11px;
-  font-family: ui-monospace, monospace;
-  color: #555;
-  background: linear-gradient(180deg, #fafafa, #f0f0ee);
+  font-family: var(--f-mono);
+  color: rgba(232, 236, 255, 0.6);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
 }
 .num-card-files span {
   padding: 6px 10px;
   border-radius: 6px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .num-card-files span.is-final {
-  border-color: var(--gold);
-  color: var(--ink);
+  border-color: color-mix(in srgb, var(--c) 70%, transparent);
+  color: #fff;
   font-weight: 600;
-  background: #fffdf6;
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  box-shadow: 0 0 18px -6px var(--c);
 }
 
 .num-card-chat {
@@ -562,7 +622,7 @@ html {
   flex-direction: column;
   gap: 6px;
   height: 100%;
-  background: linear-gradient(165deg, #eef4ff, #f5f7fb);
+  background: linear-gradient(165deg, color-mix(in srgb, var(--c) 10%, transparent), rgba(255, 255, 255, 0.015));
 }
 .num-card-chat .bubble {
   max-width: 88%;
@@ -570,32 +630,45 @@ html {
   border-radius: 10px;
   font-size: 10px;
   line-height: 1.45;
-  color: #333;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  color: rgba(232, 236, 255, 0.85);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .num-card-chat .bubble.alt {
   align-self: flex-end;
-  background: #e8f0fe;
-  border-color: #c7d7f0;
+  color: #fff;
+  background: color-mix(in srgb, var(--c) 20%, transparent);
+  border-color: color-mix(in srgb, var(--c) 42%, transparent);
 }
 
 .num-card h3 {
-  font-size: 16px;
+  font-size: 16.5px;
   margin-bottom: 10px;
   font-weight: 700;
-  color: var(--ink);
+  color: #fff;
 }
 .num-card p {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--muted);
   line-height: 1.8;
 }
 
+/* ── 圖示：白底插圖統一放進發光圓形磁磚（避免深色底上出現白色方塊） ── */
+.p-step .p-ico-img,
+.feat-col .feat-ico-img,
+.sol-ico-tile {
+  border-radius: 50%;
+  padding: 7%;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--c) 55%, transparent),
+    0 0 0 7px color-mix(in srgb, var(--c) 10%, transparent),
+    0 18px 46px -14px color-mix(in srgb, var(--c) 85%, transparent);
+}
+
 /* Process */
 .process {
-  background: #fff;
+  background: transparent;
   padding: 72px 0 80px;
 }
 
@@ -615,16 +688,19 @@ html {
 }
 
 .process-left h2 {
-  font-size: clamp(22px, 2.6vw, 28px);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.process-left h2::before {
+  margin: 0 0 18px;
 }
 
 .process-left .process-sub {
-  font-size: 15px;
+  font-size: 15.5px;
   color: var(--muted);
   line-height: 1.75;
   margin-bottom: 26px;
@@ -632,10 +708,14 @@ html {
 }
 
 .process-track {
-  border: 1px solid #dcdcdc;
-  border-radius: 12px;
-  background: #fafafa;
-  padding: 18px 10px 20px;
+  border: 1px solid var(--sol-glass-line);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse 70% 120% at 50% 0%, color-mix(in srgb, var(--c) 8%, transparent), transparent 70%),
+    var(--sol-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 22px 12px 22px;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -650,10 +730,10 @@ html {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 8px;
+  gap: 12px;
   flex: 1 1 0;
   min-width: 0;
-  padding: 0 2px;
+  padding: 8px 2px;
 }
 
 .p-step .p-ico-img {
@@ -667,7 +747,7 @@ html {
 .p-step span {
   font-size: clamp(10px, 1.65vw, 12px);
   font-weight: 500;
-  color: var(--ink);
+  color: #fff;
   line-height: 1.3;
   white-space: normal;
   word-break: keep-all;
@@ -676,13 +756,16 @@ html {
 .p-arrow {
   flex: 0 0 auto;
   align-self: center;
-  color: #b0b0b0;
-  font-size: 12px;
+  color: var(--c);
+  font-family: var(--f-en);
+  font-size: 13px;
   font-weight: 300;
   padding: 0 1px;
   user-select: none;
   line-height: 1;
   flex-shrink: 0;
+  opacity: 0.75;
+  text-shadow: 0 0 10px var(--c);
 }
 
 .process-right {
@@ -695,7 +778,7 @@ html {
   flex: 1;
   padding: 0 18px 8px;
   text-align: center;
-  border-right: 1px solid #e5e5e5;
+  border-right: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -708,19 +791,19 @@ html {
   width: var(--sol-ico-size);
   height: var(--sol-ico-size);
   object-fit: contain;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
   display: block;
 }
 
 .feat-col h3 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   margin-bottom: 12px;
-  color: var(--ink);
+  color: #fff;
   line-height: 1.45;
 }
 .feat-col p {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--muted);
   line-height: 1.75;
   text-align: center;
@@ -737,8 +820,8 @@ html {
   }
   .feat-col {
     border-right: 0;
-    border-bottom: 1px solid #eee;
-    padding: 20px 12px;
+    border-bottom: 1px solid var(--line);
+    padding: 24px 12px;
   }
   .feat-col:last-child {
     border-bottom: 0;
@@ -775,7 +858,7 @@ html {
   }
 
   .svc-card {
-    border-radius: 10px;
+    border-radius: 14px;
   }
 
   .svc-card .ph {
@@ -842,36 +925,51 @@ html {
 }
 
 .svc-card {
-  border-radius: 12px;
+  position: relative;
+  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  background: #fff;
+  border: 1px solid var(--sol-glass-line);
+  background: var(--sol-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+}
+.svc-card:hover {
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: 0 24px 70px -30px var(--c);
 }
 .svc-card .ph {
   aspect-ratio: 4/3;
-  background: #ddd;
+  overflow: hidden;
+  background: #0b1024;
 }
-.svc-card .ph img {
+.svc-card .ph img,
+.svc-card .ph video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.7s cubic-bezier(.2, .7, .2, 1);
+}
+.svc-card:hover .ph img,
+.svc-card:hover .ph video {
+  transform: scale(1.06);
 }
 .svc-card .body {
   padding: 20px 18px 22px;
 }
 .svc-card h3 {
-  font-size: 16px;
+  font-size: 16.5px;
   margin-bottom: 8px;
+  color: #fff;
 }
 .svc-card p {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--muted);
 }
 
 /* Estimator */
 .estimator {
-  background: #f0f0ed;
-  border-top: 1px solid #e0e0dc;
+  background: var(--bg-soft);
   padding: 80px 0 100px;
 }
 
@@ -889,14 +987,14 @@ html {
   margin-right: auto;
 }
 .estimator-head h2 {
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
 }
 .estimator-head p {
-  font-size: 15px;
+  font-size: 15.5px;
   color: var(--muted);
   line-height: 1.65;
 }
@@ -920,11 +1018,12 @@ html {
 }
 
 .est-white-panel {
-  background: #fff;
-  border: 1px solid #e4e4e0;
+  background: var(--sol-glass);
+  border: 1px solid var(--sol-glass-line);
   border-radius: 20px;
   padding: 0;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   min-width: 0;
   overflow: hidden;
 }
@@ -955,13 +1054,13 @@ html {
 
 @media (min-width: 1181px) {
   .est-col + .est-col {
-    border-left: 1px solid #ecece8;
+    border-left: 1px solid var(--line);
   }
 }
 
 @media (max-width: 1180px) {
   .est-col + .est-col {
-    border-top: 1px solid #ecece8;
+    border-top: 1px solid var(--line);
   }
 }
 
@@ -977,21 +1076,23 @@ html {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 2px solid var(--gold);
-  background: #fffdf8;
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 700;
+  border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  color: var(--c);
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  box-shadow: 0 0 18px -4px var(--c);
 }
 
 .est-step-title {
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 700;
-  color: var(--ink);
+  color: #fff;
   line-height: 1.35;
 }
 
@@ -1004,26 +1105,26 @@ html {
 .space-type-stack button {
   width: 100%;
   padding: 14px 14px;
-  border-radius: 10px;
-  border: 1px solid #d5d5d2;
-  background: #fafaf8;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   color: var(--ink);
   cursor: pointer;
-  transition: 0.15s;
+  transition: 0.2s;
   text-align: center;
 }
 .space-type-stack button:hover {
-  border-color: #b8b8b4;
-  background: #fff;
+  border-color: color-mix(in srgb, var(--c) 45%, transparent);
+  background: rgba(255, 255, 255, 0.07);
 }
 .space-type-stack button.active {
-  background: var(--ink);
+  background: color-mix(in srgb, var(--c) 18%, transparent);
   color: #fff;
-  border-color: var(--ink);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border-color: var(--c);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 40%, transparent), 0 10px 30px -14px var(--c);
 }
 
 .est-legend {
@@ -1032,11 +1133,11 @@ html {
   gap: 12px 24px;
   margin-bottom: 16px;
   padding: 12px 14px;
-  background: #f6f6f3;
-  border-radius: 10px;
-  border: 1px solid #eaeae6;
-  font-size: 12px;
-  color: #454545;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  font-size: 12.5px;
+  color: var(--muted);
 }
 
 .est-legend i {
@@ -1049,10 +1150,12 @@ html {
 }
 
 .est-legend .dot-open {
-  background: #8b6914;
+  background: var(--c);
+  box-shadow: 0 0 8px var(--c);
 }
 .est-legend .dot-private {
-  background: #c4a574;
+  background: transparent;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 70%, #fff);
 }
 
 .room-grid {
@@ -1069,11 +1172,11 @@ html {
 }
 
 .room-cell {
-  border: 1px solid #e2e2de;
-  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   padding: 12px 14px;
-  background: #fcfcfa;
-  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   cursor: pointer;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1088,7 +1191,7 @@ html {
   align-self: center;
   width: 18px;
   height: 18px;
-  accent-color: #7a5c1e;
+  accent-color: var(--c);
   cursor: pointer;
   margin: 0;
 }
@@ -1097,26 +1200,26 @@ html {
   grid-column: 2;
   font-size: 14px;
   font-weight: 600;
-  color: var(--ink);
+  color: #fff;
   line-height: 1.3;
 }
 .room-cell .rt {
   grid-column: 2;
   font-size: 12px;
-  color: var(--muted);
+  color: rgba(232, 236, 255, 0.5);
   line-height: 1.4;
 }
 
 /* 選取態依賴 :has()（Safari 15.4+）；更舊瀏覽器僅核取方塊仍可操作，外框高亮可能降級 */
 .room-cell:has(input:checked) {
-  border-color: #c4a574;
-  background: #fffdf6;
-  box-shadow: inset 0 0 0 1px rgba(196, 163, 90, 0.2);
+  border-color: color-mix(in srgb, var(--c) 70%, transparent);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent), 0 10px 30px -18px var(--c);
 }
 
 .room-cell:hover:not(:has(input:checked)) {
-  border-color: #d0d0cc;
-  background: #fafaf8;
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .est-step3 .counter-group {
@@ -1135,11 +1238,11 @@ html {
 }
 
 .est-step3 .counter-block {
-  border: 1px solid #e4e4e0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 14px 18px;
   margin-bottom: 0;
-  background: #fafaf8;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .counter-row-est {
@@ -1151,9 +1254,10 @@ html {
 }
 
 .counter-row-est .subp {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--gold-dark);
+  font-family: var(--f-en);
+  font-size: 15px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--c) 75%, #fff);
   white-space: nowrap;
 }
 
@@ -1167,37 +1271,39 @@ html {
 .counter-ctrl button {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  border: 1px solid #d0d0cc;
-  background: #fff;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   font-size: 18px;
   line-height: 1;
-  color: var(--ink);
+  color: #fff;
   font-family: inherit;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .counter-ctrl button:hover {
-  background: #f3f3f1;
-  border-color: #bbb;
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  border-color: var(--c);
+  box-shadow: 0 0 16px -4px var(--c);
 }
 
 .counter-ctrl .cv {
   min-width: 28px;
   text-align: center;
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--ink);
+  font-family: var(--f-en);
+  font-weight: 600;
+  font-size: 17px;
+  color: #fff;
 }
 
 .est-notes {
   margin-top: 14px;
   padding: 14px 16px;
-  background: #f5f5f2;
-  border-radius: 10px;
-  border: 1px solid #e8e8e4;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid var(--line);
   font-size: 12px;
-  color: #5a5a5a;
+  color: rgba(232, 236, 255, 0.55);
   line-height: 1.7;
 }
 .est-notes ul {
@@ -1207,6 +1313,9 @@ html {
 .est-notes li {
   margin-bottom: 5px;
 }
+.est-notes li::marker {
+  color: var(--c);
+}
 .est-notes li:last-child {
   margin-bottom: 0;
 }
@@ -1214,25 +1323,29 @@ html {
 .est-summary {
   position: static;
   width: 100%;
-  background: linear-gradient(165deg, #2d2d2d 0%, #181818 100%);
+  background:
+    radial-gradient(ellipse 90% 70% at 100% 0%, color-mix(in srgb, var(--c) 22%, transparent), transparent 65%),
+    rgba(10, 14, 32, 0.78);
   color: #fff;
   border-radius: 20px;
   padding: 26px 24px 28px;
-  border: 1px solid #3a3a3a;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+  box-shadow: 0 30px 80px -40px var(--c);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .est-summary .sum-h {
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(232, 236, 255, 0.85);
   margin-bottom: 14px;
 }
 
 .est-summary-lines {
   font-size: 14px;
   line-height: 1.65;
-  opacity: 0.9;
+  color: var(--muted);
   margin-bottom: 4px;
 }
 
@@ -1248,16 +1361,17 @@ html {
   border-bottom: none;
 }
 .est-summary-lines .line span:first-child {
-  opacity: 0.88;
+  opacity: 0.9;
 }
 .est-summary-lines .line span:last-child {
   font-weight: 600;
+  color: #fff;
   white-space: nowrap;
 }
 
 .est-summary-div {
   height: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--c) 60%, transparent), transparent);
   margin: 16px 0 18px;
 }
 
@@ -1275,11 +1389,13 @@ html {
 }
 
 .est-summary-total-row .tv {
-  font-size: 34px;
+  font-family: var(--f-en);
+  font-size: 36px;
   font-weight: 700;
-  color: #e8c96b;
-  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--c) 70%, #fff);
+  letter-spacing: -0.01em;
   line-height: 1;
+  text-shadow: 0 0 30px color-mix(in srgb, var(--c) 55%, transparent);
 }
 
 .est-summary .btn-est-cta {
@@ -1288,21 +1404,23 @@ html {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 16px 20px;
+  min-height: 52px;
+  padding: 0 20px;
   border: none;
-  border-radius: 12px;
+  border-radius: 999px;
   cursor: pointer;
   font-family: inherit;
   font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(180deg, #c9a86a 0%, #a88b4a 100%);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
-  transition: filter 0.2s, transform 0.2s;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #050714;
+  background: var(--sol-btn-grad);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
+  transition: box-shadow 0.25s, transform 0.25s;
 }
 .est-summary .btn-est-cta:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
 }
 .est-summary .btn-est-cta svg {
   flex-shrink: 0;
@@ -1318,6 +1436,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px 22px;
+  align-items: start;
 }
 
 @media (max-width: 768px) {
@@ -1327,18 +1446,31 @@ html {
 }
 
 details.faq-item {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 0 16px;
+  background: var(--sol-glass);
+  border: 1px solid var(--sol-glass-line);
+  border-radius: 16px;
+  padding: 0 22px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+details.faq-item:hover {
+  border-color: color-mix(in srgb, var(--c) 35%, transparent);
+}
+
+details.faq-item[open] {
+  border-color: color-mix(in srgb, var(--c) 50%, transparent);
+  box-shadow: 0 20px 60px -36px var(--c);
 }
 
 details.faq-item summary {
   list-style: none;
   cursor: pointer;
-  padding: 16px 0;
-  font-weight: 600;
-  font-size: 14px;
+  padding: 18px 0;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1351,46 +1483,51 @@ details.faq-item summary::-webkit-details-marker {
 
 details.faq-item summary::after {
   content: "+";
-  font-size: 18px;
-  color: var(--gold);
-  font-weight: 400;
+  flex: none;
+  font-family: var(--f-en);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--c);
+  font-weight: 300;
+  transition: rotate 0.3s;
 }
 
 details.faq-item[open] summary::after {
-  content: "−";
+  rotate: 45deg;
 }
 
 details.faq-item .ans {
-  padding: 0 0 16px;
-  font-size: 13px;
+  padding: 0 0 18px;
+  font-size: 14px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.85;
 }
 
 /* 案例區塊佔位（較緊湊，覆蓋 .sol-page section 預設上下距） */
 section.sol-portfolio-stub {
   padding: 40px 0;
-  background: #fff;
+  background: transparent;
   border-top: 1px solid var(--line);
 }
 section.sol-portfolio-stub .container {
   text-align: center;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 14.5px;
 }
 section.sol-portfolio-stub strong {
-  color: var(--ink);
+  color: #fff;
 }
 
-/* Footer CTA — 背景圖由 --sol-foot-cta-bg-image 提供 */
+/* ── Footer CTA：深色帶 + 宇宙色光暈；背景照片（--sol-foot-cta-bg-image／頁內覆寫）壓暗保留 ── */
 .sol-page .foot-cta {
   position: relative;
   overflow: hidden;
   isolation: isolate;
   color: #fff;
-  padding: 30px 0 50px;
+  padding: 100px 0 104px;
   text-align: left;
-  background-color: #141414;
+  background-color: #03040b;
+  border-top: 1px solid var(--line);
 }
 
 .foot-cta::before {
@@ -1402,6 +1539,7 @@ section.sol-portfolio-stub strong {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 72%;
+  opacity: 0.62;
 }
 
 .foot-cta::after {
@@ -1410,20 +1548,11 @@ section.sol-portfolio-stub strong {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(
-      to bottom,
-      rgba(10, 9, 8, 0.42) 0%,
-      rgba(10, 9, 8, 0.12) 30%,
-      transparent 52%
-    ),
-    linear-gradient(
-      to right,
-      rgba(12, 10, 8, 0.94) 0%,
-      rgba(12, 10, 8, 0.78) 28%,
-      rgba(12, 10, 8, 0.45) 52%,
-      rgba(12, 10, 8, 0.18) 72%,
-      rgba(12, 10, 8, 0) 100%
-    );
+  background:
+    radial-gradient(ellipse 55% 90% at 85% 50%, color-mix(in srgb, var(--c) 26%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 80% at 10% 100%, rgba(122, 162, 255, 0.14), transparent 70%),
+    linear-gradient(90deg, rgba(3, 4, 11, 0.94) 0%, rgba(3, 4, 11, 0.8) 34%, rgba(3, 4, 11, 0.45) 64%, rgba(3, 4, 11, 0.3) 100%),
+    linear-gradient(180deg, #03040b 0%, rgba(3, 4, 11, 0) 26%, rgba(3, 4, 11, 0) 70%, rgba(3, 4, 11, 0.85) 100%);
 }
 
 .foot-cta .container {
@@ -1436,40 +1565,45 @@ section.sol-portfolio-stub strong {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 20px 42px;
+  gap: 24px 42px;
 }
 
 .foot-cta-copy {
   flex: 1 1 260px;
   min-width: 0;
-  max-width: 640px;
+  max-width: 760px;
 }
 
 .foot-cta h2 {
-  font-size: clamp(22px, 3.2vw, 32px);
+  font-size: clamp(28px, 3.8vw, 46px);
   margin: 0 0 14px;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
 }
 
 .foot-cta .foot-cta-lead {
   margin: 0;
   font-size: clamp(15px, 1.8vw, 17px);
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.8;
+  color: var(--muted);
 }
 
 .foot-cta .row {
   flex: 0 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 16px;
+  gap: 12px 14px;
   justify-content: flex-end;
   align-items: center;
 }
 
 @media (max-width: 720px) {
+  .sol-page .foot-cta {
+    padding: 76px 0 80px;
+  }
   .foot-cta-inner {
     flex-direction: column;
     align-items: stretch;
@@ -1484,5 +1618,24 @@ section.sol-portfolio-stub strong {
     padding-left: 20px;
     padding-right: 20px;
   }
+  .sol-page section {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+  .sol-page section.sol-portfolio-stub {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+  .section-head {
+    margin-bottom: 40px;
+  }
+  .section-head p {
+    font-size: 14.5px;
+  }
 }
 
+@media (max-width: 420px) {
+  .foot-cta .row > * {
+    flex: 1 1 auto;
+  }
+}

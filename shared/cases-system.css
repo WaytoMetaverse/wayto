@@ -1,7 +1,23 @@
 /**
- * 系統開發案例頁（cases-system.html）
- * Hero 與 3D 案例頁共用 solutions.css 的 .about-hero#hero、.about-hero--accent-exh
+ * 系統開發案例頁（cases-system.html）— Cosmos 深色版（企業宇宙 U-04）
+ * 須搭配 layout.css → cosmos.css → cosmos-page.css → solutions.css → 本檔；
+ * body：sol-page cases-system-page cosmos cosmos-page，data-universe="enterprise"
+ * 本檔自帶 solutions.css 共用元件（Hero、按鈕）的深色覆寫，不依賴 solutions.css 的深色化結果。
  */
+
+/* solutions.css 的淺色變數（--ink / --muted / --line…）於 body 重新宣告為深色版 */
+body.cosmos-page.cases-system-page {
+  --ink: #e8ecff;
+  --ink-2: rgba(232, 236, 255, 0.7);
+  --ink-3: rgba(232, 236, 255, 0.44);
+  --muted: rgba(232, 236, 255, 0.7);
+  --line: rgba(160, 180, 255, 0.14);
+  --bg-soft: rgba(255, 255, 255, 0.018);
+  --white: transparent;
+  --gold: var(--c);
+  --gold-dark: color-mix(in srgb, var(--c) 75%, #fff);
+  --sys-card: rgba(10, 14, 32, 0.62);
+}
 
 /* 字型、字級、行高與解決方案線 .sol-page 一致（shared/solutions.css） */
 .cases-system-page {
@@ -12,31 +28,180 @@
   -webkit-font-smoothing: antialiased;
 }
 
+body.cosmos-page.cases-system-page .sol-breadcrumb-bar {
+  position: relative;
+  z-index: 3;
+  padding-top: 18px;
+}
+
 .cases-system-page .cases-sys-breadcrumb {
   margin: 0 0 18px;
   font-size: 13px;
-  color: var(--muted);
+  color: var(--ink-3);
   line-height: 1.5;
 }
 
 .cases-system-page .cases-sys-breadcrumb a {
-  color: var(--muted);
+  color: var(--ink-3);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .cases-system-page .cases-sys-breadcrumb a:hover {
-  color: var(--ink);
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
 }
 
 .cases-system-page .cases-sys-bc-sep {
   margin: 0 8px;
-  color: var(--line);
+  color: var(--ink-3);
+}
+
+/* —— Hero（覆寫 solutions.css 的白色 Hero：照片壓暗 + 深色遮罩 + 宇宙色光暈） —— */
+body.cosmos-page.cases-system-page main#hero.about-hero {
+  background: transparent;
+  isolation: isolate;
+  min-height: 560px;
+}
+
+body.cosmos-page.cases-system-page main#hero .about-hero-img {
+  background: transparent;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 74%, transparent 100%);
+}
+
+body.cosmos-page.cases-system-page main#hero .about-hero-img img {
+  object-fit: cover;
+  object-position: 70% center;
+  opacity: 0.55;
+  filter: saturate(0.9);
+}
+
+body.cosmos-page.cases-system-page main#hero .about-hero-img::before {
+  background:
+    radial-gradient(ellipse 55% 70% at 80% 36%, color-mix(in srgb, var(--c) 20%, transparent), transparent 70%),
+    linear-gradient(90deg, rgba(3, 4, 11, 0.96) 0%, rgba(3, 4, 11, 0.86) 38%, rgba(3, 4, 11, 0.4) 100%),
+    linear-gradient(180deg, rgba(3, 4, 11, 0.3) 0%, rgba(3, 4, 11, 0) 40%, #03040b 100%);
+}
+
+body.cosmos-page.cases-system-page main#hero .about-hero-left {
+  padding-top: 88px;
+  padding-bottom: 96px;
+}
+
+body.cosmos-page.cases-system-page main#hero .about-hero-inner {
+  max-width: 640px;
+}
+
+body.cosmos-page.cases-system-page main#hero .cx-badge {
+  margin: 0 0 22px;
+}
+
+body.cosmos-page.cases-system-page main#hero.about-hero--accent-exh .about-hero-tag {
+  margin: 0 0 14px;
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--c);
+}
+
+body.cosmos-page.cases-system-page main#hero h1 {
+  margin-bottom: 24px;
+  font-size: clamp(36px, 4.8vw, 64px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 0 0 50px color-mix(in srgb, var(--c) 35%, transparent);
+}
+
+body.cosmos-page.cases-system-page main#hero .about-hero-desc {
+  margin-bottom: 34px;
+  font-size: 16.5px;
+  line-height: 1.95;
+  color: var(--ink-2);
+}
+
+/* 主要按鈕（.btn-gold / .btn-dark）→ 宇宙漸層膠囊（同 .cx-btn） */
+body.cosmos-page.cases-system-page a.btn-gold,
+body.cosmos-page.cases-system-page a.btn-dark,
+body.cosmos-page.cases-system-page main#hero.about-hero--accent-exh .hero-actions a.btn-gold {
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 999px;
+  color: #050714;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+body.cosmos-page.cases-system-page a.btn-gold:hover,
+body.cosmos-page.cases-system-page a.btn-dark:hover,
+body.cosmos-page.cases-system-page main#hero.about-hero--accent-exh .hero-actions a.btn-gold:hover {
+  color: #050714;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
+}
+
+@media (max-width: 900px) {
+  body.cosmos-page.cases-system-page main#hero.about-hero {
+    min-height: 520px;
+  }
+
+  body.cosmos-page.cases-system-page main#hero .about-hero-img img {
+    object-position: 65% center;
+  }
+
+  body.cosmos-page.cases-system-page main#hero .about-hero-img::before {
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 18%, color-mix(in srgb, var(--c) 20%, transparent), transparent 70%),
+      linear-gradient(180deg, rgba(3, 4, 11, 0.6) 0%, rgba(3, 4, 11, 0.84) 55%, #03040b 100%);
+  }
+
+  body.cosmos-page.cases-system-page main#hero .about-hero-left {
+    padding: 56px 24px 72px;
+  }
+}
+
+@media (max-width: 600px) {
+  body.cosmos-page.cases-system-page main#hero .about-hero-left {
+    padding: 48px 20px 64px;
+  }
+
+  body.cosmos-page.cases-system-page main#hero h1 {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  body.cosmos-page.cases-system-page main#hero .about-hero-desc {
+    font-size: 15.5px;
+  }
+
+  body.cosmos-page.cases-system-page a.btn-gold,
+  body.cosmos-page.cases-system-page a.btn-dark,
+  body.cosmos-page.cases-system-page main#hero.about-hero--accent-exh .hero-actions a.btn-gold {
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
 }
 
 /* 案例列表 */
 .cases-system-page .cases-sys-list-wrap {
-  background: #fff;
+  background: transparent;
+}
+
+body.cosmos-page.cases-system-page section.cases-sys-list-wrap {
+  padding-top: 72px;
+  border-top: 1px solid var(--line);
 }
 
 .cases-system-page .cases-sys-list-inner {
@@ -44,6 +209,7 @@
 }
 
 .cases-system-page .cases-sys-row {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(280px, min(440px, 42vw)) minmax(0, 1fr);
   gap: 32px 56px;
@@ -52,7 +218,7 @@
   border-bottom: 1px solid var(--line);
   text-decoration: none;
   color: inherit;
-  transition: background 0.2s ease;
+  transition: background 0.35s ease;
 }
 
 .cases-system-page .cases-sys-row:last-of-type {
@@ -60,11 +226,11 @@
 }
 
 .cases-system-page .cases-sys-row:hover {
-  background: linear-gradient(90deg, rgba(248, 250, 252, 0.9) 0%, transparent 55%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 9%, transparent) 0%, transparent 60%);
 }
 
 .cases-system-page .cases-sys-row:focus-visible {
-  outline: 2px solid #a68257;
+  outline: 2px solid var(--c);
   outline-offset: 4px;
 }
 
@@ -75,23 +241,36 @@
 }
 
 .cases-system-page .cases-sys-num {
-  /* 與 solutions-design-proposal.html 的 .num-card .num 一致 */
-  font-family: Georgia, "Times New Roman", "Noto Serif TC", serif;
-  font-size: clamp(26px, 3.4vw, 34px);
+  font-family: var(--f-mono);
+  font-size: clamp(22px, 2.6vw, 28px);
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0;
-  color: var(--gold);
+  letter-spacing: 0.12em;
+  color: var(--c);
+  text-shadow: 0 0 18px color-mix(in srgb, var(--c) 60%, transparent);
+}
+
+.cases-system-page .cases-sys-num::before {
+  content: "// ";
+  color: var(--ink-3);
+  text-shadow: none;
 }
 
 .cases-system-page .cases-sys-ph {
   width: 100%;
   /* 高度維持固定；寬度隨左欄加寬（略高於先前 210px） */
   height: 248px;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  background: var(--bg-soft);
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
+  background: #0b1024;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  transition: border-color 0.35s, box-shadow 0.35s;
+}
+
+.cases-system-page .cases-sys-row:hover .cases-sys-ph {
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: 0 24px 70px -30px var(--c);
 }
 
 .cases-system-page .cases-sys-ph img {
@@ -99,11 +278,26 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cases-system-page .cases-sys-row:hover .cases-sys-ph img {
+  transform: scale(1.04);
+}
+
+.cases-system-page .cases-sys-ph--contain {
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 50%, color-mix(in srgb, var(--c) 14%, transparent), transparent 75%),
+    #0b1024;
 }
 
 .cases-system-page .cases-sys-ph--contain img {
   object-fit: contain;
   padding: 12px;
+}
+
+.cases-system-page .cases-sys-row:hover .cases-sys-ph--contain img {
+  transform: none;
 }
 
 .cases-system-page .cases-sys-body {
@@ -122,31 +316,37 @@
 
 .cases-system-page .cases-sys-body h2 {
   margin: 0;
-  font-size: clamp(20px, 2.2vw, 26px);
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.02em;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
   line-height: 1.35;
   flex: 1 1 12rem;
+  transition: color 0.3s;
+}
+
+.cases-system-page .cases-sys-row:hover .cases-sys-body h2 {
+  color: color-mix(in srgb, var(--c) 30%, #fff);
 }
 
 .cases-system-page .cases-sys-tag {
   flex-shrink: 0;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 5px 13px;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  background: var(--bg-soft);
-  border: 1px solid var(--line);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--c) 75%, #fff);
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
 }
 
 .cases-system-page .cases-sys-desc {
-  margin: 0 0 20px;
-  font-size: 15px;
-  line-height: 1.85;
-  color: var(--muted);
+  margin: 0 0 22px;
+  font-size: 15.5px;
+  line-height: 1.95;
+  color: var(--ink-2);
   max-width: 42rem;
 }
 
@@ -161,17 +361,18 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.45;
-  color: var(--muted);
+  color: var(--ink-2);
 }
 
 .cases-system-page .cases-sys-feat-item svg {
   flex-shrink: 0;
   width: 22px;
   height: 22px;
-  color: #2563eb;
+  color: var(--c);
   margin-top: 1px;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--c) 55%, transparent));
 }
 
 @media (max-width: 900px) {
@@ -200,26 +401,60 @@
   }
 
   .cases-system-page .cases-sys-num {
-    font-size: 26px;
+    font-size: 22px;
   }
 }
 
-/* 底部 CTA：滿版底圖（與 3D 頁 cases3d-soft-cta 同結構；圖右側留白擺字） */
+@media (max-width: 560px) {
+  body.cosmos-page.cases-system-page section.cases-sys-list-wrap {
+    padding-top: 40px;
+  }
+
+  .cases-system-page .cases-sys-row-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .cases-system-page .cases-sys-ph {
+    width: 100%;
+    height: 200px;
+  }
+
+  .cases-system-page .cases-sys-feat {
+    gap: 12px 16px;
+  }
+}
+
+/* 底部 CTA：深色宇宙帶 + 宇宙色光暈（淺色底圖與白色 scrim 不再使用） */
 .cases-system-page .cases-sys-soft-cta {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  border-top: 1px solid rgba(196, 163, 90, 0.2);
-  padding: 30px 0 50px;
-  background-color: #f8fafc;
+  border-top: 1px solid var(--line);
+  padding: 110px 0;
+  background-color: transparent;
+}
+
+.cases-system-page .cases-sys-soft-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 90% at 85% 50%, color-mix(in srgb, var(--c) 24%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 80% at 10% 100%, rgba(122, 162, 255, 0.14), transparent 70%),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
 }
 
 .cases-system-page .cases-sys-soft-cta-media {
+  display: none;
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background-color: #f8fafc;
+  background-color: transparent;
 }
 
 .cases-system-page .cases-sys-soft-cta-media img {
@@ -234,19 +469,7 @@
 }
 
 .cases-system-page .cases-sys-soft-cta-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0) 26%,
-    rgba(248, 250, 252, 0.45) 42%,
-    rgba(241, 245, 249, 0.78) 58%,
-    rgba(248, 250, 252, 0.95) 76%,
-    rgba(255, 255, 255, 0.98) 100%
-  );
+  display: none;
 }
 
 .cases-system-page .cases-sys-soft-cta .container {
@@ -259,30 +482,31 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  gap: 20px 42px;
+  /* 深色版：文案靠左、按鈕靠右（同 .guide-cta） */
+  justify-content: space-between;
+  gap: 24px 42px;
 }
 
 .cases-system-page .cases-sys-soft-copy {
   flex: 1 1 260px;
   min-width: 0;
-  max-width: 640px;
+  max-width: 720px;
 }
 
 .cases-system-page .cases-sys-soft-copy h2 {
   margin: 0 0 14px;
-  font-size: clamp(22px, 3.2vw, 32px);
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  line-height: 1.35;
+  font-size: clamp(28px, 3.8vw, 46px);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
 }
 
 .cases-system-page .cases-sys-soft-copy .cases-sys-soft-lead {
   margin: 0;
-  font-size: clamp(15px, 1.8vw, 17px);
-  line-height: 1.75;
-  color: var(--muted);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.9;
+  color: var(--ink-2);
 }
 
 .cases-system-page .cases-sys-soft-act {
@@ -295,6 +519,10 @@
 }
 
 @media (max-width: 720px) {
+  .cases-system-page .cases-sys-soft-cta {
+    padding: 80px 0;
+  }
+
   .cases-system-page .cases-sys-soft-cta-inner {
     flex-direction: column;
     align-items: stretch;

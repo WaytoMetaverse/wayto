@@ -1,22 +1,24 @@
 /**
- * 案例作品首頁（cases.html）
- * 須搭配 shared/layout.css；body 建議：wayto-has-shared-nav + cases-page
+ * 案例作品首頁（cases.html）— Cosmos 深色版
+ * 須搭配 shared/layout.css → shared/cosmos.css → shared/cosmos-page.css；
+ * body：wayto-has-shared-nav cases-page cosmos cosmos-page，data-universe="origin"
  */
 .cases-page {
-  --cases-navy: #1a2b4b;
-  --cases-navy-2: #1a2b5e;
-  /* 與解決方案線一致的金色點綴 */
-  --cases-gold: #c4a35a;
-  --cases-gold-dark: #a88b4a;
-  --cases-gold-soft: rgba(196, 163, 90, 0.12);
-  --cases-gold-glow: rgba(196, 163, 90, 0.22);
-  --cases-muted: #64748b;
-  --cases-line: #e2e8f0;
-  --cases-bg: #f8f9fa;
-  --cases-featured: #f4f1eb;
+  /* 舊變數名保留，值改為深色宇宙版（--c = 頁面宇宙主色） */
+  --cases-navy: #fff;
+  --cases-navy-2: #fff;
+  --cases-gold: var(--c, #7aa2ff);
+  --cases-gold-dark: color-mix(in srgb, var(--c, #7aa2ff) 75%, #fff);
+  --cases-gold-soft: color-mix(in srgb, var(--c, #7aa2ff) 14%, transparent);
+  --cases-gold-glow: color-mix(in srgb, var(--c, #7aa2ff) 40%, transparent);
+  --cases-muted: var(--ink-2, rgba(232, 236, 255, 0.7));
+  --cases-line: rgba(255, 255, 255, 0.1);
+  --cases-bg: rgba(255, 255, 255, 0.018);
+  --cases-featured: rgba(255, 255, 255, 0.018);
+  --cases-card: rgba(10, 14, 32, 0.62);
   font-family: "Noto Sans TC", system-ui, sans-serif;
-  color: #1e293b;
-  background: #fff;
+  color: var(--ink, #e8ecff);
+  background: transparent;
   line-height: 1.65;
 }
 
@@ -33,7 +35,7 @@
   }
 }
 
-/* —— Hero（版型同解決方案；遮罩為白色漸層） —— */
+/* —— Hero（深色宇宙：照片壓暗 + 深色遮罩 + 宇宙色光暈） —— */
 .cases-hero {
   position: relative;
   margin-top: 0;
@@ -42,13 +44,17 @@
   align-items: center;
   color: var(--cases-navy);
   overflow: hidden;
-  background: #f5f3ee;
+  background: transparent;
+  isolation: isolate;
 }
 
+/* 照片與遮罩在底部淡出，直接融入星空（避免與下一段出現接縫） */
 .cases-hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
 }
 
 .cases-hero-bg img {
@@ -57,6 +63,8 @@
   object-fit: cover;
   object-position: 28% center;
   display: block;
+  opacity: 0.62;
+  filter: saturate(0.9);
 }
 
 .cases-hero-bg::after {
@@ -64,20 +72,19 @@
   position: absolute;
   inset: 0;
   background:
+    radial-gradient(ellipse 55% 70% at 82% 34%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
     linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.92) 0%,
-      rgba(255, 255, 255, 0.86) 22%,
-      rgba(255, 255, 255, 0.72) 34%,
-      rgba(255, 255, 255, 0.38) 48%,
-      rgba(255, 255, 255, 0.1) 58%,
-      transparent 76%
+      rgba(3, 4, 11, 0.96) 0%,
+      rgba(3, 4, 11, 0.9) 30%,
+      rgba(3, 4, 11, 0.6) 52%,
+      rgba(3, 4, 11, 0.25) 100%
     ),
     linear-gradient(
-      to top,
-      rgba(255, 255, 255, 0.24) 0%,
-      rgba(255, 255, 255, 0.05) 34%,
-      transparent 62%
+      180deg,
+      rgba(3, 4, 11, 0.35) 0%,
+      rgba(3, 4, 11, 0) 38%,
+      #03040b 100%
     );
   z-index: 1;
   pointer-events: none;
@@ -95,46 +102,63 @@
 }
 
 .cases-hero-copy {
-  max-width: 36rem;
+  max-width: 38rem;
+}
+
+.cases-hero-copy .cx-badge {
+  margin-bottom: 24px;
 }
 
 .cases-hero-copy h1 {
-  font-size: clamp(32px, 4.8vw, 52px);
-  font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -0.03em;
-  margin: 0 0 18px;
-  color: var(--cases-navy);
+  font-size: clamp(38px, 6vw, 76px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  margin: 0 0 22px;
+  color: #fff;
+  text-shadow: 0 0 50px color-mix(in srgb, var(--c) 35%, transparent);
 }
 
 .cases-hero-copy p {
-  margin: 0 0 24px;
-  font-size: clamp(15px, 1.65vw, 18px);
-  line-height: 1.8;
-  color: #0a0a0a;
-  max-width: 32rem;
+  margin: 0 0 32px;
+  font-size: clamp(15px, 1.4vw, 17.5px);
+  line-height: 1.95;
+  color: var(--ink-2);
+  max-width: 34rem;
 }
 
 .cases-hero .cases-btn-explore {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-top: 4px;
-  padding: 12px 26px;
-  border-radius: 6px;
+  min-height: 50px;
+  padding: 0 26px;
+  border-radius: 999px;
   font-size: 15px;
-  font-weight: 600;
-  color: #fff;
-  background: var(--cases-gold);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #050714;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
   border: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .cases-hero .cases-btn-explore:hover {
-  color: #fff;
-  background: var(--cases-gold-dark);
-  transform: translateY(-1px);
+  color: #050714;
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
+}
+
+.cases-hero .cases-btn-explore:hover svg {
+  transform: translateY(2px);
+}
+
+.cases-hero .cases-btn-explore svg {
+  transition: transform 0.25s;
 }
 
 .cases-hero .cases-btn-explore svg {
@@ -150,18 +174,28 @@
     object-position: 50% center;
   }
 
+  .cases-hero-bg::after {
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 18%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
+      linear-gradient(180deg, rgba(3, 4, 11, 0.55) 0%, rgba(3, 4, 11, 0.82) 55%, #03040b 100%);
+  }
+
   .cases-hero-inner {
     padding: 80px 20px 72px;
+  }
+
+  .cases-hero-copy h1 {
+    font-size: clamp(36px, 10vw, 48px);
   }
 }
 
 /* —— 作品集網格（官網 portfolio 資料） —— */
 .cases-latest-intro {
-  margin: 0 0 28px;
+  margin: 0 0 32px;
   max-width: 40rem;
-  font-size: 15px;
-  line-height: 1.75;
-  color: #64748b;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink-2);
 }
 
 .cases-latest-grid--pf-mixed {
@@ -240,9 +274,9 @@
   text-align: center;
   font-size: 14px;
   color: var(--cases-muted);
-  background: #f8fafc;
-  border-radius: 12px;
-  border: 1px dashed var(--cases-line);
+  background: var(--cases-card);
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
 }
 
 .cases-pf-empty a {
@@ -265,15 +299,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #1e293b 0%, #334155 50%, #0f172a 100%);
+  background:
+    radial-gradient(ellipse 70% 80% at 70% 20%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
+    linear-gradient(145deg, #0a0e20 0%, #111834 50%, #05070f 100%);
   color: rgba(255, 255, 255, 0.88);
+  font-family: var(--f-mono);
   font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
 }
 
 .cases-tile-fallback--vr {
-  background: linear-gradient(145deg, #0f172a 0%, #1e3a5f 45%, #172554 100%);
+  background:
+    radial-gradient(ellipse 70% 80% at 70% 20%, color-mix(in srgb, var(--u1) 26%, transparent), transparent 70%),
+    linear-gradient(145deg, #05070f 0%, #0d1838 45%, #0a1030 100%);
 }
 
 .cases-tile-body .cases-tile-desc {
@@ -285,9 +324,10 @@
 
 /* —— Section: 3D效果圖 / 作品集 —— */
 .cases-latest {
-  padding: 88px 0 96px;
-  background: linear-gradient(180deg, #fff 0%, #faf8f4 22%, #f8f5ee 100%);
-  border-top: 1px solid rgba(196, 163, 90, 0.2);
+  position: relative;
+  padding: 96px 0 104px;
+  background: transparent;
+  border-top: 1px solid var(--line);
 }
 
 .cases-sec-head {
@@ -300,38 +340,57 @@
 }
 
 .cases-sec-head h2 {
-  font-size: clamp(22px, 2.6vw, 28px);
-  font-weight: 800;
-  color: var(--cases-navy);
+  font-size: clamp(28px, 3.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  color: #fff;
   margin: 0;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
 }
 
+/* 標題上方的宇宙色光條（取代原金色短線） */
 .cases-sec-head h2::after {
   content: "";
+  order: -1;
   display: block;
-  width: 48px;
-  height: 3px;
+  width: 40px;
+  height: 2px;
+  margin-bottom: 18px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--cases-gold) 0%, rgba(196, 163, 90, 0.45) 100%);
+  background: var(--cases-gold);
+  box-shadow: 0 0 10px var(--cases-gold);
   opacity: 1;
 }
 
 .cases-sec-head .cases-link-more {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: var(--cases-gold-dark);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding: 8px 0;
+  transition: color 0.25s;
+}
+
+.cases-sec-head .cases-link-more span {
+  font-family: var(--f-en);
+  transition: transform 0.25s;
 }
 
 .cases-sec-head .cases-link-more:hover {
-  color: var(--cases-gold);
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
+}
+
+.cases-sec-head .cases-link-more:hover span {
+  transform: translateX(4px);
 }
 
 .cases-latest-grid {
@@ -384,9 +443,9 @@
 
 .cases-tile {
   position: relative;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  background: #0f172a;
+  background: #0b1024;
   aspect-ratio: 16 / 10;
   text-decoration: none;
   color: #fff;
@@ -404,29 +463,25 @@
 
 .cases-tile:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 24px 70px -30px var(--c);
 }
 
 /* 作品集網格：較精緻的卡片與媒體縮放 */
 .cases-latest-grid--pf-mixed .cases-tile--pf {
   width: 100%;
   min-width: 0;
-  border-radius: 5px;
-  border: 1px solid rgba(196, 163, 90, 0.22);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.45) inset,
-    0 8px 32px rgba(15, 23, 42, 0.07);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: none;
   isolation: isolate;
   box-sizing: border-box;
-  transition: box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 0.35s, box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .cases-latest-grid--pf-mixed .cases-tile--pf:hover {
   transform: none;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.5) inset,
-    0 16px 40px rgba(15, 23, 42, 0.12),
-    0 4px 12px var(--cases-gold-soft);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  box-shadow: 0 24px 70px -30px var(--c);
 }
 
 .cases-latest-grid--pf-mixed .cases-tile--pf:focus-visible {
@@ -457,14 +512,17 @@
   top: 12px;
   right: 12px;
   z-index: 2;
-  padding: 4px 8px;
+  padding: 5px 9px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.74);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
+  background: rgba(3, 4, 11, 0.62);
+  border: 1px solid color-mix(in srgb, var(--u1) 45%, transparent);
+  color: color-mix(in srgb, var(--u1) 70%, #fff);
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 14px -4px var(--u1);
   backdrop-filter: blur(10px);
 }
 
@@ -502,12 +560,12 @@
 
 .cases-latest-grid--pf-mixed .cases-tile-body .cases-tile-pill {
   margin-top: 0;
-  padding: 3px 9px;
+  padding: 3px 10px;
   font-size: 11px;
-  font-weight: 600;
-  border-radius: 6px;
-  letter-spacing: 0.02em;
-  background: rgba(15, 23, 42, 0.55);
+  font-weight: 500;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  background: rgba(3, 4, 11, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: rgba(248, 250, 252, 0.95);
   backdrop-filter: blur(8px);
@@ -516,7 +574,7 @@
 
 /* 分類標籤統一樣式（不依 data-pf-cat 變色） */
 .cases-latest-grid--pf-mixed .cases-tile-pill[data-pf-cat] {
-  background: rgba(15, 23, 42, 0.55);
+  background: rgba(3, 4, 11, 0.5);
   border-color: rgba(255, 255, 255, 0.22);
   color: rgba(248, 250, 252, 0.95);
 }
@@ -538,16 +596,16 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.2) 45%, transparent 100%);
+  background: linear-gradient(to top, rgba(3, 4, 11, 0.9) 0%, rgba(3, 4, 11, 0.2) 45%, transparent 100%);
   pointer-events: none;
 }
 
 .cases-latest-grid--pf-mixed .cases-tile--pf::after {
   background: linear-gradient(
     165deg,
-    rgba(12, 18, 28, 0) 38%,
-    rgba(12, 18, 28, 0.22) 58%,
-    rgba(10, 14, 22, 0.88) 100%
+    rgba(3, 4, 11, 0) 38%,
+    rgba(3, 4, 11, 0.25) 58%,
+    rgba(3, 4, 11, 0.9) 100%
   );
   z-index: 1;
 }
@@ -579,8 +637,8 @@
   font-size: 11px;
   font-weight: 600;
   padding: 5px 11px;
-  border-radius: 8px;
-  background: rgba(15, 23, 42, 0.45);
+  border-radius: 999px;
+  background: rgba(3, 4, 11, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.28);
   color: rgba(255, 255, 255, 0.95);
   letter-spacing: 0.02em;
@@ -607,30 +665,46 @@
   margin-top: 48px;
 }
 
+/* 次要動作：玻璃外框膠囊（同 .cx-btn-ghost） */
 .cases-btn-more {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 26px;
-  border-radius: 6px;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 26px;
+  border-radius: 999px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: #fff;
-  background: var(--cases-gold);
-  border: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-decoration: none;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
 }
 
 .cases-btn-more:hover {
-  background: var(--cases-gold-dark);
-  box-shadow: 0 6px 24px var(--cases-gold-glow);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.cases-btn-more span {
+  font-family: var(--f-en);
+  color: var(--c);
 }
 
 /* —— 系統開發案例 —— */
 .cases-featured {
-  padding-top: clamp(56px, 7vw, 96px);
+  position: relative;
+  padding-top: clamp(64px, 8vw, 104px);
+  padding-bottom: clamp(64px, 8vw, 104px);
+  background: var(--cases-featured);
+  border-top: 1px solid var(--line);
 }
 
 .cases-featured .cases-sec-head {
@@ -640,9 +714,9 @@
 .cases-featured-intro {
   max-width: 42rem;
   margin-top: 10px;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--cases-muted);
-  line-height: 1.75;
+  line-height: 1.9;
 }
 
 .cases-featured-grid {
@@ -733,31 +807,58 @@
 }
 
 .cases-fcard {
-  background: #fff;
-  border-radius: 14px;
+  --tc: var(--c);
+  position: relative;
+  background: var(--cases-card);
+  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.25s, transform 0.25s;
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
 }
 
 .cases-fcard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.1);
-  border-color: rgba(196, 163, 90, 0.35);
+  box-shadow: 0 24px 70px -30px var(--tc);
+  border-color: color-mix(in srgb, var(--tc) 55%, transparent);
+}
+
+/* 各卡依所屬客群宇宙著色（標籤、連結、hover 光暈）：建築互動（RenderEase）與展覽 = 品牌、室內 = 設計、系統 = 企業 */
+.cases-fcard:has(.cases-fcard-tag--arch) {
+  --tc: var(--u-brand);
+}
+
+.cases-fcard:has(.cases-fcard-tag--interior) {
+  --tc: var(--u-design);
+}
+
+.cases-fcard:has(.cases-fcard-tag--exhibit) {
+  --tc: var(--u-brand);
+}
+
+.cases-fcard:has(.cases-fcard-tag--system) {
+  --tc: var(--u-enterprise);
 }
 
 .cases-fcard-ph {
   aspect-ratio: 16 / 10;
-  background: #e2e8f0;
+  background: #0b1024;
   overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .cases-fcard-ph img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.cases-fcard:hover .cases-fcard-ph img {
+  transform: scale(1.05);
 }
 
 .cases-fcard-body {
@@ -770,69 +871,66 @@
 
 .cases-fcard-body h3 {
   font-size: 17px;
-  font-weight: 800;
-  color: var(--cases-navy);
+  font-weight: 700;
+  color: #fff;
   margin: 0;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .cases-fcard-tag {
   align-self: flex-start;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 999px;
   letter-spacing: 0.04em;
+  border: 1px solid color-mix(in srgb, var(--tc, var(--c)) 38%, transparent);
+  background: color-mix(in srgb, var(--tc, var(--c)) 10%, transparent);
+  color: color-mix(in srgb, var(--tc, var(--c)) 75%, #fff);
 }
 
-.cases-fcard-tag--arch {
-  background: #faf6ef;
-  color: var(--cases-gold-dark);
-}
-.cases-fcard-tag--exhibit {
-  background: #ffedd5;
-  color: #c2410c;
-}
-.cases-fcard-tag--interior {
-  background: #ede9fe;
-  color: #6d28d9;
-}
+.cases-fcard-tag--arch,
+.cases-fcard-tag--exhibit,
+.cases-fcard-tag--interior,
 .cases-fcard-tag--system {
-  background: #e0f2fe;
-  color: #0369a1;
+  /* 色彩由所屬卡片的 --tc 決定 */
+  background: color-mix(in srgb, var(--tc, var(--c)) 10%, transparent);
 }
 
 .cases-fcard-body p {
   margin: 0;
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--cases-muted);
-  line-height: 1.65;
+  line-height: 1.8;
   flex: 1;
 }
 
 .cases-fcard-link {
   font-size: 14px;
-  font-weight: 600;
-  color: var(--cases-gold-dark);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--tc, var(--c));
   text-decoration: none;
   margin-top: 4px;
+  transition: color 0.25s;
 }
 
 .cases-fcard-link:hover {
-  color: var(--cases-gold);
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
 }
 
-/* —— Bottom CTA（版型同解決方案總覽 .foot-cta） —— */
+/* —— Bottom CTA：深色宇宙帶 + 宇宙色光暈（同 .cx-cta / .guide-cta） —— */
 .cases-page .foot-cta {
   position: relative;
   overflow: hidden;
   isolation: isolate;
   color: #fff;
-  margin-top: clamp(40px, 6vw, 80px);
-  padding: 30px 0 50px;
+  margin-top: 0;
+  padding: 110px 0;
   text-align: left;
-  background-color: #141414;
+  background-color: transparent;
+  border-top: 1px solid var(--line);
 }
 
 .cases-page .foot-cta::before {
@@ -840,25 +938,14 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("../uploads/solutions-property-foot-cta.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center 42%;
+  background:
+    radial-gradient(ellipse 55% 90% at 85% 50%, color-mix(in srgb, var(--c) 26%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 80% at 10% 100%, rgba(199, 125, 255, 0.12), transparent 70%),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
 }
 
 .cases-page .foot-cta::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(6, 7, 10, 0.78) 0%,
-    rgba(6, 7, 10, 0.42) 18%,
-    rgba(6, 7, 10, 0.14) 34%,
-    transparent 52%
-  );
+  content: none;
 }
 
 .cases-page .foot-cta .cases-container {
@@ -881,19 +968,19 @@
 }
 
 .cases-page .foot-cta h2 {
-  font-size: clamp(22px, 3.2vw, 32px);
+  font-size: clamp(28px, 3.8vw, 46px);
   margin: 0 0 14px;
-  font-weight: 700;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
   color: #fff;
 }
 
 .cases-page .foot-cta .foot-cta-lead {
   margin: 0;
-  font-size: clamp(15px, 1.8vw, 17px);
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.9;
+  color: var(--ink-2);
 }
 
 .cases-page .foot-cta .row {
@@ -913,41 +1000,56 @@
 }
 
 .cases-page .foot-cta a.btn-gold {
-  background: var(--cases-gold);
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 10px 22px;
-  border-radius: 6px;
+  min-height: 50px;
+  padding: 0 26px;
+  border-radius: 999px;
   border: none;
+  color: #050714;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.2s;
+  transition: transform 0.25s, box-shadow 0.25s;
   white-space: nowrap;
 }
 
 .cases-page .foot-cta a.btn-gold:hover {
-  background: var(--cases-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
 }
 
 .cases-page .foot-cta a.btn-outline-light {
-  background: transparent;
+  min-height: 50px;
+  padding: 0 26px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: 6px;
-  border: 2px solid rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.04em;
   cursor: pointer;
   font-family: inherit;
-  transition: border-color 0.2s;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  white-space: nowrap;
 }
 
 .cases-page .foot-cta a.btn-outline-light:hover {
-  border-color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 720px) {
+  .cases-page .foot-cta {
+    padding: 80px 0;
+  }
+
   .cases-page .foot-cta .foot-cta-inner {
     flex-direction: column;
     align-items: stretch;
@@ -955,6 +1057,19 @@
 
   .cases-page .foot-cta .row {
     justify-content: flex-start;
+  }
+
+  .cases-page .foot-cta a.btn-gold,
+  .cases-page .foot-cta a.btn-outline-light {
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cases-page .foot-cta .row a {
+    flex: 1 1 100%;
   }
 }
 

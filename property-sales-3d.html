@@ -17,9 +17,11 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://wayto.com.tw/property-sales-3d.html#webpage","url":"https://wayto.com.tw/property-sales-3d.html","name":"建案銷售 3D 展示指南","description":"整理建案銷售 3D 展示、虛擬樣品屋、互動導覽與電子展板的應用情境與規劃方式。","inLanguage":"zh-TW","isPartOf":{"@id":"https://wayto.com.tw/#website"},"about":{"@id":"https://wayto.com.tw/#organization"}},{"@type":"Service","name":"建案銷售 3D 展示","serviceType":"建案銷售展示","provider":{"@id":"https://wayto.com.tw/#organization"},"areaServed":"Taiwan","url":"https://wayto.com.tw/property-sales-3d.html","description":"透過 3D 視覺、虛擬樣品屋、互動導覽、多戶型展示與電子展板，協助建案在完工前進行銷售說明。"},{"@type":"FAQPage","inLanguage":"zh-TW","mainEntity":[{"@type":"Question","name":"建案銷售 3D 展示一定要做成互動軟體嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。若需求是簡報或社群素材，靜態圖與動畫可能就足夠；若需要現場銷售人員操作、切換戶型或展示多重資訊，互動展示會更適合。"}},{"@type":"Question","name":"虛擬樣品屋可以放在官網嗎？","acceptedAnswer":{"@type":"Answer","text":"可以依專案形式規劃線上連結、官網嵌入或離線包。是否需要雲端或本地部署，會依互動深度與設備環境評估。"}},{"@type":"Question","name":"可以同時展示多個戶型嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。常見做法包含戶型切換、樓層/面向切換、格局比較、材質選配或重點區域導覽。"}},{"@type":"Question","name":"設計變更後怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"可依變更範圍調整模型與輸出內容；若是格局、公設、外觀或互動流程重大變更，通常會另估工時。"}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://wayto.com.tw/"},{"@type":"ListItem","position":2,"name":"建案銷售 3D 展示指南","item":"https://wayto.com.tw/property-sales-3d.html"}]}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
-  <link rel="stylesheet" href="shared/geo-guides.css">
+  <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
+  <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/geo-guides.css?v=cosmos-20261031c">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1SWCVSH9F"></script>
   <script>
@@ -29,15 +31,16 @@
     gtag('config', 'G-F1SWCVSH9F');
   </script>
 </head>
-<body class="wayto-has-shared-nav guide-page" data-nav-current="solutions">
+<body class="wayto-has-shared-nav guide-page cosmos cosmos-page" data-universe="estate" data-nav-current="solutions">
   <div id="shared-nav"></div>
 
   <main>
-    <section class="guide-hero" style="--guide-hero-image: url('uploads/solutions-property-hero.png');">
+    <section class="guide-hero" style="--guide-hero-image: url('/uploads/solutions-property-hero.png');">
       <div class="guide-container">
         <nav class="guide-breadcrumb" aria-label="麵包屑">
           <a href="/index.html">首頁</a><span>/</span><a href="/solutions.html">解決方案</a><span>/</span><span>建案銷售 3D 展示</span>
         </nav>
+        <span class="cx-badge">U-01 · ESTATEVERSE <b>建案宇宙</b></span>
         <p class="guide-eyebrow">PROPERTY SALES GUIDE</p>
         <h1>建案銷售 3D 展示怎麼做？</h1>
         <p class="guide-lead">把還沒完工的建案變成可導覽、可比較、可說明的銷售體驗，協助客戶理解外觀、公設、樣品屋、多戶型與生活情境。Wayto 以台灣建案與台灣市場為主要服務範圍。</p>
@@ -141,5 +144,6 @@
 
   <div id="shared-footer"></div>
   <script src="shared/layout.js"></script>
+  <script src="shared/cosmos-bg.js?v=cosmos-20261031c" defer></script>
 </body>
 </html>

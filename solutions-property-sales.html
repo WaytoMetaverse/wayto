@@ -18,42 +18,29 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"建案銷售 3D 與互動展示","serviceType":"建案銷售展示","provider":{"@id":"https://wayto.com.tw/#organization"},"areaServed":"TW","inLanguage":"zh-TW","url":"https://wayto.com.tw/solutions-property-sales.html","description":"高還原 3D、互動式虛擬展場、多戶型展示與行銷素材延伸，協助客戶在完工前感受空間與動線。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://wayto.com.tw/"},{"@type":"ListItem","position":2,"name":"解決方案","item":"https://wayto.com.tw/solutions.html"},{"@type":"ListItem","position":3,"name":"建案銷售","item":"https://wayto.com.tw/solutions-property-sales.html"}]}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
-  <link rel="stylesheet" href="shared/solutions.css?v=cta-uniform-20260624">
+  <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
+  <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/solutions.css?v=cosmos-20261031c">
   <style>
     /* 底欄 CTA 圖：須寫在 #contact-cta.foot-cta::before（相對本 HTML）。若只設 :root 的 --sol-foot-cta-bg-image，url 會依 shared/solutions.css 路徑解析而 404 */
     #contact-cta.foot-cta::before {
       background-image: url('uploads/solutions-property-foot-cta.png');
       background-position: center 42%;
     }
-    /* 底圖：少疊一層全畫面灰霧，改左側讀字帶 + 標題陰影，畫面較俐落 */
-    #contact-cta.foot-cta::after {
-      background: linear-gradient(
-        90deg,
-        rgba(6, 7, 10, 0.78) 0%,
-        rgba(6, 7, 10, 0.42) 18%,
-        rgba(6, 7, 10, 0.14) 34%,
-        transparent 52%
-      );
-    }
+    /* 底圖遮罩與光暈沿用 shared/solutions.css 的 .foot-cta::after（深色宇宙版） */
     #contact-cta.foot-cta h2,
     #contact-cta.foot-cta .foot-cta-lead {
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 24px rgba(0, 0, 0, 0.35);
     }
-    #contact-cta.foot-cta .foot-cta-lead {
-      color: rgba(255, 255, 255, 0.92);
-    }
 
-    .about-hero.about-hero--property {
-      background: #f5f7fa;
-    }
-    /* Hero：與設計提案頁相同全幅底圖 + .about-hero-img::before 左側漸層遮罩 */
+    /* Hero：全幅底圖 cover + .about-hero-img::before 深色遮罩（solutions.css） */
     .about-hero.about-hero--property .about-hero-img {
       display: block;
     }
     .about-hero.about-hero--property .about-hero-img img {
-      object-fit: contain;
+      object-fit: cover;
       object-position: right center;
     }
     .about-hero.about-hero--property .about-hero-img .sol-hero-360-badge {
@@ -61,14 +48,35 @@
       z-index: 2;
       left: auto;
       right: clamp(16px, 4vw, 40px);
-      bottom: clamp(16px, 3vw, 32px);
-      background: rgba(15, 23, 42, 0.78);
+      bottom: clamp(20px, 4vw, 44px);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in srgb, var(--c) 10%, rgba(3, 4, 11, 0.55));
+      border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
       color: #fff;
       font-size: 12px;
-      font-weight: 600;
-      padding: 8px 12px;
-      border-radius: 8px;
-      backdrop-filter: blur(6px);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 7px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .about-hero.about-hero--property .about-hero-img .sol-hero-360-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--c);
+      box-shadow: 0 0 10px var(--c);
+    }
+    @media (max-width: 600px) {
+      .about-hero.about-hero--property .about-hero-img .sol-hero-360-badge {
+        bottom: 16px;
+        font-size: 11px;
+        padding: 6px 12px;
+      }
     }
 
     .pain-build .num-card-visual img {
@@ -83,13 +91,13 @@
     }
     #solve .p-step {
       justify-content: flex-start;
-      gap: 8px;
+      gap: 14px;
       padding: 10px 4px 12px;
     }
     #solve .p-step > span {
       font-size: clamp(13px, 1.85vw, 16px);
       font-weight: 600;
-      color: var(--ink);
+      color: #fff;
       line-height: 1.38;
       letter-spacing: -0.02em;
       margin-top: 4px;
@@ -133,9 +141,6 @@
       }
     }
 
-    #solve .section-head h2 {
-      font-size: clamp(24px, 3.1vw, 32px);
-    }
     #solve .section-head p {
       font-size: 16px;
       line-height: 1.75;
@@ -150,23 +155,26 @@
       gap: 18px 16px;
     }
     .sol-asset-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
+      background: var(--sol-glass);
+      border: 1px solid var(--sol-glass-line);
+      border-radius: 18px;
       padding: 22px 14px 24px;
       text-align: center;
-      transition: box-shadow 0.2s;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
     }
     .sol-asset-card:hover {
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+      border-color: color-mix(in srgb, var(--c) 55%, transparent);
+      box-shadow: 0 24px 70px -30px var(--c);
     }
     /* 「3D 軟體延伸」：圖示／標題／說明字級與留白對齊 #solve */
     #assets .sol-asset-card {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      padding: 26px 12px 30px;
+      gap: 14px;
+      padding: 30px 12px 30px;
     }
     #assets .sol-asset-card .sol-asset-ico {
       width: var(--sol-ico-size);
@@ -179,7 +187,7 @@
     #assets .sol-asset-card h3 {
       font-size: clamp(13px, 1.85vw, 16px);
       font-weight: 600;
-      color: var(--ink);
+      color: #fff;
       line-height: 1.38;
       letter-spacing: -0.02em;
       margin: 4px 0 0;
@@ -194,9 +202,6 @@
       max-width: 100%;
       word-break: keep-all;
     }
-    #assets .section-head h2 {
-      font-size: clamp(24px, 3.1vw, 32px);
-    }
     #assets .section-head p {
       font-size: 16px;
       line-height: 1.75;
@@ -206,10 +211,11 @@
     }
 
     .svc-card .case-loc {
+      font-family: var(--f-mono);
       font-size: 11px;
-      font-weight: 600;
-      color: var(--gold-dark);
-      letter-spacing: 0.5px;
+      font-weight: 500;
+      color: var(--c);
+      letter-spacing: 0.16em;
       margin-bottom: 6px;
     }
 
@@ -281,9 +287,9 @@
       }
     }
 
-    /* 常見問題：區塊白底（覆寫共用 .faq 的 --bg-soft） */
+    /* 常見問題：透明底（與上一區淡色帶交錯，覆寫共用 .faq 的 --bg-soft） */
     #faq.faq {
-      background: #fff;
+      background: transparent;
     }
   </style>
 <!-- Google tag (gtag.js) -->
@@ -296,7 +302,7 @@
   gtag('config', 'G-F1SWCVSH9F');
 </script>
 </head>
-<body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
+<body class="wayto-has-shared-nav sol-page cosmos cosmos-page" data-universe="estate" data-nav-current="solutions">
 
   <div id="shared-nav"></div>
 
@@ -308,6 +314,7 @@
     </div>
     <div class="about-hero-left">
       <div class="about-hero-inner">
+        <span class="cx-badge">U-01 · ESTATEVERSE <b>建案宇宙</b></span>
         <div class="about-hero-tag">建案銷售</div>
         <h1>讓客戶「走進」<br>未來的家</h1>
         <div class="about-hero-desc">
@@ -317,6 +324,7 @@
           <button type="button" class="btn-gold" onclick="document.getElementById('pain')?.scrollIntoView({behavior:'smooth'})">了解解決方案</button>
           <button type="button" class="btn-outline-gold" onclick="document.getElementById('interact')?.scrollIntoView({behavior:'smooth'})">觀看體驗 demo</button>
         </div>
+        <a class="cx-immersive" href="/property-showcase.html"><i></i>走進一座建案<small>沉浸式建案展示 →</small></a>
       </div>
     </div>
   </main>
@@ -324,12 +332,12 @@
   <!-- 痛點 -->
   <section id="pain" class="pain pain-build">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>傳統建案展示的 4 大困境</h2>
         <p>平面與口述難以承載完整體驗，現場展示又受成本與檔期限制。</p>
       </div>
-      <div class="cards-4">
-        <article class="num-card">
+      <div class="cards-4 cx-rv" style="--d:.1s">
+        <article class="num-card cx-tilt">
           <div class="num">01</div>
           <div class="num-card-visual">
             <img src="uploads/solutions-pain-traditional-01.png" alt="建案外觀與平面配置示意，凸顯平面與模型難以傳達真實居住感" width="800" height="500" loading="lazy" decoding="async">
@@ -337,7 +345,7 @@
           <h3>無法想像未來生活</h3>
           <p>平面圖與模型難以呈現真實空間感，客戶難以想像居住環境。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">02</div>
           <div class="num-card-visual">
             <img src="uploads/solutions-pain-traditional-02.png" alt="銷售中心實體模型與靜態看板，凸顯現場展示空間與戶型覆蓋有限" width="800" height="500" loading="lazy" decoding="async">
@@ -345,7 +353,7 @@
           <h3>現場展示受限</h3>
           <p>樣品屋數量有限，無法滿足多戶型與不同樓層的展示需求。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">03</div>
           <div class="num-card-visual">
             <img src="uploads/solutions-pain-traditional-03.png" alt="建案介紹影片播放中，客戶卻各自滑手機，凸顯單向展示難以留住注意力" width="800" height="500" loading="lazy" decoding="async">
@@ -353,7 +361,7 @@
           <h3>展示方式單一</h3>
           <p>只能依賴影片與靜態圖，缺乏互動，客戶容易失去興趣。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">04</div>
           <div class="num-card-visual">
             <img src="uploads/solutions-pain-traditional-04.png" alt="客戶面對大量平面圖與文宣仍顯困惑，凸顯資訊過載拉長決策" width="800" height="500" loading="lazy" decoding="async">
@@ -368,11 +376,11 @@
   <!-- 我們如何解決（與設計提案頁相同 process + process-track） -->
   <section id="solve" class="process">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>我們如何解決</h2>
         <p>從建模到現場與行銷延伸，一條龍串起體驗與轉換。</p>
       </div>
-      <div class="process-track" role="list" aria-label="建案導入流程">
+      <div class="process-track cx-rv" style="--d:.1s" role="list" aria-label="建案導入流程">
         <div class="p-step" role="listitem">
           <img class="p-ico-img" src="uploads/solutions-solve-step-01.png" alt="高還原 3D 建模" width="120" height="120" loading="lazy" decoding="async">
           <span>高還原 3D 建模</span>
@@ -409,40 +417,40 @@
   <!-- 互動展示（與設計提案 services 區相同 pain + svc-grid） -->
   <section id="interact" class="pain">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>多種互動展示方式</h2>
         <p>依案場條件組合導覽、環景、熱點與 VR，讓每次帶看都有話題。</p>
       </div>
-      <div class="svc-grid">
-        <article class="svc-card">
+      <div class="svc-grid cx-rv" style="--d:.1s">
+        <article class="svc-card cx-tilt">
           <div class="ph"><img src="uploads/solutions-interact-01.png" alt="平板展示 2D／3D 平面與樓層導覽介面" width="800" height="500" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>平面與 3D 導覽</h3>
             <p>樓層、視角切換與動線導覽，現場帶看更順。</p>
           </div>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <div class="ph"><img src="uploads/solutions-interact-02.png" alt="360 度環景與空間熱點標籤導覽" width="800" height="500" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>360° 環景體驗</h3>
             <p>拖曳環視與熱點跳轉，沉浸感受每個角落。</p>
           </div>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <div class="ph"><img src="uploads/solutions-interact-03.png" alt="雙戶型並排比對與熱點互動" width="800" height="500" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>戶型切換比較</h3>
             <p>格局並排對照，坪數與配置一眼看懂。</p>
           </div>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <div class="ph"><img src="uploads/solutions-interact-04.png" alt="材質熱點與材質選項切換面板" width="800" height="500" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>資訊熱點互動</h3>
             <p>材質、收納等重點一鍵展開，加深印象。</p>
           </div>
         </article>
-        <article class="svc-card sol-svc-vr">
+        <article class="svc-card sol-svc-vr cx-tilt">
           <div class="ph"><img src="uploads/solutions-interact-05.png" alt="VR 頭戴裝置沉浸式賞屋" width="800" height="500" loading="lazy" decoding="async"></div>
           <div class="body">
             <h3>VR 沉浸式體驗</h3>
@@ -456,33 +464,33 @@
   <!-- 3D 軟體延伸 -->
   <section id="assets" class="process">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>一套 3D 軟體　延伸多種行銷素材</h2>
         <p>同一套模型可輸出多種格式，支援現場、線上與社群通路。</p>
       </div>
-      <div class="sol-asset-grid">
-        <div class="sol-asset-card">
-          <img class="sol-asset-ico" src="uploads/solutions-asset-01.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+      <div class="sol-asset-grid cx-rv" style="--d:.1s">
+        <div class="sol-asset-card cx-tilt">
+          <img class="sol-asset-ico sol-ico-tile" src="uploads/solutions-asset-01.png" alt="" width="128" height="128" loading="lazy" decoding="async">
           <h3>靜態美圖</h3>
           <p>戶外看板、DM、官網與銷控表板</p>
         </div>
-        <div class="sol-asset-card">
-          <img class="sol-asset-ico" src="uploads/solutions-asset-02.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+        <div class="sol-asset-card cx-tilt">
+          <img class="sol-asset-ico sol-ico-tile" src="uploads/solutions-asset-02.png" alt="" width="128" height="128" loading="lazy" decoding="async">
           <h3>動畫影片</h3>
           <p>電視、YouTube、社群廣告</p>
         </div>
-        <div class="sol-asset-card">
-          <img class="sol-asset-ico" src="uploads/solutions-asset-03.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+        <div class="sol-asset-card cx-tilt">
+          <img class="sol-asset-ico sol-ico-tile" src="uploads/solutions-asset-03.png" alt="" width="128" height="128" loading="lazy" decoding="async">
           <h3>短影音素材</h3>
           <p>IG、FB、TikTok 等短格式露出</p>
         </div>
-        <div class="sol-asset-card">
-          <img class="sol-asset-ico" src="uploads/solutions-asset-04.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+        <div class="sol-asset-card cx-tilt">
+          <img class="sol-asset-ico sol-ico-tile" src="uploads/solutions-asset-04.png" alt="" width="128" height="128" loading="lazy" decoding="async">
           <h3>互動展場</h3>
           <p>銷售中心、線上導覽連結</p>
         </div>
-        <div class="sol-asset-card">
-          <img class="sol-asset-ico" src="uploads/solutions-asset-05.png" alt="" width="128" height="128" loading="lazy" decoding="async">
+        <div class="sol-asset-card cx-tilt">
+          <img class="sol-asset-ico sol-ico-tile" src="uploads/solutions-asset-05.png" alt="" width="128" height="128" loading="lazy" decoding="async">
           <h3>VR 體驗</h3>
           <p>展場、案場體驗區</p>
         </div>
@@ -493,12 +501,12 @@
   <!-- 應用案例（與方案頁 svc-card 結構一致） -->
   <section id="cases" class="pain">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>應用案例</h2>
         <p>以下精選實際建案、3D 視覺與環景作品，呈現建案銷售可延伸的展示方式。</p>
       </div>
-      <div class="svc-grid">
-        <article class="svc-card">
+      <div class="svc-grid cx-rv" style="--d:.1s">
+        <article class="svc-card cx-tilt">
           <a href="/proptech.html" style="text-decoration:none;color:inherit;display:block;">
             <div class="ph"><img src="uploads/proptech/建築外觀視角1-夜景.jpg" alt="元境大喜建案銷售 3D 即時導覽外觀夜景" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -508,7 +516,7 @@
             </div>
           </a>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <a href="/cases-3d.html#cat-construction" style="text-decoration:none;color:inherit;display:block;">
             <div class="ph"><img src="/images/portfolio/items/item-1769676169627/1.jpg" alt="慶合建設建案 3D 視覺作品" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -518,7 +526,7 @@
             </div>
           </a>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <a href="https://vr.3d66.com/vr/index_detail_7763484.asp" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
             <div class="ph"><img src="/images/portfolio/items/item-1769676311443/1.jpg" alt="森活臻城2 720 度環景建案作品" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -528,7 +536,7 @@
             </div>
           </a>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <a href="/cases-3d.html#cat-construction" style="text-decoration:none;color:inherit;display:block;">
             <div class="ph"><img src="/images/portfolio/items/item-1769677624007/1.jpg" alt="崇恩工學賦建案 3D 視覺作品" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -548,11 +556,11 @@
   <!-- FAQ -->
   <section id="faq" class="faq">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>常見問題</h2>
         <p>建案端在導入 3D 與互動展示前，最常確認的項目。</p>
       </div>
-      <div class="faq-grid">
+      <div class="faq-grid cx-rv" style="--d:.1s">
         <details class="faq-item"><summary>製作虛擬樣屋大概需要多久？</summary>
           <div class="ans">依戶數、戶型複雜度與互動深度而定，一般會於需求訪談後提供檔期與里程碑；正式時程以合約或報價單為準。</div>
         </details>
@@ -578,7 +586,7 @@
   <!-- 底欄 CTA -->
   <section id="contact-cta" class="foot-cta">
     <div class="container">
-      <div class="foot-cta-inner">
+      <div class="foot-cta-inner cx-rv">
         <div class="foot-cta-copy">
           <h2>讓客戶走進未來的家</h2>
           <p class="foot-cta-lead">讓客戶走進未來的家。讓銷售更有感，成交更有力。</p>
@@ -594,5 +602,6 @@
   <div id="shared-footer"></div>
 
   <script src="shared/layout.js"></script>
+  <script src="shared/cosmos-bg.js?v=cosmos-20261031c" defer></script>
 </body>
 </html>

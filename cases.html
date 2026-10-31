@@ -17,9 +17,11 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"案例作品｜維次元宇宙科技 Wayto","url":"https://wayto.com.tw/cases.html","inLanguage":"zh-TW","isPartOf":{"@id":"https://wayto.com.tw/#website"},"about":{"@id":"https://wayto.com.tw/#organization"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://wayto.com.tw/"},{"@type":"ListItem","position":2,"name":"案例作品","item":"https://wayto.com.tw/cases.html"}]}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
-  <link rel="stylesheet" href="shared/cases-home.css?v=cta-uniform-20260624">
+  <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
+  <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/cases-home.css?v=cosmos-20261031c">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1SWCVSH9F"></script>
 <script>
@@ -30,7 +32,7 @@
   gtag('config', 'G-F1SWCVSH9F');
 </script>
 </head>
-<body class="wayto-has-shared-nav cases-page" data-nav-current="cases">
+<body class="wayto-has-shared-nav cases-page cosmos cosmos-page" data-universe="origin" data-nav-current="cases">
 
   <div id="shared-nav"></div>
 
@@ -40,6 +42,7 @@
     </div>
     <div class="cases-hero-inner">
       <div class="cases-hero-copy">
+        <span class="cx-badge">WAYTO · ORIGIN <b>維次元宇宙</b></span>
         <h1>案例作品</h1>
         <p>從建築視覺化、室內設計提案、展覽互動到企業系統開發，我們與不同產業的客戶合作，把複雜需求變成可體驗、可營運的成果。以下為部分代表案例，歡迎往下瀏覽。</p>
         <a class="cases-btn-explore" href="#latest">
@@ -52,11 +55,11 @@
 
   <section id="latest" class="cases-latest" aria-labelledby="cases-latest-title">
     <div class="cases-container">
-      <div class="cases-sec-head">
+      <div class="cases-sec-head cx-rv">
         <h2 id="cases-latest-title">3D效果圖</h2>
         <a class="cases-link-more" href="/cases-3d.html">查看完整作品集 <span aria-hidden="true">→</span></a>
       </div>
-      <p class="cases-latest-intro">精選空間視覺案例；點選可預覽 720° 環景、影片或前往完整作品列表。</p>
+      <p class="cases-latest-intro cx-rv" style="--d:.08s">精選空間視覺案例；點選可預覽 720° 環景、影片或前往完整作品列表。</p>
       <div class="cases-latest-grid--pf-mixed" id="pf-grid-portfolio"></div>
 
       <div class="cases-more-wrap">
@@ -67,12 +70,12 @@
 
   <section id="featured" class="cases-featured" aria-labelledby="cases-featured-title">
     <div class="cases-container">
-      <div class="cases-sec-head">
+      <div class="cases-sec-head cx-rv">
         <h2 id="cases-featured-title">系統開發案例</h2>
         <a class="cases-link-more" href="/cases-system.html">查看全部案例 <span aria-hidden="true">→</span></a>
       </div>
-      <p class="cases-featured-intro">深度整合視覺、互動與系統的代表專案；點入可閱讀完整說明與應用情境。</p>
-      <div class="cases-featured-grid">
+      <p class="cases-featured-intro cx-rv" style="--d:.08s">深度整合視覺、互動與系統的代表專案；點入可閱讀完整說明與應用情境。</p>
+      <div class="cases-featured-grid cx-rv" style="--d:.14s">
         <article class="cases-fcard">
           <div class="cases-fcard-ph">
             <img src="uploads/renderease/after-hero.png" alt="RenderEase 空間即時預覽：介面與空間預覽示意" width="640" height="400" loading="lazy" decoding="async">
@@ -134,7 +137,7 @@
 
   <section id="contact" class="foot-cta" aria-labelledby="cases-cta-title">
     <div class="cases-container">
-      <div class="foot-cta-inner">
+      <div class="foot-cta-inner cx-rv">
         <div class="foot-cta-copy">
           <h2 id="cases-cta-title">準備開始你的專案？</h2>
           <p class="foot-cta-lead">不論是建案展示、室內效果圖、互動展示或系統開發，歡迎與我們聊聊你的需求。</p>
@@ -149,6 +152,7 @@
 
   <div id="shared-footer"></div>
   <script src="shared/layout.js"></script>
+  <script src="shared/cosmos-bg.js?v=cosmos-20261031c" defer></script>
   <script>
     (function () {
       var MEDIA_BASE = '/';

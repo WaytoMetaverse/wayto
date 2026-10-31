@@ -1,12 +1,15 @@
 /**
- * 聯絡我們頁 contact.html
- * 須搭配 layout.css；body：wayto-has-shared-nav contact-page
+ * 聯絡我們頁 contact.html — Cosmos 深色版（WAYTO · ORIGIN）
+ * 須搭配 layout.css → cosmos.css → cosmos-page.css；
+ * body：wayto-has-shared-nav contact-page cosmos cosmos-page，data-universe="origin"
  */
 
 .contact-page {
+  --ct-card: rgba(10, 14, 32, 0.62);
+  --ct-line: rgba(255, 255, 255, 0.1);
   font-family: "Noto Sans TC", system-ui, sans-serif;
-  color: var(--text, #1e293b);
-  background: #fff;
+  color: var(--ink, #e8ecff);
+  background: transparent;
   line-height: 1.65;
   font-size: 15px;
 }
@@ -28,14 +31,15 @@
   color: inherit;
 }
 
-/* ── Hero ── */
+/* ── Hero（深色宇宙：照片壓暗 + 深色遮罩 + 宇宙色光暈，底部淡入星空） ── */
 .contact-hero {
   position: relative;
-  min-height: clamp(420px, 52vw, 560px);
+  min-height: clamp(460px, 52vw, 600px);
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #e8ecf4;
+  isolation: isolate;
+  background: transparent;
 }
 
 .contact-hero-bg {
@@ -43,7 +47,9 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: #f4f6f9;
+  background: transparent;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
 }
 
 .contact-hero-bg img {
@@ -55,6 +61,8 @@
   /* 圖檔左側為留白漸層、右側為接待區與品牌牆 */
   object-position: left center;
   display: block;
+  opacity: 0.5;
+  filter: saturate(0.9);
 }
 
 .contact-hero-shade {
@@ -62,49 +70,88 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  /* 底圖已含左側淡白，僅補極淡遮罩以利字色穩定 */
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.18) 26%,
-    rgba(255, 255, 255, 0.06) 45%,
-    rgba(255, 255, 255, 0) 72%
-  );
+  background:
+    radial-gradient(ellipse 55% 70% at 80% 36%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
+    linear-gradient(90deg, rgba(3, 4, 11, 0.97) 0%, rgba(3, 4, 11, 0.9) 34%, rgba(3, 4, 11, 0.5) 62%, rgba(3, 4, 11, 0.3) 100%),
+    linear-gradient(180deg, rgba(3, 4, 11, 0.3) 0%, rgba(3, 4, 11, 0) 40%, #03040b 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
 }
 
 .contact-hero .container {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 48px;
-  padding-bottom: 56px;
+  padding-top: 72px;
+  padding-bottom: 88px;
 }
 
 .contact-hero-copy {
-  max-width: 40rem;
+  max-width: 42rem;
+}
+
+.contact-hero-copy .cx-badge {
+  margin-bottom: 24px;
 }
 
 .contact-hero-copy h1 {
-  margin: 0 0 16px;
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.25;
-  color: #0f172a;
+  margin: 0 0 22px;
+  font-size: clamp(36px, 5.4vw, 68px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 0 50px color-mix(in srgb, var(--c) 35%, transparent);
 }
 
 .contact-hero-copy p {
   margin: 0;
-  font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.8;
-  color: #475569;
+  font-size: clamp(15px, 1.4vw, 17.5px);
+  line-height: 1.95;
+  color: var(--ink-2);
   max-width: 36rem;
+}
+
+@media (max-width: 720px) {
+  .contact-hero-bg img {
+    object-position: 72% center;
+  }
+
+  .contact-hero-shade {
+    background:
+      radial-gradient(ellipse 80% 50% at 80% 18%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
+      linear-gradient(180deg, rgba(3, 4, 11, 0.45) 0%, rgba(3, 4, 11, 0.8) 55%, #03040b 100%);
+  }
+
+  .contact-hero .container {
+    padding-top: 56px;
+    padding-bottom: 72px;
+  }
+
+  .contact-hero-copy h1 {
+    font-size: clamp(30px, 8.6vw, 44px);
+  }
+}
+
+/* ── 共用：區塊標題上方的宇宙色光條 ── */
+.contact-topics-head h2::before,
+.contact-page-team .section-title::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin: 0 auto 18px;
+  border-radius: 2px;
+  background: var(--c);
+  box-shadow: 0 0 10px var(--c);
 }
 
 /* ── 你想聊什麼 ── */
 .contact-topics {
-  padding: 72px 0 56px;
-  background: #fff;
+  position: relative;
+  padding: 96px 0 80px;
+  background: transparent;
+  border-top: 1px solid var(--line);
 }
 
 .contact-topics-head {
@@ -114,18 +161,19 @@
 }
 
 .contact-topics-head h2 {
-  margin: 0 0 10px;
-  font-size: clamp(24px, 3vw, 30px);
-  font-weight: 800;
-  color: #0f172a;
-  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  letter-spacing: 0.02em;
 }
 
 .contact-topics-lead {
-  margin: 0 0 40px;
-  font-size: 15px;
-  color: #64748b;
-  line-height: 1.7;
+  margin: 0 0 44px;
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.9;
 }
 
 .contact-topic-grid {
@@ -148,25 +196,34 @@
   text-align: center;
   justify-content: flex-start;
   padding: 26px 16px 24px;
-  border-radius: 14px;
-  border: 2px solid #e8ecf1;
-  background: #fafbfc;
+  border-radius: 18px;
+  border: 1px solid var(--ct-line);
+  background: var(--ct-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
   font: inherit;
   color: inherit;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: border-color 0.35s, box-shadow 0.35s, background 0.35s;
 }
 
 .contact-topic-card:hover {
-  border-color: #bfdbfe;
-  background: #fff;
-  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.06);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+  background: rgba(14, 19, 42, 0.7);
+  box-shadow: 0 24px 70px -30px var(--c);
 }
 
 .contact-topic-card.is-selected {
-  border-color: var(--blue, #2563eb);
-  background: #fff;
-  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.12);
+  border-color: var(--c);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%),
+    rgba(14, 19, 42, 0.72);
+  box-shadow: 0 24px 70px -26px var(--c), inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent);
+}
+
+.contact-topic-card:focus-visible {
+  outline: 2px solid var(--c);
+  outline-offset: 3px;
 }
 
 .contact-topic-card-check {
@@ -176,51 +233,62 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 2px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
   font-weight: 800;
   color: transparent;
-  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  transition: border-color 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s;
 }
 
 .contact-topic-card.is-selected .contact-topic-card-check {
-  border-color: var(--blue, #2563eb);
-  background: var(--blue, #2563eb);
-  color: #fff;
+  border-color: var(--c);
+  background: var(--c);
+  color: #050714;
+  box-shadow: 0 0 14px -2px var(--c);
 }
 
+/* 白底 PNG 插圖：放進白色圓形光圈裡，刻意呈現而非浮著白方塊 */
 .contact-topic-icon {
-  width: 100%;
-  max-width: 168px;
-  height: 152px;
-  margin: 0 auto 16px;
+  width: 132px;
+  max-width: 100%;
+  height: 132px;
+  margin: 6px auto 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--c) 16%, transparent),
+    0 0 40px -8px color-mix(in srgb, var(--c) 70%, transparent);
+  transition: box-shadow 0.35s;
+}
+
+.contact-topic-card:hover .contact-topic-icon,
+.contact-topic-card.is-selected .contact-topic-icon {
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--c) 40%, transparent),
+    0 0 50px -6px var(--c);
 }
 
 .contact-topic-icon img {
-  width: 132px;
-  height: 132px;
-  max-width: 100%;
+  width: 112%;
+  height: 112%;
+  max-width: none;
   object-fit: contain;
   display: block;
 }
 
 @media (min-width: 1025px) {
   .contact-topic-icon {
-    max-width: 200px;
-    height: 176px;
-    margin-bottom: 18px;
-  }
-
-  .contact-topic-icon img {
-    width: 156px;
-    height: 156px;
+    width: 152px;
+    height: 152px;
+    margin-bottom: 22px;
   }
 
   .contact-topic-card {
@@ -232,9 +300,9 @@
   margin: 0 0 10px;
   width: 100%;
   font-size: 17px;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.35;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
 }
 
 .contact-topic-card .contact-topic-lines {
@@ -243,8 +311,8 @@
   max-width: 17rem;
   margin: 0 auto;
   font-size: 13px;
-  line-height: 1.65;
-  color: #64748b;
+  line-height: 1.75;
+  color: var(--ink-2);
   min-height: 2.8em;
 }
 
@@ -275,13 +343,9 @@
   }
 
   .contact-topic-icon {
-    height: 92px;
-    margin-bottom: 10px;
-  }
-
-  .contact-topic-icon img {
-    width: 82px;
-    height: 82px;
+    width: 84px;
+    height: 84px;
+    margin: 4px auto 12px;
   }
 
   .contact-topic-card h3 {
@@ -298,8 +362,11 @@
 
 /* ── 表單 + 側欄 ── */
 .contact-split {
-  padding: 64px 0 72px;
-  background: linear-gradient(180deg, #f4f7fc 0%, #eef2f9 100%);
+  position: relative;
+  padding: 88px 0 96px;
+  background: rgba(255, 255, 255, 0.018);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   scroll-margin-top: 88px;
 }
 
@@ -311,25 +378,31 @@
 }
 
 .contact-form-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 32px 28px 36px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 50% at 0% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%),
+    var(--ct-card);
+  border-radius: 20px;
+  padding: 36px 32px 38px;
+  border: 1px solid color-mix(in srgb, var(--c) 26%, rgba(255, 255, 255, 0.1));
+  box-shadow: 0 30px 80px -40px var(--c);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .contact-form-card h2 {
   margin: 0 0 8px;
-  font-size: 22px;
-  font-weight: 800;
-  color: #0f172a;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
 }
 
 .contact-form-lead {
-  margin: 0 0 24px;
-  font-size: 14px;
-  line-height: 1.55;
-  color: #64748b;
+  margin: 0 0 26px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
 }
 
 .contact-field-row {
@@ -350,29 +423,58 @@
 
 .contact-field label {
   font-size: 13px;
-  font-weight: 600;
-  color: #475569;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+/* 必填星號（行內 style 為淺色版紅色）→ 深色底上較亮的紅 */
+.contact-field label span[style] {
+  color: #ff7a8a !important;
 }
 
 .contact-field input,
 .contact-field textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 11px 14px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   font: inherit;
   font-size: 15px;
-  color: #0f172a;
-  background: #fff;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+  caret-color: var(--c);
+  color-scheme: dark;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: var(--ink-3);
+  opacity: 1;
+}
+
+.contact-field input:hover,
+.contact-field textarea:hover {
+  border-color: rgba(255, 255, 255, 0.24);
 }
 
 .contact-field input:focus,
 .contact-field textarea:focus {
   outline: none;
-  border-color: var(--blue, #2563eb);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: var(--c);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent), 0 0 24px -6px var(--c);
+}
+
+/* 瀏覽器自動填入時維持深色 */
+.contact-field input:-webkit-autofill,
+.contact-field input:-webkit-autofill:hover,
+.contact-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0 1000px #0d1226 inset;
+  transition: background-color 9999s;
 }
 
 .contact-field textarea {
@@ -385,9 +487,9 @@
   gap: 10px;
   align-items: flex-start;
   margin-top: 18px;
-  font-size: 12px;
-  line-height: 1.65;
-  color: #64748b;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-3);
 }
 
 .contact-form-note svg {
@@ -395,47 +497,57 @@
   width: 18px;
   height: 18px;
   margin-top: 2px;
-  color: var(--blue, #2563eb);
+  color: var(--c);
 }
 
 .contact-form-actions {
-  margin-top: 22px;
+  margin-top: 24px;
 }
 
+/* 送出：宇宙漸層膠囊（同 .cx-btn） */
 .contact-btn-submit {
   width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 22px;
+  min-height: 52px;
+  padding: 0 22px;
   border: none;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
+  letter-spacing: 0.06em;
   font-family: inherit;
-  color: #fff;
-  background: var(--navy, #1a2b5e);
+  color: #050714;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .contact-btn-submit:hover {
-  background: var(--blue, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
 }
 
 .contact-btn-submit:active {
   transform: translateY(1px);
 }
 
+.contact-btn-submit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
 .contact-form-done {
   display: none;
   margin-top: 16px;
   padding: 14px 16px;
-  border-radius: 10px;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  color: #065f46;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--u3) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--u3) 40%, transparent);
+  color: color-mix(in srgb, var(--u3) 55%, #fff);
   font-size: 14px;
 }
 
@@ -444,11 +556,27 @@
 }
 
 /* 側欄 */
+.contact-aside {
+  padding-top: 8px;
+}
+
 .contact-aside h2 {
-  margin: 0 0 22px;
-  font-size: clamp(22px, 2.2vw, 26px);
-  font-weight: 800;
-  color: #0f172a;
+  margin: 0 0 26px;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.contact-aside h2::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+  background: var(--c);
+  box-shadow: 0 0 10px var(--c);
 }
 
 .contact-aside-list {
@@ -462,17 +590,21 @@
 
 .contact-aside-item {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   align-items: flex-start;
 }
 
+/* 透明底線稿圖示：深色玻璃方塊 + 反相成淺色線條（橘色點綴維持暖色） */
 .contact-aside-ico {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  border-radius: 12px;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--c) 18%, transparent), transparent 70%),
+    var(--ct-card);
+  border: 1px solid color-mix(in srgb, var(--c) 30%, rgba(255, 255, 255, 0.1));
+  box-shadow: 0 0 22px -8px var(--c);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -485,20 +617,21 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  filter: invert(1) hue-rotate(180deg) brightness(1.05);
 }
 
 .contact-aside-item h3 {
-  margin: 0 0 6px;
+  margin: 4px 0 6px;
   font-size: clamp(16px, 1.35vw, 18px);
   font-weight: 700;
-  color: #0f172a;
+  color: #fff;
 }
 
 .contact-aside-item p {
   margin: 0;
   font-size: clamp(14px, 1.15vw, 15px);
-  line-height: 1.65;
-  color: #64748b;
+  line-height: 1.75;
+  color: var(--ink-2);
 }
 
 @media (max-width: 900px) {
@@ -511,41 +644,64 @@
   }
 }
 
+@media (max-width: 520px) {
+  .contact-split {
+    padding: 64px 0 72px;
+  }
+
+  .contact-form-card {
+    padding: 28px 20px 30px;
+    border-radius: 18px;
+  }
+}
+
 /* ── 首頁式數據：值得信賴的專業團隊（無 icon） ── */
 .contact-page-team.team {
-  background: #fff;
-  padding: 64px 0 72px;
-  border-top: 1px solid var(--border, #e2e8f0);
-  border-bottom: 1px solid var(--border, #e2e8f0);
+  --border: var(--line);
+  background: transparent;
+  padding: 96px 0 104px;
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .contact-page-team .section-title {
   text-align: center;
-  font-size: clamp(22px, 2.4vw, 28px);
+  font-size: clamp(28px, 3.6vw, 48px);
   font-weight: 700;
-  color: var(--navy, #1a2b5e);
+  line-height: 1.3;
+  color: #fff;
   margin: 0 0 8px;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 
 .contact-page-team .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  margin-top: 32px;
-  border-top: 1px solid var(--border, #e2e8f0);
-  border-bottom: 1px solid var(--border, #e2e8f0);
+  margin-top: 44px;
+  border: 1px solid var(--ct-line);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--ct-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .contact-page-team .stat-item {
+  position: relative;
   text-align: center;
-  padding: 40px 20px 44px;
+  padding: 44px 20px 46px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0;
-  border-right: 1px solid var(--border, #e2e8f0);
+  border-right: 1px solid var(--border, rgba(160, 180, 255, 0.14));
+  transition: background 0.35s;
+}
+
+.contact-page-team .stat-item:hover {
+  background: radial-gradient(ellipse 80% 70% at 50% 0%, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%);
 }
 
 .contact-page-team .stat-item:last-child {
@@ -553,36 +709,42 @@
 }
 
 .contact-page-team .stat-num {
-  font-size: clamp(40px, 4.5vw, 52px);
-  font-weight: 900;
-  color: var(--navy, #1a2b5e);
+  font-family: var(--f-en);
+  font-size: clamp(40px, 4.5vw, 56px);
+  font-weight: 700;
   line-height: 1.05;
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+  background: linear-gradient(95deg, #fff 0%, color-mix(in srgb, var(--c) 65%, #fff) 55%, var(--c) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px color-mix(in srgb, var(--c) 35%, transparent));
 }
 
 .contact-page-team .stat-num sup {
   font-size: 0.45em;
   vertical-align: super;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .contact-page-team .stat-num--word {
   font-size: clamp(32px, 3.6vw, 44px);
-  letter-spacing: -0.03em;
+  font-weight: 900;
+  letter-spacing: 0.02em;
 }
 
 .contact-page-team .stat-kicker {
   font-size: 15px;
   font-weight: 700;
-  color: var(--navy, #1a2b5e);
+  color: #fff;
   margin-bottom: 6px;
 }
 
 .contact-page-team .stat-desc {
   font-size: 13px;
-  color: #64748b;
-  line-height: 1.55;
+  color: var(--ink-3);
+  line-height: 1.6;
   max-width: 200px;
 }
 
@@ -606,8 +768,9 @@
 }
 
 @media (max-width: 720px) {
-  .contact-page-team {
-    padding: 48px 0 56px;
+  .contact-page-team,
+  .contact-page-team.team {
+    padding: 64px 0 72px;
   }
 
   .contact-page-team .section-title {
@@ -648,8 +811,8 @@
 
 /* ── 聯絡 + 地圖 ── */
 .contact-map-block {
-  padding: 72px 0 80px;
-  background: #fff;
+  padding: 96px 0 104px;
+  background: rgba(255, 255, 255, 0.018);
 }
 
 .contact-map-grid {
@@ -660,10 +823,22 @@
 }
 
 .contact-map-info h2 {
-  margin: 0 0 24px;
-  font-size: 24px;
-  font-weight: 800;
-  color: #0f172a;
+  margin: 0 0 28px;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.contact-map-info h2::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+  background: var(--c);
+  box-shadow: 0 0 10px var(--c);
 }
 
 .contact-map-list {
@@ -679,9 +854,21 @@
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  font-size: 15px;
-  line-height: 1.65;
-  color: #475569;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.contact-map-list a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-map-list a:hover {
+  color: var(--c);
+  border-bottom-color: var(--c);
 }
 
 .contact-map-list svg {
@@ -689,23 +876,27 @@
   width: 22px;
   height: 22px;
   margin-top: 3px;
-  color: var(--blue, #2563eb);
+  color: var(--c);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--c) 55%, transparent));
 }
 
 .contact-map-frame {
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--ct-line);
   min-height: 300px;
-  background: #e8ecf1;
+  background: #0b1024;
+  box-shadow: 0 30px 80px -40px var(--c);
 }
 
+/* Google 地圖嵌入為淺色：以濾鏡轉為深色地圖，避免大面積白色 */
 .contact-map-frame iframe {
   display: block;
   width: 100%;
   height: 300px;
   min-height: 300px;
   border: 0;
+  filter: invert(0.92) hue-rotate(180deg) saturate(0.7) brightness(0.95) contrast(0.92);
 }
 
 @media (max-width: 900px) {
@@ -715,31 +906,23 @@
 }
 
 /* ── 底部 CTA ── */
-.contact-page-cta.contact-page-cta{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 mobile media */
+.contact-page-cta.contact-page-cta{padding-top:110px;padding-bottom:110px} /* CTA 上下留白（深色宇宙帶，同 .cx-cta）；覆寫 mobile media */
 .contact-page-cta {
   position: relative;
-  padding: 30px 0 50px;
+  padding: 110px 0;
   overflow: hidden;
-  color: var(--navy, #1a2b5e);
-  /* 底圖等高於區塊全高、靠左；右側由漸層補滿（圖過寬時由 overflow 裁切） */
-  background-color: #f2efe8;
+  isolation: isolate;
+  color: #fff;
+  border-top: 1px solid var(--line);
+  /* 淺色底圖不再使用：改為宇宙色光暈 */
+  background-color: transparent;
   background-image:
-    url("../uploads/contact-page-cta-bg.png"),
-    linear-gradient(
-      90deg,
-      #e6e2da 0%,
-      #ebe7e0 22%,
-      #f0ebe4 48%,
-      #f5f1eb 78%,
-      #faf8f3 100%
-    );
-  background-size:
-    auto 100%,
-    100% 100%;
-  background-position:
-    left bottom,
-    0 0;
-  background-repeat: no-repeat, no-repeat;
+    radial-gradient(ellipse 55% 90% at 85% 50%, color-mix(in srgb, var(--c) 26%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 80% at 10% 100%, rgba(199, 125, 255, 0.12), transparent 70%),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
+  background-size: auto;
+  background-position: 0 0;
+  background-repeat: no-repeat;
 }
 
 .contact-page-cta-inner {
@@ -753,20 +936,20 @@
 }
 
 .contact-page-cta-copy h2 {
-  margin: 0 0 12px;
-  font-size: clamp(22px, 3vw, 30px);
-  font-weight: 800;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  color: var(--navy, #1a2b5e);
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.8vw, 46px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: #fff;
 }
 
 .contact-page-cta-copy p {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.75;
-  color: rgba(30, 41, 59, 0.88);
-  max-width: 28rem;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.9;
+  color: var(--ink-2);
+  max-width: 32rem;
 }
 
 .contact-page-cta-copy p + p {
@@ -777,29 +960,42 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 26px;
-  border-radius: 8px;
+  min-height: 50px;
+  padding: 0 26px;
+  border-radius: 999px;
   font-size: 15px;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
   text-decoration: none;
-  background: var(--navy, #1a2b5e);
-  color: #fff;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 40px -10px rgba(122, 162, 255, 0.85);
+  color: #050714;
   border: none;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.2s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .contact-page-cta .contact-cta-btn:hover {
-  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.22);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), 0 18px 54px -8px rgba(122, 162, 255, 1);
 }
 
 @media (max-width: 720px) {
-  .contact-page-cta {
-    padding: 48px 0 56px;
+  .contact-page-cta,
+  .contact-page-cta.contact-page-cta {
+    padding: 80px 0;
   }
 
   .contact-page-cta-inner {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .contact-page-cta .contact-cta-btn {
+    align-self: flex-start;
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 14px;
   }
 }

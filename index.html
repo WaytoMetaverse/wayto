@@ -10,629 +10,529 @@
 <link rel="canonical" href="https://wayto.com.tw/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wayto Metaverse 維次元宇宙科技">
-<meta property="og:title" content="維次元宇宙科技 Wayto｜空間 × 科技整合平台">
-<meta property="og:description" content="整合 3D 視覺與客製化系統，協助建案展示與企業流程數位化 — 讓展示與系統真正發揮價值。">
+<meta property="og:title" content="維次元宇宙科技 Wayto｜通往任何宇宙的道路">
+<meta property="og:description" content="3D 視覺化、互動展示、AI 產品與客製化系統開發 — Wayto 為每個想法鋪出一條通往實現的路。">
 <meta property="og:image" content="https://wayto.com.tw/uploads/hero_new.png">
 <meta property="og:url" content="https://wayto.com.tw/">
 <meta property="og:locale" content="zh_TW">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="維次元宇宙科技 Wayto｜空間 × 科技整合平台">
-<meta name="twitter:description" content="整合 3D 視覺與客製化系統，協助建案展示與企業流程數位化 — 讓展示與系統真正發揮價值。">
+<meta name="twitter:title" content="維次元宇宙科技 Wayto｜通往任何宇宙的道路">
+<meta name="twitter:description" content="3D 視覺化、互動展示、AI 產品與客製化系統開發 — Wayto 為每個想法鋪出一條通往實現的路。">
 <meta name="twitter:image" content="https://wayto.com.tw/uploads/hero_new.png">
+<meta name="theme-color" content="#03040b">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","LocalBusiness"],"@id":"https://wayto.com.tw/#organization","name":"維次元宇宙科技股份有限公司","alternateName":"Wayto Metaverse Technology Co., Ltd.","url":"https://wayto.com.tw/","logo":"https://wayto.com.tw/LOGO2.png","image":"https://wayto.com.tw/uploads/hero_new.png","description":"整合 3D 空間視覺與客製化系統，協助建案展示與企業流程數位化的空間科技公司；以台灣為主要服務市場，服務範圍涵蓋台灣全區。","areaServed":{"@type":"Country","name":"台灣"},"knowsAbout":["3D 繪圖","3D 視覺化","3D 渲染","建案 3D 展示","客製化系統開發","軟體開發","互動展示"],"taxID":"94051810","email":"wayto.metaverse@gmail.com","telephone":"+886-4-2372-0718","address":{"@type":"PostalAddress","streetAddress":"三民路三段313號4F-1","addressLocality":"北區","addressRegion":"台中市","postalCode":"404","addressCountry":"TW"},"contactPoint":{"@type":"ContactPoint","telephone":"+886-4-2372-0718","contactType":"customer service","email":"wayto.metaverse@gmail.com","areaServed":"Taiwan","availableLanguage":["zh-TW","en"]},"sameAs":["https://www.facebook.com/profile.php?id=100054769899845","https://www.instagram.com/wayto.metaverse/","https://youtube.com/channel/UCSn7esEijioBqQBJ1SjacCg"]},{"@type":"WebSite","@id":"https://wayto.com.tw/#website","url":"https://wayto.com.tw/","name":"維次元宇宙科技 Wayto Metaverse","inLanguage":"zh-TW","publisher":{"@id":"https://wayto.com.tw/#organization"}}]}</script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
+<link rel="stylesheet" href="shared/cosmos.css?v=20261031b">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy: #1a2b5e;
-  --navy-dark: #111e45;
-  --blue: #2563eb;
-  --blue-light: #3b82f6;
-  --sky: #e8f0fe;
-  --text: #1e293b;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --gray-bg: #f8f9fc;
+  --gutter: 48px;
+  --maxw: 1320px;
+  --accent: var(--u0);
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
 }
-html { scroll-behavior: smooth; }
-body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: #fff; line-height: 1.6; }
+html { scroll-behavior: smooth; background: var(--space); }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--ink);
+  background: var(--space);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-/* HERO */
+/* ── 背景場景與固定層 ── */
+#cosmos {
+  position: fixed; inset: 0; width: 100%; height: 100vh; z-index: 0; display: block;
+  opacity: 0; transition: opacity 1.4s ease;
+}
+#cosmos.ready { opacity: 1; }
+html.no-webgl #cosmos { display: none; }
+html.no-webgl body {
+  background:
+    radial-gradient(1px 1px at 12% 18%, #fff, transparent 60%),
+    radial-gradient(1px 1px at 72% 12%, #cfdcff, transparent 60%),
+    radial-gradient(1.5px 1.5px at 38% 62%, #fff, transparent 60%),
+    radial-gradient(1px 1px at 88% 48%, #fff, transparent 60%),
+    radial-gradient(1px 1px at 22% 82%, #a9c4ff, transparent 60%),
+    radial-gradient(1.5px 1.5px at 62% 88%, #fff, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 30%, rgba(76,201,240,.12), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(199,125,255,.10), transparent 70%),
+    var(--space);
+  background-size: 420px 420px, 380px 380px, 520px 520px, 300px 300px, 460px 460px, 560px 560px, 100% 100%, 100% 100%, auto;
+  background-attachment: fixed;
+}
+.cursor-glow {
+  position: fixed; left: 0; top: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px;
+  border-radius: 50%; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 62%);
+  opacity: 0; transition: opacity .6s, background .6s;
+}
+.cursor-glow.on { opacity: 1; }
+.reticle {
+  position: fixed; left: 0; top: 0; z-index: 0; pointer-events: none;
+  width: 200px; height: 200px; opacity: 0; transition: opacity .35s;
+  color: var(--accent);
+}
+.reticle i { position: absolute; width: 18px; height: 18px; border: 0 solid currentColor; filter: drop-shadow(0 0 6px currentColor); }
+.reticle i:nth-child(1) { left: 0; top: 0; border-width: 1.5px 0 0 1.5px; }
+.reticle i:nth-child(2) { right: 0; top: 0; border-width: 1.5px 1.5px 0 0; }
+.reticle i:nth-child(3) { left: 0; bottom: 0; border-width: 0 0 1.5px 1.5px; }
+.reticle i:nth-child(4) { right: 0; bottom: 0; border-width: 0 1.5px 1.5px 0; }
+.rt-label {
+  position: absolute; left: 0; top: calc(100% + 12px); white-space: nowrap;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .16em; color: currentColor;
+}
+.rt-label b { display: block; color: #fff; font-weight: 500; font-size: 13px; letter-spacing: .12em; margin-top: 4px; font-family: 'Noto Sans TC', sans-serif; }
+
+/* 右側航道 HUD（桌機） */
+.route-hud { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 40; display: none; }
+.route-hud ol { list-style: none; position: relative; display: flex; flex-direction: column; gap: 24px; }
+.route-hud ol::before,
+.route-hud ol::after { content: ''; position: absolute; right: 4px; top: 5px; width: 1px; }
+.route-hud ol::before { bottom: 5px; background: rgba(255,255,255,.14); }
+.route-hud ol::after { height: calc((100% - 10px) * var(--hp, 0)); background: var(--accent); box-shadow: 0 0 8px var(--accent); transition: background .5s; }
+.route-hud a { display: flex; align-items: center; justify-content: flex-end; gap: 12px; text-decoration: none; font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; color: var(--ink-3); }
+.route-hud a i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); background: var(--space); position: relative; z-index: 1; transition: background .4s, border-color .4s, box-shadow .4s, transform .4s; }
+.route-hud a span { opacity: 0; transform: translateX(6px); transition: opacity .3s, transform .3s; white-space: nowrap; }
+.route-hud:hover a span { opacity: 1; transform: none; }
+.route-hud a:hover { color: #fff; }
+.route-hud a.on { color: #fff; }
+.route-hud a.on i { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 12px var(--accent); transform: scale(1.25); }
+.readout {
+  position: fixed; left: 24px; bottom: 20px; z-index: 40; display: none;
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .16em; color: var(--ink-3);
+  gap: 10px; align-items: center;
+}
+.readout b { color: #fff; font-weight: 500; margin-right: 14px; }
+.readout b#roSector { color: var(--accent); transition: color .5s; }
+@media (min-width: 1101px) {
+  .route-hud { display: block; }
+  .readout { display: flex; }
+}
+
+main { position: relative; z-index: 1; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.label { font-family: var(--f-mono); font-size: 12px; letter-spacing: .2em; color: var(--ink-3); text-transform: uppercase; }
+
+/* reveal（只在 JS 啟用時隱藏，避免無 JS 時內容消失） */
+html.js .rv { opacity: 0; translate: 0 30px; transition: opacity 1s var(--ease-out), translate 1s var(--ease-out); transition-delay: var(--d, 0s); }
+html.js .rv.in { opacity: 1; translate: 0 0; }
+
+/* ── 按鈕 ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 52px; padding: 0 28px; border-radius: 999px;
+  font-family: inherit; font-size: 15px; font-weight: 500; letter-spacing: .04em; text-decoration: none; white-space: nowrap;
+  transition: transform .25s, box-shadow .25s, background .25s, border-color .25s;
+}
+.btn-warp {
+  color: #050714; font-weight: 700;
+  background: linear-gradient(100deg, #7fe3ff 0%, #7aa2ff 45%, #c9a2ff 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.25), 0 10px 40px -10px rgba(122,162,255,.85);
+}
+.btn-warp:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.35), 0 18px 54px -8px rgba(122,162,255,1); }
+.btn-ghost {
+  color: #fff; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.04);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.09); transform: translateY(-2px); }
+.btn .arr { font-family: var(--f-en); transition: transform .25s; }
+.btn:hover .arr { transform: translateY(2px); }
+
+/* ── HERO ── */
 .hero {
-  margin-top: 64px; min-height: calc(100vh - 64px);
-  position: relative; overflow: hidden;
-  display: flex; align-items: center;
-  background: #f0f4fa;
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 0 110px;
 }
-.hero-photo {
-  position: absolute; inset: 0;
-  overflow: hidden;
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 62% 78% at 16% 52%, rgba(3,4,11,.78), rgba(3,4,11,0) 72%);
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 35% center; }
-.hero-photo::before {
-  content: ''; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to right, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.8) 28%, rgba(255,255,255,0.4) 48%, rgba(255,255,255,0.1) 68%, transparent 82%);
+.hero-inner { position: relative; width: 100%; }
+.hero-copy { max-width: 760px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .2em; color: var(--ink-2);
+  padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(10,14,32,.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
-.hero-overlay-ui {
-  position: absolute; right: 4%; bottom: 12%; z-index: 2;
-  background: rgba(10,20,50,0.82); backdrop-filter: blur(8px);
-  border: 1px solid rgba(96,165,250,0.25); border-radius: 12px;
-  padding: 18px 22px; min-width: 220px;
+.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--u3); box-shadow: 0 0 10px var(--u3); animation: blink 2.2s ease-in-out infinite; }
+.hero-title { margin: 30px 0 26px; font-weight: 700; }
+.ht-en {
+  display: block; font-family: var(--f-en); font-weight: 700;
+  font-size: clamp(44px, 7.4vw, 120px); line-height: .96; letter-spacing: -.02em; color: #fff;
 }
-.ui-bar { height: 5px; border-radius: 3px; background: rgba(96,165,250,0.5); margin-bottom: 8px; }
-.ui-bar:nth-child(2) { width: 70%; background: rgba(96,165,250,0.3); }
-.ui-bar:nth-child(3) { width: 85%; background: rgba(96,165,250,0.2); }
-.ui-dots { display: flex; gap: 8px; margin-top: 12px; }
-.ui-dot { width: 10px; height: 10px; border-radius: 50%; }
-.hero-content {
-  position: relative; z-index: 3;
-  max-width: var(--layout-max, 1320px); margin: 0 auto; padding: 80px 24px;
-  width: 100%;
+.ht-en .ht-way { display: block; }
+/* 輪播字用偽元素顯示，h1 的文字內容維持固定，避免爬蟲抓到解碼中的亂碼 */
+.ht-word {
+  display: inline-block; min-height: 1em;
+  filter: drop-shadow(0 0 28px color-mix(in srgb, var(--w1, #7fe3ff) 35%, transparent));
 }
-.hero-tag {
-  display: none;
+.ht-word::before {
+  content: attr(data-word);
+  background: linear-gradient(95deg, var(--w1, #7fe3ff), var(--w2, #c9a2ff));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.hero-title {
-  font-size: clamp(36px, 5vw, 64px); font-weight: 900; color: #0f172a;
-  line-height: 1.1; margin-bottom: 14px; letter-spacing: -1px;
+.ht-zh { display: block; margin-top: 22px; font-size: clamp(20px, 2.4vw, 32px); font-weight: 500; letter-spacing: .18em; color: var(--ink); }
+.hero-lede { max-width: 580px; font-size: 16px; line-height: 2; color: var(--ink-2); }
+.hero-lede strong { color: #fff; font-weight: 500; }
+.hero-lede em { font-style: normal; font-family: var(--f-en); color: #fff; letter-spacing: .02em; }
+.hero-actions { display: flex; gap: 14px; margin-top: 38px; flex-wrap: wrap; }
+.hero-meta {
+  position: absolute; left: 0; right: 0; bottom: 28px;
+  display: flex; justify-content: flex-end; align-items: flex-end;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .16em; color: var(--ink-3);
 }
-.hero-title .x { color: #0f172a; margin: 0 6px; }
-.hero-subtitle { font-size: clamp(16px, 2vw, 22px); color: #1e293b; font-weight: 600; margin-bottom: 22px; }
-.hero-desc { font-size: 15px; color: #475569; line-height: 1.9; max-width: 420px; margin-bottom: 36px; }
-.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--blue); color: #fff; padding: 13px 28px;
-  border-radius: 6px; font-size: 15px; font-weight: 600; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px; transition: all .2s;
-  border: none; cursor: pointer; font-family: inherit;
-}
-.btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
-.btn-outline {
-  background: transparent; color: var(--navy); padding: 13px 28px;
-  border-radius: 6px; font-size: 15px; font-weight: 600; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px; transition: all .2s;
-  border: 1px solid rgba(26,43,94,0.35); cursor: pointer; font-family: inherit;
-}
-.btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
-.hero-dots { display: flex; gap: 8px; margin-top: 44px; }
-.hero-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(26,43,94,0.2); cursor: pointer; transition: all .3s; }
-.hero-dot.active { background: var(--navy); width: 26px; border-radius: 4px; }
+@media (min-width: 1101px) { .hero-meta .coord { margin-right: 28px; } }
+.scroll-cue { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.scroll-cue i { width: 1px; height: 46px; background: rgba(255,255,255,.14); position: relative; overflow: hidden; }
+.scroll-cue i::after { content: ''; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: #fff; animation: cue 1.9s ease-in-out infinite; }
+.ld { animation: rise 1.1s var(--ease-out) both; animation-delay: var(--d, 0s); }
 
-/* SECTION */
-section { padding: 80px 24px; }
-.container { max-width: var(--layout-max, 1320px); margin: 0 auto; }
-.section-title { text-align: center; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-.section-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+/* ── MANIFESTO ── */
+.manifesto { position: relative; padding: 24vh 0; text-align: center; }
+.manifesto::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(3,4,11,.7), rgba(3,4,11,0) 75%);
+}
+.manifesto .wrap { position: relative; max-width: 1000px; }
+.mf-title { font-size: clamp(30px, 4.6vw, 64px); font-weight: 700; line-height: 1.3; margin: 22px 0 36px; letter-spacing: .02em; }
+.grad {
+  font-family: var(--f-en);
+  background: linear-gradient(90deg, #7fe3ff, #7aa2ff 35%, #c77dff 65%, #ffb547);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.mf-text { margin: 0 auto; font-size: clamp(18px, 2.1vw, 28px); line-height: 1.95; font-weight: 500; color: #fff; }
+.mf-text .ch { opacity: .14; transition: opacity .35s, text-shadow .35s; }
+.mf-text .ch.on { opacity: 1; }
 
-/* PROBLEMS */
-.problems { background: #fff; }
-.problems-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; }
-.problem-card {
-  text-align: center; padding: 28px 24px 32px;
-  border: 1px solid var(--border); border-radius: 0; transition: all .25s;
+/* ── MULTIVERSE MAP ── */
+.multiverse { position: relative; padding: 12vh 0 16vh; }
+.multiverse::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 66% 58% at 50% 58%, rgba(3,4,11,.9), rgba(3,4,11,.35) 85%);
 }
-.problem-card:first-child { border-radius: 12px 0 0 12px; }
-.problem-card:last-child { border-radius: 0 12px 12px 0; }
-.problem-card:not(:first-child) { border-left: none; }
-.problem-card:hover { border-color: #bfdbfe; box-shadow: 0 6px 28px rgba(37,99,235,0.08); }
-.problem-icon {
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background: #fff;
+.sec-head { position: relative; max-width: 760px; margin: 0 auto 56px; text-align: center; }
+.sec-head h2 { font-size: clamp(28px, 3.6vw, 48px); font-weight: 700; line-height: 1.35; margin: 14px 0 16px; letter-spacing: .02em; }
+.sec-head p:not(.label) { color: var(--ink-2); font-size: 16px; line-height: 1.95; }
+.mv-stage { position: relative; height: 640px; max-width: 1180px; margin: 0 auto; }
+.mv-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.mv-svg .orbit { fill: none; stroke: rgba(160,180,255,.17); stroke-width: 1; stroke-dasharray: 3 7; }
+.mv-svg .sat { fill: #fff; filter: drop-shadow(0 0 5px #9fb4ff); }
+.mv-svg .link-base { fill: none; stroke-width: 1; opacity: .2; }
+.mv-svg .link-flow { fill: none; stroke-width: 1.8; stroke-dasharray: 2 10; stroke-linecap: round; opacity: .55; animation: flow 1.1s linear infinite; transition: opacity .3s, stroke-width .3s; }
+.mv-svg .link-flow.hot { opacity: 1; stroke-width: 2.8; }
+.mv-core { position: absolute; left: calc(50% - 90px); top: calc(50% - 90px); width: 180px; height: 180px; }
+.core-planet {
+  position: absolute; left: 42px; top: 42px; width: 96px; height: 96px; border-radius: 50%; z-index: 1;
+  background: radial-gradient(circle at 32% 28%, #cfe6ff 0%, #6b98ff 24%, #2446c9 55%, #08113a 86%);
+  box-shadow: 0 0 70px 14px rgba(91,140,255,.42), inset -12px -16px 30px rgba(0,0,0,.55);
+  animation: breathe 5s ease-in-out infinite;
 }
-.problem-icon img {
-  width: auto;
-  height: auto;
-  max-width: 168px;
-  max-height: 168px;
-  object-fit: contain;
-  display: block;
+.core-ring { position: absolute; left: -8px; top: 61px; width: 196px; height: 58px; border-radius: 50%; border: 2px solid transparent; transform: rotate(-22deg); }
+.core-ring.back { border-top-color: rgba(143,199,214,.55); z-index: 0; }
+.core-ring.front { border-bottom-color: rgba(143,199,214,.95); z-index: 2; filter: drop-shadow(0 0 6px rgba(122,162,255,.8)); }
+.core-label { position: absolute; left: 0; right: 0; bottom: -20px; text-align: center; font-family: var(--f-mono); font-size: 11px; letter-spacing: .3em; color: var(--ink-2); }
+.core-label b { display: block; color: #fff; font-family: var(--f-en); font-size: 15px; letter-spacing: .4em; font-weight: 600; }
+.mv-node {
+  --rx: 0deg; --ry: 0deg;
+  position: absolute; width: 300px; padding: 24px 24px 22px; border-radius: 20px; z-index: 3;
+  color: inherit; text-decoration: none;
+  background: linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.015));
+  border: 1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform .35s var(--ease-out), border-color .35s, box-shadow .35s, opacity .35s, translate 1s var(--ease-out);
 }
-.problem-card h3 { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
-.problem-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+.mv-node.n1 { left: 0; top: 0; }
+.mv-node.n2 { right: 0; top: 0; }
+.mv-node.n3 { right: 0; bottom: 0; }
+.mv-node.n4 { left: 0; bottom: 0; }
+.mv-node:hover { border-color: color-mix(in srgb, var(--c) 60%, transparent); box-shadow: 0 24px 70px -24px var(--c), inset 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent); }
+.mv-stage.dim .mv-node:not(.hot) { opacity: .45; }
+.mv-orb {
+  display: block; width: 46px; height: 46px; border-radius: 50%; margin-bottom: 18px;
+  background: radial-gradient(circle at 32% 30%, #fff 0%, var(--c) 32%, color-mix(in srgb, var(--c) 30%, #000) 78%);
+  box-shadow: 0 0 26px -2px var(--c);
+}
+.mv-num { font-family: var(--f-mono); font-size: 11px; letter-spacing: .2em; color: var(--c); }
+.mv-name { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 6px 0 4px; font-size: 22px; font-weight: 700; color: #fff; }
+.mv-name small { font-family: var(--f-en); font-size: 11px; font-weight: 400; letter-spacing: .22em; color: var(--ink-3); }
+.mv-for { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600; letter-spacing: .03em; color: color-mix(in srgb, var(--c) 78%, #fff); }
+.mv-desc { display: block; font-size: 13.5px; color: var(--ink-2); line-height: 1.75; }
+.mv-go { position: absolute; right: 22px; top: 30px; font-family: var(--f-en); color: var(--c); font-size: 18px; transition: transform .3s; }
+.mv-node:hover .mv-go { transform: translate(3px, -3px); }
 
-/* TWO SOLUTIONS */
-.two-solutions { background: #fff; }
-.section-title--multiline { font-size: clamp(22px, 3.1vw, 30px); line-height: 1.35; max-width: 960px; margin-left: auto; margin-right: auto; }
-.two-solutions-intro {
-  text-align: center; color: var(--muted); font-size: clamp(12px, 1.45vw, 16px);
-  line-height: 1.85; margin: 12px auto 0; padding: 0 16px 6px;
-  white-space: nowrap;
-  overflow-x: auto;
-  max-width: 100%;
-  -webkit-overflow-scrolling: touch;
+/* ── UNIVERSE SECTIONS ── */
+.universe { position: relative; min-height: 100vh; padding: 150px 0 130px; display: flex; flex-direction: column; justify-content: center; }
+.universe::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(3,4,11,.86) 0%, rgba(3,4,11,.58) 36%, rgba(3,4,11,0) 62%);
 }
-.solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 44px; }
-.sol-card {
-  border-radius: 18px; overflow: hidden;
-  position: relative;
-  transition: transform .25s;
-  aspect-ratio: 16/9;
-  display: block;
-  color: inherit;
-  text-decoration: none;
+.universe .wrap { position: relative; width: 100%; }
+.u-grid { display: grid; grid-template-columns: minmax(0, 600px) 1fr; gap: 40px; }
+.u-hud { display: flex; align-items: center; gap: 14px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .18em; color: var(--c); }
+.u-hud .bar { flex: 0 0 44px; height: 1px; background: var(--c); box-shadow: 0 0 8px var(--c); }
+.u-hud .u-coord { color: var(--ink-3); }
+/* 這個宇宙是給哪一種客戶的 */
+.u-for {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 6px 15px 6px 12px; border-radius: 999px;
+  font-size: 14px; font-weight: 600; letter-spacing: .04em; color: #fff;
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); background: color-mix(in srgb, var(--c) 12%, transparent);
 }
-.sol-card:first-child { background: #3460be; }
-.sol-card:last-child { background: #06112a; }
-.sol-card:hover { transform: translateY(-4px); }
-.sol-card-img { position: absolute; inset: 0; }
-.sol-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: center center; }
-.sol-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,20,50,0.85) 0%, rgba(10,20,50,0.3) 50%, transparent 100%);
+.u-for span { font-family: var(--f-mono); font-size: 10.5px; font-weight: 500; letter-spacing: .22em; color: var(--c); }
+.u-name { margin: 18px 0 20px; }
+.u-zh {
+  display: block; font-size: clamp(42px, 5.4vw, 80px); font-weight: 900; line-height: 1.08; letter-spacing: .05em; color: #fff;
+  text-shadow: 0 0 44px color-mix(in srgb, var(--c) 40%, transparent);
 }
-.sol-content { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 28px 32px; color: #fff; }
-.sol-tag {
-  display: inline-block; font-size: 11px; background: rgba(37,99,235,0.45);
-  border: 1px solid rgba(96,165,250,0.35);
-  padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.5px;
+.u-tag { display: block; margin-top: 16px; font-size: clamp(18px, 1.9vw, 24px); font-weight: 500; color: var(--c); letter-spacing: .04em; }
+.u-desc { font-size: 15.5px; line-height: 2; color: var(--ink-2); max-width: 580px; }
+.u-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 28px; }
+.u-tags li {
+  font-size: 12.5px; padding: 5px 13px; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+  color: color-mix(in srgb, var(--c) 72%, #fff);
+  background: color-mix(in srgb, var(--c) 9%, transparent);
 }
-.sol-card h2 { font-size: 26px; font-weight: 800; margin-bottom: 10px; line-height: 1.25; }
-.sol-card .hl { color: #60a5fa; }
-.sol-card p { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.8; margin-bottom: 22px; }
-.sol-list { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 4px; }
-.sol-list li { font-size: 13px; color: rgba(255,255,255,0.82); display: flex; align-items: center; gap: 8px; }
-.sol-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #60a5fa; flex-shrink: 0; }
-.sol-arrow {
-  width: 42px; height: 42px; border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all .2s; background: rgba(255,255,255,0.1);
+.u-links { list-style: none; border-top: 1px solid var(--line); }
+.u-links a {
+  display: grid; grid-template-columns: 1fr auto; column-gap: 16px; padding: 15px 6px;
+  border-bottom: 1px solid var(--line); color: inherit; text-decoration: none;
+  transition: padding .3s var(--ease-out), background .3s;
 }
-.sol-arrow:hover { background: rgba(37,99,235,0.6); border-color: var(--blue); }
-.sol-arrow svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; }
+.u-links li:first-child a { border-top: 0; }
+.u-links a:hover { padding-left: 14px; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%); }
+.ul-k { font-size: 15.5px; font-weight: 700; color: #fff; }
+.ul-v { grid-column: 1; font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+.ul-i { grid-row: 1 / 3; grid-column: 2; align-self: center; color: var(--c); font-family: var(--f-en); font-size: 18px; transition: transform .3s; }
+.u-links a:hover .ul-i { transform: translateX(4px); }
 
-/* FOUR SOLUTIONS */
-.four-solutions { background: #fff; }
-.four-solutions .section-title { white-space: nowrap; font-size: clamp(15px, 3.8vw, 28px); }
-.four-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 44px; }
-.four-card {
-  border: 1px solid var(--border); border-radius: 0; padding: 32px 24px 28px;
-  text-align: center; transition: all .25s;
-  background: #fff;
+.case-card {
+  --rx: 0deg; --ry: 0deg;
+  position: relative; display: grid; grid-template-columns: 210px 1fr; margin-top: 30px;
+  border-radius: 18px; overflow: hidden; color: inherit; text-decoration: none;
+  border: 1px solid rgba(255,255,255,.1); background: rgba(8,11,26,.66);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform .35s var(--ease-out), border-color .35s, box-shadow .35s, opacity 1s var(--ease-out), translate 1s var(--ease-out);
 }
-.four-card:first-child { border-radius: 12px 0 0 12px; }
-.four-card:last-child { border-radius: 0 12px 12px 0; }
-.four-card:not(:first-child) { border-left: none; }
-.four-card:hover { border-color: #bfdbfe; box-shadow: 0 6px 28px rgba(37,99,235,0.08); }
-.four-icon {
-  width: 100px; height: 100px; margin: 0 auto 20px;
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
+.case-card::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.09), transparent 45%);
 }
-.four-icon img { width: 100%; height: 100%; object-fit: contain; }
-.four-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-.four-card p { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
-.learn-more { font-size: 13px; color: var(--blue); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; transition: gap .15s; }
-.learn-more:hover { gap: 8px; }
+.case-card:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); box-shadow: 0 24px 70px -30px var(--c); }
+.case-card:hover::after { opacity: 1; }
+.case-media { position: relative; min-height: 160px; overflow: hidden; background: #0b1024; }
+.case-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease-out); }
+.case-card:hover .case-media img { transform: scale(1.07); }
+.case-body { padding: 20px 22px; }
+.case-k { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .18em; color: var(--c); }
+.case-body h3 { font-size: 19px; color: #fff; margin: 6px 0 6px; font-weight: 700; }
+.case-body p { font-size: 13px; color: var(--ink-2); line-height: 1.8; }
+.case-more { display: inline-block; margin-top: 10px; font-size: 12.5px; color: var(--c); letter-spacing: .04em; }
+.mini-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.mini-case {
+  display: block; padding: 14px 16px; border-radius: 14px; color: inherit; text-decoration: none;
+  border: 1px solid var(--line); background: rgba(8,11,26,.55);
+  transition: border-color .3s, background .3s;
+}
+.mini-case:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); background: rgba(8,11,26,.75); }
+.mini-case b { display: block; font-size: 14.5px; color: #fff; }
+.mini-case span { font-size: 12.5px; color: var(--ink-3); }
+.mini-case:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* 自家產品（ProjEase / RenderEase / SpaceEase）放進對應客群的宇宙 */
+.mini-case em {
+  margin-left: 10px; padding: 2px 8px; border-radius: 999px; vertical-align: 2px;
+  font-family: var(--f-mono); font-size: 10px; font-style: normal; font-weight: 500; letter-spacing: .12em;
+  color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+}
 
-/* CASES */
-.cases { background: var(--gray-bg); }
-.cases-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
-.view-all { font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 600; }
-.carousel-wrap { position: relative; }
-.carousel-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.case-card { border-radius: 14px; overflow: hidden; background: #fff; cursor: pointer; transition: transform .25s; box-shadow: 0 1px 4px rgba(0,0,0,0.06); display: block; color: inherit; text-decoration: none; }
-.case-card:hover { transform: translateY(-5px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
-.case-img { height: 190px; overflow: hidden; }
-.case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-.case-card:hover .case-img img { transform: scale(1.05); }
-.case-info { padding: 16px 18px 20px; }
-.case-tag { font-size: 11px; color: var(--blue); font-weight: 600; background: var(--sky); padding: 3px 9px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
-.case-info h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-.case-info p { font-size: 12px; color: var(--muted); line-height: 1.55; }
-.carousel-btn {
-  position: absolute; top: 50%; transform: translateY(-60%);
-  width: 40px; height: 40px; background: #fff; border: 1px solid var(--border);
-  border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all .2s; z-index: 5; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+/* ── LOGBOOK ── */
+.logbook { position: relative; padding: 18vh 0 8vh; }
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line); border-radius: 24px; overflow: hidden;
+  background: rgba(8,11,26,.58); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
-.carousel-btn:hover { background: var(--navy); border-color: var(--navy); }
-.carousel-btn:hover svg { stroke: #fff; }
-.carousel-btn svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.carousel-btn.prev { left: -20px; }
-.carousel-btn.next { right: -20px; }
-.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
-.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all .25s; }
-.carousel-dot.active { background: var(--blue); width: 26px; border-radius: 4px; }
+.stat { position: relative; padding: 44px 30px 40px; border-right: 1px solid var(--line); }
+.stat:last-child { border-right: 0; }
+.stat::before { content: ''; position: absolute; left: 30px; top: 0; width: 36px; height: 2px; background: var(--sc); box-shadow: 0 0 12px var(--sc); }
+.stat-n {
+  font-family: var(--f-en); font-size: clamp(44px, 5vw, 70px); font-weight: 700; line-height: 1; letter-spacing: -.02em;
+  background: linear-gradient(180deg, #fff 30%, #9fb4ff); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.stat-n sup { font-size: .45em; vertical-align: super; }
+.stat-k { margin-top: 16px; font-size: 16px; font-weight: 700; color: #fff; }
+.stat p { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
 
-/* AI SECTION */
-.ai-section {
-  padding: 0; min-height: 380px; position: relative; overflow: hidden;
-  display: flex; align-items: center;
+/* ── ROUTE TIMELINE ── */
+.route { position: relative; padding: 10vh 0 18vh; }
+.route::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(3,4,11,.8), rgba(3,4,11,0) 80%);
 }
-.ai-photo { position: absolute; inset: 0; }
-.ai-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 20% center; }
-.ai-photo::after { display: none; }
-.ai-content {
-  position: relative; z-index: 2;
-  max-width: var(--layout-max, 1320px); width: 100%; margin: 0 auto;
-  padding: 80px 24px; display: flex; justify-content: flex-end;
+.route .wrap { position: relative; }
+.route .sec-head { margin-bottom: 64px; }
+.route-track { --p: 0; position: relative; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.route-line { position: absolute; left: 0; right: 0; top: 9px; height: 2px; background: rgba(255,255,255,.08); }
+.route-fill {
+  position: absolute; inset: 0; transform-origin: left center; transform: scaleX(var(--p));
+  background: linear-gradient(90deg, var(--u0), var(--u1), var(--u2), var(--u3), var(--u4));
+  box-shadow: 0 0 14px rgba(122,162,255,.55);
 }
-.ai-text { max-width: 420px; }
-.ai-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(37,99,235,0.22); border: 1px solid rgba(96,165,250,0.35);
-  color: #93c5fd; font-size: 12px; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+.route-item { position: relative; padding: 46px 18px 0 0; }
+.route-item .pt {
+  position: absolute; left: 0; top: 2px; width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.25); background: var(--space);
+  transition: background .5s, border-color .5s, box-shadow .5s;
 }
-.ai-badge::before { content: '✦'; font-size: 9px; }
-.ai-text h2 { font-size: 38px; font-weight: 800; color: #fff; margin-bottom: 16px; line-height: 1.2; }
-.ai-text h2 span { color: #60a5fa; }
-.ai-text p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.85; margin-bottom: 28px; }
-.btn-ai {
-  background: var(--blue); color: #fff; padding: 13px 28px;
-  border-radius: 6px; font-size: 15px; font-weight: 600; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px; transition: all .2s;
-}
-.btn-ai:hover { background: #1d4ed8; transform: translateY(-1px); }
+.route-item.on .pt { border-color: #fff; background: #fff; box-shadow: 0 0 16px 3px rgba(160,190,255,.75); }
+.route-year { font-family: var(--f-en); font-size: 26px; font-weight: 700; color: var(--ink-3); transition: color .5s; }
+.route-item.on .route-year { color: #fff; }
+.route-item p { font-size: 13px; color: var(--ink-3); line-height: 1.75; margin-top: 6px; transition: color .5s; }
+.route-item.on p { color: var(--ink-2); }
 
-/* TEAM */
-.team { background: #fff; }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 32px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.stat-item {
-  text-align: center; padding: 40px 20px 44px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
-  border-right: 1px solid var(--border);
+/* ── LAUNCH CTA ── */
+.launch { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 150px 0 140px; }
+.launch::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 52% 46% at 50% 50%, rgba(3,4,11,.62), rgba(3,4,11,0) 80%);
 }
-.stat-item:last-child { border-right: none; }
-.stat-num { font-size: clamp(40px, 4.5vw, 52px); font-weight: 900; color: var(--navy); line-height: 1.05; margin-bottom: 10px; letter-spacing: -0.02em; }
-.stat-num sup { font-size: 0.45em; vertical-align: super; font-weight: 800; }
-.stat-num--word { font-size: clamp(32px, 3.6vw, 44px); letter-spacing: -0.03em; }
-.stat-kicker { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-.stat-desc { font-size: 13px; color: var(--muted); line-height: 1.55; max-width: 200px; }
+.launch .wrap { position: relative; }
+.launch h2 { font-size: clamp(38px, 6.2vw, 92px); font-weight: 900; line-height: 1.16; letter-spacing: .03em; margin: 20px 0 24px; text-shadow: 0 0 60px rgba(160,190,255,.4); }
+.launch-lede { color: var(--ink-2); font-size: 17px; line-height: 1.95; max-width: 600px; margin: 0 auto; }
+.launch-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 42px; }
+.launch-meta { margin-top: 30px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; line-height: 1.9; color: var(--ink-3); }
+.launch-meta a { color: inherit; text-decoration: none; }
+.launch-meta a:hover { color: #fff; }
 
-/* TIMELINE */
-.timeline-section { background: var(--gray-bg); }
-.about-timeline { display: flex; position: relative; margin-top: 56px; gap: 0; }
-.about-timeline::before {
-  content: ''; position: absolute; top: 22px; left: 7%; right: 7%; height: 1px;
-  background: #cbd5e1;
-}
-.tl-item { flex: 1; text-align: center; position: relative; padding-top: 62px; }
-.tl-icon {
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 44px; height: 44px; background: #fff;
-  border: 1px solid #cbd5e1; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 2; transition: all .25s;
-}
-.tl-icon svg { width: 20px; height: 20px; stroke: #94a3b8; fill: none; stroke-width: 1.5; }
-.tl-item.active .tl-icon { border-color: var(--blue); background: var(--sky); }
-.tl-item.active .tl-icon svg { stroke: var(--blue); }
-.tl-item.active .tl-year { color: var(--blue); }
-.tl-year { font-size: 17px; font-weight: 800; color: #0f172a; margin-bottom: 10px; letter-spacing: -0.2px; }
-.tl-item p { font-size: 12px; color: var(--muted); line-height: 1.7; font-weight: 400; }
-.timeline { display: flex; position: relative; margin-top: 52px; }
-.timeline::before {
-  content: ''; position: absolute; top: 20px; left: 10%; right: 10%; height: 2px;
-  background: var(--border);
-}
-.timeline-item { flex: 1; text-align: center; padding-top: 56px; position: relative; }
-.timeline-dot {
-  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-  width: 18px; height: 18px; border-radius: 50%; background: #fff;
-  border: 3px solid var(--border); z-index: 2; transition: all .25s;
-}
-.timeline-item.active .timeline-dot { background: var(--blue); border-color: var(--blue); box-shadow: 0 0 0 4px rgba(37,99,235,0.15); }
-.timeline-item.active .timeline-year { color: var(--blue); }
-.timeline-year { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
-.timeline-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.timeline-item p { font-size: 12px; color: var(--muted); line-height: 1.65; }
-
-/* CTA */
-.cta-banner {
-  position: relative;
-  padding: 30px 24px 50px;
-  overflow: hidden;
-  background: #0a1224;
-}
-.cta-banner.cta-banner{padding-top:30px;padding-bottom:50px} /* CTA 高度統一 cases 30/50；覆寫 tablet/mobile */
-.cta-banner-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('uploads/cta_bg.png');
-  background-size: cover;
-  background-position: center;
-}
-.cta-banner-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(5,10,24,0.82) 0%, rgba(5,10,24,0.5) 48%, rgba(5,10,24,0.62) 100%);
-}
-.cta-banner-inner {
-  position: relative;
-  z-index: 1;
-  max-width: var(--layout-max, 1320px);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-}
-.cta-banner-left { max-width: 560px; }
-.cta-banner h2 {
-  font-size: clamp(28px, 3.2vw, 36px);
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 14px;
-  line-height: 1.3;
-  text-align: left;
-}
-.cta-banner-left p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.82);
-  line-height: 1.8;
-  margin: 0;
-  text-align: left;
-}
-.cta-banner-right { flex-shrink: 0; }
-.cta-btns {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 14px;
-}
-.cta-banner .btn-primary {
-  min-width: 168px;
-  justify-content: center;
-}
-.cta-btn-light {
-  background: transparent;
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all .2s;
-  border: 1px solid rgba(255,255,255,0.45);
-  cursor: pointer;
-  font-family: inherit;
-  min-width: 168px;
-}
-.cta-btn-light:hover {
-  border-color: #fff;
-  color: #fff;
-  background: rgba(255,255,255,0.12);
-  transform: translateY(-1px);
-}
-@media (max-width: 900px) {
-  .cta-banner-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-  }
-  .cta-btns {
-    align-items: flex-start;
-    width: 100%;
-  }
-  .cta-banner .btn-primary,
-  .cta-btn-light {
-    width: 100%;
-    max-width: 280px;
-  }
-}
+/* ── KEYFRAMES ── */
+@keyframes rise { from { opacity: 0; transform: translateY(36px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes cue { 0% { top: -40%; } 100% { top: 100%; } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+@keyframes flow { to { stroke-dashoffset: -24; } }
+@keyframes breathe { 0%, 100% { box-shadow: 0 0 70px 14px rgba(91,140,255,.42), inset -12px -16px 30px rgba(0,0,0,.55); } 50% { box-shadow: 0 0 96px 22px rgba(91,140,255,.55), inset -12px -16px 30px rgba(0,0,0,.55); } }
 
 /* ─────────────── RWD ─────────────── */
 
 /* Tablet / small laptop */
 @media (max-width: 1100px) {
-  section { padding: 64px 24px; }
-  .container { padding: 0; }
-  .hero { min-height: calc(100vh - 64px); }
-  .hero-content { padding: 60px 24px; }
-  .hero-photo img { object-position: 30% center; }
-  .hero-overlay-ui { right: 4%; bottom: 6%; padding: 14px 18px; min-width: 180px; }
+  :root { --gutter: 24px; }
+  .mv-stage { height: 600px; }
+  .mv-node { width: 250px; padding: 20px 20px 18px; }
+  .mv-name { font-size: 20px; }
+  .u-grid { grid-template-columns: minmax(0, 540px) 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .route-track { grid-template-columns: 1fr; padding-left: 40px; max-width: 640px; margin: 0 auto; }
+  .route-line { left: 7px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
+  .route-fill { transform-origin: center top; transform: scaleY(var(--p)); }
+  .route-item { padding: 0 0 34px; }
+  .route-item .pt { left: -40px; top: 8px; }
+  .route-item p br { display: none; }
+}
 
-  .problems-grid,
-  .four-grid,
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .problem-card:first-child,
-  .four-card:first-child { border-radius: 12px 0 0 0; }
-  .problem-card:nth-child(2),
-  .four-card:nth-child(2) { border-radius: 0 12px 0 0; border-left: 1px solid var(--border); }
-  .problem-card:nth-child(3),
-  .four-card:nth-child(3) { border-radius: 0 0 0 12px; border-top: none; }
-  .problem-card:last-child,
-  .four-card:last-child { border-radius: 0 0 12px 0; border-top: none; border-left: 1px solid var(--border); }
-
-  .stat-item { padding: 28px 20px; }
-  .stat-item:nth-child(2n) { border-right: none; }
-  .stat-item:nth-child(3),
-  .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
-
-  .solutions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .sol-card { aspect-ratio: 4/5; }
-  .sol-content { padding: 22px 18px; }
-  .sol-card h2 { font-size: 20px; }
-  .sol-card p { font-size: 12.5px; }
-  .sol-list li { font-size: 12px; }
-
-  .carousel-track { grid-template-columns: repeat(2, 1fr); }
-  .carousel-btn.prev { left: -10px; }
-  .carousel-btn.next { right: -10px; }
-
-  .ai-content { padding: 60px 24px; justify-content: flex-start; }
-  .ai-photo img { object-position: 70% center; }
-
-  .about-timeline,
-  .timeline { flex-wrap: wrap; gap: 32px 0; }
-  .about-timeline::before,
-  .timeline::before { display: none; }
-  .tl-item,
-  .timeline-item { flex: 0 0 50%; }
-
-  .cta-banner { padding: 72px 24px; }
+/* 直式螢幕（手機、直立平板）：星球在上方，內容在下方 */
+@media (max-width: 900px), (max-aspect-ratio: 5/4) {
+  .hero { justify-content: flex-end; padding: 120px 0 120px; }
+  .hero::before { background: linear-gradient(180deg, rgba(3,4,11,0) 0%, rgba(3,4,11,.3) 30%, rgba(3,4,11,.82) 62%, rgba(3,4,11,.9) 100%); }
+  .universe { display: block; min-height: 0; padding: 50vh 0 90px; }
+  .universe::before { background: linear-gradient(180deg, rgba(3,4,11,0) 0, rgba(3,4,11,0) 36vh, rgba(3,4,11,.82) 54vh, rgba(3,4,11,.86) 100%); }
+  .u-grid { grid-template-columns: minmax(0, 1fr); }
+  .u-copy { max-width: 680px; }
 }
 
 /* Large phone / small tablet */
 @media (max-width: 720px) {
-  section { padding: 56px 20px; }
-  .section-title { font-size: 24px; }
-  .section-sub { font-size: 14px; margin-bottom: 32px; }
+  .label { font-size: 11px; }
+  .hero { padding: 110px 0 104px; }
+  .hero-title { margin: 24px 0 20px; }
+  .ht-en { font-size: clamp(40px, 12vw, 64px); }
+  .ht-zh { margin-top: 16px; font-size: clamp(18px, 5vw, 24px); letter-spacing: .14em; }
+  .hero-lede { font-size: 14.5px; line-height: 1.95; }
+  .hero-actions { margin-top: 28px; gap: 10px; }
+  .hero-actions .btn { flex: 1; min-width: 0; height: 48px; padding: 0 18px; font-size: 14px; }
+  .hero-meta { bottom: 22px; }
+  .hero-meta .coord { display: none; }
 
-  .hero { min-height: 78vh; }
-  .hero-photo::before {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.72) 42%, rgba(255,255,255,0.34) 100%);
-  }
-  .hero-photo img { object-position: 60% center; }
-  .hero-content { padding: 50px 20px; }
-  .hero-title { font-size: clamp(30px, 8vw, 44px); }
-  .hero-subtitle { font-size: clamp(15px, 4vw, 18px); }
-  .hero-desc br { display: none; }
-  .hero-btns { gap: 10px; }
-  .btn-primary, .btn-outline { padding: 11px 22px; font-size: 14px; flex: 1; min-width: 0; justify-content: center; }
-  .hero-overlay-ui { display: none; }
-  .hero-dots { margin-top: 28px; }
+  .manifesto { padding: 16vh 0; }
+  .mf-text { font-size: clamp(17px, 4.6vw, 21px); text-align: left; }
+  .mf-title { margin: 18px 0 26px; }
 
-  .problems-grid,
-  .four-grid,
-  .stats-grid,
-  .carousel-track { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .problem-card,
-  .four-card {
-    border-radius: 12px !important;
-    border: 1px solid var(--border) !important;
-    padding: 18px 12px 16px;
-  }
-  .problem-icon,
-  .four-icon {
-    height: 80px;
-    margin-bottom: 12px;
-  }
-  .problem-icon img,
-  .four-icon img {
-    max-width: 72px;
-    max-height: 72px;
-  }
-  .stat-item {
-    border-bottom: 1px solid var(--border) !important;
-    padding: 22px 12px;
-    justify-content: center;
-  }
-  .stat-item:nth-child(2n) { border-right: none !important; }
-  .stat-item:nth-last-child(-n + 2) { border-bottom: none !important; }
-  .stat-num { font-size: 34px; }
-  .stat-num--word { font-size: 28px; }
-  .stat-kicker { font-size: 14px; }
+  .multiverse { padding: 10vh 0 12vh; }
+  .sec-head { margin-bottom: 36px; }
+  .sec-head p { font-size: 14.5px; }
+  .mv-stage { height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 230px; }
+  .mv-core { left: calc(50% - 90px); top: 14px; }
+  .mv-node { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: auto; padding: 18px 16px 16px; border-radius: 16px; }
+  .mv-orb { width: 34px; height: 34px; margin-bottom: 12px; }
+  .mv-name { font-size: 18px; }
+  .mv-name small { display: none; }
+  .mv-for { font-size: 12.5px; margin-bottom: 4px; }
+  .mv-desc { font-size: 12.5px; line-height: 1.65; }
+  .mv-go { right: 16px; top: 22px; font-size: 16px; }
 
-  .two-solutions-intro {
-    white-space: normal;
-    overflow: visible;
-    max-width: 24rem;
-    padding: 0;
-  }
-  .solutions-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 32px;
-  }
-  .sol-card {
-    aspect-ratio: auto;
-    min-height: 340px;
-    border-radius: 16px;
-  }
-  .sol-content {
-    position: relative;
-    min-height: 340px;
-    padding: 24px 22px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  .sol-tag { margin-bottom: 12px; }
-  .sol-card h2 { font-size: 22px; }
-  .sol-card p { font-size: 13px; line-height: 1.65; margin-bottom: 16px; }
-  .sol-list { margin-bottom: 18px; }
-  .sol-list li { font-size: 12.5px; }
+  .universe { padding: 46vh 0 72px; }
+  .u-hud { font-size: 11px; gap: 10px; }
+  .u-hud .bar { flex-basis: 26px; }
+  .u-for { margin-top: 16px; font-size: 13px; padding: 5px 13px 5px 10px; }
+  .u-name { margin: 14px 0 16px; }
+  .u-zh { font-size: clamp(38px, 11vw, 52px); }
+  .u-tag { font-size: 17px; margin-top: 10px; }
+  .u-desc { font-size: 14.5px; line-height: 1.95; }
+  .u-tags { margin: 18px 0 22px; gap: 6px; }
+  .u-tags li { font-size: 12px; padding: 4px 11px; }
+  .ul-k { font-size: 15px; }
+  .case-card { grid-template-columns: 1fr; margin-top: 24px; }
+  .case-media { min-height: 0; aspect-ratio: 16 / 9; }
+  .case-body { padding: 16px 18px 18px; }
+  .mini-cases { grid-template-columns: 1fr; }
 
-  .case-img { height: 118px; }
-  .case-info { padding: 12px 10px 14px; }
-  .case-tag { font-size: 10px; padding: 3px 7px; }
-  .case-info h3 { font-size: 14px; line-height: 1.35; }
-  .case-info p { font-size: 12px; line-height: 1.55; }
-  .carousel-btn { display: none; }
+  .logbook { padding: 12vh 0 6vh; }
+  .stat { padding: 30px 18px 26px; }
+  .stat::before { left: 18px; }
+  .stat-n { font-size: 40px; }
+  .stat-k { font-size: 14.5px; margin-top: 12px; }
+  .stat p { font-size: 12px; }
 
-  .ai-section { min-height: auto; }
-  .ai-content { padding: 80px 20px; }
-  .ai-photo::after {
-    display: block !important;
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(5,15,45,0.4) 0%, rgba(5,15,45,0.85) 100%);
-  }
-  .ai-text { max-width: 100%; }
-  .ai-text h2 { font-size: 26px; }
-  .ai-text p { font-size: 13.5px; }
+  .route { padding: 8vh 0 12vh; }
+  .route .sec-head { margin-bottom: 40px; }
+  .route-year { font-size: 22px; }
 
-  .about-timeline,
-  .timeline {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 14px;
-    margin-top: 36px;
-  }
-  .tl-item,
-  .timeline-item { flex: initial; padding-top: 0; }
-  .tl-icon,
-  .timeline-dot { position: relative; top: 0; left: 0; transform: none; margin: 0 auto 10px; }
-  .tl-item, .timeline-item { text-align: center; }
-  .tl-year { font-size: 16px; margin-bottom: 6px; }
-  .tl-item p,
-  .timeline-item p { font-size: 12px; line-height: 1.55; }
-  .tl-item p br,
-  .timeline-item p br { display: none; }
-
-  .cta-banner { padding: 56px 20px; }
-  .cta-banner h2 { font-size: 22px; }
-  .cta-banner-left p { font-size: 14px; }
+  .launch { padding: 120px 0 110px; }
+  .launch-lede { font-size: 15px; }
+  .launch-actions { flex-direction: column; align-items: center; gap: 10px; margin-top: 34px; }
+  .launch-actions .btn { width: 100%; max-width: 320px; }
 }
 
 /* Small phone */
 @media (max-width: 420px) {
-  section { padding: 48px 16px; }
-  .hero-content { padding: 40px 16px; }
-  .hero-title { font-size: clamp(26px, 9vw, 36px); }
-  .hero-desc { font-size: 14px; }
-  .hero-btns { flex-direction: column; }
-  .btn-primary, .btn-outline { width: 100%; }
-
-  .section-title { font-size: 22px; }
-  .problem-card h3,
-  .four-card h3 { font-size: 15px; }
-  .problem-card p,
-  .four-card p { font-size: 12.5px; }
-  .problem-card p br,
-  .four-card p br { display: none; }
-
-  .sol-content { padding: 20px 18px; }
-  .sol-tag { font-size: 10px; }
-  .sol-card h2 { font-size: 20px; }
-
-  .ai-content { padding: 60px 16px; }
-  .ai-text h2 { font-size: 22px; }
-  .btn-ai { padding: 11px 20px; font-size: 13px; }
-
-  .cta-banner { padding: 48px 16px; }
-  .cta-banner h2 { font-size: 20px; line-height: 1.45; }
-  .cta-banner-left p { font-size: 13px; }
-  .cta-banner .btn-primary,
-  .cta-btn-light { padding: 12px 22px; font-size: 14px; min-width: 0; }
+  :root { --gutter: 16px; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .14em; padding: 7px 12px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; flex: none; }
+  .mv-stage { gap: 10px; }
+  .mv-node { padding: 16px 13px 14px; }
+  .mv-name { font-size: 16.5px; }
+  .mv-desc { font-size: 12px; }
+  .u-zh { font-size: 36px; }
+  .stat-n { font-size: 34px; }
 }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-delay-1 { transition-delay: .08s; }
-.reveal-delay-2 { transition-delay: .16s; }
-.reveal-delay-3 { transition-delay: .24s; }
-.reveal-delay-4 { transition-delay: .32s; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  html { scroll-behavior: auto; }
+}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1SWCVSH9F"></script>
@@ -644,377 +544,314 @@ section { padding: 80px 24px; }
   gtag('config', 'G-F1SWCVSH9F');
 </script>
 </head>
-<body data-nav-current="home">
+<body class="cosmos" data-nav-current="home">
 
-<!-- NAV -->
 <div id="shared-nav"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-photo">
-    <img src="uploads/hero_new.png" alt="modern showroom with city view and dashboard">
-  </div>
-  <div class="hero-content">
-    <div class="hero-tag">新世代整合平台</div>
-    <h1 class="hero-title">空間 <span class="x">×</span> 科技</h1>
-    <p class="hero-subtitle">讓展示與系統真正發揮價值</p>
-    <p class="hero-desc">整合 3D 視覺與客製化系統，<br>協助建案開發，設計能讓企業流程數位化。</p>
-    <div class="hero-btns">
-      <a class="btn-primary" href="/solutions.html">了解全展示 →</a>
-      <a class="btn-outline" href="#ai" style="opacity: 100">了解數位 →</a>
+<canvas id="cosmos" aria-hidden="true"></canvas>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="reticle" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="rt-label"></span></div>
+
+<nav class="route-hud" aria-label="頁面航道">
+  <ol>
+    <li><a href="#launch"><span>起點</span><i></i></a></li>
+    <li><a href="#u-estate"><span>01 建案宇宙</span><i></i></a></li>
+    <li><a href="#u-design"><span>02 設計宇宙</span><i></i></a></li>
+    <li><a href="#u-brand"><span>03 品牌宇宙</span><i></i></a></li>
+    <li><a href="#u-enterprise"><span>04 企業宇宙</span><i></i></a></li>
+    <li><a href="#contact"><span>下一站</span><i></i></a></li>
+  </ol>
+</nav>
+<div class="readout" aria-hidden="true"><span>SECTOR</span><b id="roSector">ORIGIN · 起點</b><span>VEL</span><b id="roVel">0.00c</b></div>
+
+<main>
+
+  <!-- HERO：起點 -->
+  <section class="hero" id="launch">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow ld" style="--d:.1s"><span class="dot"></span>維次元宇宙科技 · WAYTO METAVERSE</p>
+        <h1 class="hero-title">
+          <span class="ht-en ld" style="--d:.25s"><span class="ht-way">WAY TO</span><span class="ht-word" id="heroWord" data-word="ANYWHERE" aria-hidden="true"></span><span class="sr-only"> ANYWHERE</span></span>
+          <span class="ht-zh ld" style="--d:.45s">通往任何宇宙的道路</span>
+        </h1>
+        <p class="hero-lede ld" style="--d:.6s">Wayto，就是 <em>Way to</em> — 一條通往任何地方的路。我們以 <strong>3D 繪圖與視覺化</strong>、<strong>互動展示</strong>、<strong>AI 產品</strong>與<strong>客製化系統開發</strong>，把每一個想法，送往它該抵達的宇宙。</p>
+        <div class="hero-actions ld" style="--d:.75s">
+          <a class="btn btn-warp" href="#multiverse">啟程探索 <span class="arr">↓</span></a>
+          <a class="btn btn-ghost" href="/contact.html#contact-form">預約諮詢</a>
+        </div>
+      </div>
     </div>
-    <div class="hero-dots">
-      <div class="hero-dot active"></div>
-      <div class="hero-dot"></div>
-      <div class="hero-dot"></div>
+    <div class="wrap hero-meta ld" style="--d:1s">
+      <span class="coord">24.15°N · 120.68°E — 台中出發，服務全台</span>
+      <span class="scroll-cue">SCROLL TO WARP<i></i></span>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PROBLEMS -->
-<section class="problems" id="problems">
-  <div class="container">
-    <h2 class="section-title reveal">我們解決的問題</h2>
-    <div class="problems-grid">
-
-      <div class="problem-card reveal reveal-delay-1">
-        <div class="problem-icon" aria-hidden="true">
-          <img src="uploads/problem-icon-selling.png" alt="" decoding="async">
-        </div>
-        <h3>建案不好賣</h3>
-        <p>銷售工具單一，無法有效<br>打動客戶，成交困難。</p>
-      </div>
-
-      <div class="problem-card reveal reveal-delay-2">
-        <div class="problem-icon" aria-hidden="true">
-          <img src="uploads/problem-icon-proposal.png" alt="" decoding="async">
-        </div>
-        <h3>提案難溝通</h3>
-        <p>設計概念難以具象化，<br>客戶難以理解與想像。</p>
-      </div>
-
-      <div class="problem-card reveal reveal-delay-3">
-        <div class="problem-icon" aria-hidden="true">
-          <img src="uploads/problem-icon-display.png" alt="" decoding="async">
-        </div>
-        <h3>展示缺乏吸引力</h3>
-        <p>傳統展示方式缺乏互動，<br>難以吸引目標客群。</p>
-      </div>
-
-      <div class="problem-card reveal reveal-delay-4">
-        <div class="problem-icon" aria-hidden="true">
-          <img src="uploads/problem-icon-process.png" alt="" decoding="async">
-        </div>
-        <h3>流程管理混亂</h3>
-        <p>資料分散、流程繁瑣，<br>影響效率與決策。</p>
-      </div>
-
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="origin">
+    <div class="wrap">
+      <p class="label rv">// 00 · ORIGIN</p>
+      <h2 class="mf-title rv" style="--d:.1s">Wayto，就是 <span class="grad">Way to</span>。</h2>
+      <p class="mf-text" data-chars>每個想法，都在某個宇宙裡等著被實現 — 還沒落成的建案、還在腦中的設計、想讓人停下腳步的展場、卡在 Excel 裡的流程。我們的工作，就是替它們鋪出一條路。</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- TWO SOLUTIONS -->
-<section class="two-solutions" id="solutions">
-  <div class="container">
-    <h2 class="section-title reveal section-title--multiline">讓看不見的想像，被看見；讓複雜的流程，被管理</h2>
-    <p class="two-solutions-intro reveal">透過 3D 視覺化，讓空間提案、建案銷售與展覽展示更有說服力；透過客製化系統，讓企業流程、資料管理與內部作業更有效率。</p>
-    <div class="solutions-grid">
-
-      <a class="sol-card reveal reveal-delay-1" href="/solutions-property-sales.html">
-        <div class="sol-card-img">
-          <img src="uploads/sol_left.png" alt="3D 視覺空間展示">
+  <!-- MULTIVERSE MAP -->
+  <section class="multiverse" id="multiverse">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label rv">// MULTIVERSE MAP</p>
+        <h2 class="rv" style="--d:.08s">你是哪一種客戶？</h2>
+        <p class="rv" style="--d:.16s">四個宇宙，依你的身分分好了。3D 視覺、互動展示、系統開發與 AI 產品，在 Wayto 由同一支團隊串成一條路 — 你不必在不同廠商之間來回轉乘。</p>
+      </div>
+      <div class="mv-stage">
+        <svg class="mv-svg" aria-hidden="true"></svg>
+        <div class="mv-core" aria-hidden="true">
+          <span class="core-ring back"></span>
+          <span class="core-planet"></span>
+          <span class="core-ring front"></span>
+          <span class="core-label"><b>WAYTO</b>你的出發點</span>
         </div>
-        <div class="sol-card-overlay"></div>
-        <div class="sol-content">
-          <span class="sol-tag">3D 視覺 / 空間展示</span>
-          <h2>建空間<span class="hl">被看懂</span></h2>
-          <p>透過 3D 建模、逐步場景展示，讓買家目睹真實樣貌，享有銷售優勢。</p>
-          <ul class="sol-list">
-            <li>沉浸式 3D 建案展示</li>
-            <li>互動式空間漫遊</li>
-            <li>客製化展示流程</li>
-          </ul>
-          <div class="sol-arrow">
-            <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        <a class="mv-node n1 tilt rv" href="#u-estate" data-i="0" data-c="#4cc9f0" style="--c:var(--u-estate);--d:.05s">
+          <span class="mv-orb"></span>
+          <span class="mv-num">U-01</span>
+          <span class="mv-name">建案宇宙 <small>ESTATEVERSE</small></span>
+          <span class="mv-for">建商・代銷</span>
+          <span class="mv-desc">即時導覽 · 虛擬樣品屋 · 日照模擬</span>
+          <span class="mv-go" aria-hidden="true">↗</span>
+        </a>
+        <a class="mv-node n2 tilt rv" href="#u-design" data-i="1" data-c="#ffb547" style="--c:var(--u-design);--d:.15s">
+          <span class="mv-orb"></span>
+          <span class="mv-num">U-02</span>
+          <span class="mv-name">設計宇宙 <small>DESIGNVERSE</small></span>
+          <span class="mv-for">室內設計・裝修工程</span>
+          <span class="mv-desc">3D 效果圖 · 360 環景 · 工程管理</span>
+          <span class="mv-go" aria-hidden="true">↗</span>
+        </a>
+        <a class="mv-node n3 tilt rv" href="#u-brand" data-i="2" data-c="#c77dff" style="--c:var(--u-brand);--d:.25s">
+          <span class="mv-orb"></span>
+          <span class="mv-num">U-03</span>
+          <span class="mv-name">品牌宇宙 <small>BRANDVERSE</small></span>
+          <span class="mv-for">建材品牌・展場・門市</span>
+          <span class="mv-desc">展覽互動 · 建材模擬 · AI 建材視覺化</span>
+          <span class="mv-go" aria-hidden="true">↗</span>
+        </a>
+        <a class="mv-node n4 tilt rv" href="#u-enterprise" data-i="3" data-c="#2ee6a6" style="--c:var(--u-enterprise);--d:.35s">
+          <span class="mv-orb"></span>
+          <span class="mv-num">U-04</span>
+          <span class="mv-name">企業宇宙 <small>ENTERPRISEVERSE</small></span>
+          <span class="mv-for">企業・連鎖加盟・社團・空間業者</span>
+          <span class="mv-desc">客製化系統 · 流程數位化 · 空間自營</span>
+          <span class="mv-go" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- U-01 建案宇宙：建商・代銷 -->
+  <section class="universe" id="u-estate" style="--c:var(--u-estate)">
+    <div class="wrap u-grid">
+      <div class="u-copy">
+        <div class="u-hud rv"><span class="bar"></span><span data-scramble>U-01 / ESTATEVERSE</span><span class="u-coord">SECTOR 01·04</span></div>
+        <p class="u-for rv" style="--d:.04s"><span>FOR</span>建商・代銷</p>
+        <h2 class="u-name rv" style="--d:.08s"><span class="u-zh">建案宇宙</span><span class="u-tag">讓還沒蓋好的建案，先被走進去。</span></h2>
+        <p class="u-desc rv" style="--d:.16s">接待中心的即時導覽、虛擬樣品屋與多房型切換，再加上周邊環境與日照模擬 — 客戶在完工前，就能走進未來的家，看見每個時刻的光。</p>
+        <ul class="u-tags rv" style="--d:.22s">
+          <li>即時導覽</li><li>虛擬樣品屋</li><li>多房型切換</li><li>周邊環境</li><li>日照模擬</li>
+        </ul>
+        <ul class="u-links rv" style="--d:.28s">
+          <li><a href="/solutions-property-sales.html"><span class="ul-k">建案銷售 3D 展示</span><span class="ul-v">接待中心即時導覽、虛擬樣品屋、多房型切換</span><span class="ul-i">→</span></a></li>
+          <li><a href="/proptech.html"><span class="ul-k">元境大喜 案例</span><span class="ul-v">外觀、街景、公設與樣品屋都能自由走動的銷售軟體</span><span class="ul-i">→</span></a></li>
+          <li><a href="/property-sales-3d.html"><span class="ul-k">建案銷售 3D 展示指南</span><span class="ul-v">虛擬樣品屋、互動導覽、多戶型展示怎麼準備</span><span class="ul-i">→</span></a></li>
+        </ul>
+        <a class="case-card tilt rv" href="/property-showcase.html" style="--d:.34s">
+          <div class="case-media"><img src="uploads/property-showcase/poster/s1-exterior.webp?r=12" alt="元境大喜 建案沉浸式展示 外觀" loading="lazy" decoding="async"></div>
+          <div class="case-body">
+            <span class="case-k">IMMERSIVE · 沉浸式體驗</span>
+            <h3>走進元境大喜</h3>
+            <p>往下捲動，從外觀、街區、大廳一路走進樣品屋，再看一整天的日照 — 你的客戶也能這樣看你的建案。</p>
+            <span class="case-more">開始體驗 →</span>
           </div>
-        </div><!-- end sol-content -->
-      </a><!-- end sol-card 1 -->
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <a class="sol-card reveal reveal-delay-2" href="/solutions-enterprise-digital.html">
-        <div class="sol-card-img">
-          <img src="uploads/sol_right.png" alt="客製化系統數位整合">
-        </div>
-        <div class="sol-card-overlay" style="background:linear-gradient(to top,rgba(5,15,45,0.95) 0%,rgba(5,15,45,0.6) 50%,rgba(5,15,45,0.25) 100%)"></div>
-        <div class="sol-content">
-          <span class="sol-tag">客製化系統 / 數位整合</span>
-          <h2>讓系統<span class="hl">真正運作</span></h2>
-          <p>打通企業各系統的串聯流程，讓管理更直觀、決策更準確。</p>
-          <ul class="sol-list">
-            <li>客製化管理後台</li>
-            <li>多系統整合串聯</li>
-            <li>即時數據儀表板</li>
-          </ul>
-          <div class="sol-arrow">
-            <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+  <!-- U-02 設計宇宙：室內設計・裝修工程 -->
+  <section class="universe" id="u-design" style="--c:var(--u-design)">
+    <div class="wrap u-grid">
+      <div class="u-copy">
+        <div class="u-hud rv"><span class="bar"></span><span data-scramble>U-02 / DESIGNVERSE</span><span class="u-coord">SECTOR 02·04</span></div>
+        <p class="u-for rv" style="--d:.04s"><span>FOR</span>室內設計・裝修工程</p>
+        <h2 class="u-name rv" style="--d:.08s"><span class="u-zh">設計宇宙</span><span class="u-tag">讓設計提案，第一次開會就被看懂。</span></h2>
+        <p class="u-desc rv" style="--d:.16s">高擬真 3D 效果圖、360 環景與動畫，讓業主在動工前就看懂空間；簽約之後，報價、案件、出工、成本與請款，交給 ProjEase 整合在同一套系統。</p>
+        <ul class="u-tags rv" style="--d:.22s">
+          <li>3D 效果圖</li><li>3D 渲染</li><li>360 環景</li><li>3D 動畫</li><li>工程管理</li>
+        </ul>
+        <ul class="u-links rv" style="--d:.28s">
+          <li><a href="/solutions-design-proposal.html"><span class="ul-k">設計提案 3D 視覺化</span><span class="ul-v">效果圖、360 環景與動畫，讓客戶一次看懂</span><span class="ul-i">→</span></a></li>
+          <li><a href="/cases-3d.html"><span class="ul-k">3D 效果圖作品</span><span class="ul-v">建案、住宅與商業空間作品集</span><span class="ul-i">→</span></a></li>
+          <li><a href="/3d-rendering-service.html"><span class="ul-k">3D 繪圖與渲染服務指南</span><span class="ul-v">常見需求、流程、報價因素與準備資料</span><span class="ul-i">→</span></a></li>
+        </ul>
+        <a class="case-card tilt rv" href="/design-showcase.html" style="--d:.34s">
+          <div class="case-media"><img src="uploads/design-showcase/poster/d3-dining.webp?r=1" alt="南港雙美館 餐廳與客廳 3D 效果圖" loading="lazy" decoding="async"></div>
+          <div class="case-body">
+            <span class="case-k">IMMERSIVE · 沉浸式體驗</span>
+            <h3>走進南港雙美館</h3>
+            <p>往下捲動，從玄關、客廳、餐廚一路走到主臥與更衣室，再站進 720° 環景轉一圈 — 看 3D 效果圖怎麼讓業主看懂。</p>
+            <span class="case-more">開始體驗 →</span>
           </div>
-        </div><!-- end sol-content -->
-      </a><!-- end sol-card 2 -->
-
-    </div>
-  </div>
-</section>
-
-<!-- FOUR SOLUTIONS -->
-<section class="four-solutions">
-  <div class="container">
-    <h2 class="section-title reveal">從展示到管理，找到適合你的解決方案</h2>
-    <div class="four-grid">
-
-      <div class="four-card reveal reveal-delay-1">
-        <div class="four-icon"><img src="uploads/four-solution-property.png" alt="建案銷售"></div>
-        <h3>建案銷售</h3>
-        <p>讓尚未完工的空間提前被看見，協助銷售團隊更清楚說明產品價值。</p>
-        <a class="learn-more" href="/solutions-property-sales.html">了解更多 →</a>
-      </div>
-
-      <div class="four-card reveal reveal-delay-2">
-        <div class="four-icon"><img src="uploads/four-solution-design.png" alt="設計提案"></div>
-        <h3>設計提案</h3>
-        <p>將設計想法轉化為客戶看得懂的畫面，降低溝通落差與反覆修改成本。</p>
-        <a class="learn-more" href="/solutions-design-proposal.html">了解更多 →</a>
-      </div>
-
-      <div class="four-card reveal reveal-delay-3">
-        <div class="four-icon"><img src="uploads/four-solution-exhibit.png" alt="展覽互動"></div>
-        <h3>展覽互動</h3>
-        <p>透過互動展示與沉浸式體驗，讓品牌在現場留下更深刻的記憶點。</p>
-        <a class="learn-more" href="/solutions-exhibition.html">了解更多 →</a>
-      </div>
-
-      <div class="four-card reveal reveal-delay-4">
-        <div class="four-icon"><img src="uploads/four-solution-system.png" alt="系統數位化"></div>
-        <h3>系統數位化</h3>
-        <p>將分散的資料、流程與管理作業整理成可追蹤、可管理的數位系統。</p>
-        <a class="learn-more" href="/solutions-enterprise-digital.html">了解更多 →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CASES -->
-<section class="cases" id="cases">
-  <div class="container">
-    <div class="cases-header reveal">
-      <h2 class="section-title" style="margin-bottom:0">精選案例</h2>
-      <a class="view-all" href="/cases.html">查看全部案例 →</a>
-    </div>
-    <div class="carousel-wrap">
-      <button class="carousel-btn prev" onclick="prevSlide()">
-        <svg viewBox="0 0 16 16"><polyline points="10,3 5,8 10,13"/></svg>
-      </button>
-      <div class="carousel-track" id="carouselTrack"></div>
-      <button class="carousel-btn next" onclick="nextSlide()">
-        <svg viewBox="0 0 16 16"><polyline points="6,3 11,8 6,13"/></svg>
-      </button>
-    </div>
-    <div class="carousel-dots" id="carouselDots"></div>
-  </div>
-</section>
-
-<!-- AI SECTION -->
-<section class="ai-section" id="ai">
-  <div class="ai-photo">
-    <img src="uploads/ai_bg.png" alt="AI 互動體驗">
-  </div>
-  <div class="ai-content">
-    <div class="ai-text reveal">
-      <div class="ai-badge">最新功能亮點</div>
-      <h2>AI <span>即時生成</span>體驗</h2>
-      <p>結合 AI 與互動技術，讓每位觀看者都能親自體驗對話式互動展場。</p>
-      <a class="btn-ai" href="/solutions-exhibition.html">了解展覽互動 →</a>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM STATS -->
-<section class="team">
-  <div class="container">
-    <h2 class="section-title reveal">值得信賴的專業團隊</h2>
-    <div class="stats-grid">
-
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-num">8<sup>+</sup></div>
-        <div class="stat-kicker">年產業經驗</div>
-        <div class="stat-desc">深耕視覺與系統整合</div>
-      </div>
-
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num">100<sup>+</sup></div>
-        <div class="stat-kicker">專案完成</div>
-        <div class="stat-desc">建案、商空與數位化</div>
-      </div>
-
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-num stat-num--word">多領域</div>
-        <div class="stat-kicker">合作經驗</div>
-        <div class="stat-desc">跨產業實務累積</div>
-      </div>
-
-      <div class="stat-item reveal reveal-delay-4">
-        <div class="stat-num stat-num--word">長期</div>
-        <div class="stat-kicker">客戶夥伴</div>
-        <div class="stat-desc">陪伴企業持續迭代</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- TIMELINE -->
-<section class="timeline-section" id="timeline">
-  <div class="container">
-    <h2 class="section-title reveal">發展歷程</h2>
-    <div class="about-timeline reveal">
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><path d="M3 17V8l7-5 7 5v9H3z"/><path d="M8 17v-5h4v5"/></svg>
+        </a>
+        <div class="mini-cases rv" style="--d:.4s">
+          <a class="mini-case" href="/projease.html"><b>ProjEase<em>自有產品</em></b><span>工程專案管理 — 報價、案件、出工、成本與請款，手機就能跑完</span></a>
         </div>
-        <div class="tl-year">2015</div>
-        <p>公司成立，專注於建築<br>與空間視覺化</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><rect x="3" y="6" width="14" height="11" rx="1.5"/><path d="M3 9h14"/><circle cx="6.5" cy="12.5" r="1"/></svg>
-        </div>
-        <div class="tl-year">2017</div>
-        <p>擴大室內設計與商業<br>空間視覺服務</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><path d="M3 14 7 11 11 12 17 6"/></svg>
-        </div>
-        <div class="tl-year">2019</div>
-        <p>導入即時渲染技術，<br>提升提案效率</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><polyline points="10,3 16,7 16,13 10,17 4,13 4,7 10,3"/><line x1="10" y1="3" x2="10" y2="17"/></svg>
-        </div>
-        <div class="tl-year">2021</div>
-        <p>開始發展互動展示<br>與虛擬展場</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="1.5"/><path d="M7 18h6"/><line x1="10" y1="15" x2="10" y2="18"/></svg>
-        </div>
-        <div class="tl-year">2022</div>
-        <p>跨足展覽互動與<br>數位體驗應用</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="12" rx="1.5"/><circle cx="10" cy="10" r="3"/></svg>
-        </div>
-        <div class="tl-year">2023</div>
-        <p>AI 技術導入，打造<br>智慧互動體驗</p>
-      </div>
-      <div class="tl-item">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><rect x="3" y="5" width="14" height="10" rx="1.5"/><line x1="3" y1="9" x2="17" y2="9"/><circle cx="7" cy="12" r="0.8"/><circle cx="10" cy="12" r="0.8"/><circle cx="13" cy="12" r="0.8"/></svg>
-        </div>
-        <div class="tl-year">2024</div>
-        <p>成立系統開發團隊，<br>推出數位管理工具</p>
-      </div>
-      <div class="tl-item active">
-        <div class="tl-icon">
-          <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/><path d="M10 4v2M10 14v2M4 10h2M14 10h2"/></svg>
-        </div>
-        <div class="tl-year">Now</div>
-        <p>持續整合空間、互動<br>與系統，創造更多可能</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA -->
-<section class="cta-banner" id="contact">
-  <div class="cta-banner-bg" aria-hidden="true"></div>
-  <div class="cta-banner-overlay" aria-hidden="true"></div>
-  <div class="container cta-banner-inner">
-    <div class="cta-banner-left">
-      <h2>準備好開始您的專案了嗎？</h2>
-      <p>讓我們的專業團隊，協助您創造更大的價值</p>
-    </div>
-    <div class="cta-banner-right">
-      <div class="cta-btns">
-        <a class="btn-primary" href="/contact.html#contact-form">聯繫我們</a>
-        <a class="btn-outline cta-btn-light" href="/cases.html">查看案例</a>
+  <!-- U-03 品牌宇宙：建材品牌・展場・門市 -->
+  <section class="universe" id="u-brand" style="--c:var(--u-brand)">
+    <div class="wrap u-grid">
+      <div class="u-copy">
+        <div class="u-hud rv"><span class="bar"></span><span data-scramble>U-03 / BRANDVERSE</span><span class="u-coord">SECTOR 03·04</span></div>
+        <p class="u-for rv" style="--d:.04s"><span>FOR</span>建材品牌・展場・門市</p>
+        <h2 class="u-name rv" style="--d:.08s"><span class="u-zh">品牌宇宙</span><span class="u-tag">讓展場，回應每一個走近的人。</span></h2>
+        <p class="u-desc rv" style="--d:.16s">觸控互動、建材模擬與 AI 即時生成，讓品牌從「被看」變成「被玩」。客戶親手切換材質、親眼看見效果；回到門市，RenderEase 還能把你的牆面與地板建材，換進客戶自家的照片裡。</p>
+        <ul class="u-tags rv" style="--d:.22s">
+          <li>觸控互動</li><li>建材模擬</li><li>AI 即時生成</li><li>沉浸式展場</li><li>離線展示</li>
+        </ul>
+        <ul class="u-links rv" style="--d:.28s">
+          <li><a href="/solutions-exhibition.html"><span class="ul-k">展覽互動展示</span><span class="ul-v">展場、門市與品牌活動的互動體驗</span><span class="ul-i">→</span></a></li>
+          <li><a href="/interactive-exhibition.html"><span class="ul-k">互動展示規劃指南</span><span class="ul-v">觸控、離線展示到名單蒐集的規劃重點</span><span class="ul-i">→</span></a></li>
+          <li><a href="/luxus.html"><span class="ul-k">LUXUS Paint Taiwan 案例</span><span class="ul-v">藝術塗料展場互動軟體，客戶看到的就是自家牆面</span><span class="ul-i">→</span></a></li>
+        </ul>
+        <a class="case-card tilt rv" href="/brand-showcase.html" style="--d:.34s">
+          <div class="case-media"><img src="uploads/brand-showcase/poster/b1-facade.webp?r=1" alt="三久動態智能外牆產品動畫" loading="lazy" decoding="async"></div>
+          <div class="case-body">
+            <span class="case-k">IMMERSIVE · 互動體驗</span>
+            <h3>親手試一次換材</h3>
+            <p>往下捲動，看動態外牆、摺疊門與建材展現場，再親手把同一張照片換一次材質 — 你的客戶也能這樣試你的建材。</p>
+            <span class="case-more">開始體驗 →</span>
+          </div>
+        </a>
+        <div class="mini-cases rv" style="--d:.4s">
+          <a class="mini-case" href="/renderease.html"><b>RenderEase<em>自有產品</em></b><span>AI 建材視覺化 — 上傳一張室內照片，換上你的牆面與地板建材</span></a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
+  <!-- U-04 企業宇宙：企業・連鎖加盟・社團・空間業者 -->
+  <section class="universe" id="u-enterprise" style="--c:var(--u-enterprise)">
+    <div class="wrap u-grid">
+      <div class="u-copy">
+        <div class="u-hud rv"><span class="bar"></span><span data-scramble>U-04 / ENTERPRISEVERSE</span><span class="u-coord">SECTOR 04·04</span></div>
+        <p class="u-for rv" style="--d:.04s"><span>FOR</span>企業・連鎖加盟・社團・空間業者</p>
+        <h2 class="u-name rv" style="--d:.08s"><span class="u-zh">企業宇宙</span><span class="u-tag">讓複雜的流程，自己運轉。</span></h2>
+        <p class="u-desc rv" style="--d:.16s">把散落在 LINE、紙本與 Excel 裡的工作，整理成看得見、追得到的系統。客製管理後台、流程表單、第三方串接與即時儀表板 — 照你的流程打造，而不是讓團隊去遷就軟體。</p>
+        <ul class="u-tags rv" style="--d:.22s">
+          <li>管理後台</li><li>流程表單</li><li>系統串接</li><li>數據儀表板</li><li>手機作業</li>
+        </ul>
+        <ul class="u-links rv" style="--d:.28s">
+          <li><a href="/solutions-enterprise-digital.html"><span class="ul-k">客製化系統開發</span><span class="ul-v">流程盤點、系統規劃到上線維運</span><span class="ul-i">→</span></a></li>
+          <li><a href="/custom-system-development.html"><span class="ul-k">客製化系統開發指南</span><span class="ul-v">需求怎麼準備、如何挑選開發夥伴</span><span class="ul-i">→</span></a></li>
+          <li><a href="/cases-system.html"><span class="ul-k">系統開發作品</span><span class="ul-v">管理平台、展店工具與社團系統</span><span class="ul-i">→</span></a></li>
+        </ul>
+        <a class="case-card tilt rv" href="/enterprise-showcase.html" style="--d:.34s">
+          <div class="case-media"><img src="uploads/enterprise-showcase/poster.webp?r=1" alt="報名、收款、簽到與預約整理在同一個營運後台的示意畫面" loading="lazy" decoding="async"></div>
+          <div class="case-body">
+            <span class="case-k">IMMERSIVE · 互動體驗</span>
+            <h3>親手點一遍流程</h3>
+            <p>往下捲動，看散落在 LINE、紙本與 Excel 的事收進同一套系統，再親手點完社團活動、會員組織、空間租賃與加盟展店的流程。</p>
+            <span class="case-more">開始體驗 →</span>
+          </div>
+        </a>
+        <div class="mini-cases rv" style="--d:.4s">
+          <a class="mini-case" href="/case-study-bocchi.html"><b>pokēpokē 波奇波奇</b><span>加盟展店提案軟體</span></a>
+          <a class="mini-case" href="/herchu.html"><b>磐石砌好厝</b><span>會員制組織活動管理平台</span></a>
+          <a class="mini-case" href="/rotaract.html"><b>RotaractClub</b><span>一站式社團管理系統</span></a>
+          <a class="mini-case" href="/spaceease.html"><b>SpaceEase<em>自有產品</em></b><span>空間自營系統 — 預約、付款、簽到到超時計費全自動化，業者不用駐店</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGBOOK -->
+  <section class="logbook" id="logbook">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label rv">// FLIGHT DATA</p>
+        <h2 class="rv" style="--d:.08s">航行紀錄</h2>
+      </div>
+      <div class="stats rv" style="--d:.14s">
+        <div class="stat" style="--sc:var(--u1)">
+          <div class="stat-n"><span data-count="8">8</span><sup>+</sup></div>
+          <div class="stat-k">年產業經驗</div>
+          <p>深耕視覺與系統整合</p>
+        </div>
+        <div class="stat" style="--sc:var(--u2)">
+          <div class="stat-n"><span data-count="100">100</span><sup>+</sup></div>
+          <div class="stat-k">專案完成</div>
+          <p>建案、商空與數位化</p>
+        </div>
+        <div class="stat" style="--sc:var(--u3)">
+          <div class="stat-n"><span data-count="4">4</span></div>
+          <div class="stat-k">大客群宇宙</div>
+          <p>建案、設計、品牌與企業</p>
+        </div>
+        <div class="stat" style="--sc:var(--u4)">
+          <div class="stat-n">全台</div>
+          <div class="stat-k">服務範圍</div>
+          <p>台中出發，服務全台</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTE TIMELINE -->
+  <section class="route" id="timeline">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label rv">// ROUTE LOG</p>
+        <h2 class="rv" style="--d:.08s">航道日誌</h2>
+        <p class="rv" style="--d:.16s">從建築與空間視覺化出發，一路把航道延伸到互動、AI 與系統開發。</p>
+      </div>
+      <ol class="route-track" style="list-style:none">
+        <li class="route-line" aria-hidden="true"><span class="route-fill"></span></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2015</div><p>公司成立，專注於建築<br>與空間視覺化</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2017</div><p>擴大室內設計與商業<br>空間視覺服務</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2019</div><p>導入即時渲染技術，<br>提升提案效率</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2021</div><p>開始發展互動展示<br>與虛擬展場</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2022</div><p>跨足展覽互動與<br>數位體驗應用</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2023</div><p>AI 技術導入，打造<br>智慧互動體驗</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">2024</div><p>成立系統開發團隊，<br>推出數位管理工具</p></li>
+        <li class="route-item"><span class="pt"></span><div class="route-year">Now</div><p>持續整合空間、互動<br>與系統，創造更多可能</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- LAUNCH CTA：終點 / 下一站 -->
+  <section class="launch" id="contact">
+    <div class="wrap">
+      <p class="label rv">// NEXT DESTINATION</p>
+      <h2 class="rv" style="--d:.08s">下一個宇宙，<br>由你命名。</h2>
+      <p class="launch-lede rv" style="--d:.16s">告訴我們你想抵達哪裡 — 一個建案、一座展場、一份提案，或一套讓流程順起來的系統。路，我們來鋪。</p>
+      <div class="launch-actions rv" style="--d:.24s">
+        <a class="btn btn-warp" href="/contact.html#contact-form">預約諮詢</a>
+        <a class="btn btn-ghost" href="tel:+886423720718">04-2372-0718</a>
+        <a class="btn btn-ghost" href="/cases.html">查看全部案例</a>
+      </div>
+      <p class="launch-meta rv" style="--d:.3s"><a href="mailto:wayto.metaverse@gmail.com">wayto.metaverse@gmail.com</a> · 台中市北區三民路三段 313 號 4F-1</p>
+    </div>
+  </section>
+
+</main>
+
 <div id="shared-footer"></div>
 
 <script src="shared/layout.js"></script>
-<script>
-// Featured real cases
-const allCases = [
-  { tag:'建案銷售', title:'元境大喜', desc:'建案銷售 3D 即時導覽軟體', img:'uploads/proptech/建築外觀視角1-夜景.jpg', href:'/proptech.html' },
-  { tag:'建材展示', title:'RenderEase', desc:'AI 建材視覺化與空間即時預覽', img:'uploads/renderease/after-hero.png', href:'/renderease.html' },
-  { tag:'展覽互動', title:'LUXUS Paint Taiwan', desc:'藝術塗料展場互動展示軟體', img:'uploads/LUXUS%20Paint%20Taiwan/exhibition.jpg', href:'/luxus.html' },
-  { tag:'系統開發', title:'PokéPoké 波奇波奇', desc:'加盟展店 3D 提案與施工圖系統', img:'uploads/bocchi/preview-interior.png', href:'/case-study-bocchi.html' },
-  { tag:'社團系統', title:'扶青社團管理系統', desc:'活動、簽到、餐點與財務一站整合', img:'uploads/rotaract/case-card-dashboard.png', href:'/rotaract.html' },
-  { tag:'空間營運', title:'SpaceEase', desc:'無人化空間租賃與預約管理系統', img:'uploads/sol-ent-extends-spaceease.png', href:'/spaceease.html' },
-  { tag:'活動系統', title:'磐石砌好厝', desc:'會員制組織活動管理平台', img:'uploads/herchu/logo.jpg', href:'/herchu.html' },
-];
-
-let carouselIdx = 0;
-const PAGE = 4;
-
-function renderCarousel() {
-  const track = document.getElementById('carouselTrack');
-  const dots = document.getElementById('carouselDots');
-  const visible = allCases.slice(carouselIdx, carouselIdx + PAGE);
-  track.innerHTML = visible.map((c, i) => `
-    <a class="case-card" href="${c.href || '/cases.html'}" style="opacity:0;transform:translateY(20px);transition:opacity .4s ${i*0.07}s ease,transform .4s ${i*0.07}s ease">
-      <div class="case-img"><img src="${c.img}" alt="${c.title}" loading="lazy"></div>
-      <div class="case-info">
-        <span class="case-tag">${c.tag}</span>
-        <h3>${c.title}</h3>
-        <p>${c.desc}</p>
-      </div>
-    </a>
-  `).join('');
-  setTimeout(() => {
-    track.querySelectorAll('.case-card').forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
-  }, 30);
-  const totalPages = allCases.length - PAGE + 1;
-  dots.innerHTML = Array.from({length: totalPages}, (_,i) => `<div class="carousel-dot${i===carouselIdx?' active':''}" onclick="goSlide(${i})"></div>`).join('');
-}
-
-function prevSlide() { carouselIdx = Math.max(0, carouselIdx - 1); renderCarousel(); }
-function nextSlide() { carouselIdx = Math.min(allCases.length - PAGE, carouselIdx + 1); renderCarousel(); }
-function goSlide(i) { carouselIdx = i; renderCarousel(); }
-
-renderCarousel();
-
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => revealObs.observe(el));
-
-// Hero dots auto-cycle
-let heroDotIdx = 0;
-const heroDots = document.querySelectorAll('.hero-dot');
-setInterval(() => {
-  heroDots[heroDotIdx].classList.remove('active');
-  heroDotIdx = (heroDotIdx + 1) % heroDots.length;
-  heroDots[heroDotIdx].classList.add('active');
-}, 3200);
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="shared/cosmos-home.js?v=20261031a" defer></script>
 </body>
 </html>

@@ -1,0 +1,392 @@
+/* 建案宇宙 · 沉浸式建案展示（property-showcase.html）
+   捲動驅動：星空中的小窗 → 全幅建案場景（WebGL 轉場）→ 樣品屋 / 日照影格 → 米色編輯區 → CTA
+   依序載入 layout.css → cosmos.css → cosmos-page.css → 本檔；腳本為 shared/property-showcase.js */
+
+body.ps-page {
+  --cream: #efe6d6;
+  --cream-2: #e5d9c4;
+  --ink-w: #1d1812;
+  --ink-w2: #62574a;
+  --gold: #c9a46b;
+  --gold-2: #ecd3a2;
+  --night: #0b0a09;
+  --serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+  --serif-en: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  --gutter: clamp(20px, 5vw, 72px);
+  --nav-h: 96px;
+}
+/* 與 solutions.css 相同的基礎重設（導覽、頁尾依賴它） */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body.ps-page { font-family: 'Noto Sans TC', system-ui, sans-serif; line-height: 1.65; font-size: 15px; }
+body.ps-page a { color: inherit; }
+
+/* 舞台從視窗頂端開始，導覽列直接浮在場景上 */
+body.ps-page.wayto-has-shared-nav { padding-top: 0; }
+.ps-sr {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ───────── 1. 場景劇場（sticky 舞台） ───────── */
+.ps-theatre { position: relative; height: calc(var(--units, 7) * 100vh); }
+.ps-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+@supports (height: 100svh) { .ps-stage, .ps-scrub-stage { height: 100svh; } }
+
+.ps-portal {
+  position: absolute; inset: 0; background: var(--night);
+  clip-path: inset(var(--pt, 24%) var(--pl, 30%) round var(--pr, 22px));
+  will-change: clip-path;
+}
+.ps-portal::after { /* 小窗時的金色描邊 */
+  content: ''; position: absolute; inset: var(--pt, 24%) var(--pl, 30%); border-radius: var(--pr, 22px);
+  box-shadow: inset 0 0 0 1px rgba(236, 211, 162, .55); opacity: var(--edge, 1); pointer-events: none;
+}
+.ps-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* 場景影片只當 WebGL 貼圖來源，本身不顯示 */
+.ps-vdock { position: absolute; left: 0; top: 0; width: 2px; height: 2px; overflow: hidden; opacity: 0; pointer-events: none; }
+.ps-vdock video { display: block; width: 2px; height: 2px; }
+/* 只在左下大字後面壓一點暗；小字各自放在霧面底板上，畫面其他地方保持原本的亮度與對比 */
+.ps-shade {
+  position: absolute; inset: 0; pointer-events: none; opacity: var(--shade, 0);
+  background: radial-gradient(ellipse 44% 40% at 6% 100%, rgba(11, 10, 9, .46), rgba(11, 10, 9, 0) 74%);
+}
+
+/* 開場標題 */
+.ps-intro {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: var(--nav-h) var(--gutter) 40px; pointer-events: none;
+  opacity: var(--intro-o, 1); transform: translateY(var(--intro-y, 0px)) scale(var(--intro-s, 1));
+}
+.ps-intro .cx-badge { margin-bottom: clamp(18px, 3vh, 30px); }
+.ps-title {
+  margin: 0; font-family: var(--serif); font-weight: 700; color: #fff;
+  font-size: clamp(38px, 6.4vw, 104px); line-height: 1.12; letter-spacing: .04em;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .55);
+}
+.ps-title .ps-line { display: block; }
+.ps-title .ps-line + .ps-line { color: var(--gold-2); }
+.ps-intro-en {
+  margin: clamp(14px, 2.4vh, 24px) 0 0; font-family: var(--serif-en); font-style: italic; font-weight: 500;
+  font-size: clamp(18px, 1.9vw, 28px); letter-spacing: .06em; color: rgba(255, 255, 255, .78);
+}
+
+/* 旋轉的「向下」徽章 */
+.ps-roll {
+  position: absolute; right: clamp(20px, 4vw, 56px); bottom: clamp(22px, 5vh, 48px);
+  width: 118px; height: 118px; pointer-events: none; opacity: var(--intro-o, 1);
+}
+.ps-roll svg { width: 100%; height: 100%; animation: ps-spin 18s linear infinite; }
+.ps-roll text { font-family: var(--f-mono); font-size: 9.6px; letter-spacing: .32em; fill: rgba(255, 255, 255, .78); }
+.ps-roll span {
+  position: absolute; inset: 0; display: grid; place-items: center; font-size: 20px; color: var(--gold-2);
+  animation: ps-bob 2.4s ease-in-out infinite;
+}
+
+/* 章節字幕 */
+.ps-chapters { list-style: none; margin: 0; padding: 0; }
+.ps-cap { position: absolute; inset: 0; pointer-events: none; visibility: hidden; }
+.ps-cap.on { visibility: visible; }
+.ps-cap-meta {
+  position: absolute; left: var(--gutter); top: calc(var(--nav-h) + 12px); margin: 0;
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: rgba(255, 255, 255, .72);
+  display: flex; align-items: center; gap: 14px;
+}
+.ps-cap-meta span { color: var(--gold-2); }
+.ps-cap-meta::after { content: ''; width: 64px; height: 1px; background: rgba(236, 211, 162, .6); }
+.ps-cap-word {
+  position: absolute; left: calc(var(--gutter) - .06em); bottom: clamp(26px, 6vh, 64px); margin: 0;
+  font-family: var(--serif); font-weight: 900; color: var(--cream);
+  font-size: clamp(84px, 14.5vw, 236px); line-height: .92; letter-spacing: .02em;
+  display: flex; text-shadow: 0 6px 60px rgba(0, 0, 0, .35);
+}
+.ps-cap-word .ch { display: inline-block; overflow: hidden; padding-bottom: .06em; }
+.ps-cap-word .ch i {
+  display: inline-block; font-style: normal; transform: translateY(105%);
+  transition: transform 1s cubic-bezier(.2, .75, .15, 1); transition-delay: calc(var(--n) * 90ms);
+}
+.ps-cap.on .ps-cap-word .ch i { transform: none; }
+.ps-cap-text {
+  position: absolute; right: calc(var(--gutter) + 56px); bottom: clamp(34px, 7vh, 76px); width: min(360px, 34vw); margin: 0;
+  padding: 18px 20px 16px; border-radius: 12px;
+  background: rgba(11, 10, 9, .46); box-shadow: inset 0 0 0 1px rgba(236, 211, 162, .22);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  opacity: 0; transform: translateY(16px); transition: opacity .8s .25s, transform .9s .25s cubic-bezier(.2, .75, .15, 1);
+}
+.ps-cap.on .ps-cap-text { opacity: 1; transform: none; }
+.ps-cap-line { display: block; font-family: var(--serif); font-weight: 700; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.45; color: #fff; }
+.ps-cap-note { display: block; margin-top: 10px; font-size: 14.5px; line-height: 1.8; color: rgba(255, 255, 255, .74); }
+.ps-cap-meta, .ps-cap-word, .ps-cap-text { text-shadow: 0 1px 18px rgba(0, 0, 0, .45); }
+/* 章節編號與出處也放在霧面小底板上，壓在亮的天空上也看得清楚 */
+.ps-cap .ps-cap-meta, .ps-credit {
+  padding: 7px 14px; border-radius: 999px; background: rgba(11, 10, 9, .36);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.ps-cap .ps-cap-meta { left: calc(var(--gutter) - 14px); }
+.ps-cap .ps-cap-meta::after { display: none; }
+
+/* 街區：周邊地點選單（跟軟體的「周邊環境」一樣，點了鏡頭就飛過去） */
+.ps-cap-panel { padding-bottom: 14px; background: rgba(11, 10, 9, .52); }
+.ps-poi { margin-top: 14px; display: grid; pointer-events: auto; }
+.ps-poi button {
+  position: relative; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; width: 100%;
+  padding: 7px 0 7px 18px; background: none; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .12);
+  font-family: var(--serif); font-size: 15px; line-height: 1.5; color: rgba(255, 255, 255, .7); text-align: left;
+  text-shadow: inherit; cursor: pointer; transition: color .3s;
+}
+.ps-poi button::before {
+  content: ''; position: absolute; left: 2px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%;
+  border: 1px solid rgba(236, 211, 162, .6); transition: background .3s, box-shadow .3s;
+}
+.ps-poi button:hover, .ps-poi button[aria-pressed="true"] { color: #fff; }
+.ps-poi button[aria-pressed="true"]::before { background: var(--gold-2); border-color: var(--gold-2); box-shadow: 0 0 10px var(--gold); }
+.ps-poi button:focus-visible { outline: 1px solid var(--gold-2); outline-offset: 2px; }
+.ps-poi small { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; color: rgba(255, 255, 255, .55); }
+.ps-poi-note { display: block; margin-top: 10px; font-size: 11.5px; line-height: 1.6; color: rgba(255, 255, 255, .5); }
+
+/* 右側進度軌 */
+.ps-rail {
+  position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 14px; opacity: var(--shade, 0); pointer-events: none;
+}
+.ps-rail i { display: block; width: 2px; height: 26px; background: rgba(255, 255, 255, .28); transition: background .4s, height .4s; }
+.ps-rail i.on { background: var(--gold-2); height: 46px; }
+.ps-credit {
+  position: absolute; right: calc(var(--gutter) - 14px); top: calc(var(--nav-h) + 12px); margin: 0;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .2em; color: rgba(255, 255, 255, .6);
+  opacity: var(--shade, 0);
+}
+
+/* ───────── 2. 影格捲動（樣品屋 / 日照） ───────── */
+.ps-scrub { position: relative; height: 380vh; }
+.ps-day { height: 300vh; }
+.ps-scrub-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; background: var(--night); }
+.ps-scrub-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* 畫面本身不壓暗；標題、房間列、時鐘各自放在霧面底板上——樣品屋走起來之後標題淡出，整個房間露出來 */
+.ps-scrub-head, .ps-rooms, .ps-clock {
+  border-radius: 14px; background: rgba(11, 10, 9, .42); box-shadow: inset 0 0 0 1px rgba(236, 211, 162, .2);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.ps-scrub-head {
+  position: absolute; z-index: 2; left: calc(var(--gutter) - 24px); top: calc(var(--nav-h) + 12px); max-width: 600px;
+  padding: 22px 24px 24px;
+  transition: opacity .6s, transform .8s cubic-bezier(.2, .75, .15, 1);
+}
+.ps-unit.walking .ps-scrub-head { opacity: 0; transform: translateY(-12px); pointer-events: none; }
+.ps-scrub-head .ps-cap-meta { position: static; margin-bottom: clamp(16px, 3vh, 28px); }
+.ps-scrub-head h2 {
+  margin: 0; font-family: var(--serif); font-weight: 700; color: #fff;
+  font-size: clamp(30px, 3.4vw, 50px); line-height: 1.22; letter-spacing: .03em;
+}
+.ps-scrub-head p { margin: 16px 0 0; font-size: 16px; line-height: 1.85; color: rgba(255, 255, 255, .8); max-width: 420px; }
+.ps-scrub-tag {
+  position: absolute; z-index: 2; right: calc(var(--gutter) - 14px); top: calc(var(--nav-h) + 12px); margin: 0;
+  padding: 7px 14px; border-radius: 999px; background: rgba(11, 10, 9, .36);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .2em; color: rgba(255, 255, 255, .7);
+}
+.ps-scrub-tag::before { content: '● '; color: #ff6b5a; }
+
+/* 樣品屋房間進度 */
+.ps-rooms {
+  position: absolute; z-index: 2; left: calc(var(--gutter) - 24px); bottom: clamp(28px, 6vh, 60px);
+  list-style: none; margin: 0; padding: 16px 24px; display: flex; gap: clamp(18px, 4vw, 56px);
+  font-family: var(--serif); font-size: clamp(16px, 1.5vw, 20px); color: rgba(255, 255, 255, .5);
+}
+.ps-rooms::before { content: ''; position: absolute; left: 24px; right: 24px; top: 0; height: 1px; background: rgba(255, 255, 255, .2); }
+.ps-rooms::after {
+  content: ''; position: absolute; left: 24px; top: 0; height: 1px; width: calc(var(--f, 0) * (100% - 48px));
+  background: var(--gold-2); box-shadow: 0 0 10px var(--gold);
+}
+.ps-rooms li { transition: color .4s; cursor: pointer; }
+.ps-rooms li:hover { color: rgba(255, 255, 255, .8); }
+.ps-rooms li:focus-visible { outline: 1px solid var(--gold-2); outline-offset: 6px; }
+.ps-rooms li.on { color: #fff; }
+.ps-rooms li.on::before { content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: middle; border-radius: 50%; background: var(--gold-2); box-shadow: 0 0 10px var(--gold); }
+
+/* 日照時鐘 */
+.ps-clock {
+  position: absolute; z-index: 2; right: calc(var(--gutter) - 22px); bottom: clamp(28px, 6vh, 60px);
+  width: min(344px, 40vw); padding: 22px 22px 18px; text-align: center; color: #fff;
+}
+.ps-clock svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ps-clock .arc { fill: none; stroke: rgba(255, 255, 255, .28); stroke-width: 1; stroke-dasharray: 2 5; }
+.ps-clock .arc-done { fill: none; stroke: var(--gold-2); stroke-width: 1.5; }
+.ps-clock .sun { fill: #ffd98a; filter: drop-shadow(0 0 10px #ffb547); }
+.ps-clock .hz { stroke: rgba(255, 255, 255, .35); stroke-width: 1; }
+.ps-clock b {
+  display: block; margin-top: -18px; font-family: var(--serif-en); font-weight: 500;
+  font-size: clamp(46px, 5vw, 76px); line-height: 1; letter-spacing: .04em; font-variant-numeric: tabular-nums;
+}
+.ps-clock span { display: block; margin-top: 8px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .24em; color: rgba(255, 255, 255, .6); }
+
+/* ───────── 3. 米色編輯區 ───────── */
+.ps-story, .ps-kit { position: relative; background: var(--cream); color: var(--ink-w); }
+.ps-story { padding: clamp(96px, 13vw, 170px) 0 clamp(80px, 10vw, 130px); }
+.ps-wrap { width: min(1240px, 100% - var(--gutter) * 2); margin: 0 auto; }
+.ps-kicker {
+  margin: 0 0 26px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .26em; text-transform: uppercase; color: #9a7a45;
+  display: flex; align-items: center; gap: 14px;
+}
+.ps-kicker::after { content: ''; width: 64px; height: 1px; background: currentColor; opacity: .6; }
+.ps-story-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 7vw, 110px); align-items: center; }
+.ps-story h2, .ps-kit h2 {
+  margin: 0; font-family: var(--serif); font-weight: 700; color: var(--ink-w);
+  font-size: clamp(28px, 3.6vw, 54px); line-height: 1.3; letter-spacing: .03em;
+}
+.ps-story h2 em, .ps-kit h2 em { font-style: normal; color: #9a7a45; }
+.ps-story-body { margin-top: clamp(28px, 4vw, 48px); max-width: 560px; }
+.ps-story-body p { margin: 0 0 18px; font-size: 16.5px; line-height: 1.95; color: var(--ink-w2); }
+.ps-link {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 10px; padding-bottom: 6px;
+  font-family: var(--serif); font-weight: 700; font-size: 17px; color: var(--ink-w); text-decoration: none;
+  border-bottom: 1px solid var(--ink-w); transition: gap .3s, color .3s, border-color .3s;
+}
+.ps-link:hover { gap: 16px; color: #9a7a45; border-color: #9a7a45; }
+.ps-arch { margin: 0; position: relative; }
+.ps-arch img {
+  display: block; width: 100%; height: clamp(380px, 64vh, 640px); object-fit: cover; border-radius: 999px 999px 6px 6px;
+  box-shadow: 0 40px 80px -40px rgba(60, 40, 20, .45);
+}
+.ps-arch figcaption { margin-top: 14px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .18em; color: #8c7d69; }
+
+.ps-values {
+  list-style: none; margin: clamp(72px, 9vw, 120px) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px);
+}
+.ps-values li { padding-top: 24px; border-top: 1px solid rgba(29, 24, 18, .22); }
+.ps-values span { font-family: var(--serif-en); font-style: italic; font-size: 22px; color: #9a7a45; }
+.ps-values h3 { margin: 8px 0 12px; font-family: var(--serif); font-weight: 700; font-size: clamp(21px, 1.9vw, 26px); color: var(--ink-w); }
+.ps-values p { margin: 0; font-size: 15.5px; line-height: 1.85; color: var(--ink-w2); }
+
+/* 工具箱清單 */
+.ps-kit { background: var(--cream-2); padding: clamp(84px, 11vw, 140px) 0; }
+.ps-kit-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.ps-kit-head p { margin: 0; max-width: 380px; font-size: 15.5px; line-height: 1.85; color: var(--ink-w2); }
+.ps-kit-list { list-style: none; margin: clamp(40px, 6vw, 70px) 0 0; padding: 0; border-top: 1px solid rgba(29, 24, 18, .25); }
+.ps-kit-list li {
+  display: grid; grid-template-columns: 70px minmax(0, 1fr) minmax(0, 1.3fr); gap: 24px; align-items: baseline;
+  padding: 26px 0; border-bottom: 1px solid rgba(29, 24, 18, .16); position: relative;
+}
+.ps-kit-list li::after {
+  content: ''; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0; background: #9a7a45; transition: width .6s cubic-bezier(.2, .75, .15, 1);
+}
+.ps-kit-list li:hover::after { width: 100%; }
+.ps-kit-list span { font-family: var(--serif-en); font-style: italic; font-size: 20px; color: #9a7a45; }
+.ps-kit-list h3 { margin: 0; font-family: var(--serif); font-weight: 700; font-size: clamp(20px, 2vw, 27px); color: var(--ink-w); }
+.ps-kit-list p { margin: 0; font-size: 15.5px; line-height: 1.8; color: var(--ink-w2); }
+.ps-kit-links { display: flex; flex-wrap: wrap; gap: 14px 34px; margin-top: clamp(36px, 5vw, 56px); }
+
+/* ───────── 4. CTA ───────── */
+.ps-cta { position: relative; padding: 100px 0; text-align: center; overflow: hidden; isolation: isolate; }
+.ps-cta::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 55% 70% at 50% 115%, rgba(201, 164, 107, .32), transparent 70%),
+    linear-gradient(180deg, rgba(11, 10, 9, .9), rgba(3, 4, 11, .2) 60%);
+}
+.ps-cta h2 {
+  margin: 0; font-family: var(--serif); font-weight: 700; color: #fff;
+  font-size: clamp(30px, 4vw, 56px); line-height: 1.3; letter-spacing: .03em;
+}
+.ps-cta h2 em { font-style: normal; color: var(--gold-2); }
+.ps-cta p { margin: 18px auto 34px; max-width: 520px; font-size: 16px; line-height: 1.85; color: var(--ink-2); }
+.ps-cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
+.ps-cta .cx-btn { background: linear-gradient(100deg, #f3dcae 0%, #d9b57a 55%, #b98f55 100%); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35), 0 12px 44px -12px rgba(217, 181, 122, .9); }
+.ps-cta .cx-btn:hover { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45), 0 18px 54px -8px rgba(217, 181, 122, 1); }
+
+/* 沒有 JS / WebGL 時：舞台直接全幅、字幕靜態顯示第一章 */
+.ps-nojs .ps-portal { clip-path: none; background: var(--night) url('/uploads/property-showcase/poster/s1-exterior.webp?r=12') center / cover; }
+@media (max-aspect-ratio: 4/5) { /* 手機直拿：用直式構圖的首格，也不會多載一張橫式的 */
+  .ps-nojs .ps-portal { background-image: url('/uploads/property-showcase/poster/s1-exterior-p.webp?r=12'); }
+}
+.ps-nojs .ps-portal::after, .ps-nojs .ps-intro, .ps-nojs .ps-roll { display: none; }
+.ps-nojs .ps-cap:first-child { visibility: visible; }
+.ps-nojs .ps-cap-text { opacity: 1; transform: none; }
+.ps-nojs .ps-shade, .ps-nojs .ps-rail, .ps-nojs .ps-credit { opacity: 1; }
+
+@keyframes ps-spin { to { transform: rotate(360deg); } }
+@keyframes ps-bob { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(4px); } }
+
+/* ───────── RWD ───────── */
+@media (max-width: 1100px) {
+  body.ps-page { --nav-h: 84px; }
+  .ps-cap-text { width: min(340px, 42vw); }
+  .ps-clock { width: 250px; padding: 18px 18px 14px; }
+  .ps-scrub-head p { max-width: 340px; }
+  .ps-story-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); }
+  .ps-cta { padding: 84px 0; }
+}
+@media (max-width: 720px) {
+  body.ps-page { --nav-h: 72px; }
+  .ps-title { font-size: clamp(26px, 8.4vw, 40px); }
+  .ps-roll { width: 92px; height: 92px; }
+  .ps-cap-text { left: var(--gutter); right: var(--gutter); top: calc(var(--nav-h) + 52px); bottom: auto; width: auto; padding: 14px 16px 12px; }
+  .ps-shade { background: radial-gradient(ellipse 85% 26% at 18% 100%, rgba(11, 10, 9, .5), rgba(11, 10, 9, 0) 74%); }
+  .ps-cap .ps-cap-meta { padding: 6px 12px; left: var(--gutter); font-size: 11px; }
+  .ps-cap-line { font-size: 20px; }
+  .ps-cap-note { font-size: 14px; }
+  .ps-cap-word { font-size: clamp(76px, 24vw, 120px); bottom: 34px; }
+  .ps-rail { right: 14px; gap: 10px; }
+  .ps-rail i { height: 18px; }
+  .ps-rail i.on { height: 32px; }
+  /* 手機上出處在最底下，已經在暗角裡，不用底板（底板會壓到大字） */
+  .ps-credit {
+    top: auto; bottom: 12px; right: var(--gutter); padding: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+    font-size: 9px; letter-spacing: .1em;
+  }
+  /* 街區：手機上只留標題和一排地點按鈕（說明與距離註記收起來），模塊矮一半，不壓到遠方天際線與大樓 */
+  .ps-cap-panel { padding: 12px 14px 10px; }
+  .ps-cap-panel .ps-cap-line { font-size: 18px; }
+  .ps-cap-panel .ps-cap-note, .ps-poi-note { display: none; }
+  .ps-poi {
+    display: flex; gap: 6px; overflow-x: auto; margin: 10px -14px 0; padding: 0 14px 2px;
+    scrollbar-width: none; overscroll-behavior-x: contain;
+  }
+  .ps-poi::-webkit-scrollbar { display: none; }
+  .ps-poi button {
+    flex: none; width: auto; gap: 6px; padding: 5px 12px; font-size: 13.5px;
+    border: 1px solid rgba(255, 255, 255, .24); border-radius: 999px; background: rgba(11, 10, 9, .4);
+  }
+  .ps-poi button::before { display: none; }
+  .ps-poi button[aria-pressed="true"] { border-color: var(--gold-2); background: rgba(236, 211, 162, .2); }
+
+  .ps-scrub { height: 320vh; }
+  .ps-day { height: 260vh; }
+  .ps-scrub-canvas { top: auto; bottom: 14%; height: 44%; }
+  .ps-unit .ps-scrub-canvas { height: min(44%, 75vw); } /* 樣品屋用 4:3，裁掉的兩側少一點，房間看得完整 */
+  /* 畫面上下緣融進深色底 */
+  .ps-scrub-stage::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg, var(--night) 0%, var(--night) 41%, rgba(11, 10, 9, 0) 49%, rgba(11, 10, 9, 0) 79%, var(--night) 87%);
+  }
+  /* 手機上畫面在中段、文字在上下的深色底上，互不遮擋：不用霧面底板，標題也不用淡出 */
+  .ps-scrub-head, .ps-rooms, .ps-clock {
+    border-radius: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  .ps-scrub-head { left: var(--gutter); padding: 0; }
+  .ps-unit.walking .ps-scrub-head { opacity: 1; transform: none; }
+  .ps-scrub-head h2 { font-size: clamp(30px, 8.6vw, 40px); }
+  .ps-scrub-head p { font-size: 14.5px; margin-top: 12px; }
+  .ps-scrub-head .ps-cap-meta { margin-bottom: 16px; }
+  .ps-scrub-tag { display: none; }
+  .ps-rooms { left: var(--gutter); right: var(--gutter); padding: 18px 0 0; gap: 0; justify-content: space-between; font-size: 15px; bottom: 30px; }
+  .ps-rooms::before { left: 0; right: 0; }
+  .ps-rooms::after { left: 0; width: calc(var(--f, 0) * 100%); }
+  .ps-rooms li.on::before { display: none; }
+  .ps-clock { left: var(--gutter); right: var(--gutter); width: auto; padding: 0; bottom: 22px; display: flex; align-items: center; gap: 16px; text-align: left; }
+  .ps-clock svg { width: 120px; flex: none; }
+  .ps-clock b { margin-top: 0; font-size: 48px; }
+
+  .ps-story-grid { grid-template-columns: minmax(0, 1fr); }
+  .ps-arch { max-width: 340px; }
+  .ps-arch img { height: 420px; }
+  .ps-values { grid-template-columns: minmax(0, 1fr); }
+  .ps-kit-list li { grid-template-columns: 44px minmax(0, 1fr); gap: 6px 14px; padding: 22px 0; }
+  .ps-kit-list p { grid-column: 2; }
+  .ps-cta { padding: 68px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-roll svg, .ps-roll span { animation: none; }
+  .ps-cap-word .ch i, .ps-cap-text { transition: none; }
+}

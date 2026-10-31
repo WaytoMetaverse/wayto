@@ -1,0 +1,100 @@
+/* 設計宇宙 · 室內設計 3D 提案展示（design-showcase.html）
+   沿用 property-showcase.css 的劇場、米色編輯區與 CTA；本檔只放 720° 環景、作品牆與首圖 */
+
+/* 沒有 JS 時舞台的首圖：南港雙美館玄關（直式螢幕也用同一張，置中裁切；選擇器比 property-showcase.css 的直式規則更具體） */
+.ps-nojs .ds-page .ps-portal { background-image: url('/uploads/design-showcase/poster/d1-entry.webp?r=1'); }
+
+.ds-page h2 em { font-style: normal; }
+
+/* ───────── 720° 環景 ───────── */
+.ds-vr, .ds-wall { position: relative; padding: clamp(90px, 11vw, 150px) 0; }
+.ds-vr { background: linear-gradient(180deg, rgba(11, 10, 9, .92), rgba(11, 10, 9, .55) 70%, rgba(11, 10, 9, 0)); }
+.ds-vr-head, .ds-wall-head { color: #fff; }
+.ds-vr .ps-kicker, .ds-wall .ps-kicker { color: var(--gold); }
+.ds-vr h2, .ds-wall h2 {
+  margin: 0; font-family: var(--serif); font-weight: 700; color: #fff;
+  font-size: clamp(28px, 3.6vw, 54px); line-height: 1.3; letter-spacing: .03em;
+}
+.ds-vr h2 em, .ds-wall h2 em { color: var(--gold-2); }
+.ds-vr-head p { margin: 22px 0 0; max-width: 520px; font-size: 16px; line-height: 1.9; color: var(--ink-2); }
+
+.ds-vr-stage { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 22px; margin-top: clamp(36px, 5vw, 56px); }
+.ds-vr-frame {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #14110d;
+  box-shadow: inset 0 0 0 1px rgba(236, 211, 162, .22), 0 40px 90px -40px rgba(0, 0, 0, .8);
+}
+.ds-vr-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.78); transition: transform 1.2s cubic-bezier(.2, .75, .15, 1); }
+.ds-vr-frame:hover img { transform: scale(1.03); }
+.ds-vr-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ds-vr-play {
+  position: absolute; left: 50%; top: 50%; width: 148px; height: 148px; margin: -74px 0 0 -74px; border-radius: 50%;
+  display: grid; place-content: center; gap: 4px; cursor: pointer; color: #fff; text-align: center;
+  background: rgba(11, 10, 9, .42); border: 1px solid rgba(236, 211, 162, .7);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 10px rgba(236, 211, 162, .08), 0 0 40px -6px rgba(217, 181, 122, .6);
+  transition: transform .4s cubic-bezier(.2, .75, .15, 1), box-shadow .4s;
+}
+.ds-vr-play:hover { transform: scale(1.06); box-shadow: 0 0 0 16px rgba(236, 211, 162, .1), 0 0 60px -6px rgba(217, 181, 122, .8); }
+.ds-vr-play:focus-visible { outline: 2px solid var(--gold-2); outline-offset: 4px; }
+.ds-vr-play b { font-family: var(--serif-en); font-weight: 500; font-size: 36px; line-height: 1; color: var(--gold-2); }
+.ds-vr-play span { font-size: 12.5px; letter-spacing: .08em; }
+
+.ds-vr-list { display: flex; flex-direction: column; gap: 10px; }
+.ds-vr-list button {
+  display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 16px; border-radius: 12px; cursor: pointer;
+  font-family: var(--serif); font-size: 17px; color: rgba(255, 255, 255, .72); text-align: left;
+  background: rgba(255, 255, 255, .03); border: 1px solid rgba(255, 255, 255, .12); transition: color .3s, border-color .3s, background .3s;
+}
+.ds-vr-list button::before {
+  content: ''; flex: none; width: 7px; height: 7px; border-radius: 50%; border: 1px solid rgba(236, 211, 162, .6);
+  transition: background .3s, box-shadow .3s;
+}
+.ds-vr-list button:hover { color: #fff; border-color: rgba(236, 211, 162, .4); }
+.ds-vr-list button[aria-pressed="true"] { color: #fff; border-color: rgba(236, 211, 162, .7); background: rgba(236, 211, 162, .1); }
+.ds-vr-list button[aria-pressed="true"]::before { background: var(--gold-2); border-color: var(--gold-2); box-shadow: 0 0 10px var(--gold); }
+.ds-vr-list button:focus-visible { outline: 1px solid var(--gold-2); outline-offset: 2px; }
+.ds-vr-note { margin: auto 0 0; padding-top: 8px; font-size: 12px; line-height: 1.7; color: var(--ink-3); }
+
+/* ───────── 作品牆 ───────── */
+.ds-wall { padding-top: 0; }
+.ds-wall-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.ds-wall-more {
+  display: inline-flex; align-items: center; gap: 10px; padding-bottom: 6px; font-family: var(--serif); font-weight: 700; font-size: 17px;
+  color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, .6); transition: gap .3s, color .3s, border-color .3s;
+}
+.ds-wall-more:hover { gap: 16px; color: var(--gold-2); border-color: var(--gold-2); }
+.ds-wall-grid {
+  list-style: none; margin: clamp(36px, 5vw, 56px) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+}
+.ds-wall-grid li { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: #14110d; }
+.ds-wall-grid img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2, .75, .15, 1); }
+.ds-wall-grid li:hover img { transform: scale(1.06); }
+.ds-wall-grid span {
+  position: absolute; left: 12px; bottom: 12px; padding: 5px 12px; border-radius: 999px;
+  font-family: var(--serif); font-size: 13.5px; color: #fff; background: rgba(11, 10, 9, .5);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+
+/* ───────── RWD ───────── */
+@media (max-width: 1100px) {
+  .ds-vr-stage { grid-template-columns: minmax(0, 1fr) 200px; }
+  .ds-wall-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ds-wall-grid li:nth-child(n + 7) { display: none; }
+}
+@media (max-width: 720px) {
+  .ds-vr-stage { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .ds-vr-frame { aspect-ratio: 4 / 5; border-radius: 14px; }
+  .ds-vr-play { width: 124px; height: 124px; margin: -62px 0 0 -62px; }
+  .ds-vr-play b { font-size: 30px; }
+  .ds-vr-list {
+    flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 8px; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px;
+    scrollbar-width: none; overscroll-behavior-x: contain;
+  }
+  .ds-vr-list::-webkit-scrollbar { display: none; }
+  .ds-vr-list button { flex: none; width: auto; padding: 9px 16px; font-size: 15px; border-radius: 999px; }
+  .ds-vr-note { flex: none; align-self: center; margin: 0; padding: 0 0 0 4px; white-space: nowrap; }
+  .ds-wall-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .ds-wall-grid li:nth-child(n + 7) { display: block; }
+  .ds-wall-grid span { left: 8px; bottom: 8px; padding: 4px 10px; font-size: 12px; }
+}

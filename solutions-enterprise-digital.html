@@ -18,16 +18,15 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"系統數位化","serviceType":"客製化系統開發","provider":{"@id":"https://wayto.com.tw/#organization"},"areaServed":"TW","inLanguage":"zh-TW","url":"https://wayto.com.tw/solutions-enterprise-digital.html","description":"客製管理後台、流程與表單、多系統串接與資料儀表板，協助團隊把散落資訊變成可追蹤、可決策的數位流程。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://wayto.com.tw/"},{"@type":"ListItem","position":2,"name":"解決方案","item":"https://wayto.com.tw/solutions.html"},{"@type":"ListItem","position":3,"name":"系統數位化","item":"https://wayto.com.tw/solutions-enterprise-digital.html"}]}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
-  <link rel="stylesheet" href="shared/solutions.css?v=cta-uniform-20260624">
+  <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
+  <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/solutions.css?v=cosmos-20261031c">
   <style>
     /* Hero：與其他方案頁相同版面（solutions.css）；僅換底圖與對齊，不動區塊尺寸與字級 */
-    .about-hero.about-hero--enterprise {
-      background: #f5f7fa;
-    }
     .about-hero.about-hero--enterprise .about-hero-img img {
-      object-fit: contain;
+      object-fit: cover;
       object-position: right center;
     }
 
@@ -39,13 +38,13 @@
     }
     #solve .p-step {
       justify-content: flex-start;
-      gap: 8px;
+      gap: 14px;
       padding: 10px 4px 12px;
     }
     #solve .p-step > span {
       font-size: clamp(13px, 1.85vw, 16px);
       font-weight: 600;
-      color: var(--ink);
+      color: #fff;
       line-height: 1.38;
       letter-spacing: -0.02em;
       margin-top: 4px;
@@ -88,9 +87,6 @@
         display: none;
       }
     }
-    #solve .section-head h2 {
-      font-size: clamp(24px, 3.1vw, 32px);
-    }
     #solve .section-head p {
       font-size: 16px;
       line-height: 1.75;
@@ -106,30 +102,37 @@
       gap: 16px;
     }
     .sol-ent-domain {
-      background: #fff;
-      border: 1px solid #e8e8e6;
-      border-radius: 12px;
-      padding: 18px 14px 20px;
+      background: var(--sol-glass);
+      border: 1px solid var(--sol-glass-line);
+      border-radius: 18px;
+      padding: 26px 16px 22px;
       min-height: 100%;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+    }
+    .sol-ent-domain:hover {
+      border-color: color-mix(in srgb, var(--c) 55%, transparent);
+      box-shadow: 0 24px 70px -30px var(--c);
     }
     .sol-ent-domain-ico {
       height: var(--sol-ico-size);
-      margin: 0 0 10px;
+      margin: 0 0 22px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .sol-ent-domain-ico img {
-      max-height: var(--sol-ico-size);
-      width: auto;
+      width: var(--sol-ico-size);
+      height: var(--sol-ico-size);
       max-width: 100%;
       object-fit: contain;
       display: block;
     }
     .sol-ent-domain h3 {
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 800;
-      color: var(--ink);
+      color: #fff;
       margin: 0 0 10px;
     }
     .sol-ent-domain ul {
@@ -137,7 +140,10 @@
       padding: 0 0 0 1.1em;
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.75;
+    }
+    .sol-ent-domain li::marker {
+      color: var(--c);
     }
     @media (max-width: 960px) {
       .sol-ent-domains .domain-grid {
@@ -161,14 +167,14 @@
       }
     }
 
-    /* 延伸產品：三欄（左說明＋雙產品卡，對齊 VIEWER 式稿） */
+    /* 延伸產品：三欄（左說明＋雙產品卡，對齊 VIEWER 式稿）；透明底與上下淡色帶交錯 */
     .sol-ent-extends.sol-ent-extends--banner {
-      background: #fff;
+      background: transparent;
     }
 
-    /* 常見問題：區塊底改白（覆寫共用 .faq 的 --bg-soft） */
+    /* 常見問題：透明底（覆寫共用 .faq 的 --bg-soft，與上一區交錯） */
     #faq.faq {
-      background: #fff;
+      background: transparent;
     }
     .sol-ent-extends-layout {
       display: grid;
@@ -181,12 +187,22 @@
       max-width: 320px;
     }
     .sol-ent-extends-title {
-      font-size: clamp(22px, 2.4vw, 28px);
+      font-size: clamp(28px, 3vw, 40px);
       font-weight: 800;
-      color: var(--ink);
+      color: #fff;
       line-height: 1.3;
       margin: 0 0 14px;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.02em;
+    }
+    .sol-ent-extends-title::before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 2px;
+      margin: 0 0 18px;
+      border-radius: 2px;
+      background: var(--c);
+      box-shadow: 0 0 12px var(--c);
     }
     .sol-ent-extends-intro .sol-ent-extends-lead {
       font-size: 14px;
@@ -200,18 +216,27 @@
       gap: 6px;
       text-decoration: none;
     }
+    /* 自有產品卡：強調色跟著產品所屬的客群宇宙（SpaceEase = 企業、ProjEase = 設計） */
     .sol-ent-prod {
-      border-radius: 14px;
-      border: 1px solid var(--line);
+      --c: var(--u-enterprise);
+      border-radius: 18px;
+      border: 1px solid var(--sol-glass-line);
       overflow: hidden;
-      background: #fff;
+      background: var(--sol-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       min-height: 0;
+      transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+    }
+    .sol-ent-prod:hover {
+      border-color: color-mix(in srgb, var(--c) 55%, transparent);
+      box-shadow: 0 24px 70px -30px var(--c);
     }
     a.sol-ent-prod {
       display: block;
     }
     a.sol-ent-prod:focus-visible {
-      outline: 2px solid #a68257;
+      outline: 2px solid var(--c);
       outline-offset: 3px;
     }
     .sol-ent-prod-inner {
@@ -222,33 +247,41 @@
       min-height: 280px;
     }
     .sol-ent-prod-copy {
-      flex: 1 1 42%;
+      flex: 1 1 44%;
       min-width: 0;
-      padding: 22px 18px 22px 22px;
+      padding: 22px 10px 22px 20px;
+      scrollbar-width: thin;
+      scrollbar-color: color-mix(in srgb, var(--c) 40%, transparent) transparent;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
     .sol-ent-prod-mock {
-      flex: 1 1 58%;
+      flex: 1 1 56%;
       min-width: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 14px 12px 8px;
+      padding: 14px 14px 14px 4px;
     }
+    /* 介面示意圖為淺底截圖：放進淺色圓角畫框（底色與圖片背景一致，contain 留白處同色） */
     .sol-ent-prod-mock img {
       width: 100%;
       height: 100%;
       max-height: 260px;
       object-fit: contain;
       display: block;
+      padding: 6px;
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 24px 60px -30px var(--c);
     }
     .sol-ent-prod--blue {
-      background: linear-gradient(165deg, #eef6fb 0%, #f7fbfd 40%, #fff 100%);
+      background:
+        radial-gradient(ellipse 80% 90% at 0% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%),
+        var(--sol-glass);
     }
-    .sol-ent-prod--blue .sol-ent-prod-mock {
-      background: linear-gradient(180deg, rgba(224, 242, 254, 0.35) 0%, transparent 55%);
+    .sol-ent-prod--blue .sol-ent-prod-mock img {
+      background: #fefefe;
     }
     /* SpaceEase：標題、副標、條列各維持單行不斷字換行 */
     .sol-ent-prod--blue .sol-ent-prod-copy h3,
@@ -261,10 +294,13 @@
       -webkit-overflow-scrolling: touch;
     }
     .sol-ent-prod--green {
-      background: linear-gradient(165deg, #eefaf4 0%, #f6fdf9 40%, #fff 100%);
+      --c: var(--u-design);
+      background:
+        radial-gradient(ellipse 80% 90% at 0% 0%, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%),
+        var(--sol-glass);
     }
-    .sol-ent-prod--green .sol-ent-prod-mock {
-      background: linear-gradient(180deg, rgba(209, 250, 229, 0.4) 0%, transparent 55%);
+    .sol-ent-prod--green .sol-ent-prod-mock img {
+      background: #f8f8f8;
     }
     /* ProjEase：標題、副標、條列各維持單行不斷字換行 */
     .sol-ent-prod--green .sol-ent-prod-copy h3,
@@ -282,25 +318,24 @@
       font-weight: 800;
       letter-spacing: -0.02em;
     }
-    .sol-ent-prod--blue .sol-ent-prod-copy h3 {
-      color: #1e3a5f;
-    }
+    .sol-ent-prod--blue .sol-ent-prod-copy h3,
     .sol-ent-prod--green .sol-ent-prod-copy h3 {
-      color: #14532d;
+      font-family: var(--f-en);
+      color: #fff;
     }
     .sol-ent-prod-tagline {
       margin: 0 0 12px;
       font-size: 13px;
       font-weight: 600;
-      color: #a68257;
-      letter-spacing: 0.02em;
+      color: var(--c);
+      letter-spacing: 0.04em;
     }
     .sol-ent-prod-list {
       list-style: none;
       margin: 0;
       padding: 0;
       font-size: 13px;
-      color: var(--ink);
+      color: var(--muted);
       line-height: 1.65;
     }
     .sol-ent-prod-list li {
@@ -313,7 +348,7 @@
       position: absolute;
       left: 0;
       top: 0.05em;
-      color: #a68257;
+      color: var(--c);
       font-weight: 800;
       font-size: 0.82em;
     }
@@ -341,8 +376,11 @@
         min-height: 0;
       }
       .sol-ent-prod-mock {
-        padding: 8px 16px 20px;
-        min-height: 200px;
+        padding: 4px 12px 14px;
+        min-height: 0;
+      }
+      .sol-ent-prod-mock img {
+        height: auto;
       }
       .sol-ent-prod-mock img {
         max-height: 220px;
@@ -358,7 +396,7 @@
       width: 100%;
       aspect-ratio: 5 / 3;
       overflow: hidden;
-      background: #e8eaee;
+      background: #0b1024;
       flex-shrink: 0;
     }
     .sol-ent-cases .svc-card .ph img {
@@ -379,22 +417,25 @@
     .sol-ent-cases .svc-card .body {
       flex: 1;
     }
+    /* 案例分類色：對應宇宙色票（cyan / green / violet / amber） */
     .sol-ent-cases .case-loc {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
     }
     .sol-ent-cases .case-loc--mfg {
-      color: #2563eb;
+      color: var(--u1);
     }
     .sol-ent-cases .case-loc--assoc {
-      color: #15803d;
+      color: var(--u3);
     }
     .sol-ent-cases .case-loc--svc {
-      color: #7c3aed;
+      color: var(--u2);
     }
     .sol-ent-cases .case-loc--build {
-      color: #1e3a5f;
+      color: var(--u4);
     }
     .sol-ent-cases .case-kpi {
       margin-top: 10px;
@@ -405,16 +446,16 @@
       font-weight: 800;
     }
     .sol-ent-cases .case-kpi--mfg {
-      color: #2563eb;
+      color: color-mix(in srgb, var(--u1) 80%, #fff);
     }
     .sol-ent-cases .case-kpi--assoc {
-      color: #15803d;
+      color: color-mix(in srgb, var(--u3) 80%, #fff);
     }
     .sol-ent-cases .case-kpi--svc {
-      color: #7c3aed;
+      color: color-mix(in srgb, var(--u2) 80%, #fff);
     }
     .sol-ent-cases .case-kpi--build {
-      color: #1e3a5f;
+      color: color-mix(in srgb, var(--u4) 80%, #fff);
     }
 
     @media (max-width: 900px) {
@@ -432,37 +473,15 @@
       }
     }
 
-    /* 底欄 CTA：背景圖須寫在 #contact-cta.foot-cta::before（相對本 HTML） */
-    #contact-cta.foot-cta {
-      padding: 30px 0 50px;
-    }
+    /* 底欄 CTA：背景圖須寫在 #contact-cta.foot-cta::before（相對本 HTML）；遮罩／光暈沿用 shared/solutions.css */
     #contact-cta.foot-cta::before {
       background-image: url('uploads/sol_right.png');
       background-size: 132% auto;
       background-position: center 28%;
     }
-    #contact-cta.foot-cta::after {
-      background: linear-gradient(
-        90deg,
-        rgba(6, 7, 10, 0.78) 0%,
-        rgba(6, 7, 10, 0.42) 18%,
-        rgba(6, 7, 10, 0.14) 34%,
-        transparent 52%
-      );
-    }
     #contact-cta.foot-cta h2,
     #contact-cta.foot-cta .foot-cta-lead {
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 24px rgba(0, 0, 0, 0.35);
-    }
-    #contact-cta.foot-cta .foot-cta-lead {
-      color: rgba(255, 255, 255, 0.92);
-    }
-
-    #contact-cta.foot-cta .btn-gold {
-      background: #a68257;
-    }
-    #contact-cta.foot-cta .btn-gold:hover {
-      background: #8f6f47;
     }
 
     /* 底欄 CTA：兩按鈕固定橫排（覆寫共用 .foot-cta .row 的 flex-wrap: wrap） */
@@ -481,7 +500,10 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 12px 14px 12px 18px;
+      min-height: 0;
+      border-radius: 18px;
+      letter-spacing: 0.02em;
+      padding: 13px 16px 13px 20px;
       flex: 1 1 0;
       min-width: 0;
       max-width: none;
@@ -534,7 +556,7 @@
   gtag('config', 'G-F1SWCVSH9F');
 </script>
 </head>
-<body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
+<body class="wayto-has-shared-nav sol-page cosmos cosmos-page" data-universe="enterprise" data-nav-current="solutions">
 
   <div id="shared-nav"></div>
 
@@ -544,6 +566,7 @@
     </div>
     <div class="about-hero-left">
       <div class="about-hero-inner">
+        <span class="cx-badge">U-04 · ENTERPRISEVERSE <b>企業宇宙</b></span>
         <div class="about-hero-tag">系統數位化</div>
         <h1>讓系統不只是被開發，<br>而是真正被使用</h1>
         <div class="about-hero-desc">
@@ -553,18 +576,19 @@
           <button type="button" class="btn-gold" onclick="document.getElementById('solve')?.scrollIntoView({behavior:'smooth'})">了解解決方案</button>
           <button type="button" class="btn-outline-gold" onclick="document.getElementById('extends')?.scrollIntoView({behavior:'smooth'})">觀看介紹 DEMO</button>
         </div>
+        <a class="cx-immersive" href="/enterprise-showcase.html"><i></i>親手點一遍<small>系統流程互動體驗 →</small></a>
       </div>
     </div>
   </main>
 
   <section id="pain" class="pain sol-ent-pain">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>客戶正在遇到的問題</h2>
         <p>多數卡關不在寫程式，而在資料與流程沒有單一真相來源，以及上線後缺少演進節奏。</p>
       </div>
-      <div class="cards-4">
-        <article class="num-card">
+      <div class="cards-4 cx-rv" style="--d:.1s">
+        <article class="num-card cx-tilt">
           <div class="num">01</div>
           <div class="num-card-visual">
             <img src="uploads/sol-ent-pain-01-line.png" alt="手持手機顯示 LINE 聊天列表，象徵工作資訊散在通訊軟體與各處紀錄" width="800" height="500" loading="lazy" decoding="async">
@@ -572,7 +596,7 @@
           <h3>LINE 與 Excel 資料四散</h3>
           <p>對話紀錄、表單與試算表版本不一，權限與稽核難以統一，報表永遠對不齊。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">02</div>
           <div class="num-card-visual">
             <img src="uploads/sol-ent-pain-02-notebook.png" alt="辦公桌上以紙本與筆記書寫，象徵人工謄寫與重複整理" width="800" height="500" loading="lazy" decoding="async">
@@ -580,7 +604,7 @@
           <h3>人工重複作業</h3>
           <p>同一份資料在多處謄打、匯出再匯入，耗時且容易出錯，難以 scale。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">03</div>
           <div class="num-card-visual">
             <img src="uploads/sol-ent-pain-03-kanban.png" alt="筆電顯示看板介面與實體便條並存，象徵流程尚未有單一真相來源" width="800" height="500" loading="lazy" decoding="async">
@@ -588,7 +612,7 @@
           <h3>流程依賴個人</h3>
           <p>靠資深同仁記憶與口頭交接，請假或異動就斷層，品質與速度難以複製。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">04</div>
           <div class="num-card-visual">
             <img src="uploads/sol-ent-pain-04-stress.png" alt="辦公桌前扶額的同仁，象徵系統與流程卡關造成的負擔" width="800" height="500" loading="lazy" decoding="async">
@@ -602,11 +626,11 @@
 
   <section id="solve" class="process">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>我們怎麼解決</h2>
         <p>從理解流程到持續優化，讓系統與組織一起演進。</p>
       </div>
-      <div class="process-track" role="list" aria-label="系統數位化五步">
+      <div class="process-track cx-rv" style="--d:.1s" role="list" aria-label="系統數位化五步">
         <div class="p-step" role="listitem">
           <img class="p-ico-img" src="uploads/sol-ent-solve-01.png" alt="理解流程：流程圖與訪談釐清關鍵問題" width="120" height="120" loading="lazy" decoding="async">
           <span>理解流程</span>
@@ -642,14 +666,14 @@
 
   <section id="domains" class="pain sol-ent-domains">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>我們解決哪些問題</h2>
         <p>跨產業的共通管理課題，可依現況模組化或客製整合。</p>
       </div>
-      <div class="domain-grid">
-        <div class="sol-ent-domain">
+      <div class="domain-grid cx-rv" style="--d:.1s">
+        <div class="sol-ent-domain cx-tilt">
           <div class="sol-ent-domain-ico">
-            <img src="uploads/sol-ent-domain-01.png" alt="工程管理：工地與專案進度整合示意" width="120" height="120" loading="lazy" decoding="async">
+            <img class="sol-ico-tile" src="uploads/sol-ent-domain-01.png" alt="工程管理：工地與專案進度整合示意" width="120" height="120" loading="lazy" decoding="async">
           </div>
           <h3>工程管理</h3>
           <ul>
@@ -658,9 +682,9 @@
             <li>請款與尾款追蹤</li>
           </ul>
         </div>
-        <div class="sol-ent-domain">
+        <div class="sol-ent-domain cx-tilt">
           <div class="sol-ent-domain-ico">
-            <img src="uploads/sol-ent-domain-02.png" alt="空間預約：檔期與場域管理示意" width="120" height="120" loading="lazy" decoding="async">
+            <img class="sol-ico-tile" src="uploads/sol-ent-domain-02.png" alt="空間預約：檔期與場域管理示意" width="120" height="120" loading="lazy" decoding="async">
           </div>
           <h3>空間預約</h3>
           <ul>
@@ -669,9 +693,9 @@
             <li>通知與報表匯出</li>
           </ul>
         </div>
-        <div class="sol-ent-domain">
+        <div class="sol-ent-domain cx-tilt">
           <div class="sol-ent-domain-ico">
-            <img src="uploads/sol-ent-domain-03.png" alt="活動與報名：名額與行銷整合示意" width="120" height="120" loading="lazy" decoding="async">
+            <img class="sol-ico-tile" src="uploads/sol-ent-domain-03.png" alt="活動與報名：名額與行銷整合示意" width="120" height="120" loading="lazy" decoding="async">
           </div>
           <h3>活動／報名</h3>
           <ul>
@@ -680,9 +704,9 @@
             <li>多場次排程</li>
           </ul>
         </div>
-        <div class="sol-ent-domain">
+        <div class="sol-ent-domain cx-tilt">
           <div class="sol-ent-domain-ico">
-            <img src="uploads/sol-ent-domain-04.png" alt="會員營運：名單與權益管理示意" width="120" height="120" loading="lazy" decoding="async">
+            <img class="sol-ico-tile" src="uploads/sol-ent-domain-04.png" alt="會員營運：名單與權益管理示意" width="120" height="120" loading="lazy" decoding="async">
           </div>
           <h3>會員營運</h3>
           <ul>
@@ -691,9 +715,9 @@
             <li>分眾溝通欄位</li>
           </ul>
         </div>
-        <div class="sol-ent-domain">
+        <div class="sol-ent-domain cx-tilt">
           <div class="sol-ent-domain-ico">
-            <img src="uploads/sol-ent-domain-05.png" alt="企業流程：表單簽核與整合示意" width="120" height="120" loading="lazy" decoding="async">
+            <img class="sol-ico-tile" src="uploads/sol-ent-domain-05.png" alt="企業流程：表單簽核與整合示意" width="120" height="120" loading="lazy" decoding="async">
           </div>
           <h3>企業流程</h3>
           <ul>
@@ -708,12 +732,12 @@
 
   <section id="extends" class="pain sol-ent-extends sol-ent-extends--banner">
     <div class="container sol-ent-extends-layout">
-      <div class="sol-ent-extends-intro">
+      <div class="sol-ent-extends-intro cx-rv">
         <h2 class="sol-ent-extends-title">延伸產品</h2>
         <p class="sol-ent-extends-lead">我們開發自有產品，滿足常見需求，快速導入，也可依需求擴充。</p>
         <a class="btn-outline-gold" href="/contact.html#contact-form">了解更多產品 →</a>
       </div>
-      <a href="/spaceease.html" class="sol-ent-prod sol-ent-prod--blue" style="text-decoration:none;color:inherit;">
+      <a href="/spaceease.html" class="sol-ent-prod sol-ent-prod--blue cx-tilt" style="text-decoration:none;color:inherit;">
         <div class="sol-ent-prod-inner">
           <div class="sol-ent-prod-copy">
             <h3>SpaceEase</h3>
@@ -730,7 +754,7 @@
           </div>
         </div>
       </a>
-      <a href="/projease.html" class="sol-ent-prod sol-ent-prod--green" style="text-decoration:none;color:inherit;">
+      <a href="/projease.html" class="sol-ent-prod sol-ent-prod--green cx-tilt" style="text-decoration:none;color:inherit;">
         <div class="sol-ent-prod-inner">
           <div class="sol-ent-prod-copy">
             <h3>ProjEase</h3>
@@ -752,12 +776,12 @@
 
   <section id="cases" class="pain sol-ent-cases">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>客製化案例</h2>
         <p>實際導入後的效益與節奏，依產業與範疇有所不同。</p>
       </div>
-      <div class="svc-grid">
-        <a class="svc-card" href="/case-study-bocchi.html">
+      <div class="svc-grid cx-rv" style="--d:.1s">
+        <a class="svc-card cx-tilt" href="/case-study-bocchi.html">
           <div class="ph"><img src="uploads/bocchi/preview-interior.png" alt="PokéPoké 波奇波奇擴店系統 3D 提案介面" width="640" height="400" loading="lazy" decoding="async"></div>
           <div class="body">
             <div class="case-loc case-loc--mfg">連鎖加盟</div>
@@ -766,7 +790,7 @@
             <div class="case-kpi case-kpi--mfg">完整案例 <strong>查看展店流程</strong></div>
           </div>
         </a>
-        <a class="svc-card" href="/rotaract.html">
+        <a class="svc-card cx-tilt" href="/rotaract.html">
           <div class="ph"><img src="uploads/rotaract/case-card-dashboard.png" alt="扶青社團管理系統活動大廳與報名介面" width="640" height="400" loading="lazy" decoding="async"></div>
           <div class="body">
             <div class="case-loc case-loc--assoc">社團管理</div>
@@ -775,16 +799,16 @@
             <div class="case-kpi case-kpi--assoc">完整案例 <strong>查看社務流程</strong></div>
           </div>
         </a>
-        <a class="svc-card" href="/herchu.html">
+        <a class="svc-card cx-tilt" href="/herchu.html">
           <div class="ph"><img src="uploads/herchu/logo.jpg" alt="磐石砌好厝活動管理平台識別" width="800" height="600" loading="lazy" decoding="async"></div>
           <div class="body">
             <div class="case-loc case-loc--svc">活動管理</div>
             <h3>磐石砌好厝活動管理系統</h3>
-            <p>從建築小組組聚流程出發，整合活動報名、簽到、餐點、繳費、名片與講師預約。</p>
+            <p>從建築小組組聚流程出發，整合活動報名、簽到、餐點、繳費、講師預約與來賓庫。</p>
             <div class="case-kpi case-kpi--svc">完整案例 <strong>查看活動流程</strong></div>
           </div>
         </a>
-        <a class="svc-card" href="/spaceease.html">
+        <a class="svc-card cx-tilt" href="/spaceease.html">
           <div class="ph"><img src="uploads/sol-ent-extends-spaceease.png" alt="SpaceEase 空間自營系統預約與後台介面" width="1200" height="750" loading="lazy" decoding="async"></div>
           <div class="body">
             <div class="case-loc case-loc--build">空間營運</div>
@@ -799,10 +823,10 @@
 
   <section id="faq" class="faq">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>常見問題</h2>
       </div>
-      <div class="faq-grid">
+      <div class="faq-grid cx-rv" style="--d:.1s">
         <details class="faq-item"><summary>客製系統如何報價？</summary>
           <div class="ans">依流程複雜度、串接數量、權限與報表範圍及是否含行動端等評估工時與風險；訪談後提供項目清單與報價，後續變更以變更單或追加報價載明。</div>
         </details>
@@ -827,7 +851,7 @@
 
   <section id="contact-cta" class="foot-cta">
     <div class="container">
-      <div class="foot-cta-inner">
+      <div class="foot-cta-inner cx-rv">
         <div class="foot-cta-copy">
           <h2>把時間留給決策，把瑣事交給系統。</h2>
           <p class="foot-cta-lead">讓系統成為團隊的最佳夥伴，提升效率，創造更多價值。</p>
@@ -859,5 +883,6 @@
   <div id="shared-footer"></div>
 
   <script src="shared/layout.js"></script>
+  <script src="shared/cosmos-bg.js?v=cosmos-20261031c" defer></script>
 </body>
 </html>

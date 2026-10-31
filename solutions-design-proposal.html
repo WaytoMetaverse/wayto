@@ -18,9 +18,11 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"設計提案 3D 視覺化","serviceType":"3D 視覺化","provider":{"@id":"https://wayto.com.tw/#organization"},"areaServed":"TW","inLanguage":"zh-TW","url":"https://wayto.com.tw/solutions-design-proposal.html","description":"室內設計師專用 3D 外包 — 從平面圖到空間建模、材質與視角調整，穩定交付渲染、360 環景與動態展示。"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://wayto.com.tw/"},{"@type":"ListItem","position":2,"name":"解決方案","item":"https://wayto.com.tw/solutions.html"},{"@type":"ListItem","position":3,"name":"設計提案 3D 視覺化","item":"https://wayto.com.tw/solutions-design-proposal.html"}]}]}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
-  <link rel="stylesheet" href="shared/solutions.css?v=cta-uniform-20260624">
+  <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
+  <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/solutions.css?v=cosmos-20261031c">
   <style>
     /* 底圖須覆寫 #contact-cta.foot-cta::before：僅設 :root 變數時，url 會以 shared/solutions.css 為基準解析成 shared/uploads/ 而破圖 */
     #contact-cta.foot-cta::before {
@@ -31,6 +33,78 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    /* Hero：提案拼貼圖為白底素材 → 以圓角畫框放在右側（不鋪滿、不疊深色遮罩），避免大面積白底 */
+    #hero.about-hero--design::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 45% 65% at 76% 50%, color-mix(in srgb, var(--c) 18%, transparent), transparent 70%),
+        linear-gradient(180deg, rgba(3, 4, 11, 0) 70%, #03040b 100%);
+    }
+    #hero.about-hero--design .about-hero-img {
+      inset: auto;
+      top: 50%;
+      right: max(40px, calc((100% - var(--layout-max, 1320px)) / 2 + 40px));
+      width: min(46vw, 640px);
+      aspect-ratio: 1024 / 572;
+      translate: 0 -50%;
+      z-index: 1;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #fff;
+      box-shadow:
+        0 0 0 8px rgba(255, 255, 255, 0.03),
+        0 40px 120px -40px var(--c),
+        0 30px 60px -30px rgba(0, 0, 0, 0.8);
+    }
+    #hero.about-hero--design .about-hero-img img {
+      object-fit: cover;
+      object-position: center;
+    }
+    #hero.about-hero--design .about-hero-img::before {
+      background: linear-gradient(180deg, rgba(3, 4, 11, 0) 55%, rgba(3, 4, 11, 0.28) 100%);
+    }
+    #hero.about-hero--design .about-hero-inner {
+      max-width: min(520px, 40vw);
+    }
+    @media (max-width: 1100px) {
+      #hero.about-hero--design {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      #hero.about-hero--design .about-hero-img {
+        position: relative;
+        top: auto;
+        right: auto;
+        translate: none;
+        order: 2;
+        width: calc(100% - 48px);
+        max-width: 760px;
+        margin: 0 auto 64px;
+      }
+      #hero.about-hero--design .about-hero-inner {
+        max-width: 560px;
+      }
+      #hero.about-hero--design .about-hero-left {
+        padding-bottom: 40px;
+      }
+    }
+    @media (max-width: 600px) {
+      #hero.about-hero--design .about-hero-img {
+        width: calc(100% - 40px);
+        margin-bottom: 48px;
+        border-radius: 14px;
+      }
+    }
+
+    /* 試算區與上一區同為淡色帶，常見問題改透明交錯 */
+    #faq.faq {
+      background: transparent;
     }
   </style>
 <!-- Google tag (gtag.js) -->
@@ -43,16 +117,17 @@
   gtag('config', 'G-F1SWCVSH9F');
 </script>
 </head>
-<body class="wayto-has-shared-nav sol-page" data-nav-current="solutions">
+<body class="wayto-has-shared-nav sol-page cosmos cosmos-page" data-universe="design" data-nav-current="solutions">
 
   <div id="shared-nav"></div>
 
-  <main id="hero" class="about-hero about-hero--accent-exh">
+  <main id="hero" class="about-hero about-hero--design about-hero--accent-exh">
     <div class="about-hero-img">
       <img src="uploads/preview-hero-design-collage.png" alt="平面圖、空間渲染、材質與 360 環景等設計提案示意" width="1600" height="900" loading="eager" fetchpriority="high">
     </div>
     <div class="about-hero-left">
       <div class="about-hero-inner">
+        <span class="cx-badge">U-02 · DESIGNVERSE <b>設計宇宙</b></span>
         <div class="about-hero-tag">設計提案</div>
         <h1>設計師穩定可靠的<br>3D 合作夥伴</h1>
         <div class="about-hero-desc">
@@ -62,18 +137,19 @@
           <button type="button" class="btn-gold" onclick="document.getElementById('process')?.scrollIntoView({behavior:'smooth'})">查看合作流程</button>
           <button type="button" class="btn-outline-gold" onclick="document.getElementById('estimate')?.scrollIntoView({behavior:'smooth'})">開始專案試算</button>
         </div>
+        <a class="cx-immersive" href="/design-showcase.html"><i></i>走進南港雙美館<small>3D 提案沉浸式體驗 →</small></a>
       </div>
     </div>
   </main>
 
   <section id="pain" class="pain">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>好的提案，不該浪費在反覆溝通</h2>
         <p>我們整理設計師在 3D 外包最常遇到的情境，讓你一眼對照現況。</p>
       </div>
-      <div class="cards-4">
-        <article class="num-card">
+      <div class="cards-4 cx-rv" style="--d:.1s">
+        <article class="num-card cx-tilt">
           <div class="num">01</div>
           <div class="num-card-visual" aria-hidden="true">
             <div class="num-card-chat">
@@ -85,7 +161,7 @@
           <h3>溝通成本高</h3>
           <p>與工讀生或兼職配合，容易出現理解落差與反覆修改。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">02</div>
           <div class="num-card-visual" aria-hidden="true">
             <div class="num-card-split">
@@ -96,7 +172,7 @@
           <h3>圖面與現場落差</h3>
           <p>過度美化容易造成客戶期待落差，影響後續施工與信任。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">03</div>
           <div class="num-card-visual" aria-hidden="true">
             <div class="num-card-files">
@@ -109,7 +185,7 @@
           <h3>時間被修改吃掉</h3>
           <p>反覆調整視角與材質，讓提案效率下降。</p>
         </article>
-        <article class="num-card">
+        <article class="num-card cx-tilt">
           <div class="num">04</div>
           <div class="num-card-visual">
             <img src="uploads/preview-pain-04-design-proposal.png" alt="設計師於桌前工作，螢幕顯示專案介面與平面圖，桌面擺放圖說與室內示意照片" width="800" height="500" loading="lazy" decoding="async">
@@ -123,7 +199,7 @@
 
   <section id="process" class="process">
     <div class="container">
-      <div class="process-split">
+      <div class="process-split cx-rv">
         <div class="process-left">
           <h2>我們更像設計師的延伸團隊</h2>
           <p class="process-sub">從平面圖到成果交付，我們理解設計師的每個環節</p>
@@ -177,12 +253,12 @@
 
   <section id="services" class="pain">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>提供多種空間展示方式</h2>
         <p>依專案階段與客戶類型，選擇最合適的呈現媒介。</p>
       </div>
-      <div class="svc-grid">
-        <article class="svc-card">
+      <div class="svc-grid cx-rv" style="--d:.1s">
+        <article class="svc-card cx-tilt">
           <a href="/cases-3d.html#cat-interior" style="display:block;text-decoration:none;color:inherit;">
             <div class="ph"><img src="/images/portfolio/items/item-1769670318054/1.jpg" alt="惠宇謙和室內設計 3D 靜態渲染作品" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -191,7 +267,7 @@
             </div>
           </a>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <a href="https://vr.3d66.com/next/vr/view/7819367" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;color:inherit;">
             <div class="ph"><img src="https://vrimg.3d66.com/vr/thumb/20260323193722/33310823/thumb.jpg" alt="漢陽街 720 度環景室內作品縮圖" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -200,7 +276,7 @@
             </div>
           </a>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <a href="/cases-3d.html#cat-construction" style="display:block;text-decoration:none;color:inherit;">
             <div class="ph"><video muted playsinline autoplay loop preload="metadata"><source src="/images/portfolio/items/item-1769676951722/v1.mp4" type="video/mp4"></video></div>
             <div class="body">
@@ -209,7 +285,7 @@
             </div>
           </a>
         </article>
-        <article class="svc-card">
+        <article class="svc-card cx-tilt">
           <a href="/cases-3d.html#cat-commercial" style="display:block;text-decoration:none;color:inherit;">
             <div class="ph"><img src="/images/portfolio/items/item-1769673880114/1.jpg" alt="共享商辦商業空間 3D 虛擬展間作品" loading="lazy" decoding="async"></div>
             <div class="body">
@@ -224,11 +300,11 @@
 
   <section id="estimate" class="estimator">
     <div class="container">
-      <div class="estimator-head">
+      <div class="estimator-head cx-rv">
         <h2>快速專案試算</h2>
         <p>選擇空間與需求，立即估算專案預算</p>
       </div>
-      <div class="est-layout">
+      <div class="est-layout cx-rv" style="--d:.1s">
         <div class="est-white-panel">
           <div class="est-inputs">
             <div class="est-col est-step1">
@@ -313,11 +389,11 @@
 
   <section id="faq" class="faq">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head cx-rv">
         <h2>常見問題</h2>
         <p>合作前設計師最常問的重點，先幫你整理好。</p>
       </div>
-      <div class="faq-grid">
+      <div class="faq-grid cx-rv" style="--d:.1s">
         <details class="faq-item"><summary>需要提供哪些資料才能報價？</summary>
           <div class="ans">平立面圖（CAD）、風格參考、材質表或示意照片；若有現場照片更佳。缺少項目我們會列在估價單備註。</div>
         </details>
@@ -347,7 +423,7 @@
   </section>
   <section id="contact-cta" class="foot-cta">
     <div class="container">
-      <div class="foot-cta-inner">
+      <div class="foot-cta-inner cx-rv">
         <div class="foot-cta-copy">
           <h2>找一位真正能長期配合的 3D 團隊</h2>
           <p class="foot-cta-lead">讓我們成為你公司最可靠的夥伴，一起創造更好的設計提案與空間體驗。</p>
@@ -363,6 +439,7 @@
   <div id="shared-footer"></div>
 
   <script src="shared/layout.js"></script>
+  <script src="shared/cosmos-bg.js?v=cosmos-20261031c" defer></script>
   <script>
     (function () {
       const OPEN_UNIT = 4000;
