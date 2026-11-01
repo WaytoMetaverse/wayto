@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="shared/layout.css?v=cta-uniform-20260624">
   <link rel="stylesheet" href="shared/cosmos.css?v=cosmos-20261031d">
   <link rel="stylesheet" href="shared/cosmos-page.css?v=cosmos-20261031d">
-  <link rel="stylesheet" href="shared/contact.css?v=cosmos-20261031c">
+  <link rel="stylesheet" href="shared/contact.css?v=form-20261101">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1SWCVSH9F"></script>
 <script>
@@ -35,6 +35,7 @@
 
   gtag('config', 'G-F1SWCVSH9F');
 </script>
+<script src="shared/track.js?v=track-20261101" defer></script>
 </head>
 <body class="wayto-has-shared-nav contact-page cosmos cosmos-page" data-universe="origin" data-nav-current="contact">
 
@@ -105,6 +106,10 @@
           <p class="contact-form-lead">請填寫以下資訊，我們會盡快與您聯繫。</p>
           <form id="contact-inquiry-form" novalidate>
             <input type="hidden" name="topic" id="contact-topic-field" value="建案展示">
+            <div class="contact-hp" aria-hidden="true">
+              <label for="co-website">網站</label>
+              <input id="co-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <div class="contact-field-row">
               <div class="contact-field">
                 <label for="co-name">公司名稱 <span style="color:#dc2626">*</span></label>
@@ -292,39 +297,75 @@
       var form = document.getElementById("contact-inquiry-form");
       var done = document.getElementById("contact-form-done");
       if (form) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          if (!form.reportValidity()) return;
+        var submitBtn = form.querySelector(".contact-btn-submit");
+        var submitLabel = submitBtn ? submitBtn.textContent : "";
 
-          var fd = new FormData(form);
-          var topic = (fd.get("topic") || "").toString().trim();
-          var name = (fd.get("name") || "").toString().trim();
-          var email = (fd.get("email") || "").toString().trim();
-          var company = (fd.get("company") || "").toString().trim();
-          var phone = (fd.get("phone") || "").toString().trim();
-          var project = (fd.get("project") || "").toString().trim();
-          var message = (fd.get("message") || "").toString().trim();
+        function showDone(text, isError) {
+          if (!done) return;
+          done.textContent = text;
+          done.classList.toggle("is-error", Boolean(isError));
+          done.classList.add("is-visible");
+        }
 
+        function setSending(on) {
+          form.classList.toggle("is-sending", on);
+          if (!submitBtn) return;
+          submitBtn.disabled = on;
+          submitBtn.textContent = on ? "送出中…" : submitLabel;
+        }
+
+        // 線上送出失敗（或寄信服務還沒設定）時，改用郵件程式，需求不會掉
+        function openMail(d) {
           var lines = [
-            "【諮詢主題】" + topic,
-            "【聯絡人】" + name,
-            "【Email】" + email,
-            "【公司】" + (company || "—"),
-            "【電話】" + (phone || "—"),
-            "【專案名稱】" + (project || "—"),
+            "【諮詢主題】" + d.topic,
+            "【聯絡人】" + d.name,
+            "【Email】" + d.email,
+            "【公司】" + (d.company || "—"),
+            "【電話】" + (d.phone || "—"),
+            "【專案名稱】" + (d.project || "—"),
             "",
             "【需求說明】",
-            message || "—"
+            d.message || "—"
           ];
           var body = encodeURIComponent(lines.join("\n"));
-          var subject = encodeURIComponent("Wayto 官網諮詢：" + topic);
-          var mail = "mailto:wayto.metaverse@gmail.com?subject=" + subject + "&body=" + body;
-          window.location.href = mail;
+          var subject = encodeURIComponent("Wayto 官網諮詢：" + d.topic);
+          window.location.href = "mailto:wayto.metaverse@gmail.com?subject=" + subject + "&body=" + body;
+        }
 
-          if (done) {
-            done.textContent = "已開啟郵件程式。若沒有反應，請手動寄信至 wayto.metaverse@gmail.com。";
-            done.classList.add("is-visible");
-          }
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!form.reportValidity() || form.classList.contains("is-sending")) return;
+
+          var track = window.waytoTrack; // shared/track.js 是 defer，比這段晚執行，送出時再取
+          var fd = new FormData(form);
+          var d = {};
+          ["topic", "company", "name", "phone", "email", "project", "message", "website"].forEach(function (k) {
+            d[k] = (fd.get(k) || "").toString().trim();
+          });
+          var payload = Object.assign({ source: track ? track.source() : null }, d);
+          var params = { form_id: form.id, lead_type: "contact_form", lead_topic: d.topic };
+          if (track) track.event("lead_form_submit_attempt", params);
+
+          setSending(true);
+          fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          })
+            .then(function (r) {
+              if (!r.ok) throw new Error(String(r.status));
+              setSending(false);
+              form.reset();
+              if (field) field.value = d.topic;
+              showDone("已收到您的需求，我們會盡快與您聯繫。");
+              if (track) track.lead(params);
+            })
+            .catch(function (err) {
+              setSending(false);
+              if (track) track.event("lead_form_submit_error", Object.assign({ error_reason: err.message }, params));
+              openMail(d);
+              showDone("線上送出暫時無法使用，已改用郵件程式開啟。若沒有反應，請來電 04-2372-0718 或寄信至 wayto.metaverse@gmail.com。", true);
+            });
         });
       }
     })();

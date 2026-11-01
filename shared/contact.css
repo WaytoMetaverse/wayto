@@ -540,6 +540,21 @@
   outline-offset: 3px;
 }
 
+.contact-btn-submit:disabled {
+  opacity: 0.65;
+  cursor: progress;
+  transform: none;
+}
+
+/* 防機器人隱藏欄位：人看不到、鍵盤也跳過 */
+.contact-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-form-done {
   display: none;
   margin-top: 16px;
@@ -553,6 +568,12 @@
 
 .contact-form-done.is-visible {
   display: block;
+}
+
+.contact-form-done.is-error {
+  background: color-mix(in srgb, var(--u4) 10%, transparent);
+  border-color: color-mix(in srgb, var(--u4) 45%, transparent);
+  color: color-mix(in srgb, var(--u4) 55%, #fff);
 }
 
 /* 側欄 */
