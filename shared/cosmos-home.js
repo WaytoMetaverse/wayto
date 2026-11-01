@@ -724,6 +724,81 @@
     requestAnimationFrame(step);
   }
 
+  /* ── 合作夥伴展示牆：兩排反向等速流動 ──
+     原始項目留給爬蟲與螢幕閱讀器，複製出來的只負責補滿畫面（aria-hidden、alt 清空）。
+     卡片寬度固定，一份的寬度不受 logo 載入影響；位移剛好一份寬度，就能無縫接回起點。 */
+  function initPartnerWall() {
+    var wall = document.querySelector('.pw');
+    if (!wall || reduceMotion || !wall.animate) return;
+    var SPEED = 34; // px / 秒
+    var rows = [].slice.call(wall.querySelectorAll('.pw-row')).map(function (row) {
+      var track = row.querySelector('.pw-track');
+      return { row: row, track: track, items: [].slice.call(track.children), anim: null, hover: false, w: 0 };
+    });
+    var visible = false;
+
+    function sync(r) {
+      if (!r.anim) return;
+      if (visible && !r.hover) r.anim.play(); else r.anim.pause();
+    }
+
+    function build(r) {
+      var rowW = r.row.clientWidth;
+      if (!rowW || rowW === r.w) return;
+      var set = r.items.reduce(function (w, li) {
+        return w + li.offsetWidth + parseFloat(getComputedStyle(li).marginRight);
+      }, 0);
+      if (!set) return;
+      r.w = rowW;
+      while (r.track.children.length > r.items.length) r.track.removeChild(r.track.lastChild);
+      for (var i = Math.ceil(rowW / set) + 1; i > 0; i--) {
+        r.items.forEach(function (li) {
+          var c = li.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          c.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
+          r.track.appendChild(c);
+        });
+      }
+      // 換斷點時保留目前進度，不要跳回起點
+      var p = 0;
+      if (r.anim) {
+        var t = r.anim.effect.getTiming().duration;
+        p = (r.anim.currentTime % t) / t;
+        r.anim.cancel();
+      }
+      var from = 0, to = -set;
+      if (r.row.classList.contains('pw-row--rev')) { from = -set; to = 0; }
+      var dur = set / SPEED * 1000;
+      r.anim = r.track.animate(
+        [{ transform: 'translateX(' + from + 'px)' }, { transform: 'translateX(' + to + 'px)' }],
+        { duration: dur, iterations: Infinity }
+      );
+      r.anim.currentTime = p * dur;
+      sync(r);
+    }
+
+    wall.classList.add('is-live');
+    rows.forEach(function (r) {
+      build(r);
+      if (finePointer) {
+        r.row.addEventListener('pointerenter', function () { r.hover = true; sync(r); });
+        r.row.addEventListener('pointerleave', function () { r.hover = false; sync(r); });
+      }
+    });
+
+    // 離開畫面就暫停，省下背景位移
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      rows.forEach(sync);
+    }).observe(wall);
+
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { rows.forEach(build); }, 150);
+    });
+  }
+
   /* ── 頁面互動 ── */
   function initPage() {
     // reveal
@@ -788,6 +863,8 @@
       if (!reduceMotion) el.textContent = '0';
       countIO.observe(el);
     });
+
+    initPartnerWall();
 
     // 3D 傾斜卡片 + 光澤
     if (finePointer && !reduceMotion) {

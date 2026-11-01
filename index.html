@@ -378,6 +378,40 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
 .stat-k { margin-top: 16px; font-size: 16px; font-weight: 700; color: #fff; }
 .stat p { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
 
+/* ── PARTNER WALL ──
+   沒有 JS 或減少動態時是置中排列的靜態牆；JS 加上 .is-live 後改成單行，由 cosmos-home.js 複製項目並以 WAAPI 位移
+   卡片不用 backdrop-filter，流動時才不會每格重算模糊 */
+.partners { position: relative; padding: 6vh 0 4vh; }
+.partners::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(3,4,11,.8), rgba(3,4,11,0) 80%);
+}
+.partners .wrap, .pw { position: relative; }
+.pw { --pw-w: 200px; --pw-h: 120px; --pw-gap: 16px; --ls: 1; display: grid; gap: var(--pw-gap); }
+.pw-row { overflow: hidden; }
+.pw-track { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--pw-gap); max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.pw.is-live .pw-row {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.pw.is-live .pw-track { flex-wrap: nowrap; justify-content: flex-start; gap: 0; width: max-content; max-width: none; margin: 0; padding: 0; will-change: transform; }
+.pw.is-live .pw-item { margin-right: var(--pw-gap); }
+.pw-item {
+  position: relative; flex: none; width: var(--pw-w); height: var(--pw-h);
+  display: grid; grid-template-rows: 1fr auto; justify-items: center; gap: 8px; padding: 10px 10px 9px;
+  border: 1px solid var(--line); border-radius: 16px; background: rgba(8,11,26,.72);
+  transition: border-color .4s, background .4s;
+}
+.pw-item::before { content: ''; position: absolute; left: 22px; top: -1px; width: 28px; height: 2px; background: var(--c); box-shadow: 0 0 10px var(--c); opacity: .75; z-index: 1; }
+/* logo 保留原色，放在淺色底板上；寬度由 build 依長寬比算好（--w），各斷點用 --ls 等比縮放 */
+.pw-logo { justify-self: stretch; display: grid; place-items: center; min-height: 0; padding: 6px 10px; border-radius: 10px; background: #f5f7fc; }
+.pw-logo img { width: calc(var(--w) * 1px * var(--ls)); max-width: 100%; height: auto; border-radius: 3px; }
+.pw-name { font-size: 12.5px; letter-spacing: .06em; color: var(--ink-3); white-space: nowrap; line-height: 1.4; transition: color .4s; }
+@media (hover: hover) and (pointer: fine) {
+  .pw-item:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); background: rgba(12,16,36,.86); }
+  .pw-item:hover .pw-name { color: var(--ink-2); }
+}
+
 /* ── ROUTE TIMELINE ── */
 .route { position: relative; padding: 10vh 0 18vh; }
 .route::before {
@@ -438,6 +472,7 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(2) { border-right: 0; }
   .stat:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .pw { --pw-w: 180px; --pw-h: 110px; --ls: .9; }
   .route-track { grid-template-columns: 1fr; padding-left: 40px; max-width: 640px; margin: 0 auto; }
   .route-line { left: 7px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; }
   .route-fill { transform-origin: center top; transform: scaleY(var(--p)); }
@@ -508,6 +543,18 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
   .stat-n { font-size: 40px; }
   .stat-k { font-size: 14.5px; margin-top: 12px; }
   .stat p { font-size: 12px; }
+
+  .partners { padding: 4vh 0 2vh; }
+  .partners::before { background: radial-gradient(ellipse 120% 62% at 50% 50%, rgba(3,4,11,.84), rgba(3,4,11,0) 86%); }
+  .pw { --pw-w: 150px; --pw-h: 96px; --pw-gap: 12px; --ls: .74; }
+  .pw.is-live .pw-row {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .pw-item { padding: 8px 8px 7px; gap: 6px; border-radius: 14px; }
+  .pw-logo { padding: 5px 8px; border-radius: 8px; }
+  .pw-item::before { left: 16px; width: 22px; }
+  .pw-name { font-size: 11px; letter-spacing: .04em; }
 
   .route { padding: 8vh 0 12vh; }
   .route .sec-head { margin-bottom: 40px; }
@@ -606,8 +653,8 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
     <div class="wrap">
       <div class="sec-head">
         <p class="label rv">// MULTIVERSE MAP</p>
-        <h2 class="rv" style="--d:.08s">你是哪一種客戶？</h2>
-        <p class="rv" style="--d:.16s">四個宇宙，依你的身分分好了。3D 視覺、互動展示、系統開發與 AI 產品，在 Wayto 由同一支團隊串成一條路 — 你不必在不同廠商之間來回轉乘。</p>
+        <h2 class="rv" style="--d:.08s">找到你所在的宇宙</h2>
+        <p class="rv" style="--d:.16s">四個宇宙，依產業分好了。3D 視覺、互動展示、系統開發與 AI 產品，在 Wayto 由同一支團隊串成一條路 — 你不必在不同廠商之間來回轉乘。</p>
       </div>
       <div class="mv-stage">
         <svg class="mv-svg" aria-hidden="true"></svg>
@@ -813,6 +860,49 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
     </div>
   </section>
 
+  <!-- PARTNER WALL：同行的夥伴（第一排建設與地產，第二排品牌與工程團隊；JS 啟用時兩排反向流動） -->
+  <section class="partners" id="partners">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label rv">// CREW MANIFEST</p>
+        <h2 class="rv" style="--d:.08s">同行的夥伴</h2>
+        <p class="rv" style="--d:.16s">建設公司、建材品牌與工程團隊，在各自的宇宙裡，和我們走過同一段航道。</p>
+      </div>
+    </div>
+    <div class="pw rv" style="--d:.22s">
+      <div class="pw-row">
+        <ul class="pw-track" aria-label="建設與地產合作夥伴">
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/ching-he.webp" alt="" width="140" height="24" style="--w:140" loading="lazy" decoding="async"></span><span class="pw-name">慶合建設</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/yuansin.webp" alt="" width="51" height="52" style="--w:51" loading="lazy" decoding="async"></span><span class="pw-name">元心建設</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/yaoteng.webp" alt="" width="87" height="39" style="--w:87" loading="lazy" decoding="async"></span><span class="pw-name">耀騰開發建設</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/megagrace.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">崇恩建設</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/yuxin.webp" alt="" width="64" height="52" style="--w:64" loading="lazy" decoding="async"></span><span class="pw-name">裕鑫建設</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/sunny-house.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">晴天住屋</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/we-win.webp" alt="" width="79" height="43" style="--w:79" loading="lazy" decoding="async"></span><span class="pw-name">聯上建築</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/fuqun.webp" alt="" width="98" height="35" style="--w:98" loading="lazy" decoding="async"></span><span class="pw-name">馥群地產</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/shili.webp" alt="" width="104" height="33" style="--w:104" loading="lazy" decoding="async"></span><span class="pw-name">實力國際開發</span></li>
+          <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/unju.webp" alt="" width="51" height="52" style="--w:51" loading="lazy" decoding="async"></span><span class="pw-name">UNJU 優築網</span></li>
+        </ul>
+      </div>
+      <div class="pw-row pw-row--rev">
+        <ul class="pw-track" aria-label="品牌與工程團隊合作夥伴">
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/san-jeou.webp" alt="" width="68" height="50" style="--w:68" loading="lazy" decoding="async"></span><span class="pw-name">三久建材</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/jiantang.webp" alt="" width="47" height="52" style="--w:47" loading="lazy" decoding="async"></span><span class="pw-name">建堂水電</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/shun-cai.webp" alt="" width="65" height="52" style="--w:65" loading="lazy" decoding="async"></span><span class="pw-name">順財工程</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/ouku.webp" alt="" width="73" height="47" style="--w:73" loading="lazy" decoding="async"></span><span class="pw-name">歐酷</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/guanheng.webp" alt="" width="73" height="47" style="--w:73" loading="lazy" decoding="async"></span><span class="pw-name">冠亨水電</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/gutdecor.webp" alt="" width="61" height="52" style="--w:61" loading="lazy" decoding="async"></span><span class="pw-name">巨勝櫥櫃</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/muben.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">沐本室內裝修</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/t4.webp" alt="" width="45" height="52" style="--w:45" loading="lazy" decoding="async"></span><span class="pw-name">清茶達人</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/wenna.webp" alt="" width="41" height="52" style="--w:41" loading="lazy" decoding="async"></span><span class="pw-name">穩納工程</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/zhaopeng.webp" alt="" width="49" height="52" style="--w:49" loading="lazy" decoding="async"></span><span class="pw-name">兆朋工程</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/jiechu.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">傑出油漆</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/long-ying.webp" alt="" width="36" height="52" style="--w:36" loading="lazy" decoding="async"></span><span class="pw-name">瀧迎環保</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- ROUTE TIMELINE -->
   <section class="route" id="timeline">
     <div class="wrap">
@@ -856,6 +946,6 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
 
 <script src="shared/layout.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="shared/cosmos-home.js?v=20261031a" defer></script>
+<script src="shared/cosmos-home.js?v=20261101a" defer></script>
 </body>
 </html>
