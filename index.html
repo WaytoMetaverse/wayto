@@ -388,13 +388,15 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
 }
 .partners .wrap, .pw { position: relative; }
 .pw { --pw-w: 200px; --pw-h: 120px; --pw-gap: 16px; --ls: 1; display: grid; gap: var(--pw-gap); }
-.pw-row { overflow: hidden; }
-.pw-track { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--pw-gap); max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+/* 靜態時每排各自橫向捲動，不往下堆成長牆 */
+.pw-row { overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: rgba(160,180,255,.25) transparent; }
+.pw-track { list-style: none; display: flex; gap: var(--pw-gap); width: max-content; margin: 0 auto; padding: 0 var(--gutter) 6px; }
+.pw.is-live .pw-row { overflow: hidden; }
 .pw.is-live .pw-row {
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.pw.is-live .pw-track { flex-wrap: nowrap; justify-content: flex-start; gap: 0; width: max-content; max-width: none; margin: 0; padding: 0; will-change: transform; }
+.pw.is-live .pw-track { gap: 0; margin: 0; padding: 0; will-change: transform; }
 .pw.is-live .pw-item { margin-right: var(--pw-gap); }
 .pw-item {
   position: relative; flex: none; width: var(--pw-w); height: var(--pw-h);
@@ -406,6 +408,8 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
 /* logo 保留原色，放在淺色底板上；寬度由 build 依長寬比算好（--w），各斷點用 --ls 等比縮放 */
 .pw-logo { justify-self: stretch; display: grid; place-items: center; min-height: 0; padding: 6px 10px; border-radius: 10px; background: #f5f7fc; }
 .pw-logo img { width: calc(var(--w) * 1px * var(--ls)); max-width: 100%; height: auto; border-radius: 3px; }
+.pw-logo--dark { background: #1c2236; }
+.pw-logo--text { color: #2a3047; font-size: calc(20px * var(--ls)); font-weight: 700; letter-spacing: .14em; white-space: nowrap; }
 .pw-name { font-size: 12.5px; letter-spacing: .06em; color: var(--ink-3); white-space: nowrap; line-height: 1.4; transition: color .4s; }
 @media (hover: hover) and (pointer: fine) {
   .pw-item:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); background: rgba(12,16,36,.86); }
@@ -860,44 +864,68 @@ html.js .rv.in { opacity: 1; translate: 0 0; }
     </div>
   </section>
 
-  <!-- PARTNER WALL：同行的夥伴（第一排建設與地產，第二排品牌與工程團隊；JS 啟用時兩排反向流動） -->
+  <!-- PARTNER WALL：同行的夥伴（建設與設計／品牌與店家／企業與工程團隊三排；JS 啟用時相鄰兩排反向流動） -->
   <section class="partners" id="partners">
     <div class="wrap">
       <div class="sec-head">
         <p class="label rv">// CREW MANIFEST</p>
         <h2 class="rv" style="--d:.08s">同行的夥伴</h2>
-        <p class="rv" style="--d:.16s">建設公司、建材品牌與工程團隊，在各自的宇宙裡，和我們走過同一段航道。</p>
+        <p class="rv" style="--d:.16s">建設公司、設計團隊、品牌與企業，在各自的宇宙裡，和我們走過同一段航道。</p>
       </div>
     </div>
     <div class="pw rv" style="--d:.22s">
       <div class="pw-row">
-        <ul class="pw-track" aria-label="建設與地產合作夥伴">
+        <ul class="pw-track" aria-label="建設、地產與設計合作夥伴">
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/ching-he.webp" alt="" width="140" height="24" style="--w:140" loading="lazy" decoding="async"></span><span class="pw-name">慶合建設</span></li>
+          <li class="pw-item" style="--c:var(--u-design)"><span class="pw-logo"><img src="/uploads/partners/hongyu.webp" alt="" width="59" height="52" style="--w:59" loading="lazy" decoding="async"></span><span class="pw-name">鴻宇設計</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/yuansin.webp" alt="" width="51" height="52" style="--w:51" loading="lazy" decoding="async"></span><span class="pw-name">元心建設</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/yaoteng.webp" alt="" width="87" height="39" style="--w:87" loading="lazy" decoding="async"></span><span class="pw-name">耀騰開發建設</span></li>
+          <li class="pw-item" style="--c:var(--u-design)"><span class="pw-logo"><img src="/uploads/partners/dirun.webp" alt="" width="58" height="52" style="--w:58" loading="lazy" decoding="async"></span><span class="pw-name">帝潤空間美學</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/megagrace.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">崇恩建設</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/yuxin.webp" alt="" width="64" height="52" style="--w:64" loading="lazy" decoding="async"></span><span class="pw-name">裕鑫建設</span></li>
+          <li class="pw-item" style="--c:var(--u-design)"><span class="pw-logo"><img src="/uploads/partners/muben.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">沐本室內裝修</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/sunny-house.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">晴天住屋</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/we-win.webp" alt="" width="79" height="43" style="--w:79" loading="lazy" decoding="async"></span><span class="pw-name">聯上建築</span></li>
+          <li class="pw-item" style="--c:var(--u-design)"><span class="pw-logo"><img src="/uploads/partners/display-home.webp" alt="" width="47" height="52" style="--w:47" loading="lazy" decoding="async"></span><span class="pw-name">展示傢</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/fuqun.webp" alt="" width="98" height="35" style="--w:98" loading="lazy" decoding="async"></span><span class="pw-name">馥群地產</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/shili.webp" alt="" width="104" height="33" style="--w:104" loading="lazy" decoding="async"></span><span class="pw-name">實力國際開發</span></li>
           <li class="pw-item" style="--c:var(--u-estate)"><span class="pw-logo"><img src="/uploads/partners/unju.webp" alt="" width="51" height="52" style="--w:51" loading="lazy" decoding="async"></span><span class="pw-name">UNJU 優築網</span></li>
         </ul>
       </div>
       <div class="pw-row pw-row--rev">
-        <ul class="pw-track" aria-label="品牌與工程團隊合作夥伴">
+        <ul class="pw-track" aria-label="品牌與店家合作夥伴">
           <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/san-jeou.webp" alt="" width="68" height="50" style="--w:68" loading="lazy" decoding="async"></span><span class="pw-name">三久建材</span></li>
-          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/jiantang.webp" alt="" width="47" height="52" style="--w:47" loading="lazy" decoding="async"></span><span class="pw-name">建堂水電</span></li>
-          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/shun-cai.webp" alt="" width="65" height="52" style="--w:65" loading="lazy" decoding="async"></span><span class="pw-name">順財工程</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/luxus.webp" alt="" width="41" height="52" style="--w:41" loading="lazy" decoding="async"></span><span class="pw-name">富喜企業</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo pw-logo--dark"><img src="/uploads/partners/chu-pang.webp" alt="" width="95" height="36" style="--w:95" loading="lazy" decoding="async"></span><span class="pw-name">巨邦建材</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/pokepoke.webp" alt="" width="47" height="52" style="--w:47" loading="lazy" decoding="async"></span><span class="pw-name">波奇波奇</span></li>
           <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/ouku.webp" alt="" width="73" height="47" style="--w:73" loading="lazy" decoding="async"></span><span class="pw-name">歐酷</span></li>
-          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/guanheng.webp" alt="" width="73" height="47" style="--w:73" loading="lazy" decoding="async"></span><span class="pw-name">冠亨水電</span></li>
-          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/gutdecor.webp" alt="" width="61" height="52" style="--w:61" loading="lazy" decoding="async"></span><span class="pw-name">巨勝櫥櫃</span></li>
-          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/muben.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">沐本室內裝修</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/good-living.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">好傢在</span></li>
           <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/t4.webp" alt="" width="45" height="52" style="--w:45" loading="lazy" decoding="async"></span><span class="pw-name">清茶達人</span></li>
-          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/wenna.webp" alt="" width="41" height="52" style="--w:41" loading="lazy" decoding="async"></span><span class="pw-name">穩納工程</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/pretty-wife-cheese.webp" alt="" width="62" height="52" style="--w:62" loading="lazy" decoding="async"></span><span class="pw-name">水母吃乳酪</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/okemaru.webp" alt="" width="84" height="40" style="--w:84" loading="lazy" decoding="async"></span><span class="pw-name">馬鹿有限公司</span></li>
+          <li class="pw-item" style="--c:var(--u-brand)"><span class="pw-logo"><img src="/uploads/partners/clean-day.webp" alt="" width="43" height="52" style="--w:43" loading="lazy" decoding="async"></span><span class="pw-name">晴天花藝</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/nut-creative.webp" alt="" width="38" height="52" style="--w:38" loading="lazy" decoding="async"></span><span class="pw-name">堅果創意行銷</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/josuya.webp" alt="" width="79" height="43" style="--w:79" loading="lazy" decoding="async"></span><span class="pw-name">約書亞文創空間</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/lightroom.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">薀光美業共築空間</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/apartment-82.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">八二公寓</span></li>
+        </ul>
+      </div>
+      <div class="pw-row">
+        <ul class="pw-track" aria-label="企業、組織與工程團隊合作夥伴">
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/jiantang.webp" alt="" width="47" height="52" style="--w:47" loading="lazy" decoding="async"></span><span class="pw-name">建堂水電</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/boyuan.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">柏沅記帳士事務所</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/shun-cai.webp" alt="" width="65" height="52" style="--w:65" loading="lazy" decoding="async"></span><span class="pw-name">順財工程</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/integrated-reality.webp" alt="" width="50" height="52" style="--w:50" loading="lazy" decoding="async"></span><span class="pw-name">艾歐整合實境</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/guanheng.webp" alt="" width="73" height="47" style="--w:73" loading="lazy" decoding="async"></span><span class="pw-name">冠亨水電</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/herchu.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">磐石砌好厝</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/gutdecor.webp" alt="" width="61" height="52" style="--w:61" loading="lazy" decoding="async"></span><span class="pw-name">巨勝櫥櫃</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/tgsa.webp" alt="" width="79" height="43" style="--w:79" loading="lazy" decoding="async"></span><span class="pw-name">臺灣智庫</span></li>
           <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/zhaopeng.webp" alt="" width="49" height="52" style="--w:49" loading="lazy" decoding="async"></span><span class="pw-name">兆朋工程</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/lie-flat.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">躺平之前，扶我一下</span></li>
           <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/jiechu.webp" alt="" width="52" height="52" style="--w:52" loading="lazy" decoding="async"></span><span class="pw-name">傑出油漆</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo pw-logo--text">赫馳電能</span><span class="pw-name">赫馳電能</span></li>
           <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/long-ying.webp" alt="" width="36" height="52" style="--w:36" loading="lazy" decoding="async"></span><span class="pw-name">瀧迎環保</span></li>
+          <li class="pw-item" style="--c:var(--u-enterprise)"><span class="pw-logo"><img src="/uploads/partners/yong-shun.webp" alt="" width="42" height="52" style="--w:42" loading="lazy" decoding="async"></span><span class="pw-name">詠順工程</span></li>
         </ul>
       </div>
     </div>
