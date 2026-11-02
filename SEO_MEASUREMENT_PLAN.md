@@ -60,7 +60,7 @@
 
 1. 管理 → 資料顯示 → 事件：等 `generate_lead` 出現後，標成「重要事件」。（已完成）
 2. 需要的話，把 `contact_click_phone`、`contact_click_line` 也標成重要事件。
-3. 目標對象（2026-11-02 已建）：看完展示頁（`showcase_complete`，180 天）、看過展示頁（網址含 `showcase`，180 天）、建案頁訪客（網址含 `property`，180 天）、進過聯絡頁但沒送出（網址含 `contact`、永久排除 `generate_lead`，30 天）。要給 Google Ads 用，GA4「產品連結 → Google Ads 連結」的「個人化廣告」必須開啟。
+3. 目標對象（2026-11-02 已建）：看完展示頁（`showcase_complete`，180 天）、看過展示頁（網址含 `showcase`，180 天）、建案頁訪客（網址含 `property`，180 天）、進過聯絡頁但沒送出（網址含 `contact`、永久排除 `generate_lead`，30 天）。GA4「產品連結 → Google Ads 連結」的「個人化廣告」已開啟（2026-11-02），名單會同步到 Google Ads 帳戶 804-343-1899（最多 24–48 小時）。
 
 ### C. Google Ads（二選一）
 
