@@ -282,17 +282,31 @@
     (function () {
       var field = document.getElementById("contact-topic-field");
       var cards = document.querySelectorAll(".contact-topic-card");
-      cards.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          cards.forEach(function (b) {
-            b.classList.remove("is-selected");
-            b.setAttribute("aria-pressed", "false");
-          });
-          btn.classList.add("is-selected");
-          btn.setAttribute("aria-pressed", "true");
-          if (field) field.value = btn.getAttribute("data-topic") || "";
+      function selectTopic(btn) {
+        cards.forEach(function (b) {
+          b.classList.remove("is-selected");
+          b.setAttribute("aria-pressed", "false");
         });
+        btn.classList.add("is-selected");
+        btn.setAttribute("aria-pressed", "true");
+        if (field) field.value = btn.getAttribute("data-topic") || "";
+      }
+      cards.forEach(function (btn) {
+        btn.addEventListener("click", function () { selectTopic(btn); });
       });
+
+      // 各頁的聯絡連結帶 ?topic=，依來源頁預先選好主題（沒帶就維持「建案展示」）
+      var presetTopic = {
+        estate: "建案展示",
+        design: "室內效果圖",
+        exhibition: "展覽互動",
+        system: "系統開發"
+      }[new URLSearchParams(window.location.search).get("topic")];
+      if (presetTopic) {
+        cards.forEach(function (btn) {
+          if (btn.getAttribute("data-topic") === presetTopic) selectTopic(btn);
+        });
+      }
 
       var form = document.getElementById("contact-inquiry-form");
       var done = document.getElementById("contact-form-done");
