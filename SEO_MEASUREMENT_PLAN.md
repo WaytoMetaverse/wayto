@@ -12,7 +12,7 @@
 | 各頁 `<head>` 的 gtag 片段 | GA4（`G-F1SWCVSH9F`） |
 | `shared/track.js` | 事件、Google Ads／Meta Pixel（ID 填在檔案上方 `CONFIG`，留空就不載入）、記住廣告來源 |
 | `api/contact.js` | Vercel 函式：聯絡表單 POST 到 `/api/contact`，透過 Resend 寄到公司信箱 |
-| `contact.html` | 表單送出：成功才記 `generate_lead`；寄信服務沒設定或失敗時，改開郵件程式（mailto），需求不會遺失 |
+| `contact.html` | 表單送出：成功才記 `generate_lead`；寄信服務沒設定或失敗時，改開郵件程式（mailto），需求不會遺失。網址帶 `?topic=design`／`exhibition`／`system` 時預選對應主題（`lead_topic` 跟著變），沒帶就是「建案展示」 |
 
 - `track.js` 被快取一年：改了內容要把全部頁面的 `?v=track-20261102` 一起改版本號。
 - 舊的 `seo-tracking.js` 沒有任何頁面載入，已不使用。
@@ -58,9 +58,9 @@
 
 ### B. GA4
 
-1. 管理 → 資料顯示 → 事件：等 `generate_lead` 出現後，標成「重要事件」。
+1. 管理 → 資料顯示 → 事件：等 `generate_lead` 出現後，標成「重要事件」。（已完成）
 2. 需要的話，把 `contact_click_phone`、`contact_click_line` 也標成重要事件。
-3. 目標對象：建立「`showcase_complete` 的使用者」，給 Google Ads 再行銷用。
+3. 目標對象（2026-11-02 已建）：看完展示頁（`showcase_complete`，180 天）、看過展示頁（網址含 `showcase`，180 天）、建案頁訪客（網址含 `property`，180 天）、進過聯絡頁但沒送出（網址含 `contact`、永久排除 `generate_lead`，30 天）。要給 Google Ads 用，GA4「產品連結 → Google Ads 連結」的「個人化廣告」必須開啟。
 
 ### C. Google Ads（二選一）
 
@@ -74,6 +74,8 @@
 事件管理工具 → 連結資料來源 → 網站 → 取得 Pixel（資料集）ID → 填 `metaPixelId` → 改版本號 → 部署。
 
 已設定：資料集「Wayto 官網」`1834649004333004`（2026-11-02）。「自動進階配對」、「無須程式碼即可自動追蹤事件」都保持關閉，Pixel 只收到頁面網址與 `Lead`／`Contact`／`ViewContent` 事件，不含表單個資。
+
+自訂受眾（2026-11-02 已建，都保留 180 天）：官網所有訪客、看完展示頁（`ViewContent`）、建案頁訪客（網址含 `property`）。
 
 ## 6) 驗收清單
 
