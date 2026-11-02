@@ -10,7 +10,7 @@
     googleAdsId: "",           // 例：AW-123456789
     googleAdsLeadLabel: "",    // 「表單送出」轉換動作的標籤（send_to 斜線後那段）
     googleAdsContactLabel: "", // 「點電話／LINE／Email」轉換動作的標籤（選填）
-    metaPixelId: ""            // 例：1234567890123456
+    metaPixelId: "1834649004333004" // 事件管理工具「Wayto 官網」；自動進階配對保持關閉
   };
 
   var SOURCE_KEY = "wayto_src";

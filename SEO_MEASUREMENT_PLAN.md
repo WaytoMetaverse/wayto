@@ -14,7 +14,7 @@
 | `api/contact.js` | Vercel 函式：聯絡表單 POST 到 `/api/contact`，透過 Resend 寄到公司信箱 |
 | `contact.html` | 表單送出：成功才記 `generate_lead`；寄信服務沒設定或失敗時，改開郵件程式（mailto），需求不會遺失 |
 
-- `track.js` 被快取一年：改了內容要把全部頁面的 `?v=track-20261101` 一起改版本號。
+- `track.js` 被快取一年：改了內容要把全部頁面的 `?v=track-20261102` 一起改版本號。
 - 舊的 `seo-tracking.js` 沒有任何頁面載入，已不使用。
 
 ## 3) 事件
@@ -67,9 +67,13 @@
 - **簡單**：Google Ads 連結 GA4 → 目標 → 轉換 → 匯入 GA4 的 `generate_lead`。不用改程式。
 - **較準**：建立「網站」轉換動作（手動用程式碼）→ 取得 `AW-XXXXXXXXX` 與標籤 → 填進 `track.js` 的 `googleAdsId`、`googleAdsLeadLabel`（點聯絡方式的轉換填 `googleAdsContactLabel`）→ 改版本號 → 部署。
 
+目前採用「簡單」：帳戶 804-343-1899 已從 GA4 匯入「wayto (web) generate_lead」當主要轉換（2026-11-02）。帳戶裡另一個「Lead form - Submit」是 Google 代管表單素材用的，不是官網表單。
+
 ### D. Meta Pixel
 
 事件管理工具 → 連結資料來源 → 網站 → 取得 Pixel（資料集）ID → 填 `metaPixelId` → 改版本號 → 部署。
+
+已設定：資料集「Wayto 官網」`1834649004333004`（2026-11-02）。「自動進階配對」、「無須程式碼即可自動追蹤事件」都保持關閉，Pixel 只收到頁面網址與 `Lead`／`Contact`／`ViewContent` 事件，不含表單個資。
 
 ## 6) 驗收清單
 
