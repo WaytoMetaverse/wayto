@@ -46,7 +46,7 @@
 
 ## Products and platforms
 
-- [RenderEase](https://wayto.com.tw/renderease.html): AI-driven material visualization for replacing walls and floors in interior photos.
+- [RenderEase](https://wayto.com.tw/renderease.html): AI room try-on platform for building-material brands; it measures the real size of walls and floors in a photo and lays the brand's real tiles to product spec, with tile-pattern texture downloads for designers (live site: https://renderease.com.tw/).
 - [ProjEase](https://wayto.com.tw/projease.html): Engineering project management system for quotations, job dispatch, costs, and billing.
 - [SpaceEase](https://wayto.com.tw/spaceease.html): Self-service space rental system with booking, payment, check-in, checkout, and overtime billing.
 - [Wayto AD](https://wayto.com.tw/waytoad.html): AI social media assistant that writes posts, creates images, publishes to Facebook, Instagram and Threads, and drafts comment replies in the owner's tone (app: https://waytoad.com/).
