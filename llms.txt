@@ -49,6 +49,7 @@
 - [RenderEase](https://wayto.com.tw/renderease.html): AI-driven material visualization for replacing walls and floors in interior photos.
 - [ProjEase](https://wayto.com.tw/projease.html): Engineering project management system for quotations, job dispatch, costs, and billing.
 - [SpaceEase](https://wayto.com.tw/spaceease.html): Self-service space rental system with booking, payment, check-in, checkout, and overtime billing.
+- [Wayto AD](https://wayto.com.tw/waytoad.html): AI social media assistant that writes posts, creates images, publishes to Facebook, Instagram and Threads, and drafts comment replies in the owner's tone (app: https://waytoad.com/).
 - [磐石砌好厝](https://wayto.com.tw/herchu.html): Activity management platform for member-based organizations.
 - [RotaractClub](https://wayto.com.tw/rotaract.html): Club and association management system.
 
