@@ -62,7 +62,7 @@ function initSharedNav() {
   }
 
   // Close when tapping any leaf link inside the drawer
-  nav.querySelectorAll(".nav-links a").forEach((link) => {
+  nav.querySelectorAll(".nav-links a[href]").forEach((link) => {
     link.addEventListener("click", () => {
       if (nav.classList.contains("menu-open")) closeMenu();
     });
